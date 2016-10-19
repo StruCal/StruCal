@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StruCal", "StruCal\StruCal.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StruCal.Tests", "StruCal.Tests\StruCal.Tests.csproj", "{D7CB23B2-1AB4-45AA-ABB2-C9A95A67C9A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculators", "Calculators\Calculators.csproj", "{467A29C4-F4FB-4B70-9DF1-7EE07B8992CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D7CB23B2-1AB4-45AA-ABB2-C9A95A67C9A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7CB23B2-1AB4-45AA-ABB2-C9A95A67C9A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7CB23B2-1AB4-45AA-ABB2-C9A95A67C9A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{467A29C4-F4FB-4B70-9DF1-7EE07B8992CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{467A29C4-F4FB-4B70-9DF1-7EE07B8992CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{467A29C4-F4FB-4B70-9DF1-7EE07B8992CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{467A29C4-F4FB-4B70-9DF1-7EE07B8992CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
