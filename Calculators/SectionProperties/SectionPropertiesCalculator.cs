@@ -9,8 +9,6 @@ namespace Calculators.SectionProperties
 {
     namespace SectionProperties.Calculations
     {
-
-
         /// <summary>
         /// class calculates properties of given section
         /// result is given as Dictionary

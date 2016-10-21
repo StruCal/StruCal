@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,6 @@ namespace Common.Geometry
         public double Y { get; set; }
         public PointD(double x, double y)
         {
-
             this.X = x;
             this.Y = y;
         }
@@ -21,7 +21,6 @@ namespace Common.Geometry
 
         public bool Equals(PointD other)
         {
-
             if (Object.ReferenceEquals(other, null)) return false;
             if (Object.ReferenceEquals(this, other)) return true;
 
@@ -29,7 +28,6 @@ namespace Common.Geometry
         }
         public override int GetHashCode()
         {
-
             int hashY = X.GetHashCode();
             int hashValue = Y.GetHashCode();
             return hashY ^ hashValue;
