@@ -11,12 +11,12 @@ namespace StruCal.Controllers
     {
         private const string validationPattern = @"([1-9][0-9]+\.?[1-9]*;?)*";
 
-        [Display(Name ="X:")]
+        [Display(Name ="X coordinates:")]
         [Required]
         [RegularExpression(validationPattern)]
         public string XCoordinates { get; set; }
 
-        [Display(Name = "Y:")]
+        [Display(Name = "Y coordinates:")]
         [Required]
         [RegularExpression(validationPattern)]
         public string YCoordinates { get; set; }

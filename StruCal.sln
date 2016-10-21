@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StruCal.Tests", "StruCal.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculators", "Calculators\Calculators.csproj", "{8714154A-8818-4E4B-BFD8-F222D5034B32}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{C394E565-ED2A-434B-95F5-7B2B924EB9AC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{8714154A-8818-4E4B-BFD8-F222D5034B32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8714154A-8818-4E4B-BFD8-F222D5034B32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8714154A-8818-4E4B-BFD8-F222D5034B32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C394E565-ED2A-434B-95F5-7B2B924EB9AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C394E565-ED2A-434B-95F5-7B2B924EB9AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C394E565-ED2A-434B-95F5-7B2B924EB9AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C394E565-ED2A-434B-95F5-7B2B924EB9AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
