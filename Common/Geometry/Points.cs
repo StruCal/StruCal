@@ -7,30 +7,46 @@ using System.Threading.Tasks;
 
 namespace Common.Geometry
 {
+    /// <summary>
+    /// Base class for representating double point
+    /// </summary>
     public class PointD : IEquatable<PointD>
     {
         public double X { get; set; }
         public double Y { get; set; }
+
         public PointD(double x, double y)
         {
             this.X = x;
             this.Y = y;
         }
-        public PointD()
-        { }
-
-        public bool Equals(PointD other)
+        public PointD() { }
+        public override bool Equals(object obj)
         {
-            if (Object.ReferenceEquals(other, null)) return false;
-            if (Object.ReferenceEquals(this, other)) return true;
-
-            return X.IsApproximatelyEqualTo(other.X) && Y.IsApproximatelyEqualTo(other.Y);
+            PointD other = obj as PointD;
+            if (other == null)
+                return false;
+            return this.Equals(other);
         }
         public override int GetHashCode()
         {
-            int hashY = X.GetHashCode();
-            int hashValue = Y.GetHashCode();
-            return hashY ^ hashValue;
+            return this.X.GetHashCode() ^ this.Y.GetHashCode();
         }
+
+        public bool Equals(PointD other)
+        {
+            return (this.X.IsApproximatelyEqualTo(other.X)
+                && this.Y.IsApproximatelyEqualTo(other.Y));
+        }
+
+        public static bool operator ==(PointD point1, PointD point2)
+        {
+            return point1.Equals(point2);
+        }
+        public static bool operator !=(PointD point1, PointD point2)
+        {
+            return !(point1 == point2);
+        }
+
     }
 }

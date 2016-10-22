@@ -1,6 +1,7 @@
 ﻿using Common.Geometry;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,18 +14,33 @@ namespace Calculators.SectionProperties
         /// class calculates properties of given section
         /// result is given as Dictionary
         /// </summary>
-        public class SectionPropertiesCalculations
+        public class SectionPropertiesCalculator
         {
-
-            public PointD CoordinatesOfCentreOfGravity { get; private set; }
-            public SectionPropertiesCalculations()
+            public SectionPropertiesCalculator()
             {
-
             }
-            public Dictionary<SectionCharacteristic, double> CalculateProperties(SectionData section)
+
+            public Dictionary<SectionProperty,double> CalculateProperties(string x, string y)
             {
+                var converter = new SectionCoordinatesConverter();
+                var sectionCoordinates = converter.ConvertToSectionCoordinates(x, y);
 
+                return this.CalculateProperties(sectionCoordinates);
+            }
 
+            public Dictionary<SectionProperty,double> CalculateProperties(SectionCoordinates coordinats)
+            {
+                var perimeter = new List<SectionCoordinates>();
+                perimeter.Add(coordinats);
+
+                var sectionData = new SectionData();
+                sectionData.OuterPerimeters = perimeter;
+
+                return this.CalculateProperties(sectionData);
+            }
+
+            public Dictionary<SectionProperty, double> CalculateProperties(SectionData section)
+            {
                 //calculations of outer primeter
                 double F = 0;
                 double Sx = 0;
@@ -80,7 +96,6 @@ namespace Calculators.SectionProperties
 
                 double x0 = Sy / F;
                 double y0 = Sx / F;
-                this.CoordinatesOfCentreOfGravity = new PointD(x0, y0);
 
                 //in central coordinate system
                 double Ix0 = Ix - F * y0 * y0;
@@ -99,56 +114,42 @@ namespace Calculators.SectionProperties
                 double alfa = Math.Atan(Ixy0 / (Iy0 - I1));
                 if (double.IsNaN(alfa))
                     alfa = Math.PI / 2;
-                //extreme coordinates
-                ExtremeDistances extremeCoordinates = new ExtremeDistances(new PointD(x0, y0));
 
-                /*var extremeCentral = extremeCoordinates.maxDistancesCentralCoordinateSystem(section.OuterPerimeters);
-                var extremePrincipal = extremeCoordinates.maxDistancesPrincipalCoordinateSystem(section.OuterPerimeters, alfa);
-                double x0_max = extremeCentral.Item1;
-                double x0_min = extremeCentral.Item2;
-                double y0_max = extremeCentral.Item3;
-                double y0_min = extremeCentral.Item4;
-                double xI_max = extremePrincipal.Item1;
-                double xI_min = extremePrincipal.Item2;
-                double yI_max = extremePrincipal.Item3;
-                double yI_min = extremePrincipal.Item4;*/
+                ExtremeDistances extremedistances = new ExtremeDistances(new PointD(x0, y0));
                 double x0_max, x0_min, y0_max, y0_min;
                 double xI_max, xI_min, yI_max, yI_min;
-
-                extremeCoordinates.maxDistancesCentralCoordinateSystem(section.OuterPerimeters, out x0_max, out x0_min, out y0_max, out y0_min);
-                extremeCoordinates.maxDistancesPrincipalCoordinateSystem(section.OuterPerimeters, alfa, out xI_max, out xI_min, out yI_max, out yI_min);
+                extremedistances.maxDistancesCentralCoordinateSystem(section.OuterPerimeters, out x0_max, out x0_min, out y0_max, out y0_min);
+                extremedistances.maxDistancesPrincipalCoordinateSystem(section.OuterPerimeters, alfa, out xI_max, out xI_min, out yI_max, out yI_min);
 
 
                 //creating dictionary with results
-                Dictionary<SectionCharacteristic, double> results = new Dictionary<SectionCharacteristic, double>(); //dictionary with results
-                results.Add(SectionCharacteristic.alfa, alfa);
-                results.Add(SectionCharacteristic.b, b);
-                results.Add(SectionCharacteristic.F, F);
-                results.Add(SectionCharacteristic.h, h);
-                results.Add(SectionCharacteristic.I1, I1);
-                results.Add(SectionCharacteristic.I2, I2);
-                results.Add(SectionCharacteristic.Ix, Ix);
-                results.Add(SectionCharacteristic.Ix0, Ix0);
-                results.Add(SectionCharacteristic.Ixy, Ixy);
-                results.Add(SectionCharacteristic.Ixy0, Ixy0);
-                results.Add(SectionCharacteristic.Iy, Iy);
-                results.Add(SectionCharacteristic.Iy0, Iy0);
-                results.Add(SectionCharacteristic.Sx, Sx);
-                results.Add(SectionCharacteristic.Sy, Sy);
-                results.Add(SectionCharacteristic.x0_max, x0_max);
-                results.Add(SectionCharacteristic.x0_min, x0_min);
-                results.Add(SectionCharacteristic.xI_max, xI_max);
-                results.Add(SectionCharacteristic.xI_min, xI_min);
-                results.Add(SectionCharacteristic.x0, x0);
-                results.Add(SectionCharacteristic.y0_max, y0_max);
-                results.Add(SectionCharacteristic.y0_min, y0_min);
-                results.Add(SectionCharacteristic.yI_max, yI_max);
-                results.Add(SectionCharacteristic.yI_min, yI_min);
-                results.Add(SectionCharacteristic.y0, y0);
+                Dictionary<SectionProperty, double> results = new Dictionary<SectionProperty, double>(); //dictionary with results
+                results.Add(SectionProperty.alfa, alfa);
+                results.Add(SectionProperty.b, b);
+                results.Add(SectionProperty.F, F);
+                results.Add(SectionProperty.h, h);
+                results.Add(SectionProperty.I1, I1);
+                results.Add(SectionProperty.I2, I2);
+                results.Add(SectionProperty.Ix, Ix);
+                results.Add(SectionProperty.Ix0, Ix0);
+                results.Add(SectionProperty.Ixy, Ixy);
+                results.Add(SectionProperty.Ixy0, Ixy0);
+                results.Add(SectionProperty.Iy, Iy);
+                results.Add(SectionProperty.Iy0, Iy0);
+                results.Add(SectionProperty.Sx, Sx);
+                results.Add(SectionProperty.Sy, Sy);
+                results.Add(SectionProperty.x0_max, x0_max);
+                results.Add(SectionProperty.x0_min, x0_min);
+                results.Add(SectionProperty.xI_max, xI_max);
+                results.Add(SectionProperty.xI_min, xI_min);
+                results.Add(SectionProperty.x0, x0);
+                results.Add(SectionProperty.y0_max, y0_max);
+                results.Add(SectionProperty.y0_min, y0_min);
+                results.Add(SectionProperty.yI_max, yI_max);
+                results.Add(SectionProperty.yI_min, yI_min);
+                results.Add(SectionProperty.y0, y0);
                 return results;
             }
-
-
         }
         public class ExtremeDistances
         {
@@ -164,7 +165,7 @@ namespace Calculators.SectionProperties
             {
                 this.centreOfGravity = centreOfGravity;
             }
-            public void maxDistancesCentralCoordinateSystem(List<SectionCoordinates> sections, out double x0_max, out double x0_min, out double y0_max, out double y0_min) //przekształcenia wspołrzędnych i obliczenie maksymalncyh odleglosci
+            public void maxDistancesCentralCoordinateSystem(IEnumerable<SectionCoordinates> sections, out double x0_max, out double x0_min, out double y0_max, out double y0_min)
             {
                 //Tuple=> x0_max,x0_min,y0_max,y0_min
                 x0_max = sections.Max(section => section.Coordinates.Max(point => point.X)) - this.centreOfGravity.X;
@@ -173,12 +174,12 @@ namespace Calculators.SectionProperties
                 y0_min = sections.Min(section => section.Coordinates.Min(point => point.Y)) - this.centreOfGravity.Y;
 
             }
-            public void maxDistancesPrincipalCoordinateSystem(List<SectionCoordinates> sections, double alfa, out double x_max, out double x_min, out double y_max, out double y_min) //przekształcenia wspołrzędnych i obliczenie maksymalncyh odleglosci
+            public void maxDistancesPrincipalCoordinateSystem(IEnumerable<SectionCoordinates> sections, double alfa, out double x_max, out double x_min, out double y_max, out double y_min) 
             {
                 double cos = Math.Cos(alfa);
                 double sin = Math.Sin(alfa);
 
-                //coordinate of teh centre of gravity in rotated coordinate system
+                //coordinate of the centre of gravity in rotated coordinate system
                 double xo = this.centreOfGravity.X * cos - this.centreOfGravity.Y * sin;
                 double yo = this.centreOfGravity.X * sin + this.centreOfGravity.Y * cos;
 
@@ -189,7 +190,7 @@ namespace Calculators.SectionProperties
             }
 
         }
-        public enum SectionCharacteristic
+        public enum SectionProperty
         {
             F,
             Sx,
@@ -219,9 +220,8 @@ namespace Calculators.SectionProperties
         
         public class SectionData
         {
-            public List<SectionCoordinates> OuterPerimeters { get; set; }
-            public List<SectionCoordinates> InnerPerimeters { get; set; }
-
+            public IEnumerable<SectionCoordinates> OuterPerimeters { get; set; }
+            public IEnumerable<SectionCoordinates> InnerPerimeters { get; set; }
         }
 
         public class SectionCoordinates
@@ -248,7 +248,6 @@ namespace Calculators.SectionProperties
                 {
                     this.Coordinates.Add(firstPoint);
                 }
-
             }
             private IList<PointD> checkIfCoordinatesAreClockwise(IList<PointD> coordinates)
             {
@@ -291,5 +290,44 @@ namespace Calculators.SectionProperties
                 return result;
             }
         }
+
+
+        /// <summary>
+        /// Converts the coordinates given as a string (e.g "10;30.5;80.8;60.2) to numbers
+        /// and returns collection of SectionCoordinates
+        /// </summary>
+        public class SectionCoordinatesConverter
+        {
+            private const char separator = ';';
+
+            public SectionCoordinates ConvertToSectionCoordinates(string xCoordinates, string yCoordinates)
+            {
+                var x = xCoordinates.Split(separator);
+                var y = yCoordinates.Split(separator);
+
+                var coordinates = convertCoordinates(x, y);
+
+                var sectionCoordinates = new SectionCoordinates(coordinates);
+                return sectionCoordinates;
+            }
+
+            private static List<PointD> convertCoordinates(string[] x, string[] y)
+            {
+                var coordinates = new List<PointD>();
+
+                for (int i = 0; i < x.Length; i++)
+                {
+                    var xTemp = double.Parse(x[i].Trim(), CultureInfo.InvariantCulture);
+                    var yTemp = double.Parse(y[i].Trim(), CultureInfo.InvariantCulture);
+
+                    var point = new PointD(xTemp, yTemp);
+
+                    coordinates.Add(point);
+                }
+                return coordinates;
+            }
+        }
+
+        
     }
 }

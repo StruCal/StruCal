@@ -29,5 +29,13 @@ namespace StruCal.Controllers
         {
             return View(new SectionPropertiesViewModel());
         }
+
+        [HttpPost]
+        public ActionResult Index(SectionPropertiesViewModel viewModel)
+        {
+
+
+            return View(viewModel);
+        }
     }
 }

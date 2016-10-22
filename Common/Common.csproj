@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\Extensions.cs" />
+    <Compile Include="Extensions\Double.cs" />
     <Compile Include="Geometry\Points.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
