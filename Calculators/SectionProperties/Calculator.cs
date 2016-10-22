@@ -1,4 +1,5 @@
-﻿using Common.Geometry;
+﻿using Common.Extensions;
+using Common.Geometry;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -67,21 +68,25 @@ namespace Calculators.SectionProperties
                 }
 
                 //iner perimeters
-                foreach (SectionCoordinates coord in section.InnerPerimeters)
+                //TODO: refactor required
+                if (section.InnerPerimeters != null)
                 {
-                    for (int i = 0; i <= coord.Coordinates.Count - 2; i++)
+                    foreach (SectionCoordinates coord in section.InnerPerimeters)
                     {
-                        double x1, x2, y1, y2;
-                        x1 = coord.Coordinates[i].X;
-                        x2 = coord.Coordinates[i + 1].X;
-                        y1 = coord.Coordinates[i].Y;
-                        y2 = coord.Coordinates[i + 1].Y;
-                        F = F - (x1 - x2) * (y2 + y1);
-                        Sx = Sx - (x1 - x2) * (y1 * y1 + y1 * y2 + y2 * y2);
-                        Sy = Sy - (y2 - y1) * (x1 * x1 + x1 * x2 + x2 * x2);
-                        Ix = Ix - (x1 - x2) * (y1 * y1 * y1 + y1 * y1 * y2 + y1 * y2 * y2 + y2 * y2 * y2);
-                        Iy = Iy - (y2 - y1) * (x1 * x1 * x1 + x1 * x1 * x2 + x1 * x2 * x2 + x2 * x2 * x2);
-                        Ixy = Ixy - (x1 - x2) * (x1 * (3 * y1 * y1 + y2 * y2 + 2 * y1 * y2) + x2 * (3 * y2 * y2 + y1 * y1 + 2 * y1 * y2));
+                        for (int i = 0; i <= coord.Coordinates.Count - 2; i++)
+                        {
+                            double x1, x2, y1, y2;
+                            x1 = coord.Coordinates[i].X;
+                            x2 = coord.Coordinates[i + 1].X;
+                            y1 = coord.Coordinates[i].Y;
+                            y2 = coord.Coordinates[i + 1].Y;
+                            F = F - (x1 - x2) * (y2 + y1);
+                            Sx = Sx - (x1 - x2) * (y1 * y1 + y1 * y2 + y2 * y2);
+                            Sy = Sy - (y2 - y1) * (x1 * x1 + x1 * x2 + x2 * x2);
+                            Ix = Ix - (x1 - x2) * (y1 * y1 * y1 + y1 * y1 * y2 + y1 * y2 * y2 + y2 * y2 * y2);
+                            Iy = Iy - (y2 - y1) * (x1 * x1 * x1 + x1 * x1 * x2 + x1 * x2 * x2 + x2 * x2 * x2);
+                            Ixy = Ixy - (x1 - x2) * (x1 * (3 * y1 * y1 + y2 * y2 + 2 * y1 * y2) + x2 * (3 * y2 * y2 + y1 * y1 + 2 * y1 * y2));
+                        }
                     }
                 }
 
@@ -114,6 +119,8 @@ namespace Calculators.SectionProperties
                 double alfa = Math.Atan(Ixy0 / (Iy0 - I1));
                 if (double.IsNaN(alfa))
                     alfa = Math.PI / 2;
+                if (Ixy0.IsApproximatelyEqualTo(0d))
+                    alfa = 0;
 
                 ExtremeDistances extremedistances = new ExtremeDistances(new PointD(x0, y0));
                 double x0_max, x0_min, y0_max, y0_min;

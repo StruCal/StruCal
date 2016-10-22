@@ -214,6 +214,10 @@
       <Project>{8714154a-8818-4e4b-bfd8-f222d5034b32}</Project>
       <Name>Calculators</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{c394e565-ed2a-434b-95f5-7b2b924eb9ac}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
