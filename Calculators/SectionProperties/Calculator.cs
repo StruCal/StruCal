@@ -34,8 +34,10 @@ namespace Calculators.SectionProperties
                 var perimeter = new List<SectionCoordinates>();
                 perimeter.Add(coordinats);
 
-                var sectionData = new SectionData();
-                sectionData.OuterPerimeters = perimeter;
+                var sectionData = new SectionData
+                {
+                    OuterPerimeters = perimeter
+                };
 
                 return this.CalculateProperties(sectionData);
             }
@@ -309,8 +311,8 @@ namespace Calculators.SectionProperties
 
             public SectionCoordinates ConvertToSectionCoordinates(string xCoordinates, string yCoordinates)
             {
-                var x = xCoordinates.Split(separator);
-                var y = yCoordinates.Split(separator);
+                var x = xCoordinates.Split(new char[] { separator },StringSplitOptions.RemoveEmptyEntries);
+                var y = yCoordinates.Split(new char[] { separator },StringSplitOptions.RemoveEmptyEntries);
 
                 var coordinates = convertCoordinates(x, y);
 

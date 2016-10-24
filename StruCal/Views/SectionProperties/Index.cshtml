@@ -7,10 +7,11 @@
 <div class="container">
     <h2>Welcome to the Section Properties Calculator</h2>
     <br />
-    <p>The calculator is able to calculte section properties such as
+    <p class="text-justify">
+        The calculator is able to calculte section properties such as
         area, centre of gravity, moments of inertia of the sections with any custom geometry.
-    <br />The cordinates of the section should be provided as a chain of numbers separated by semicolonsas shown in the following example: <em>5.5;10;20.4;18.8;</em>. 
-    <br />Please note that the chain of numbers should be ended with semicolon.
+        <br />The cordinates of the section should be provided as a chain of numbers separated by semicolonsas shown in the following example: <em>5.5;10;20.4;18.8;</em>.
+        <br />Please note that the chain of numbers should be ended with semicolon.
     </p>
     <br />
     <div class="row">
@@ -19,14 +20,23 @@
             @using (Html.BeginForm())
             {
                 <div id="inputForms">
+                    @if (ViewBag.InputErrors)
+                    {
+                        <div class="form-group">
+                            <div class="alert alert-danger" role="alert">
+                                <p>The provided input data is invalid.</p>
+                            </div>
+                        </div>
+                    }
                     <div class="form-group">
                         @Html.LabelFor(model => model.XCoordinates, new { @class = "control-label" })
-                        @Html.EditorFor(model => model.XCoordinates, new { htmlAttributes = new { @class = "form-control", @placeholder = "10;20;30" } })
+                        @Html.EditorFor(model => model.XCoordinates, new { htmlAttributes = new { @class = "form-control", @placeholder = "10;20;30;" } })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.YCoordinates, new { @class = "control-label" })
-                        @Html.EditorFor(model => model.YCoordinates, new { htmlAttributes = new { @class = "form-control", @placeholder = "10;20;30" } })
+                        @Html.EditorFor(model => model.YCoordinates, new { htmlAttributes = new { @class = "form-control", @placeholder = "10;20;30;" } })
                     </div>
+
                     <div class="form-group">
                         <input type="submit" value="Run" class="btn btn-primary" />
                     </div>
@@ -45,8 +55,8 @@
                     @foreach (var item in Model.SectionProperties)
                     {
                         <tr>
-                            <td>@Html.DisplayFor(e=>item.Name) </td>
-                            <td>@Html.DisplayFor(e=>item.Value)</td>
+                            <td>@Html.DisplayFor(e => item.Name) </td>
+                            <td>@Html.DisplayFor(e => item.Value)</td>
                         </tr>
                     }
 
@@ -62,29 +72,29 @@
 @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
 @Scripts.Render("~/bundles/jquery")
 @*<script>
-    $(document).ready(function () {
-        $("#inputForms input").change(function () {
+        $(document).ready(function () {
+            $("#inputForms input").change(function () {
 
-            var xString = $("#XCoordinates").val();
-            var yString = $("#YCoordinates").val();
+                var xString = $("#XCoordinates").val();
+                var yString = $("#YCoordinates").val();
 
-            var x = splitCoordinates(xString);
-            var y = splitCoordinates(yString);
+                var x = splitCoordinates(xString);
+                var y = splitCoordinates(yString);
 
-            if (x.length != y.length) {
-                return;
-            }
-            alert(xString + " " + yString);
+                if (x.length != y.length) {
+                    return;
+                }
+                alert(xString + " " + yString);
+            })
+
         })
 
-    })
+        function splitCoordinates(coordinates) {
+            var splitedCoordinates = coordinates.split(";");
+            return splitedCoordinates
+        }
 
-    function splitCoordinates(coordinates) {
-        var splitedCoordinates = coordinates.split(";");
-        return splitedCoordinates
-    }
+        function drawSection() {
 
-    function drawSection() {
-
-    }
-</script>*@
+        }
+    </script>*@

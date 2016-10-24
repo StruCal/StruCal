@@ -15,8 +15,8 @@ namespace Calculators.SectionProperties.Calculations.Tests
         [Test]
         public void SectionCoordinatesConverter_ConvertingCoordinates_Passed()
         {
-            var x = "10.0;20;40.0;80; 90";
-            var y = "12.5;30;50.2;38;-10";
+            var x = "10.0;20;40.0;80; 90;";
+            var y = "12.5;30;50.2;38;-10;";
 
             var sectionCoordinatesConverter = new SectionCoordinatesConverter();
             var actualResult = sectionCoordinatesConverter.ConvertToSectionCoordinates(x, y);

@@ -41,6 +41,7 @@ namespace StruCal.Controllers
         public ActionResult Index()
         {
             ViewBag.ShowResults = false;
+            ViewBag.InputErrors = false;
             return View(new SectionPropertiesViewModel());
         }
 
@@ -48,6 +49,7 @@ namespace StruCal.Controllers
         public ActionResult Index(SectionPropertiesViewModel viewModel)
         {
             ViewBag.ShowResults = false;
+            ViewBag.InputErrors = false;
             if (ModelState.IsValid)
             {
                 var propertiesCalculator = new SectionPropertiesCalculator();
@@ -58,7 +60,7 @@ namespace StruCal.Controllers
                 //TODO: Should be moved to separate metod for 
                 foreach (var item in calculationResult)
                 {
-                    sectionProperties.Add(new SectionPropertyViewData()
+                    sectionProperties.Add(new SectionPropertyViewData
                     {
                         Name = item.Key.ToString(),
                         Value = item.Value.ToString()
@@ -67,6 +69,8 @@ namespace StruCal.Controllers
                 viewModel.SectionProperties = sectionProperties;
                 ViewBag.ShowResults = true;
             }
+            else
+                ViewBag.InputErrors = true;
             return View(viewModel);
         }
     }
