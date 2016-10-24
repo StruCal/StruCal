@@ -24,12 +24,12 @@ namespace StruCal.Controllers
 
         [Display(Name ="X coordinates:")]
         [Required]
-        //[RegularExpression(validationPattern)]
+        [RegularExpression(validationPattern)]
         public string XCoordinates { get; set; }
 
         [Display(Name = "Y coordinates:")]
         [Required]
-        //[RegularExpression(validationPattern)]
+        [RegularExpression(validationPattern)]
         public string YCoordinates { get; set; }
 
         public IEnumerable<SectionPropertyViewData> SectionProperties { get; set; }
