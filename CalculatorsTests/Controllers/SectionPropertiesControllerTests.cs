@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace StruCal.Controllers.Tests
 {
-    [TestFixture()]
+    [TestFixture]
     public class SectionPropertiesControllerTests
     {
         /*taken from http://stackoverflow.com/questions/2167811/unit-testing-asp-net-dataannotations-validation */

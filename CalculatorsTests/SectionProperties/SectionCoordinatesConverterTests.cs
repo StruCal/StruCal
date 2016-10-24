@@ -7,12 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Common.Geometry;
 
-namespace Calculators.SectionProperties.SectionProperties.Calculations.Tests
+namespace Calculators.SectionProperties.Calculations.Tests
 {
-    [TestFixture()]
+    [TestFixture]
     public class SectionCoordinatesConverterTests
     {
-        [Test()]
+        [Test]
         public void SectionCoordinatesConverter_ConvertingCoordinates_Passed()
         {
             var x = "10.0;20;40.0;80; 90";
