@@ -20,7 +20,7 @@ namespace StruCal.Controllers
 
     public class SectionPropertiesViewModel
     {
-        public const string validationPattern = @"^([1-9][0-9]+\.?[0-9]*;?)*$";
+        public const string validationPattern = @"^((((-?)(0|[1-9][0-9]*)(\.[0-9]+)?);)+?)$";//@"^([1-9][0-9]+\.?[0-9]*;?)*$";
 
         [Display(Name ="X coordinates:")]
         [Required]
