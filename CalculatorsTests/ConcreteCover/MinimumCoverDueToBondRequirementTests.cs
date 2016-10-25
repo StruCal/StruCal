@@ -19,7 +19,7 @@ namespace CalculatorsTests.ConcreteCover
         public void CalculateMinimumCoverDueToBondRequirementTests(int testCaseNumber, ArrangementOfBars arrangementOfBars,
             double rebarDiameter, bool NominalMaximumAggregateSizeIsGreaterThan32mm, double expectedCover)
         {
-            Calculator coverCalculator = new Calculator()
+            ConcreteCoverCalculator coverCalculator = new ConcreteCoverCalculator()
             {
                 ArrangementOfBars = arrangementOfBars,
                 RebarDiameter = rebarDiameter,

@@ -15,7 +15,7 @@ namespace CalculatorsTests.ConcreteCover
         [TestCase(1, 0.03d, 0.01d, 0.02d)]
         public void CalculateNominalConcreteCoverTests_(int testCaseNumber, double minimumCover, double allowanceInDesignForDeviation, double expectedCover)
         {
-            Calculator coverCalculator = new Calculator()
+            ConcreteCoverCalculator coverCalculator = new ConcreteCoverCalculator()
             {
                 MinimumCover = minimumCover,
                 AllowanceInDesignForDeviation = allowanceInDesignForDeviation

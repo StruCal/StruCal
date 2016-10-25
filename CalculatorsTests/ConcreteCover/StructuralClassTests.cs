@@ -35,7 +35,7 @@ namespace CalculatorsTests.ConcreteCover
             bool memberWithSlabGeometry, bool specialQualityControlOfTheConcreteProductionEnsured,
             StructuralClass expectedStructuralClass)
         {
-            Calculators.ConcreteCover.Calculator coverCalculator = new Calculators.ConcreteCover.Calculator()
+            Calculators.ConcreteCover.ConcreteCoverCalculator coverCalculator = new Calculators.ConcreteCover.ConcreteCoverCalculator()
             {
                 // Recommended Structural Class when design working life is 50 years
                 BaseStructuralClass = structureClass,

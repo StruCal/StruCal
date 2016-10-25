@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Calculators.ConcreteCover
 {
-    public class Calculator
+    public class ConcreteCoverCalculator
     {
         // Rebar properties
         public double RebarDiameter { get; set; }

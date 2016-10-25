@@ -44,23 +44,28 @@ namespace StruCal.ViewModels
         [Required]
         [Display(Name = "Rebars:")]
         public IEnumerable<SelectListItem> RebarDiameterSelectList { get; set; }
+        public SelectListItem SelectedRebarDiameter { get; set; }
 
         [Required]
         [Display(Name = "Arrangement of bars:")]
         public IEnumerable<SelectListItem> ArrangementOfBarsSelectList { get; set; }
+        public SelectListItem SelectedArrangementOfBars { get; set; }
 
         // Concrete properties
         [Required]
         [Display(Name = "Concrete class:")]
         public IEnumerable<SelectListItem> ConcreteClassSelectList { get; set; }
+        public SelectListItem SelectedConcreteClass { get; set; }
 
         [Required]
         [Display(Name = "Exposure class:")]
         public IEnumerable<SelectListItem> ExposureClassSelectList { get; set; }
+        public SelectListItem SelectedExposureClass { get; set; }
 
         [Required]
         [Display(Name = "Base structural class:")]
         public IEnumerable<SelectListItem> BaseStructuralClassSelectList { get; set; }
+        public SelectListItem SelectedBaseStructuralClass { get; set; }
 
         [Required]
         [Display(Name = "Is nominal maximum aggregate size is greater than 32mm?")]
@@ -68,7 +73,7 @@ namespace StruCal.ViewModels
 
         // Bond Requirement
         [Required]
-        [Display(Name = "Minimum cover Due to bond requirement:")]
+        [Display(Name = "Minimum cover due to bond requirement:")]
         public string MinimumCoverDueToBondRequirement { get; set; }
 
         // EnvironmentalConditions
@@ -82,7 +87,7 @@ namespace StruCal.ViewModels
         [Display(Name = "Is special quality control of the concrete production ensured?")]
         public bool SpecialQualityControlOfTheConcreteProductionEnsured { get; set; }
         [Required]
-        [Display(Name = "Real structural class:")]
+        [Display(Name = "Structural class:")]
         public string StructuralClass { get; set; }
         [Required]
         [Display(Name = "Minimum cover due to environmental conditions:")]
@@ -175,6 +180,14 @@ namespace StruCal.ViewModels
             }
 
             return rebarDiametersSelectList;
+        }
+
+        public double ConvertStringToRebarDiameter(string rebarString)
+        {
+            int index = rebarString.IndexOf(" ");
+            if (index > 0) rebarString = rebarString.Substring(0, index);
+
+            return double.Parse(rebarString);
         }
 
         /// <summary>

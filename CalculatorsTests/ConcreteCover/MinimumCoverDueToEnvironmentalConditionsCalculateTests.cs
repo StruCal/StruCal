@@ -59,7 +59,7 @@ namespace CalculatorsTests.ConcreteCover
         public void CalculateMinimumCoverDueToEnvironmentalConditionsTests(int testCaseNumber, ExposureClass exposureClass,
             StructuralClass structuralClass, double expectedCover)
         {
-            Calculator coverCalculator = new Calculator()
+            ConcreteCoverCalculator coverCalculator = new ConcreteCoverCalculator()
             {
                 ExposureClass = exposureClass,
                 StructuralClass = structuralClass
