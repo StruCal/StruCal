@@ -7,33 +7,11 @@ using System.ComponentModel.DataAnnotations;
 using Calculators.SectionProperties.SectionProperties.Calculations;
 using Common.Extensions;
 using System.Text.RegularExpressions;
+using StruCal.ViewModels;
 
 namespace StruCal.Controllers
 {
-    public class SectionPropertyViewData
-    {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Value { get; set; }
-
-    }
-
-    public class SectionPropertiesViewModel
-    {
-        public const string validationPattern = @"^((((-?)(0|[1-9][0-9]*)(\.[0-9]+)?);)+?)$";//@"^([1-9][0-9]+\.?[0-9]*;?)*$";
-
-        [Display(Name ="X coordinates:")]
-        [Required]
-        [RegularExpression(validationPattern)]
-        public string XCoordinates { get; set; }
-
-        [Display(Name = "Y coordinates:")]
-        [Required]
-        [RegularExpression(validationPattern)]
-        public string YCoordinates { get; set; }
-
-        public IEnumerable<SectionPropertyViewData> SectionProperties { get; set; }
-    }
+    
 
     public class SectionPropertiesController : Controller
     {
@@ -63,7 +41,7 @@ namespace StruCal.Controllers
                     sectionProperties.Add(new SectionPropertyViewData
                     {
                         Name = item.Key.ToString(),
-                        Value = item.Value.ToString()
+                        Value = String.Format("{0,5:0.00}", item.Value)//item.Value.ToString()
                     });
                 }
                 viewModel.SectionProperties = sectionProperties;
