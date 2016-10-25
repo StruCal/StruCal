@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConcreteCover\Calculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SectionProperties\Calculator.cs" />
   </ItemGroup>
