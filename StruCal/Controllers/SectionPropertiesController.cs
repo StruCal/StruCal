@@ -24,6 +24,7 @@ namespace StruCal.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(SectionPropertiesViewModel viewModel)
         {
             ViewBag.ShowResults = false;
