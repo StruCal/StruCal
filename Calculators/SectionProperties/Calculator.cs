@@ -226,7 +226,12 @@ namespace Calculators.SectionProperties
             b,
             h
         };
-        
+        public class SectionPropertiesResult
+        {
+            public SectionProperty PropertyName { get; set; }
+            public double PropertyValue { get; set; }
+        }
+
         public class SectionData
         {
             public IEnumerable<SectionCoordinates> OuterPerimeters { get; set; }
@@ -300,7 +305,6 @@ namespace Calculators.SectionProperties
             }
         }
 
-
         /// <summary>
         /// Converts the coordinates given as a string (e.g "10;30.5;80.8;60.2) to numbers
         /// and returns collection of SectionCoordinates
@@ -336,7 +340,5 @@ namespace Calculators.SectionProperties
                 return coordinates;
             }
         }
-
-        
     }
 }

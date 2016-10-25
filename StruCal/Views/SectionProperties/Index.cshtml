@@ -19,6 +19,7 @@
 
             @using (Html.BeginForm())
             {
+                @Html.AntiForgeryToken()
                 <div id="inputForms">
                     @if (ViewBag.InputErrors)
                     {
@@ -64,7 +65,11 @@
             }
         </div>
         <div class="col-md-8">
-
+            <div id="canvas" class="panel panel-default">
+                <div class="panel-body">
+                <button>ok</button>
+                    </div>
+            </div>
         </div>
     </div>
 </div>
@@ -75,6 +80,9 @@
         $(document).ready(function () {
             $("#inputForms input").change(function () {
 
+                var canvasHeight = $("#canvas").height();
+                var canvasWidth = $("#canvas").width();
+
                 var xString = $("#XCoordinates").val();
                 var yString = $("#YCoordinates").val();
 
@@ -84,16 +92,27 @@
                 if (x.length != y.length) {
                     return;
                 }
-                alert(xString + " " + yString);
+                alert(canvasHeight + " " + canvasWidth);
+                
             })
 
         })
+
+        function getMaxValue(array)
+        {
+            return Math.max.apply(null, array);
+        }
+        function getMinValue(array)
+        {
+            return Math.min.apply(null, array);
+        }
+        
 
         function splitCoordinates(coordinates) {
             var splitedCoordinates = coordinates.split(";");
             return splitedCoordinates
         }
-
+        
         function drawSection() {
 
         }
