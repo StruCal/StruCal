@@ -25,7 +25,11 @@ namespace StruCal
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/custom.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/userScripts").Include(
+                      "~/Scripts/layoutScripts.js"));
         }
     }
 }

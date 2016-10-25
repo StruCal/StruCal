@@ -97,6 +97,10 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="ConcreteCover\MinimumCoverDueToBondRequirementTests.cs" />
+    <Compile Include="ConcreteCover\MinimumCoverDueToEnvironmentalConditionsCalculateTests.cs" />
+    <Compile Include="ConcreteCover\NominalConcreteCoverTests.cs" />
+    <Compile Include="ConcreteCover\StructuralClassTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SectionProperties\SectionCoordinatesConverterTests.cs" />
   </ItemGroup>

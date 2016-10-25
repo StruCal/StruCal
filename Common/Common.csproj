@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\Double.cs" />
+    <Compile Include="Extensions\ExtendedMath.cs" />
     <Compile Include="Geometry\Points.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
