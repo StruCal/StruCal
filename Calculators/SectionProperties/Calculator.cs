@@ -231,7 +231,6 @@ namespace Calculators.SectionProperties
             public SectionProperty PropertyName { get; set; }
             public double PropertyValue { get; set; }
         }
-
         public class SectionData
         {
             public IEnumerable<SectionCoordinates> OuterPerimeters { get; set; }
