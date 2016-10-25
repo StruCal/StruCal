@@ -41,8 +41,8 @@ namespace StruCal.Controllers
                 {
                     sectionProperties.Add(new SectionPropertyViewData
                     {
-                        Name = item.Key.ToString(),
-                        Value = String.Format("{0,5:0.00}", item.Value)//item.Value.ToString()
+                        Name = item.PropertyName.ToString(),
+                        Value = String.Format("{0,5:0.00}", item.PropertyValue)//item.Value.ToString()
                     });
                 }
                 viewModel.SectionProperties = sectionProperties;

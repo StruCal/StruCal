@@ -17,11 +17,32 @@ namespace Calculators.SectionProperties
         /// </summary>
         public class SectionPropertiesCalculator
         {
+            
+            double area = 0;
+            double firstMomentOfAreaAxisX = 0;
+            double firstMomentOfAreaAxisY = 0;
+            double secondMomentOfAreaAxisX = 0;
+            double secondMomentOfAreaAxisY = 0;
+            double momentOfDeviationAxisXY = 0;
+            double centreOfGravityX = 0;
+            double centreOfGravityY = 0;
+            double secondMomentOfAreaCentalAxisX = 0;
+            double secondMomentOfAreaCentralAxisY = 0;
+            double momentOfDeviationCentralAxisXY = 0;
+            double firstPrincipalSecondMomentOfArea = 0;
+            double secondPrincipalSecondMomentOfArea = 0;
+            double substituteRectangleHeight = 0;
+            double substituteRectangleWidth = 0;
+            double alfa = 0;
+            //extreme distances
+            double x0_max, x0_min, y0_max, y0_min;
+            double xI_max, xI_min, yI_max, yI_min;
+
             public SectionPropertiesCalculator()
             {
             }
 
-            public Dictionary<SectionProperty,double> CalculateProperties(string x, string y)
+            public IEnumerable<SectionPropertiesResult> CalculateProperties(string x, string y)
             {
                 var converter = new SectionCoordinatesConverter();
                 var sectionCoordinates = converter.ConvertToSectionCoordinates(x, y);
@@ -29,7 +50,7 @@ namespace Calculators.SectionProperties
                 return this.CalculateProperties(sectionCoordinates);
             }
 
-            public Dictionary<SectionProperty,double> CalculateProperties(SectionCoordinates coordinats)
+            public IEnumerable<SectionPropertiesResult> CalculateProperties(SectionCoordinates coordinats)
             {
                 var perimeter = new List<SectionCoordinates>();
                 perimeter.Add(coordinats);
@@ -42,122 +63,127 @@ namespace Calculators.SectionProperties
                 return this.CalculateProperties(sectionData);
             }
 
-            public Dictionary<SectionProperty, double> CalculateProperties(SectionData section)
+            public IEnumerable<SectionPropertiesResult> CalculateProperties(SectionData section)
             {
-                //calculations of outer primeter
-                double F = 0;
-                double Sx = 0;
-                double Sy = 0;
-                double Ix = 0;
-                double Iy = 0;
-                double Ixy = 0;
-                foreach (SectionCoordinates coord in section.OuterPerimeters)
-                {
-                    for (int i = 0; i <= coord.Coordinates.Count - 2; i++)
-                    {
-                        double x1, x2, y1, y2;
-                        x1 = coord.Coordinates[i].X;
-                        x2 = coord.Coordinates[i + 1].X;
-                        y1 = coord.Coordinates[i].Y;
-                        y2 = coord.Coordinates[i + 1].Y;
-                        F = F + (x1 - x2) * (y2 + y1);
-                        Sx = Sx + (x1 - x2) * (y1 * y1 + y1 * y2 + y2 * y2);
-                        Sy = Sy + (y2 - y1) * (x1 * x1 + x1 * x2 + x2 * x2);
-                        Ix = Ix + (x1 - x2) * (y1 * y1 * y1 + y1 * y1 * y2 + y1 * y2 * y2 + y2 * y2 * y2);
-                        Iy = Iy + (y2 - y1) * (x1 * x1 * x1 + x1 * x1 * x2 + x1 * x2 * x2 + x2 * x2 * x2);
-                        Ixy = Ixy + (x1 - x2) * (x1 * (3 * y1 * y1 + y2 * y2 + 2 * y1 * y2) + x2 * (3 * y2 * y2 + y1 * y1 + 2 * y1 * y2));
-                    }
-                }
-
-                //iner perimeters
-                //TODO: refactor required
+                calculateBaseProperties(section.OuterPerimeters, PerimeterType.Outer);
                 if (section.InnerPerimeters != null)
-                {
-                    foreach (SectionCoordinates coord in section.InnerPerimeters)
-                    {
-                        for (int i = 0; i <= coord.Coordinates.Count - 2; i++)
-                        {
-                            double x1, x2, y1, y2;
-                            x1 = coord.Coordinates[i].X;
-                            x2 = coord.Coordinates[i + 1].X;
-                            y1 = coord.Coordinates[i].Y;
-                            y2 = coord.Coordinates[i + 1].Y;
-                            F = F - (x1 - x2) * (y2 + y1);
-                            Sx = Sx - (x1 - x2) * (y1 * y1 + y1 * y2 + y2 * y2);
-                            Sy = Sy - (y2 - y1) * (x1 * x1 + x1 * x2 + x2 * x2);
-                            Ix = Ix - (x1 - x2) * (y1 * y1 * y1 + y1 * y1 * y2 + y1 * y2 * y2 + y2 * y2 * y2);
-                            Iy = Iy - (y2 - y1) * (x1 * x1 * x1 + x1 * x1 * x2 + x1 * x2 * x2 + x2 * x2 * x2);
-                            Ixy = Ixy - (x1 - x2) * (x1 * (3 * y1 * y1 + y2 * y2 + 2 * y1 * y2) + x2 * (3 * y2 * y2 + y1 * y1 + 2 * y1 * y2));
-                        }
-                    }
-                }
+                    calculateBaseProperties(section.InnerPerimeters, PerimeterType.Inner);
+                applyFactorsToCalculatedProperties();
+                calculateCentreOfGravity();
+                calculatePropertiesInCentreOfGravity();
+                calculatePrincipalMoments();
+                calculateSubstituteRectangle();
+                calculateAngleOfPrincipalAxes();
+                calculateExtremeDistances(section);
 
-                //applying mulipliers
-                F = F / 2;
-                Sx = Sx / 6;
-                Sy = Sy / 6;
-                Ix = Ix / 12;
-                Iy = Iy / 12;
-                Ixy = Ixy / 24;
+                var results = prepareResults();
+                return results;
+            }
 
+            private IEnumerable<SectionPropertiesResult> prepareResults()
+            {
+                var results = new List<SectionPropertiesResult>();
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.alfa, PropertyValue = alfa });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.b, PropertyValue = substituteRectangleWidth });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.F, PropertyValue = area });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.h, PropertyValue = substituteRectangleHeight });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.I1, PropertyValue = firstPrincipalSecondMomentOfArea });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.I2, PropertyValue = secondPrincipalSecondMomentOfArea });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.Ix, PropertyValue = secondMomentOfAreaAxisX });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.Ix0, PropertyValue = secondMomentOfAreaCentalAxisX });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.Ixy, PropertyValue = momentOfDeviationAxisXY });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.Ixy0, PropertyValue = momentOfDeviationCentralAxisXY });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.Iy, PropertyValue = secondMomentOfAreaAxisY });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.Iy0, PropertyValue = secondMomentOfAreaCentralAxisY });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.Sx, PropertyValue = firstMomentOfAreaAxisX });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.Sy, PropertyValue = firstMomentOfAreaAxisY });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.x0_max, PropertyValue = x0_max });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.x0_min, PropertyValue = x0_min });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.xI_max, PropertyValue = xI_max });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.xI_min, PropertyValue = xI_min });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.x0, PropertyValue = centreOfGravityX });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.y0, PropertyValue = centreOfGravityY });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.y0_max, PropertyValue = y0_max });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.y0_min, PropertyValue = y0_min });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.yI_max, PropertyValue = yI_max });
+                results.Add(new SectionPropertiesResult { PropertyName = SectionProperty.yI_min, PropertyValue = yI_min });
+                return results;
+            }
 
-                double x0 = Sy / F;
-                double y0 = Sx / F;
+            private void calculateExtremeDistances(SectionData section)
+            {
+                var extremedistances = new ExtremeDistances(new PointD(centreOfGravityX, centreOfGravityY));
 
-                //in central coordinate system
-                double Ix0 = Ix - F * y0 * y0;
-                double Iy0 = Iy - F * x0 * x0;
-                double Ixy0 = Ixy - F * x0 * y0;
-
-                //principal properties
-                double I1 = (Ix0 + Iy0) / 2 + 0.5 * Math.Sqrt(Math.Pow(Iy0 - Ix0, 2) + 4 * Ixy0 * Ixy0);
-                double I2 = (Ix0 + Iy0) / 2 - 0.5 * Math.Sqrt(Math.Pow(Iy0 - Ix0, 2) + 4 * Ixy0 * Ixy0);
-
-                //rectangle
-                double h = Math.Sqrt(12 * Ix0 / F);
-                double b = F / h;
-
-                //alfa
-                double alfa = Math.Atan(Ixy0 / (Iy0 - I1));
-                if (double.IsNaN(alfa))
-                    alfa = Math.PI / 2;
-                if (Ixy0.IsApproximatelyEqualTo(0d))
-                    alfa = 0;
-
-                ExtremeDistances extremedistances = new ExtremeDistances(new PointD(x0, y0));
-                double x0_max, x0_min, y0_max, y0_min;
-                double xI_max, xI_min, yI_max, yI_min;
                 extremedistances.maxDistancesCentralCoordinateSystem(section.OuterPerimeters, out x0_max, out x0_min, out y0_max, out y0_min);
                 extremedistances.maxDistancesPrincipalCoordinateSystem(section.OuterPerimeters, alfa, out xI_max, out xI_min, out yI_max, out yI_min);
+            }
 
+            private void calculateAngleOfPrincipalAxes()
+            {
+                alfa = Math.Atan(momentOfDeviationCentralAxisXY / (secondMomentOfAreaCentralAxisY - firstPrincipalSecondMomentOfArea));
+                if (double.IsNaN(alfa))
+                    alfa = Math.PI / 2;
+                if (momentOfDeviationCentralAxisXY.IsApproximatelyEqualTo(0d))
+                    alfa = 0;
+            }
 
-                //creating dictionary with results
-                Dictionary<SectionProperty, double> results = new Dictionary<SectionProperty, double>(); //dictionary with results
-                results.Add(SectionProperty.alfa, alfa);
-                results.Add(SectionProperty.b, b);
-                results.Add(SectionProperty.F, F);
-                results.Add(SectionProperty.h, h);
-                results.Add(SectionProperty.I1, I1);
-                results.Add(SectionProperty.I2, I2);
-                results.Add(SectionProperty.Ix, Ix);
-                results.Add(SectionProperty.Ix0, Ix0);
-                results.Add(SectionProperty.Ixy, Ixy);
-                results.Add(SectionProperty.Ixy0, Ixy0);
-                results.Add(SectionProperty.Iy, Iy);
-                results.Add(SectionProperty.Iy0, Iy0);
-                results.Add(SectionProperty.Sx, Sx);
-                results.Add(SectionProperty.Sy, Sy);
-                results.Add(SectionProperty.x0_max, x0_max);
-                results.Add(SectionProperty.x0_min, x0_min);
-                results.Add(SectionProperty.xI_max, xI_max);
-                results.Add(SectionProperty.xI_min, xI_min);
-                results.Add(SectionProperty.x0, x0);
-                results.Add(SectionProperty.y0_max, y0_max);
-                results.Add(SectionProperty.y0_min, y0_min);
-                results.Add(SectionProperty.yI_max, yI_max);
-                results.Add(SectionProperty.yI_min, yI_min);
-                results.Add(SectionProperty.y0, y0);
-                return results;
+            private void calculateSubstituteRectangle()
+            {
+                substituteRectangleHeight = Math.Sqrt(12 * secondMomentOfAreaCentalAxisX / area);
+                substituteRectangleWidth = area / substituteRectangleHeight;
+            }
+
+            private void calculatePrincipalMoments()
+            {
+                firstPrincipalSecondMomentOfArea = (secondMomentOfAreaCentalAxisX + secondMomentOfAreaCentralAxisY) / 2 + 0.5 * Math.Sqrt(Math.Pow(secondMomentOfAreaCentralAxisY - secondMomentOfAreaCentalAxisX, 2) + 4 * momentOfDeviationCentralAxisXY * momentOfDeviationCentralAxisXY);
+                secondPrincipalSecondMomentOfArea = (secondMomentOfAreaCentalAxisX + secondMomentOfAreaCentralAxisY) / 2 - 0.5 * Math.Sqrt(Math.Pow(secondMomentOfAreaCentralAxisY - secondMomentOfAreaCentalAxisX, 2) + 4 * momentOfDeviationCentralAxisXY * momentOfDeviationCentralAxisXY);
+            }
+
+            private void calculatePropertiesInCentreOfGravity()
+            {
+                secondMomentOfAreaCentalAxisX = secondMomentOfAreaAxisX - area * centreOfGravityY * centreOfGravityY;
+                secondMomentOfAreaCentralAxisY = secondMomentOfAreaAxisY - area * centreOfGravityX * centreOfGravityX;
+                momentOfDeviationCentralAxisXY = momentOfDeviationAxisXY - area * centreOfGravityX * centreOfGravityY;
+            }
+
+            private void calculateCentreOfGravity()
+            {
+                centreOfGravityX = firstMomentOfAreaAxisY / area;
+                centreOfGravityY = firstMomentOfAreaAxisX / area;
+            }
+
+            private void applyFactorsToCalculatedProperties()
+            {
+                area = area / 2;
+                firstMomentOfAreaAxisX = firstMomentOfAreaAxisX / 6;
+                firstMomentOfAreaAxisY = firstMomentOfAreaAxisY / 6;
+                secondMomentOfAreaAxisX = secondMomentOfAreaAxisX / 12;
+                secondMomentOfAreaAxisY = secondMomentOfAreaAxisY / 12;
+                momentOfDeviationAxisXY = momentOfDeviationAxisXY / 24;
+            }
+
+            private void calculateBaseProperties(IEnumerable<SectionCoordinates> perimeters, PerimeterType perimeterType)
+            {
+                //determines if values should be added or subtracked.
+                var multiplier = perimeterType == PerimeterType.Outer ? 1 : -1;
+
+                foreach (var perimeter in perimeters)
+                {
+                    for (int i = 0; i <= perimeter.Coordinates.Count - 2; i++)
+                    {
+                        double x1, x2, y1, y2;
+                        x1 = perimeter.Coordinates[i].X;
+                        x2 = perimeter.Coordinates[i + 1].X;
+                        y1 = perimeter.Coordinates[i].Y;
+                        y2 = perimeter.Coordinates[i + 1].Y;
+                        area = area + (x1 - x2) * (y2 + y1);
+                        firstMomentOfAreaAxisX = firstMomentOfAreaAxisX + ((x1 - x2) * (y1 * y1 + y1 * y2 + y2 * y2))*multiplier;
+                        firstMomentOfAreaAxisY = firstMomentOfAreaAxisY + ((y2 - y1) * (x1 * x1 + x1 * x2 + x2 * x2))*multiplier;
+                        secondMomentOfAreaAxisX = secondMomentOfAreaAxisX + ((x1 - x2) * (y1 * y1 * y1 + y1 * y1 * y2 + y1 * y2 * y2 + y2 * y2 * y2))*multiplier;
+                        secondMomentOfAreaAxisY = secondMomentOfAreaAxisY + ((y2 - y1) * (x1 * x1 * x1 + x1 * x1 * x2 + x1 * x2 * x2 + x2 * x2 * x2))*multiplier;
+                        momentOfDeviationAxisXY = momentOfDeviationAxisXY + ((x1 - x2) * (x1 * (3 * y1 * y1 + y2 * y2 + 2 * y1 * y2) + x2 * (3 * y2 * y2 + y1 * y1 + 2 * y1 * y2)))*multiplier;
+                    }
+                }
             }
         }
         public class ExtremeDistances
@@ -231,6 +257,13 @@ namespace Calculators.SectionProperties
             public SectionProperty PropertyName { get; set; }
             public double PropertyValue { get; set; }
         }
+
+        enum PerimeterType
+        {
+            Outer,
+            Inner
+        }
+
         public class SectionData
         {
             public IEnumerable<SectionCoordinates> OuterPerimeters { get; set; }
