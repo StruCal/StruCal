@@ -19,15 +19,11 @@ namespace Calculators.ConcreteCover
         public StructuralClass BaseStructuralClass { get; set; }
         public bool NominalMaximumAggregateSizeIsGreaterThan32mm { get; set; }
 
-        // Bond Requirement
-        public double MinimumCoverDueToBondRequirement { get; set; }
-
         // EnvironmentalConditions
         public bool DesignWorkingLifeOf100Years { get; set; }
         public bool MemberWithSlabGeometry { get; set; }
         public bool SpecialQualityControlOfTheConcreteProductionEnsured { get; set; }
         public StructuralClass StructuralClass { get; set; }
-        public double MinimumCoverDueToEnvironmentalConditions { get; set; }
 
         // Additive Safety Element
         public double AdditiveSafetyElement { get; set; }
@@ -39,6 +35,8 @@ namespace Calculators.ConcreteCover
         public double ReductionOfMinimumCoverForUseOfAdditionalProtection { get; set; }
 
         // Results
+        public double MinimumCoverDueToBondRequirement { get; set; }
+        public double MinimumCoverDueToEnvironmentalConditions { get; set; }
         public double MinimumCover { get; set; }
         public double AllowanceInDesignForDeviation { get; set; }
         public double NominalCover { get; set; }

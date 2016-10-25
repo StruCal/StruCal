@@ -10,24 +10,48 @@ namespace StruCal.Controllers
 {
     public class ConcreteCoverController : Controller
     {
-        public ActionResult ConcreteCover()
+        public ActionResult Index()
         {
-            return View(new ConcreteCoverViewModel());
+            ConcreteCoverViewModel viewModel = new ConcreteCoverViewModel()
+            {
+                AllowanceInDesignForDeviation = 0.01d * 1000d,
+                StructuralClass = "S4",
+
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult ConcreteCover(ConcreteCoverViewModel concreteCoverViewModel)
+        public ActionResult Index(ConcreteCoverViewModel viewModel)
         {
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
+            //{
+            ConcreteCoverCalculator concreteCoverCalculator = new ConcreteCoverCalculator()
             {
-                ConcreteCoverCalculator concreteCoverCalculator = new ConcreteCoverCalculator()
-                {
-                    RebarDiameter = concreteCoverViewModel.ConvertStringToRebarDiameter(concreteCoverViewModel.SelectedRebarDiameter.Value),
-                };
+                RebarDiameter = viewModel.ConvertStringToRebarDiameter(viewModel.SelectedRebarDiameter),
+                ArrangementOfBars = viewModel.ConvertStringToArrangementOfBars(viewModel.SelectedArrangementOfBars),
+                ConcreteClass = viewModel.ConvertStringToConcreteClass(viewModel.SelectedConcreteClass),
+                ExposureClass = viewModel.ConvertStringToExposureClass(viewModel.SelectedExposureClass),
+                BaseStructuralClass = viewModel.ConvertStringToStructuralClass(viewModel.SelectedBaseStructuralClass),
+                NominalMaximumAggregateSizeIsGreaterThan32mm = viewModel.NominalMaximumAggregateSizeIsGreaterThan32mm,
+                DesignWorkingLifeOf100Years = viewModel.DesignWorkingLifeOf100Years,
+                SpecialQualityControlOfTheConcreteProductionEnsured = viewModel.SpecialQualityControlOfTheConcreteProductionEnsured,
+                AdditiveSafetyElement = viewModel.AdditiveSafetyElement / 1000d,
+                ReductionOfMinimumCoverForUseOfAdditionalProtection = viewModel.ReductionOfMinimumCoverForUseOfAdditionalProtection / 1000d,
+                ReductionOfMinimumCoverForUseOfStainlessSteel = viewModel.ReductionOfMinimumCoverForUseOfStainlessSteel / 1000d,
+                AllowanceInDesignForDeviation = viewModel.AllowanceInDesignForDeviation / 1000d
+            };
                 concreteCoverCalculator.CalculateNominalConcreteCover();
-            }
+            //}
 
-            return View(concreteCoverViewModel);
+            viewModel.StructuralClass = concreteCoverCalculator.StructuralClass.ToString();
+            viewModel.MinimumCoverDueToBondRequirement = concreteCoverCalculator.MinimumCoverDueToBondRequirement * 1000d;
+            viewModel.MinimumCoverDueToEnvironmentalConditions = concreteCoverCalculator.MinimumCoverDueToEnvironmentalConditions * 1000d;
+            viewModel.MinimumCover = concreteCoverCalculator.MinimumCover * 1000d;
+            viewModel.NominalCover = concreteCoverCalculator.NominalCover * 1000d;
+
+            return View(viewModel);
         }
     }
 }
