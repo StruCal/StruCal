@@ -19,18 +19,18 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Rebars properties</h3>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body form-inline">
                         <div class="form-group" data-toggle="tooltip" title="Select rebars diameter.">
                             @Html.LabelFor(model => model.RebarDiameterSelectList, new { @class = "control-label" })
                             @Html.DropDownListFor(x => x.SelectedRebarDiameter,
-                        Model.RebarDiameterSelectList,
-                        new { @class = "form-control" })
+                                Model.RebarDiameterSelectList,
+                                new { @class = "form-control" })
                         </div>
                         <div class="form-group" data-toggle="tooltip" title="Select type of the rebars arrangement (PN-EN 1992-1-1 Table 4.2).">
                             @Html.LabelFor(model => model.ArrangementOfBarsSelectList, new { @class = "control-label" })
                             @Html.DropDownListFor(x => x.SelectedArrangementOfBars,
-                        Model.ArrangementOfBarsSelectList,
-                        new { @class = "form-control" })
+                                Model.ArrangementOfBarsSelectList,
+                                new { @class = "form-control" })
                         </div>
                     </div>
                 </div>
@@ -133,40 +133,37 @@
 
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Results</h3>
+                        <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#CollapseAdditionalResults">Additional results</button>
                     </div>
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <p data-toggle="tooltip" title="Calculated structural class (PN-EN 1992-1-1 Table 4.4N, 4.5N).">
+                    <div id="CollapseAdditionalResults" class="collapse">
+                        <div class="panel-body">
+                            <p class="control-label form-horizontal" data-toggle="tooltip" title="Calculated structural class (PN-EN 1992-1-1 Table 4.4N, 4.5N).">
                                 @Html.LabelFor(model => model.StructuralClass, new { @class = "control-label" })
-                                <span class="label label-success">@Model.StructuralClass</span>
+                                <label class="control-label">@Model.StructuralClass</label>
                             </p>
-                        </div>
-                        <div class="form-group">
-                            <p data-toggle="tooltip" title="Calculated minimum cover due to bond requirement (PN-EN 1992-1-1 4.4.1.2(3)).">
+                            <p class="control-label form-horizontal" data-toggle="tooltip" title="Calculated minimum cover due to bond requirement (PN-EN 1992-1-1 4.4.1.2(3)).">
                                 @Html.LabelFor(model => model.MinimumCoverDueToBondRequirement, new { @class = "control-label" })
-                                <span class="label label-success">@Model.MinimumCoverDueToBondRequirement</span>
+                                <label class="control-label">@Model.MinimumCoverDueToBondRequirement [mm]</label>
                             </p>
-                        </div>
-                        <div class="form-group">
-                            <p data-toggle="tooltip" title="Calculated minimum cover due to environmental conditions (PN-EN 1992-1-1 4.4.1.2(5)).">
+                            <p class="control-label form-horizontal" data-toggle="tooltip" title="Calculated minimum cover due to environmental conditions (PN-EN 1992-1-1 4.4.1.2(5)).">
                                 @Html.LabelFor(model => model.MinimumCoverDueToEnvironmentalConditions, new { @class = "control-label" })
-                                <span class="label label-success">@Model.MinimumCoverDueToEnvironmentalConditions</span>
+                                <label class="control-label">@Model.MinimumCoverDueToEnvironmentalConditions [mm]</label>
                             </p>
-                        </div>
-                        <div class="form-group">
-                            <p data-toggle="tooltip" title="Calculated minimum cover (PN-EN 1992-1-1 Eq. 4.2).">
+                            <p class="control-label form-horizontal" data-toggle="tooltip" title="Calculated minimum cover (PN-EN 1992-1-1 Eq. 4.2).">
                                 @Html.LabelFor(model => model.MinimumCover, new { @class = "control-label" })
-                                <span class="label label-success">@Model.MinimumCover</span>
-                            </p>
-                        </div>
-                        <div>
-                            <p data-toggle="tooltip" title="Calculated nominal cover (PN-EN 1992-1-1 Eq. 4.1).">
-                                @Html.LabelFor(model => model.NominalCover, new { @class = "control-label" })
-                                <span class="label label-success">@Model.NominalCover</span>
+                                <label class="control-label">@Model.MinimumCover [mm]</label>
                             </p>
                         </div>
                     </div>
+                </div>
+
+                <div class="panel panel-body">
+                    <h2>
+                        <label class="label label-success form-inline" data-toggle="tooltip" title="Calculated nominal cover (PN-EN 1992-1-1 Eq. 4.1).">
+                            @Html.LabelFor(model => model.NominalCover)
+                            <label>(c<sub>nom</sub>): @Model.NominalCover [mm]</label>
+                        </label>
+                    </h2>
                 </div>
             </div>
         </div>
@@ -174,6 +171,7 @@
 }
 
 <div>
+    <br/>
     @Html.ActionLink("Back to Home", "Index", "Home")
 </div>
 
