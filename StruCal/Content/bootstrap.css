@@ -5790,7 +5790,7 @@ body.modal-open,
 
 .tooltip-inner {
   /*Default value for max-width was 200px (Dawid)*/
-  width: 1000px;
+  max-width: 200px;
   padding: 3px 8px;
   color: #ffffff;
   text-align: center;

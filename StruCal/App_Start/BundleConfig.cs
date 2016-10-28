@@ -29,7 +29,7 @@ namespace StruCal
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/userScripts").Include(
-                      "~/Scripts/layoutScripts.js"));
+                      ("~/Scripts/custom.js")));
         }
     }
 }
