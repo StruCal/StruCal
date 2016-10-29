@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using StruCal.Controllers;
+using StruCal.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

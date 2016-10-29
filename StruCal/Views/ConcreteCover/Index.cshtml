@@ -6,35 +6,39 @@
 }
 
 <h2>Concrete cover calculator</h2>
-<br/>
+<br />
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="container">
-        <div class="col-xs-12 col-md-6 text-left">
-            <div class="panel-group">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Rebars properties</h3>
-                    </div>
-                    <div class="panel-body form-inline">
-                        <div class="form-group" data-toggle="tooltip" title="Select rebars diameter.">
-                            @Html.LabelFor(model => model.RebarDiameterSelectList, new { @class = "control-label" })
-                            @Html.DropDownListFor(x => x.SelectedRebarDiameter,
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 text-left">
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Rebars properties</h3>
+                        </div>
+                        <div class="panel-body form-inline">
+                            <div class="form-group" data-toggle="tooltip" title="Select rebars diameter.">
+                                @Html.LabelFor(model => model.RebarDiameterSelectList, new { @class = "control-label" })
+                                @Html.DropDownListFor(x => x.SelectedRebarDiameter,
                                 Model.RebarDiameterSelectList,
                                 new { @class = "form-control" })
-                        </div>
-                        <div class="form-group" data-toggle="tooltip" title="Select type of the rebars arrangement (PN-EN 1992-1-1 Table 4.2).">
-                            @Html.LabelFor(model => model.ArrangementOfBarsSelectList, new { @class = "control-label" })
-                            @Html.DropDownListFor(x => x.SelectedArrangementOfBars,
+                            </div>
+                            <div class="form-group" data-toggle="tooltip" title="Select type of the rebars arrangement (PN-EN 1992-1-1 Table 4.2).">
+                                @Html.LabelFor(model => model.ArrangementOfBarsSelectList, new { @class = "control-label" })
+                                @Html.DropDownListFor(x => x.SelectedArrangementOfBars,
                                 Model.ArrangementOfBarsSelectList,
                                 new { @class = "form-control" })
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <div class="col-xs-4 text-left">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Concrete properties</h3>
@@ -63,7 +67,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <div class="col-xs-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Structure properties</h3>
@@ -89,6 +95,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
                 <div class="panel panel-info">
                     <div class="panel-heading" data-toggle="tooltip" title="Click button to see additional properties.">
                         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#CollapseAdditionalProperties">Additional properties</button>
@@ -96,7 +107,7 @@
                             <div class="panel-body">
                                 @Html.LabelFor(model => model.AdditiveSafetyElement, htmlAttributes: new { @class = "control-label" })
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                <div class="form-group form-inline" data-toggle="tooltip" title="Specify additive safety element (PN-EN 1992-1-1 4.4.1.2 (6)).">                                  
+                                <div class="form-group form-inline" data-toggle="tooltip" title="Specify additive safety element (PN-EN 1992-1-1 4.4.1.2 (6)).">
                                     @Html.EditorFor(model => model.AdditiveSafetyElement, new { htmlAttributes = new { @class = "form-control", @placeholder = "0 mm" } })
                                     @Html.ValidationMessageFor(model => model.AdditiveSafetyElement, "", new { @class = "text-danger" })
                                     [mm]
@@ -126,11 +137,19 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-xs-12">
                 <div class="panel panel-body">
                     <input type="submit" value="Calculate" class="btn btn-primary" data-toggle="tooltip" title="Click to calculate concrete cover." />
                 </div>
-
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-xs-12">
                 <div class="panel panel-success">
                     <div class="panel-heading">
                         <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#CollapseAdditionalResults">Additional results</button>
@@ -156,7 +175,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-xs-12">
                 <div class="panel panel-body">
                     <h2>
                         <label class="label label-success form-inline" data-toggle="tooltip" title="Calculated nominal cover (PN-EN 1992-1-1 Eq. 4.1).">
@@ -167,11 +190,11 @@
                 </div>
             </div>
         </div>
-    </div>
+</div>
 }
 
 <div>
-    <br/>
+    <br />
     @Html.ActionLink("Back to Home", "Index", "Home")
 </div>
 

@@ -3,44 +3,61 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - StruCal</title>
+    <title>@ViewBag.Title - struCalc</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <!--Add Roboto font-->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,400italic,500italic&subset=latin,latin-ext' rel='stylesheet'>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
+                <button type="button" class="navbar-toggle collapsed"
+                        data-toggle="collapse" data-target="#mainmenu"
+                        aria-expanded="false">
+                    <span class="sr-only"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("StruCal", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("struCalc", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+
+            <div class="navbar-collapse collapse navbar-right mainmenu" id="mainmenu">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Demo", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Calculators <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">Calculators<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Section properties", "Index", "SectionProperties")</li>
                             <li>@Html.ActionLink("Concrete Cover", "Index", "ConcreteCover")</li>
+                            <li role="separator" class="divider"></li>
+                            <li>@Html.ActionLink("Fajny separator", " ", " ")</li>
                         </ul>
                     </li>
+                    <li><a href="#" class="btn btn-default">Buy</a></li>
                 </ul>
             </div>
         </div>
     </div>
+
     <div class="container body-content">
+        <br />
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - StruCal</p>
-        </footer>
+        <div class="container footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p>@DateTime.Now.Year All rights reserved. &copy;struCalc, </p>
+                    <small>contact@strucalc.pl</small>
+                </div>
+            </div>
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
