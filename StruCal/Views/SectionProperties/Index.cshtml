@@ -16,33 +16,35 @@
     <br />
     <div class="row">
         <div class="col-md-4">
-
-            @using (Html.BeginForm())
+            
+                @using (Html.BeginForm())
             {
-                @Html.AntiForgeryToken()
-                <div id="inputForms">
-                    @if (ViewBag.InputErrors)
-                    {
-                        <div class="form-group">
-                            <div class="alert alert-danger" role="alert">
-                                <p>The provided input data is invalid.</p>
+                    @Html.AntiForgeryToken()
+
+                    <div id="inputForms">
+                        @if (ViewBag.InputErrors)
+                        {
+                            <div class="form-group">
+                                <div class="alert alert-danger" role="alert">
+                                    <p>The provided input data is invalid.</p>
+                                </div>
                             </div>
+                        }
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.XCoordinates, new { @class = "control-label" })
+                            @Html.EditorFor(model => model.XCoordinates, new { htmlAttributes = new { @class = "form-control", @placeholder = "10;20;30;" } })
                         </div>
-                    }
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.XCoordinates, new { @class = "control-label" })
-                        @Html.EditorFor(model => model.XCoordinates, new { htmlAttributes = new { @class = "form-control", @placeholder = "10;20;30;" } })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.YCoordinates, new { @class = "control-label" })
-                        @Html.EditorFor(model => model.YCoordinates, new { htmlAttributes = new { @class = "form-control", @placeholder = "10;20;30;" } })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.YCoordinates, new { @class = "control-label" })
+                            @Html.EditorFor(model => model.YCoordinates, new { htmlAttributes = new { @class = "form-control", @placeholder = "10;20;30;" } })
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Run" class="btn btn-primary" />
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <input type="submit" value="Run" class="btn btn-primary" />
-                    </div>
-                </div>
-            }
+                }
             <hr />
             @if (ViewBag.ShowResults)
             {
@@ -67,53 +69,136 @@
         <div class="col-md-8">
             <div id="canvas" class="panel panel-default">
                 <div class="panel-body">
-                <button>ok</button>
-                    </div>
+                    
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.3.6/svg.min.js"></script>
 @Scripts.Render("~/bundles/jquery")
-@*<script>
-        $(document).ready(function () {
-            $("#inputForms input").change(function () {
+<script>
+    $(document).ready(function () {
+        $("#inputForms input").change(function () {
 
-                var canvasHeight = $("#canvas").height();
-                var canvasWidth = $("#canvas").width();
+            var canvasObject = $("#canvas");
+            var canvasHeight = canvasObject.height();
+            var canvasWidth = 500;//canvasObject.width();
 
-                var xString = $("#XCoordinates").val();
-                var yString = $("#YCoordinates").val();
+            var xString = $("#XCoordinates").val();
+            var yString = $("#YCoordinates").val();
 
-                var x = splitCoordinates(xString);
-                var y = splitCoordinates(yString);
+            var x = splitCoordinates(xString);
+            var y = splitCoordinates(yString);
 
-                if (x.length != y.length) {
-                    return;
-                }
-                alert(canvasHeight + " " + canvasWidth);
-                
-            })
+            if (x.length != y.length) {
+                return;
+            }
+
+            
+
+            drawSection(x, y, canvasObject);
+
+            //alert(canvasHeight + " " + canvasWidth);
 
         })
 
-        function getMaxValue(array)
-        {
-            return Math.max.apply(null, array);
-        }
-        function getMinValue(array)
-        {
-            return Math.min.apply(null, array);
-        }
-        
+    })
 
-        function splitCoordinates(coordinates) {
-            var splitedCoordinates = coordinates.split(";");
-            return splitedCoordinates
-        }
-        
-        function drawSection() {
 
+    //drawing functions. Coordinates are provides as array
+    function drawSection(xCoordinates, yCoordinates, canvasObject) {
+        var maxX = getMaxValue(xCoordinates);
+        var minX = getMinValue(xCoordinates);
+        var maxY = getMaxValue(yCoordinates);
+        var minY = getMinValue(yCoordinates);
+
+        var sectionWidth = getSectionDimension(maxX, minX);
+        var sectionHeight = getSectionDimension(maxY, minY);
+
+        var sectionCentreX = (maxX - minX) / 2;
+        var sectionCentreY = (maxY - minY) / 2;
+
+        var canvasWidth = canvasObject.width();
+        var canvasHeight = 500;//canvasObject.height();
+
+        var scale = getDrawingScale(canvasWidth,canvasHeight,sectionWidth,sectionHeight);
+
+        //convert coordinates to canvas
+        var transferedX = [];
+        var transferedY = [];
+        for (i = 0; i < xCoordinates.length ; i++)
+        {
+            transferedX[i] = transferXToCanvasSystem(xCoordinates[i], sectionCentreX, scale, canvasWidth);
+            transferedY[i] = transferYToCanvasSystem(yCoordinates[i], sectionCentreY, scale, canvasHeight);
+
+            console.log(String(transferedX[i]) + " " + String(transferedY[i]));
+            
         }
-    </script>*@
+
+        var chainCoordinates = transferCoordinatesToPlot(transferedX, transferedY);
+        console.log(chainCoordinates);
+        console.log(canvasObject.id);
+        var drawing = SVG('canvas').size(canvasWidth, canvasHeight);
+
+        var polygon = drawing.polygon(chainCoordinates).fill('LightGray').stroke({ width: 5,color:'DarkGray' });
+    }
+
+    //transfers arrays of x and y coordinates to the following string
+
+    function transferCoordinatesToPlot(xCoordinates,yCoordinates)
+    {
+        var coordinates = "";
+        for (i=0;i<xCoordinates.length;i++)
+        {
+            var x = xCoordinates[i].toString();
+            var y = yCoordinates[i].toString();
+            console.log(x + " " + y);
+            var insert = x + "," + y;
+            coordinates = coordinates + insert + " ";
+        }
+
+        return coordinates;
+    }
+
+    
+    function transferXToCanvasSystem(pointX, centreX, scale, canvasWidth) {
+        var x = ((pointX - centreX) * scale) + canvasWidth / 2;
+        return x;
+    }
+
+    function transferYToCanvasSystem(pointY, centreY, scale, canvasHeight) {
+        var y = (-(pointY - centreY) * scale) + canvasHeight / 2;
+        return y;
+    }
+    function getMaxValue(array) {
+        return Math.max.apply(null, array);
+    }
+    function getMinValue(array) {
+        return Math.min.apply(null, array);
+    }
+
+    function getSectionDimension(maxCoordinates, minCoordinates) {
+        var dimension = maxCoordinates - minCoordinates;
+        return dimension;
+    }
+
+    function getDrawingScale(canvasWidth, canvasHeight, sectionWidth, sectionHeight) {
+        var scale1 = canvasHeight / sectionHeight;
+        var scale2 = canvasWidth / sectionWidth;
+
+        var scale = Math.min(scale1, scale2);
+        return scale;
+    }
+
+
+
+    function splitCoordinates(coordinates) {
+        var splitedCoordinates = coordinates.split(";");
+        return splitedCoordinates
+    }
+
+
+</script>
