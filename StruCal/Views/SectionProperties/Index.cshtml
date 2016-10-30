@@ -59,7 +59,11 @@
                         {
                             <tr>
                                 <td>@Html.DisplayFor(e => item.Name) </td>
-                                <th><span class="glyphicon glyphicon-info-sign"></span></th>
+                                <td>
+                                    <a data-toggle="tooltip" data-placement="bottom" title=@item.Name>
+                                        <span class="glyphicon glyphicon-info-sign"></span>
+                                    </a>
+                                </td>
                                 <td>@Html.DisplayFor(e => item.Value)</td>
                             </tr>
                         }
@@ -74,18 +78,18 @@
             </div>
         </div>
     </div>
-</div>
 
+</div>
 @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.3.6/svg.min.js"></script>
 @Scripts.Render("~/bundles/jquery")
 <script>
     $(document).ready(function () {
-        
+
         drawSection();
         $("#inputForms input").change(drawSection);
         $("#inputForms input").keyup(drawSection);
-        
+
         function drawSection() {
             var canvasObject = $('#canvas');
             var xString = $("#XCoordinates").val();
@@ -101,17 +105,16 @@
             fillCanvas(x, y, 'canvas');
         }
     });
-    
 
-    
+
+
 
 
     //---SHOULD BE PUT TO SEPARATE FILE--//
 
     //main function for filling canvas with objects: section, vertical and horizontal lines,
     //axes of coordinate system
-    function fillCanvas(xCoordinates, yCoordinates, canvasParentId)
-    {
+    function fillCanvas(xCoordinates, yCoordinates, canvasParentId) {
         var canvasObject = $('#' + canvasParentId);
         canvasObject.empty();
 
