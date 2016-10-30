@@ -16,36 +16,35 @@
     <br />
     <div class="row">
         <div class="col-md-4">
-            
-                @using (Html.BeginForm())
+
+            @using (Html.BeginForm())
             {
-                    @Html.AntiForgeryToken()
+                @Html.AntiForgeryToken()
 
-                    <div id="inputForms">
-                        @if (ViewBag.InputErrors)
-                        {
-                            <div class="form-group">
-                                <div class="alert alert-danger" role="alert">
-                                    <p>The provided input data is invalid.</p>
-                                </div>
+                <div id="inputForms">
+                    @if (ViewBag.InputErrors)
+                    {
+                        <div class="form-group">
+                            <div class="alert alert-danger" role="alert">
+                                <p>The provided input data is invalid.</p>
                             </div>
-                        }
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.XCoordinates, new { @class = "control-label" })
-                            @Html.EditorFor(model => model.XCoordinates, new { htmlAttributes = new { @class = "form-control", @placeholder = "10;20;30;" } })
                         </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.YCoordinates, new { @class = "control-label" })
-                            @Html.EditorFor(model => model.YCoordinates, new { htmlAttributes = new { @class = "form-control", @placeholder = "10;20;30;" } })
-                        </div>
-
-                        <div class="form-group">
-                            <input type="submit" value="Run" class="btn btn-primary" />
-                        </div>
+                    }
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.XCoordinates, new { @class = "control-label" })
+                        @Html.EditorFor(model => model.XCoordinates, new { htmlAttributes = new { @class = "form-control", @placeholder = "10;20;30;" } })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.YCoordinates, new { @class = "control-label" })
+                        @Html.EditorFor(model => model.YCoordinates, new { htmlAttributes = new { @class = "form-control", @placeholder = "10;20;30;" } })
                     </div>
 
-                }
-            <hr />
+                    <div class="form-group">
+                        <input type="submit" value="Run" class="btn btn-primary" />
+                    </div>
+                </div>
+
+            }
             @if (ViewBag.ShowResults)
             {
                 <table class="table table-bordered">
@@ -67,10 +66,8 @@
             }
         </div>
         <div class="col-md-8">
-            <div id="canvas" class="panel panel-default">
-                <div class="panel-body">
-                    
-                </div>
+            <div id="canvas">
+
             </div>
         </div>
     </div>
@@ -83,9 +80,11 @@
     $(document).ready(function () {
         $("#inputForms input").change(function () {
 
+            //$("#canvas").children().each(function () {
+            //    $(this).remove();
+            //});
+
             var canvasObject = $("#canvas");
-            var canvasHeight = canvasObject.height();
-            var canvasWidth = 500;//canvasObject.width();
 
             var xString = $("#XCoordinates").val();
             var yString = $("#YCoordinates").val();
@@ -97,7 +96,7 @@
                 return;
             }
 
-            
+
 
             drawSection(x, y, canvasObject);
 
@@ -110,6 +109,9 @@
 
     //drawing functions. Coordinates are provides as array
     function drawSection(xCoordinates, yCoordinates, canvasObject) {
+
+        canvasObject.empty();
+
         var maxX = getMaxValue(xCoordinates);
         var minX = getMinValue(xCoordinates);
         var maxY = getMaxValue(yCoordinates);
@@ -122,37 +124,45 @@
         var sectionCentreY = (maxY - minY) / 2;
 
         var canvasWidth = canvasObject.width();
-        var canvasHeight = 500;//canvasObject.height();
+        var canvasHeight = 0.5 * canvasObject.width();
 
-        var scale = getDrawingScale(canvasWidth,canvasHeight,sectionWidth,sectionHeight);
+        var canvasId = canvasObject.attr('id');
+
+        var scale = getDrawingScale(canvasWidth, canvasHeight, sectionWidth, sectionHeight);
 
         //convert coordinates to canvas
         var transferedX = [];
         var transferedY = [];
-        for (i = 0; i < xCoordinates.length ; i++)
-        {
+        for (i = 0; i < xCoordinates.length ; i++) {
             transferedX[i] = transferXToCanvasSystem(xCoordinates[i], sectionCentreX, scale, canvasWidth);
             transferedY[i] = transferYToCanvasSystem(yCoordinates[i], sectionCentreY, scale, canvasHeight);
 
             console.log(String(transferedX[i]) + " " + String(transferedY[i]));
-            
+
         }
 
         var chainCoordinates = transferCoordinatesToPlot(transferedX, transferedY);
         console.log(chainCoordinates);
         console.log(canvasObject.id);
-        var drawing = SVG('canvas').size(canvasWidth, canvasHeight);
+        var drawing = SVG(canvasId).size(canvasWidth, canvasHeight);
 
-        var polygon = drawing.polygon(chainCoordinates).fill('LightGray').stroke({ width: 5,color:'DarkGray' });
+        var polygon = drawing.polygon(chainCoordinates).fill({ color: '#3276b1', opacity: 0.8 }).stroke({ width: 3, color: '#054072' });
     }
 
-    //transfers arrays of x and y coordinates to the following string
+    function verticalLines(drawing, width, height) {
+        var numberOfLines = 10;
+        var distance = width / numberOfLines;
 
-    function transferCoordinatesToPlot(xCoordinates,yCoordinates)
-    {
+        for (i = 0; i <= numberOfLines; i++) {
+            
+        }
+    }
+
+
+    //transfers arrays of x and y coordinates to the following string
+    function transferCoordinatesToPlot(xCoordinates, yCoordinates) {
         var coordinates = "";
-        for (i=0;i<xCoordinates.length;i++)
-        {
+        for (i = 0; i < xCoordinates.length; i++) {
             var x = xCoordinates[i].toString();
             var y = yCoordinates[i].toString();
             console.log(x + " " + y);
@@ -163,7 +173,7 @@
         return coordinates;
     }
 
-    
+
     function transferXToCanvasSystem(pointX, centreX, scale, canvasWidth) {
         var x = ((pointX - centreX) * scale) + canvasWidth / 2;
         return x;
@@ -186,8 +196,10 @@
     }
 
     function getDrawingScale(canvasWidth, canvasHeight, sectionWidth, sectionHeight) {
-        var scale1 = canvasHeight / sectionHeight;
-        var scale2 = canvasWidth / sectionWidth;
+        var factor = 1;
+
+        var scale1 = canvasHeight / sectionHeight / 2;
+        var scale2 = canvasWidth / sectionWidth / 2;
 
         var scale = Math.min(scale1, scale2);
         return scale;
