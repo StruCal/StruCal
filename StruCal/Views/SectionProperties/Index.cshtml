@@ -3,7 +3,6 @@
     ViewBag.Title = "Index";
 }
 
-
 <div class="container">
     <h2>Welcome to the Section Properties Calculator</h2>
     <br />
@@ -48,10 +47,11 @@
             @if (ViewBag.ShowResults)
             {
                 <div id="results">
-                    <table class="table table-bordered">
+                    <table style="width:auto" class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Name</th>
+                                <th></th>
                                 <th>Value</th>
                             </tr>
                         </thead>
@@ -59,6 +59,7 @@
                         {
                             <tr>
                                 <td>@Html.DisplayFor(e => item.Name) </td>
+                                <th><span class="glyphicon glyphicon-info-sign"></span></th>
                                 <td>@Html.DisplayFor(e => item.Value)</td>
                             </tr>
                         }
@@ -84,7 +85,7 @@
         drawSection();
         $("#inputForms input").change(drawSection);
         $("#inputForms input").keyup(drawSection);
-
+        
         function drawSection() {
             var canvasObject = $('#canvas');
             var xString = $("#XCoordinates").val();
