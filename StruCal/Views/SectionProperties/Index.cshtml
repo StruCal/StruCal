@@ -47,22 +47,24 @@
             }
             @if (ViewBag.ShowResults)
             {
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Value</th>
-                        </tr>
-                    </thead>
-                    @foreach (var item in Model.SectionProperties)
-                    {
-                        <tr>
-                            <td>@Html.DisplayFor(e => item.Name) </td>
-                            <td>@Html.DisplayFor(e => item.Value)</td>
-                        </tr>
-                    }
+                <div id="results">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model.SectionProperties)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(e => item.Name) </td>
+                                <td>@Html.DisplayFor(e => item.Value)</td>
+                            </tr>
+                        }
 
-                </table>
+                    </table>
+                </div>
             }
         </div>
         <div class="col-md-8">
@@ -78,14 +80,13 @@
 @Scripts.Render("~/bundles/jquery")
 <script>
     $(document).ready(function () {
-        $("#inputForms input").change(function () {
+        
+        drawSection();
+        $("#inputForms input").change(drawSection);
+        $("#inputForms input").keyup(drawSection);
 
-            //$("#canvas").children().each(function () {
-            //    $(this).remove();
-            //});
-
-            var canvasObject = $("#canvas");
-
+        function drawSection() {
+            var canvasObject = $('#canvas');
             var xString = $("#XCoordinates").val();
             var yString = $("#YCoordinates").val();
 
@@ -96,21 +97,38 @@
                 return;
             }
 
+            fillCanvas(x, y, 'canvas');
+        }
+    });
+    
+
+    
 
 
-            drawSection(x, y, canvasObject);
+    //---SHOULD BE PUT TO SEPARATE FILE--//
 
-            //alert(canvasHeight + " " + canvasWidth);
+    //main function for filling canvas with objects: section, vertical and horizontal lines,
+    //axes of coordinate system
+    function fillCanvas(xCoordinates, yCoordinates, canvasParentId)
+    {
+        var canvasObject = $('#' + canvasParentId);
+        canvasObject.empty();
 
-        })
+        var canvasWidth = canvasObject.width();
+        var canvasHeight = canvasWidth * 0.5;
+        canvasObject.height(canvasHeight);
 
-    })
+        var drawing = SVG('canvas').size(canvasWidth, canvasHeight);
 
+        drawVerticalLines(drawing, canvasWidth, canvasHeight);
+        drawHorizontalLines(drawing, canvasWidth, canvasHeight);
+
+        drawSection(drawing, xCoordinates, yCoordinates, canvasObject);
+
+    }
 
     //drawing functions. Coordinates are provides as array
-    function drawSection(xCoordinates, yCoordinates, canvasObject) {
-
-        canvasObject.empty();
+    function drawSection(drawing, xCoordinates, yCoordinates, canvasObject) {
 
         var maxX = getMaxValue(xCoordinates);
         var minX = getMinValue(xCoordinates);
@@ -124,12 +142,9 @@
         var sectionCentreY = (maxY - minY) / 2;
 
         var canvasWidth = canvasObject.width();
-        var canvasHeight = 0.5 * canvasObject.width();
-
-        var canvasId = canvasObject.attr('id');
+        var canvasHeight = canvasObject.height();
 
         var scale = getDrawingScale(canvasWidth, canvasHeight, sectionWidth, sectionHeight);
-
         //convert coordinates to canvas
         var transferedX = [];
         var transferedY = [];
@@ -138,42 +153,31 @@
             transferedY[i] = transferYToCanvasSystem(yCoordinates[i], sectionCentreY, scale, canvasHeight);
 
             console.log(String(transferedX[i]) + " " + String(transferedY[i]));
-
         }
 
         var chainCoordinates = transferCoordinatesToPlot(transferedX, transferedY);
-        console.log(chainCoordinates);
-        console.log(canvasObject.id);
-        var drawing = SVG(canvasId).size(canvasWidth, canvasHeight);
 
-        var polygon = drawing.polygon(chainCoordinates).fill({ color: '#3276b1', opacity: 0.8 }).stroke({ width: 3, color: '#054072' });
-
-
-        drawVerticalLines(drawing, canvasWidth, canvasHeight);
-        drawHorizontalLines(drawing, canvasWidth, canvasHeight);
-        
-        drawing.spof();
+        var polygon = drawing.polygon(chainCoordinates).fill({ color: '#3276b1', opacity: 0.9 }).stroke({ width: 3, color: '#054072' });
     }
 
     function drawVerticalLines(drawing, width, height) {
         var numberOfLines = 10;
         var distance = width / numberOfLines;
 
-        for (i = 0; i <= numberOfLines; i++)
-        {
+        for (i = 0; i <= numberOfLines; i++) {
             var x1 = 0 + i * distance;
             var x2 = x1;
             var y1 = 0;
             var y2 = height;
-            
+
             console.log(x1);
             var input = convertCoordinatesToLineInput(x1, y1, x2, y2);
             console.log(input);
-            var line = drawing.line(input).stroke({ width: 0.5,color:'Gray' });
+            var line = drawing.line(input).stroke({ width: 1, color: 'Gray' });
         }
     }
-    function drawHorizontalLines(drawing,width,height)
-    {
+
+    function drawHorizontalLines(drawing, width, height) {
         var numberOfLines = 10;
         var distance = height / numberOfLines;
 
@@ -190,8 +194,7 @@
         }
     }
 
-    function convertCoordinatesToLineInput(x1,y1,x2,y2)
-    {
+    function convertCoordinatesToLineInput(x1, y1, x2, y2) {
         var result = x1.toString() + ',' + y1.toString() + ' ' + x2.toString() + ',' + y2.toString();
         return result;
     }
@@ -210,7 +213,6 @@
         return coordinates;
     }
 
-
     function transferXToCanvasSystem(pointX, centreX, scale, canvasWidth) {
         var x = ((pointX - centreX) * scale) + canvasWidth / 2;
         return x;
@@ -220,9 +222,11 @@
         var y = (-(pointY - centreY) * scale) + canvasHeight / 2;
         return y;
     }
+
     function getMaxValue(array) {
         return Math.max.apply(null, array);
     }
+
     function getMinValue(array) {
         return Math.min.apply(null, array);
     }
@@ -242,12 +246,9 @@
         return scale;
     }
 
-
-
     function splitCoordinates(coordinates) {
         var splitedCoordinates = coordinates.split(";");
         return splitedCoordinates
     }
-
 
 </script>
