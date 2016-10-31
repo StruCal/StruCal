@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - struCalc</title>
+    <title>@ViewBag.Title - simpledesign</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -22,7 +22,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("struCalc", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a class="navbar-brand" href="#">simple<strong>design</strong></a>
             </div>
 
             <div class="navbar-collapse collapse navbar-right mainmenu" id="mainmenu">
@@ -45,24 +45,20 @@
             </div>
         </div>
     </div>
-
-    <div class="container body-content">
-        <br />
+    <div class="container-fluid">
         @RenderBody()
-        <hr />
-        <div class="container footer">
-            <div class="row">
-                <div class="col-xs-12">
-                    <p>@DateTime.Now.Year All rights reserved. &copy;struCalc, </p>
-                    <small>contact@strucalc.pl</small>
-                </div>
+    </div>
+    <br />
+    <div class="container footer">
+        <div class="row">
+            <div class="col-xs-12">
+                <p>&copy; @DateTime.Now.Year simple<strong>design</strong>. All rights reserved.</p>
             </div>
         </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/userScripts")
     @RenderSection("scripts", required: false)
 </body>
 </html>

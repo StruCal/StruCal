@@ -5,14 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Concrete cover calculator</h2>
-<br />
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="container-fluid">
+    <div class="container">
+
+        <h2>Concrete cover calculator</h2>
+        <br />
+
         <div class="row">
             <div class="col-xs-4 text-left">
                 <div class="panel-group">
@@ -20,7 +21,7 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Rebars properties</h3>
                         </div>
-                        <div class="panel-body form-inline">
+                        <div class="panel-body">
                             <div class="form-group" data-toggle="tooltip" title="Select rebars diameter.">
                                 @Html.LabelFor(model => model.RebarDiameterSelectList, new { @class = "control-label" })
                                 @Html.DropDownListFor(x => x.SelectedRebarDiameter,
@@ -47,20 +48,20 @@
                         <div class="form-group" data-toggle="tooltip" title="Select concrete class (PN-EN 1992-1-1 Table 3.1).">
                             @Html.LabelFor(model => model.ConcreteClassSelectList, new { @class = "control-label" })
                             @Html.DropDownListFor(x => x.SelectedConcreteClass,
-                        Model.ConcreteClassSelectList,
-                        new { @class = "form-control" })
+                            Model.ConcreteClassSelectList,
+                            new { @class = "form-control" })
                         </div>
                         <div class="form-group" data-toggle="tooltip" title="Select exposure class (PN-EN 1992-1-1 Table 4.1).">
                             @Html.LabelFor(model => model.ExposureClassSelectList, new { @class = "control-label" })
                             @Html.DropDownListFor(x => x.SelectedExposureClass,
-                        Model.ExposureClassSelectList,
-                        new { @class = "form-control" })
+                            Model.ExposureClassSelectList,
+                            new { @class = "form-control" })
                         </div>
                         <div class="form-group" data-toggle="tooltip" title="Select base structural class (PN-EN 1992-1-1 4.4.1.2 (5)).">
                             @Html.LabelFor(model => model.BaseStructuralClassSelectList, new { @class = "control-label" })
                             @Html.DropDownListFor(x => x.SelectedBaseStructuralClass,
-                        Model.BaseStructuralClassSelectList,
-                        new { @class = "form-control" })
+                            Model.BaseStructuralClassSelectList,
+                            new { @class = "form-control" })
                         </div>
                         <div class="checkbox" data-toggle="tooltip" title="Specify whether nominal maximum aggregate size is greater than 32mm (PN-EN 1992-1-1 Table 4.2).">
                             <label><input type="checkbox" value="" id="NominalMaximumAggregateSizeIsGreaterThan32mmCheckbox">Is nominal maximum aggregate size is greater than 32mm?</label>
@@ -98,7 +99,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row text-center">
             <div class="col-xs-12">
                 <div class="panel panel-info">
                     <div class="panel-heading" data-toggle="tooltip" title="Click button to see additional properties.">
@@ -140,61 +141,44 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row text-center">
             <div class="col-xs-12">
-                <div class="panel panel-body">
-                    <input type="submit" value="Calculate" class="btn btn-primary" data-toggle="tooltip" title="Click to calculate concrete cover." />
-                </div>
+                <input type="submit" id="CalculateButton" value="Calculate" class="btn btn-primary scrollTo" data-toggle="tooltip"
+                        title="Click to calculate concrete cover.">
             </div>
         </div>
-        
-        <div class="row">
+        <br />
+
+        <div class="row  text-center">
             <div class="col-xs-12">
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#CollapseAdditionalResults">Additional results</button>
+                        <h3 data-toggle="tooltip" id="NominalCover" title="Calculated nominal cover (PN-EN 1992-1-1 Eq. 4.1).">
+                            <b>
+                                @Html.LabelFor(model => model.NominalCover) @Model.NominalCover [mm]
+                            </b>
+                        </h3>
                     </div>
-                    <div id="CollapseAdditionalResults" class="collapse">
-                        <div class="panel-body">
-                            <p class="control-label form-horizontal" data-toggle="tooltip" title="Calculated structural class (PN-EN 1992-1-1 Table 4.4N, 4.5N).">
-                                @Html.LabelFor(model => model.StructuralClass, new { @class = "control-label" })
-                                <label class="control-label">@Model.StructuralClass</label>
-                            </p>
-                            <p class="control-label form-horizontal" data-toggle="tooltip" title="Calculated minimum cover due to bond requirement (PN-EN 1992-1-1 4.4.1.2(3)).">
-                                @Html.LabelFor(model => model.MinimumCoverDueToBondRequirement, new { @class = "control-label" })
-                                <label class="control-label">@Model.MinimumCoverDueToBondRequirement [mm]</label>
-                            </p>
-                            <p class="control-label form-horizontal" data-toggle="tooltip" title="Calculated minimum cover due to environmental conditions (PN-EN 1992-1-1 4.4.1.2(5)).">
-                                @Html.LabelFor(model => model.MinimumCoverDueToEnvironmentalConditions, new { @class = "control-label" })
-                                <label class="control-label">@Model.MinimumCoverDueToEnvironmentalConditions [mm]</label>
-                            </p>
-                            <p class="control-label form-horizontal" data-toggle="tooltip" title="Calculated minimum cover (PN-EN 1992-1-1 Eq. 4.2).">
-                                @Html.LabelFor(model => model.MinimumCover, new { @class = "control-label" })
-                                <label class="control-label">@Model.MinimumCover [mm]</label>
-                            </p>
-                        </div>
+                    <div class="panel-body">
+                        <p class="control-label form-horizontal" data-toggle="tooltip" title="Calculated structural class (PN-EN 1992-1-1 Table 4.4N, 4.5N).">
+                            @Html.LabelFor(model => model.StructuralClass, new { @class = "control-label" })
+                            <label class="control-label">@Model.StructuralClass</label>
+                        </p>
+                        <p class="control-label form-horizontal" data-toggle="tooltip" title="Calculated minimum cover due to bond requirement (PN-EN 1992-1-1 4.4.1.2(3)).">
+                            @Html.LabelFor(model => model.MinimumCoverDueToBondRequirement, new { @class = "control-label" })
+                            <label class="control-label">@Model.MinimumCoverDueToBondRequirement [mm]</label>
+                        </p>
+                        <p class="control-label form-horizontal" data-toggle="tooltip" title="Calculated minimum cover due to environmental conditions (PN-EN 1992-1-1 4.4.1.2(5)).">
+                            @Html.LabelFor(model => model.MinimumCoverDueToEnvironmentalConditions, new { @class = "control-label" })
+                            <label class="control-label">@Model.MinimumCoverDueToEnvironmentalConditions [mm]</label>
+                        </p>
+                        <p class="control-label form-horizontal" data-toggle="tooltip" title="Calculated minimum cover (PN-EN 1992-1-1 Eq. 4.2).">
+                            @Html.LabelFor(model => model.MinimumCover, new { @class = "control-label" })
+                            <label class="control-label">@Model.MinimumCover [mm]</label>
+                        </p>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="panel panel-body">
-                    <h2>
-                        <label class="label label-success form-inline" data-toggle="tooltip" title="Calculated nominal cover (PN-EN 1992-1-1 Eq. 4.1).">
-                            @Html.LabelFor(model => model.NominalCover)
-                            <label>(c<sub>nom</sub>): @Model.NominalCover [mm]</label>
-                        </label>
-                    </h2>
                 </div>
             </div>
         </div>
 </div>
 }
-
-<div>
-    <br />
-    @Html.ActionLink("Back to Home", "Index", "Home")
-</div>
-

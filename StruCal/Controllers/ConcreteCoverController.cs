@@ -14,6 +14,7 @@ namespace StruCal.Controllers
         {
             ConcreteCoverViewModel viewModel = new ConcreteCoverViewModel()
             {
+                IsCalculated = false,
                 AllowanceInDesignForDeviation = 0.01d * 1000d,
                 StructuralClass = "S4",
 
@@ -50,6 +51,8 @@ namespace StruCal.Controllers
             viewModel.MinimumCoverDueToEnvironmentalConditions = concreteCoverCalculator.MinimumCoverDueToEnvironmentalConditions * 1000d;
             viewModel.MinimumCover = concreteCoverCalculator.MinimumCover * 1000d;
             viewModel.NominalCover = concreteCoverCalculator.NominalCover * 1000d;
+
+            viewModel.IsCalculated = true;
 
             return View(viewModel);
         }

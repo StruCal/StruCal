@@ -1,4 +1,11 @@
-﻿body {
+﻿html,
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
     font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -17,19 +24,40 @@
     text-transform: uppercase;
 }
 
-.main-photo {
-    background: url("../Images/MainPhoto.jpg") center center fixed no-repeat;
+.mainPhoto {
+    background: url("../img/MainPhoto.jpg") center center fixed no-repeat;
     background-size: cover;
     height: 500px;
 }
 
 #mainPhoto {
     display: table;
+    width: 100%;
 }
 
 #mainPhotoDescription {
     display: table-cell;
     vertical-align: middle;
+}
+
+.secondaryPhoto {
+    background: url("../img/SecondaryPhoto.jpg") center center fixed no-repeat;
+    background-size: cover;
+    height: 500px;
+}
+
+#secondaryPhoto {
+    display: table;
+    width: 100%;
+}
+
+#secondaryPhotoDescription {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.carousel-custom {
+    height: 500px;
 }
 
 .caption {

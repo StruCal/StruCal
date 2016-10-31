@@ -54,6 +54,8 @@ namespace StruCal.ViewModels
         /// </summary>
         public const string validationPattern = @"^((((-?)(0|[1-9][0-9]*)(\.[0-9]+)?);)+?)$";//@"^([1-9][0-9]+\.?[0-9]*;?)*$";
 
+        public bool IsCalculated { get; set; }
+
         // Rebars properties
         [Required]
         [Display(Name = "Rebars:")]
