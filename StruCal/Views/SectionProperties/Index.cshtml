@@ -126,6 +126,7 @@
 
         //drawVerticalLines(drawing, canvasWidth, canvasHeight);
         //drawHorizontalLines(drawing, canvasWidth, canvasHeight);
+        drawBackgroundPattern(drawing, canvasWidth, canvasHeight);
 
         drawSection(drawing, xCoordinates, yCoordinates, canvasObject);
 
@@ -138,7 +139,6 @@
         var minX = getMinValue(xCoordinates);
         var maxY = getMaxValue(yCoordinates);
         var minY = getMinValue(yCoordinates);
-
         var sectionWidth = getSectionDimension(maxX, minX);
         var sectionHeight = getSectionDimension(maxY, minY);
 
@@ -164,12 +164,35 @@
         var polygon = drawing.polygon(chainCoordinates).fill({ color: '#3276b1', opacity: 0.9 }).stroke({ width: 3, color: '#054072' });
     }
 
-    function drawBackGroundPattern(drawing, width, height)
+    function drawBackgroundPattern(drawing, width, height)
     {
-        drawVerticalLines(drawing, canvasWidth, canvasHeight);
-        drawHorizontalLines(drawing, canvasWidth, canvasHeight);
+        //drawVerticalLines(drawing, width, height);
+        //drawHorizontalLines(drawing, width, height);
+
+        var patternSize = 20;
+
+        //canvas width and height are rouned such way that they are multiplier of patternSize
+
+        var correctedWidth = Math.floor(width / patternSize) * patternSize;
+        var correctedHeight = Math.floor(height / patternSize) * patternSize;
+
+
+        //var pattern = drawing.pattern(patternSize, patternSize, function (add) {
+        //    add.line(0, 0, patternSize, 0).stroke({ width: 1, color: 'grey' });
+        //    add.line(0, 0, 0, patternSize).stroke({ width: 1, color: 'grey' });
+        //});
+        var patternCentre = patternSize / 2;
+        var pattern = drawing.pattern(patternSize, patternSize, function (add) {
+            add.line(0, patternCentre, patternSize, patternCentre).stroke({ width: 1, color: 'LightGrey' });
+            add.line(patternCentre, 0, patternCentre, patternSize).stroke({ width: 1, color: 'LightGrey' });
+        });
+        var rectangle = drawing.rect(correctedWidth, correctedHeight).fill(pattern);
+        //bottom and right line
+        //var bottomLine = drawing.rect(correctedWidth, correctedHeight).stroke({ width: 1, color: 'grey' }).fill('none').move(2,2);
+
     }
 
+    
     function drawVerticalLines(drawing, width, height) {
         var numberOfLines = 10;
         var distance = width / numberOfLines;
@@ -186,7 +209,6 @@
             var line = drawing.line(input).stroke({ width: 1, color: 'Gray' });
         }
     }
-
     function drawHorizontalLines(drawing, width, height) {
         var numberOfLines = 10;
         var distance = height / numberOfLines;
