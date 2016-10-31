@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.ComponentModel.DataAnnotations;
-using Calculators.SectionProperties.SectionProperties.Calculations;
+using Calculators.SectionProperties;
 using Common.Extensions;
 using System.Text.RegularExpressions;
 using StruCal.ViewModels;
@@ -29,28 +29,19 @@ namespace StruCal.Controllers
         {
             ViewBag.ShowResults = false;
             ViewBag.InputErrors = false;
+            var resultViewModel = viewModel;
             if (ModelState.IsValid)
             {
                 var propertiesCalculator = new SectionPropertiesCalculator();
                 var calculationResult = propertiesCalculator.CalculateProperties(viewModel.XCoordinates, viewModel.YCoordinates);
 
-                var sectionProperties = new List<SectionPropertyViewData>();
-
-                //TODO: Should be moved to separate metod for 
-                foreach (var item in calculationResult)
-                {
-                    sectionProperties.Add(new SectionPropertyViewData
-                    {
-                        Name = item.PropertyName.ToString(),
-                        Value = String.Format("{0,5:0.00}", item.PropertyValue)//item.Value.ToString()
-                    });
-                }
-                viewModel.SectionProperties = sectionProperties;
+                var resultConverter = new SectionPropertiesOutputDataConverter();
+                resultViewModel = resultConverter.PrepareData(calculationResult);
                 ViewBag.ShowResults = true;
             }
             else
                 ViewBag.InputErrors = true;
-            return View(viewModel);
+            return View(resultViewModel);
         }
     }
 }

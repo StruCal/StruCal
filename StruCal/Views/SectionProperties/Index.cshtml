@@ -55,12 +55,12 @@
                                 <th>Value</th>
                             </tr>
                         </thead>
-                        @foreach (var item in Model.SectionProperties)
+                        @foreach (var item in Model.BaseSystemProperties)
                         {
                             <tr>
                                 <td>@Html.DisplayFor(e => item.Name) </td>
                                 <td>
-                                    <a data-toggle="tooltip" data-placement="bottom" title=@item.Name>
+                                    <a data-toggle="tooltip" data-placement="bottom" title="@item.Description">
                                         <span class="glyphicon glyphicon-info-sign"></span>
                                     </a>
                                 </td>
