@@ -89,7 +89,7 @@
         drawSection();
         $("#inputForms input").change(drawSection);
         $("#inputForms input").keyup(drawSection);
-
+        $(window).resize(drawSection);
         function drawSection() {
             var canvasObject = $('#canvas');
             var xString = $("#XCoordinates").val();
@@ -124,8 +124,8 @@
 
         var drawing = SVG('canvas').size(canvasWidth, canvasHeight);
 
-        drawVerticalLines(drawing, canvasWidth, canvasHeight);
-        drawHorizontalLines(drawing, canvasWidth, canvasHeight);
+        //drawVerticalLines(drawing, canvasWidth, canvasHeight);
+        //drawHorizontalLines(drawing, canvasWidth, canvasHeight);
 
         drawSection(drawing, xCoordinates, yCoordinates, canvasObject);
 
@@ -162,6 +162,12 @@
         var chainCoordinates = transferCoordinatesToPlot(transferedX, transferedY);
 
         var polygon = drawing.polygon(chainCoordinates).fill({ color: '#3276b1', opacity: 0.9 }).stroke({ width: 3, color: '#054072' });
+    }
+
+    function drawBackGroundPattern(drawing, width, height)
+    {
+        drawVerticalLines(drawing, canvasWidth, canvasHeight);
+        drawHorizontalLines(drawing, canvasWidth, canvasHeight);
     }
 
     function drawVerticalLines(drawing, width, height) {

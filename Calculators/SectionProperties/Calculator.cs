@@ -233,22 +233,25 @@ namespace Calculators.SectionProperties
             Ix,
             Iy,
             Ixy,
+
+            x0,
+            y0,
             Ix0,
             Iy0,
             Ixy0,
-            I1,
-            I2,
-            alfa,
             x0_max,
             x0_min,
             y0_max,
             y0_min,
+
+            I1,
+            I2,
+            alfa,
             xI_max,
             xI_min,
             yI_max,
             yI_min,
-            x0,
-            y0,
+            
             b,
             h
         };
