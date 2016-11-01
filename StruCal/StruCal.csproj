@@ -157,6 +157,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ConcreteCoverViewModel.cs" />
     <Compile Include="ViewModels\SectionPropertiesViewModel.cs" />
+    <Compile Include="Views\Shared\TemplateNames.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -204,6 +205,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\SectionProperties\Index.cshtml" />
     <Content Include="Views\ConcreteCover\Index.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\_SectionPropertyTableTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
