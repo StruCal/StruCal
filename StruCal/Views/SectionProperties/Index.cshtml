@@ -97,11 +97,11 @@
 <script>
     $(document).ready(function () {
 
-        drawSection();
-        $("#inputForms input").change(drawSection);
-        $("#inputForms input").keyup(drawSection);
-        $(window).resize(drawSection);
-        function drawSection() {
+        createDrawing();
+        $("#inputForms input").change(createDrawing);
+        $("#inputForms input").keyup(createDrawing);
+        $(window).resize(createDrawing);
+        function createDrawing() {
             var canvasObject = $('#canvas');
             var xString = $("#XCoordinates").val();
             var yString = $("#YCoordinates").val();
@@ -153,8 +153,12 @@
         var sectionWidth = getSectionDimension(maxX, minX);
         var sectionHeight = getSectionDimension(maxY, minY);
 
-        var sectionCentreX = (maxX - minX) / 2;
-        var sectionCentreY = (maxY - minY) / 2;
+        //var sectionCentreX = ((maxX - minX) / 2)+minX;
+        //var sectionCentreY = ((maxY - minY) / 2)+minY;
+        var sectionCentreX = getSectionCentre(minX, maxX);
+        var sectionCentreY = getSectionCentre(minY, maxY);
+
+        console.log('centers: '+sectionCentreX + '   ' + sectionCentreY);
 
         var canvasWidth = canvasObject.width();
         var canvasHeight = canvasObject.height();
@@ -167,11 +171,11 @@
             transferedX[i] = transferXToCanvasSystem(xCoordinates[i], sectionCentreX, scale, canvasWidth);
             transferedY[i] = transferYToCanvasSystem(yCoordinates[i], sectionCentreY, scale, canvasHeight);
 
-            console.log(String(transferedX[i]) + " " + String(transferedY[i]));
+            //console.log(String(transferedX[i]) + " " + String(transferedY[i]));
         }
 
         var chainCoordinates = transferCoordinatesToPlot(transferedX, transferedY);
-
+        console.log('chaincoordinates:' + chainCoordinates);
         var polygon = drawing.polygon(chainCoordinates).fill({ color: '#3276b1', opacity: 0.9 }).stroke({ width: 3, color: '#054072' });
     }
 
@@ -202,8 +206,6 @@
         //var bottomLine = drawing.rect(correctedWidth, correctedHeight).stroke({ width: 1, color: 'grey' }).fill('none').move(2,2);
 
     }
-
-    
     function drawVerticalLines(drawing, width, height) {
         var numberOfLines = 10;
         var distance = width / numberOfLines;
@@ -248,7 +250,7 @@
         for (i = 0; i < xCoordinates.length; i++) {
             var x = xCoordinates[i].toString();
             var y = yCoordinates[i].toString();
-            console.log(x + " " + y);
+            //console.log(x + " " + y);
             var insert = x + "," + y;
             coordinates = coordinates + insert + " ";
         }
@@ -257,7 +259,9 @@
     }
 
     function transferXToCanvasSystem(pointX, centreX, scale, canvasWidth) {
+        
         var x = ((pointX - centreX) * scale) + canvasWidth / 2;
+        console.log('poinX:' + pointX + ' centreX:' + centreX + ' scale:' + scale + ' canvasWidth:' + canvasWidth + ' x:' + x);
         return x;
     }
 
@@ -274,16 +278,21 @@
         return Math.min.apply(null, array);
     }
 
+    function getSectionCentre(minCoordinate,maxCoordinate)
+    {
+        return ((maxCoordinate - minCoordinate) / 2) + minCoordinate;
+    }
+
     function getSectionDimension(maxCoordinates, minCoordinates) {
         var dimension = maxCoordinates - minCoordinates;
         return dimension;
     }
 
     function getDrawingScale(canvasWidth, canvasHeight, sectionWidth, sectionHeight) {
-        var factor = 1;
+        var factor = 2;
 
-        var scale1 = canvasHeight / sectionHeight / 2;
-        var scale2 = canvasWidth / sectionWidth / 2;
+        var scale1 = canvasHeight / sectionHeight / factor;
+        var scale2 = canvasWidth / sectionWidth / factor;
 
         var scale = Math.min(scale1, scale2);
         return scale;
