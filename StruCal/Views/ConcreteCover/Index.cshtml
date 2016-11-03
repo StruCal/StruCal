@@ -51,11 +51,13 @@
                             Model.ConcreteClassSelectList,
                             new { @class = "form-control" })
                         </div>
-                        <div class="form-group" data-toggle="tooltip" title="Select exposure class (PN-EN 1992-1-1 Table 4.1).">
+                        <div id="DescriptionOfExposureClass" class="form-group" data-toggle="tooltip" title="Select exposure class (PN-EN 1992-1-1 Table 4.1).">
                             @Html.LabelFor(model => model.ExposureClassSelectList, new { @class = "control-label" })
                             @Html.DropDownListFor(x => x.SelectedExposureClass,
                             Model.ExposureClassSelectList,
-                            new { @class = "form-control" })
+                            new { @class = "form-control", @id = "ExposureClassSelectList",
+                                @onchange = "DisplayExposureClassDescription()"
+                            })
                         </div>
                         <div class="form-group" data-toggle="tooltip" title="Select base structural class (PN-EN 1992-1-1 4.4.1.2 (5)).">
                             @Html.LabelFor(model => model.BaseStructuralClassSelectList, new { @class = "control-label" })
@@ -180,5 +182,93 @@
                 </div>
             </div>
         </div>
+
+        <input type="text" name="tooltip" id="samplebox" data-toggle="tooltip" title="Ankit">
+        <input type="text" name="tooltip" id="samplebox1" data-toggle="tooltip" title="Ankit">
 </div>
 }
+
+<script>
+    // Display tooltip based on selected exposure class
+    $(document).ready(function () {
+        $("#ExposureClassSelectList").change(function () {
+            
+
+        });
+    });
+</script>
+
+<script>
+    // Execute on page loading
+    window.onload = DisplayExposureClassDescription();
+
+    // Show description of exposure class based on selected item.
+    function DisplayExposureClassDescription2(){
+        var element = document.getElementById("ExposureClassSelectList");
+        var selectedValue = element.options[element.selectedIndex].value;
+        var tooltip = document.getElementById("DescriptionOfExposureClass");
+        var description;
+
+        switch (selectedValue) {
+            case "X0":
+                description = "No risk of corrosion or attack.\nFor concrete without reinforcement or embedded metal. All exposures except where there is freeze/thaw, abrasion or chemical attack.\nConcrete inside buildings with very low air humidity."
+                break;
+            case "XC1":
+                description = "Corrosion induced by carbonation.\nDry or permanently wet\nConcrete inside buildings with low air humidity.\nConcrete permanently submerged in water.";
+                break;
+            case "XC2":
+                description = "Corrosion induced by carbonation.\nWet, rarely dry.\nConcrete surfaces subject to long-term water contact.\nMany foundations.";
+                break;
+            case "XC3":
+                description = "Corrosion induced by carbonation.";
+                break;
+            case "XC4":
+                description = "Corrosion induced by carbonation.";
+                break;
+            case "XD1":
+                description = "Corrosion induced by chlorides.";
+                break;
+            case "XD2":
+                description = "Corrosion induced by chlorides.";
+                break;
+            case "XD3":
+                description = "Corrosion induced by chlorides.";
+                break;
+            case "XS1":
+                description = "Corrosion induced by chlorides from sea water.";
+                break;
+            case "XS2":
+                description = "Corrosion induced by chlorides from sea water.";
+                break;
+            case "XS3":
+                description = "Corrosion induced by chlorides from sea water.";
+                break;
+            case "XF1":
+                description = "Freeze/Thaw attack.";
+                break;
+            case "XF2":
+                description = "Freeze/Thaw attack.";
+                break;
+            case "XF3":
+                description = "Freeze/Thaw attack.";
+                break;
+            case "XF4":
+                description = "Freeze/Thaw attack.";
+                break;
+            case "XA1":
+                description = "Chemical attack.";
+                break;
+            case "XA2":
+                description = "Chemical attack.";
+                break;
+            case "XA3":
+                description = "Chemical attack.";
+                break;
+            default:
+                description = "No description.";
+                break;
+        }
+
+        tooltip.title = description;
+    }
+</script>
