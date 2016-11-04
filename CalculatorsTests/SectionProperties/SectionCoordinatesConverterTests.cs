@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using Calculators.SectionProperties.SectionProperties.Calculations;
+using Calculators.SectionProperties.Calculations;
 using System;
 using System.Collections.Generic;
 using System.Linq;

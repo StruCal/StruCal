@@ -98,40 +98,40 @@ namespace StruCal.ViewModels
         [Display(Name = "Is special quality control of the concrete production ensured?")]
         public bool SpecialQualityControlOfTheConcreteProductionEnsured { get; set; }
         [Required]
-        [Display(Name = "Structural class:")]
+        [Display(Name = "Structural class")]
         public string StructuralClass { get; set; }
 
         // Additive Safety Element
         [Required]
-        [Display(Name = "Additive safety element:")]
+        [Display(Name = "Additive safety element")]
         public double AdditiveSafetyElement { get; set; }
 
         // Reduction Of Minimum Cover For Use Of Stainless Steel
         [Required]
-        [Display(Name = "Reduction of minimum cover for use of stainless steel:")]
+        [Display(Name = "Reduction of minimum cover for use of stainless steel")]
         public double ReductionOfMinimumCoverForUseOfStainlessSteel { get; set; }
 
         // Reduction Of Minimum Cover For Use Of Additional Protection
         [Required]
-        [Display(Name = "Reduction of minimum cover for use of additional protection:")]
+        [Display(Name = "Reduction of minimum cover for use of additional protection")]
         public double ReductionOfMinimumCoverForUseOfAdditionalProtection { get; set; }
 
         // Results
         // Bond Requirement
         [Required]
-        [Display(Name = "Minimum cover due to bond requirement:")]
+        [Display(Name = "Minimum cover due to bond requirement")]
         public double MinimumCoverDueToBondRequirement { get; set; }
 
         [Required]
-        [Display(Name = "Minimum cover due to environmental conditions:")]
+        [Display(Name = "Minimum cover due to environmental conditions")]
         public double MinimumCoverDueToEnvironmentalConditions { get; set; }
 
         [Required]
-        [Display(Name = "Minimum cover:")]
+        [Display(Name = "Minimum cover")]
         public double MinimumCover { get; set; }
 
         [Required]
-        [Display(Name = "Allowance in design for deviation:")]
+        [Display(Name = "Allowance in design for deviation")]
         public double AllowanceInDesignForDeviation { get; set; }
 
         [Required]
