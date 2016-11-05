@@ -105,6 +105,7 @@ namespace StruCal.ViewModels
             var centralSystemResults = new List<SectionPropertyViewData>();
             var principalSystemResults = new List<SectionPropertyViewData>();
 
+
             foreach (var item in sectionPropertiesResult)
             {
                 var property = item.Property;
@@ -112,7 +113,7 @@ namespace StruCal.ViewModels
                 var sectionResult = new SectionPropertyViewData
                 {
                     Name = item.Property.ToString(),
-                    Value = string.Format("{0,5:F2}",item.Value),
+                    Value = item.Value.ToString("F"),
                     Description = sectionPropertyDescriptions[property]
                 };
 
@@ -129,8 +130,8 @@ namespace StruCal.ViewModels
             result.CentralSystemProperties = centralSystemResults;
             result.PrincipalSystemProperties = principalSystemResults;
             return result;
-        }
-
-        
+        } 
     }
+
+    
 }
