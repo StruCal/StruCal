@@ -15,7 +15,7 @@
         <br />
 
         <div class="row">
-            <div class="col-xs-4 text-left">
+            <div class="col-xs-3 text-left">
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -36,149 +36,238 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Concrete properties</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group" data-toggle="tooltip" title="Select concrete class (PN-EN 1992-1-1 Table 3.1).">
+                                @Html.LabelFor(model => model.ConcreteClassSelectList, new { @class = "control-label" })
+                                @Html.DropDownListFor(x => x.SelectedConcreteClass,
+                                Model.ConcreteClassSelectList,
+                                new { @class = "form-control" })
+                            </div>
+                            <div id="DescriptionOfExposureClass" class="form-group" data-toggle="tooltip" title="Select exposure class (PN-EN 1992-1-1 Table 4.1). Hover the cursor over the name of the exposure class to see its description.">
+                                @Html.LabelFor(model => model.ExposureClassSelectList, new { @class = "control-label" })
+                                @Html.DropDownListFor(x => x.SelectedExposureClass,
+                                Model.ExposureClassSelectList,
+                                new
+                                {
+                                    @class = "form-control",
+                                    @id = "ExposureClassSelectList"
+                                })
+                            </div>
+                            <div class="form-group" data-toggle="tooltip" title="Select base structural class (PN-EN 1992-1-1 4.4.1.2 (5)).">
+                                @Html.LabelFor(model => model.BaseStructuralClassSelectList, new { @class = "control-label" })
+                                @Html.DropDownListFor(x => x.SelectedBaseStructuralClass,
+                                Model.BaseStructuralClassSelectList,
+                                new { @class = "form-control" })
+                            </div>
+                            <div class="checkbox" data-toggle="tooltip" title="Specify whether nominal maximum aggregate size is greater than 32mm (PN-EN 1992-1-1 Table 4.2).">
+                                <label><input type="checkbox" value="" id="NominalMaximumAggregateSizeIsGreaterThan32mmCheckbox">Is nominal maximum aggregate size is greater than 32mm?</label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="col-xs-4 text-left">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Concrete properties</h3>
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Structure properties</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="checkbox" data-toggle="tooltip" title="Specify whether design working life is greater then 100 years (PN-EN 1992-1-1 Table 4.3N).">
+                                    @Html.LabelFor(model => model.DesignWorkingLifeOf100Years, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.DesignWorkingLifeOf100Years)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox" data-toggle="tooltip" title="Specify whether member has slab geometry (PN-EN 1992-1-1 Table 4.3N).">
+                                    @Html.LabelFor(model => model.MemberWithSlabGeometry, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.MemberWithSlabGeometry)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox" data-toggle="tooltip" title="Specify whether special quality control of the concrete production is ensured (PN-EN 1992-1-1 Table 4.3N).">
+                                    @Html.LabelFor(model => model.SpecialQualityControlOfTheConcreteProductionEnsured, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.SpecialQualityControlOfTheConcreteProductionEnsured)
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="panel-body">
-                        <div class="form-group" data-toggle="tooltip" title="Select concrete class (PN-EN 1992-1-1 Table 3.1).">
-                            @Html.LabelFor(model => model.ConcreteClassSelectList, new { @class = "control-label" })
-                            @Html.DropDownListFor(x => x.SelectedConcreteClass,
-                            Model.ConcreteClassSelectList,
-                            new { @class = "form-control" })
-                        </div>
-                        <div class="form-group" data-toggle="tooltip" title="Select exposure class (PN-EN 1992-1-1 Table 4.1).">
-                            @Html.LabelFor(model => model.ExposureClassSelectList, new { @class = "control-label" })
-                            @Html.DropDownListFor(x => x.SelectedExposureClass,
-                            Model.ExposureClassSelectList,
-                            new { @class = "form-control" })
-                        </div>
-                        <div class="form-group" data-toggle="tooltip" title="Select base structural class (PN-EN 1992-1-1 4.4.1.2 (5)).">
-                            @Html.LabelFor(model => model.BaseStructuralClassSelectList, new { @class = "control-label" })
-                            @Html.DropDownListFor(x => x.SelectedBaseStructuralClass,
-                            Model.BaseStructuralClassSelectList,
-                            new { @class = "form-control" })
-                        </div>
-                        <div class="checkbox" data-toggle="tooltip" title="Specify whether nominal maximum aggregate size is greater than 32mm (PN-EN 1992-1-1 Table 4.2).">
-                            <label><input type="checkbox" value="" id="NominalMaximumAggregateSizeIsGreaterThan32mmCheckbox">Is nominal maximum aggregate size is greater than 32mm?</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-xs-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Structure properties</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <div class="checkbox" data-toggle="tooltip" title="Specify whether design working life is greater then 100 years (PN-EN 1992-1-1 Table 4.3N).">
-                                @Html.LabelFor(model => model.DesignWorkingLifeOf100Years, htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.DesignWorkingLifeOf100Years)
-                            </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Additional properties</h3>
                         </div>
-                        <div class="form-group">
-                            <div class="checkbox" data-toggle="tooltip" title="Specify whether member has slab geometry (PN-EN 1992-1-1 Table 4.3N).">
-                                @Html.LabelFor(model => model.MemberWithSlabGeometry, htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.MemberWithSlabGeometry)
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="checkbox" data-toggle="tooltip" title="Specify whether special quality control of the concrete production is ensured (PN-EN 1992-1-1 Table 4.3N).">
-                                @Html.LabelFor(model => model.SpecialQualityControlOfTheConcreteProductionEnsured, htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.SpecialQualityControlOfTheConcreteProductionEnsured)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row text-center">
-            <div class="col-xs-12">
-                <div class="panel panel-info">
-                    <div class="panel-heading" data-toggle="tooltip" title="Click button to see additional properties.">
-                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#CollapseAdditionalProperties">Additional properties</button>
-                        <div id="CollapseAdditionalProperties" class="collapse">
-                            <div class="panel-body">
+                        <div class="panel-body">
+                            <form class="form-inline">
                                 @Html.LabelFor(model => model.AdditiveSafetyElement, htmlAttributes: new { @class = "control-label" })
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                <div class="form-group form-inline" data-toggle="tooltip" title="Specify additive safety element (PN-EN 1992-1-1 4.4.1.2 (6)).">
+                                <div class="form-group" data-toggle="tooltip" title="Specify additive safety element (PN-EN 1992-1-1 4.4.1.2 (6)).">
                                     @Html.EditorFor(model => model.AdditiveSafetyElement, new { htmlAttributes = new { @class = "form-control", @placeholder = "0 mm" } })
+                                    [mm]<br />
                                     @Html.ValidationMessageFor(model => model.AdditiveSafetyElement, "", new { @class = "text-danger" })
-                                    [mm]
                                 </div>
-                                @Html.LabelFor(model => model.ReductionOfMinimumCoverForUseOfStainlessSteel, htmlAttributes: new { @class = "control-label" })
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                <div class="form-group form-inline" data-toggle="tooltip" title="Specify reduction of minimum cover for use of stainless steel (PN-EN 1992-1-1 4.4.1.2 (7)).">
-                                    @Html.EditorFor(model => model.ReductionOfMinimumCoverForUseOfStainlessSteel, new { htmlAttributes = new { @class = "form-control", @placeholder = "0 mm" } })
-                                    @Html.ValidationMessageFor(model => model.ReductionOfMinimumCoverForUseOfStainlessSteel, "", new { @class = "text-danger" })
-                                    [mm]
-                                </div>
-                                @Html.LabelFor(model => model.ReductionOfMinimumCoverForUseOfAdditionalProtection, htmlAttributes: new { @class = "control-label" })
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                <div class="form-group form-inline" data-toggle="tooltip" title="Specify reduction of minimum cover for use of additional protection (PN-EN 1992-1-1 4.4.1.2 (8)).">
-                                    @Html.EditorFor(model => model.ReductionOfMinimumCoverForUseOfAdditionalProtection, new { htmlAttributes = new { @class = "form-control", @placeholder = "0 mm" } })
-                                    @Html.ValidationMessageFor(model => model.ReductionOfMinimumCoverForUseOfAdditionalProtection, "", new { @class = "text-danger" })
-                                    [mm]
-                                </div>
-                                @Html.LabelFor(model => model.AllowanceInDesignForDeviation, htmlAttributes: new { @class = "control-label" })
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                <div class="form-group form-inline" data-toggle="tooltip" title="Specify whether deviation in design is allowed (PN-EN 1992-1-1 4.4.1.3).">
-                                    @Html.EditorFor(model => model.AllowanceInDesignForDeviation, new { htmlAttributes = new { @class = "form-control", @placeholder = "5 mm" } })
-                                    @Html.ValidationMessageFor(model => model.AllowanceInDesignForDeviation, "", new { @class = "text-danger" })
-                                    [mm]
-                                </div>
+                            </form>
+ 
+                            @Html.LabelFor(model => model.ReductionOfMinimumCoverForUseOfStainlessSteel, htmlAttributes: new { @class = "control-label" })
+                            <div class="form-group" data-toggle="tooltip" title="Specify reduction of minimum cover for use of stainless steel (PN-EN 1992-1-1 4.4.1.2 (7)).">
+                                @Html.EditorFor(model => model.ReductionOfMinimumCoverForUseOfStainlessSteel, new { htmlAttributes = new { @class = "form-control", @placeholder = "0 mm" } })
+                                [mm]<br />
+                                @Html.ValidationMessageFor(model => model.ReductionOfMinimumCoverForUseOfStainlessSteel, "", new { @class = "text-danger" })
+                            </div>
+                            @Html.LabelFor(model => model.ReductionOfMinimumCoverForUseOfAdditionalProtection, htmlAttributes: new { @class = "control-label" })
+                            <div class="form-group" data-toggle="tooltip" title="Specify reduction of minimum cover for use of additional protection (PN-EN 1992-1-1 4.4.1.2 (8)).">
+                                @Html.EditorFor(model => model.ReductionOfMinimumCoverForUseOfAdditionalProtection, new { htmlAttributes = new { @class = "form-control", @placeholder = "0 mm" } })
+                                [mm]<br />
+                                @Html.ValidationMessageFor(model => model.ReductionOfMinimumCoverForUseOfAdditionalProtection, "", new { @class = "text-danger" })
+                            </div>
+                            @Html.LabelFor(model => model.AllowanceInDesignForDeviation, htmlAttributes: new { @class = "control-label" })
+                            <div class="form-group" data-toggle="tooltip" title="Specify whether deviation in design is allowed (PN-EN 1992-1-1 4.4.1.3).">
+                                @Html.EditorFor(model => model.AllowanceInDesignForDeviation, new { htmlAttributes = new { @class = "form-control", @placeholder = "5 mm" } })
+                                [mm]<br />
+                                @Html.ValidationMessageFor(model => model.AllowanceInDesignForDeviation, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-5 text-left">
+                <input type="submit" id="CalculateButton" value="Calculate" class="btn btn-info" data-toggle="tooltip"
+                        title="Click to calculate concrete cover.">
+
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Calculated cover</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <h3 class="form-horizontal" data-toggle="tooltip" title="Calculated structural class (PN-EN 1992-1-1 Table 4.4N, 4.5N).">                              
+                                    <span class="label label-info">@Html.LabelFor(model => model.NominalCover, new { @class = "control-label" }): @Model.NominalCover [mm]</span>
+                                </h3>
+                            </div>
+                            <div class="form-group">
+                                <b class="form-horizontal" data-toggle="tooltip" title="Calculated structural class (PN-EN 1992-1-1 Table 4.4N, 4.5N).">
+                                    @Html.LabelFor(model => model.StructuralClass, new { @class = "control-label" }):
+                                    <label class="control-label">@Model.StructuralClass</label>
+                                </b>
+                            </div>
+                            <div class="form-group">
+                                <b class="form-horizontal" data-toggle="tooltip" title="Calculated minimum cover due to bond requirement (PN-EN 1992-1-1 4.4.1.2(3)).">
+                                    @Html.LabelFor(model => model.MinimumCoverDueToBondRequirement, new { @class = "control-label" }):
+                                    <label class="control-label">@Model.MinimumCoverDueToBondRequirement [mm]</label>
+                                </b>
+                            </div>
+                            <div class="form-group">
+                                <b class="form-horizontal" data-toggle="tooltip" title="Calculated minimum cover due to environmental conditions (PN-EN 1992-1-1 4.4.1.2(5)).">
+                                    @Html.LabelFor(model => model.MinimumCoverDueToEnvironmentalConditions, new { @class = "control-label" }):
+                                    <label class="control-label">@Model.MinimumCoverDueToEnvironmentalConditions [mm]</label>
+                                </b>
+                            </div>
+                            <div class="form-group">
+                                <b class="form-horizontal" data-toggle="tooltip" title="Calculated minimum cover (PN-EN 1992-1-1 Eq. 4.2).">
+                                    @Html.LabelFor(model => model.MinimumCover, new { @class = "control-label" }):
+                                    <label class="control-label">@Model.MinimumCover [mm]</label>
+                                </b>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="row text-center">
-            <div class="col-xs-12">
-                <input type="submit" id="CalculateButton" value="Calculate" class="btn btn-primary scrollTo" data-toggle="tooltip"
-                        title="Click to calculate concrete cover.">
-            </div>
-        </div>
-        <br />
-
-        <div class="row  text-center">
-            <div class="col-xs-12">
-                <div class="panel panel-success">
-                    <div class="panel-heading">
-                        <h3 data-toggle="tooltip" id="NominalCover" title="Calculated nominal cover (PN-EN 1992-1-1 Eq. 4.1).">
-                            <b>
-                                @Html.LabelFor(model => model.NominalCover) @Model.NominalCover [mm]
-                            </b>
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        <p class="control-label form-horizontal" data-toggle="tooltip" title="Calculated structural class (PN-EN 1992-1-1 Table 4.4N, 4.5N).">
-                            @Html.LabelFor(model => model.StructuralClass, new { @class = "control-label" })
-                            <label class="control-label">@Model.StructuralClass</label>
-                        </p>
-                        <p class="control-label form-horizontal" data-toggle="tooltip" title="Calculated minimum cover due to bond requirement (PN-EN 1992-1-1 4.4.1.2(3)).">
-                            @Html.LabelFor(model => model.MinimumCoverDueToBondRequirement, new { @class = "control-label" })
-                            <label class="control-label">@Model.MinimumCoverDueToBondRequirement [mm]</label>
-                        </p>
-                        <p class="control-label form-horizontal" data-toggle="tooltip" title="Calculated minimum cover due to environmental conditions (PN-EN 1992-1-1 4.4.1.2(5)).">
-                            @Html.LabelFor(model => model.MinimumCoverDueToEnvironmentalConditions, new { @class = "control-label" })
-                            <label class="control-label">@Model.MinimumCoverDueToEnvironmentalConditions [mm]</label>
-                        </p>
-                        <p class="control-label form-horizontal" data-toggle="tooltip" title="Calculated minimum cover (PN-EN 1992-1-1 Eq. 4.2).">
-                            @Html.LabelFor(model => model.MinimumCover, new { @class = "control-label" })
-                            <label class="control-label">@Model.MinimumCover [mm]</label>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-</div>
+    </div>
 }
+
+<script>
+    $(function () {
+        $("#CalculateButton").click(function () {
+            $(this).val("Nominal");
+        });
+    });
+
+
+    $(function () {
+        $("#ExposureClassSelectList").each(function () {
+            var i = 0;
+            var s = this;
+
+            for (i = 0; i < s.length; i++) {
+                s.options[i].title = DisplayExposureClassDescription(s.options[i].text);
+            }
+            if (s.selectedIndex > -1) {
+                s.onmousemove = function () { s.title = s.options[s.selectedIndex].title; };
+            }
+        });
+
+        function DisplayExposureClassDescription(selectedValue) {
+            var description;
+
+            switch (selectedValue) {
+                case "X0":
+                    description = "No risk of corrosion or attack. For concrete without reinforcement or embedded metal. All exposures except where there is freeze/thaw, abrasion or chemical attack. Concrete inside buildings with very low air humidity."
+                    break;
+                case "XC1":
+                    description = "Corrosion induced by carbonation. Dry or permanently wet. Concrete inside buildings with low air humidity. Concrete permanently submerged in water.";
+                    break;
+                case "XC2":
+                    description = "Corrosion induced by carbonation. Wet, rarely dry. Concrete surfaces subject to long-term water contact. Many foundations.";
+                    break;
+                case "XC3":
+                    description = "Corrosion induced by carbonation. Moderate humidity. Concrete inside buildings with moderate or high air humidity. External concrete sheltered from rain.";
+                    break;
+                case "XC4":
+                    description = "Corrosion induced by carbonation. Cyclic wet and dry. Concrete surfaces subject to water contact, not within exposure class XC2.";
+                    break;
+                case "XD1":
+                    description = "Corrosion induced by chlorides. Moderate humidity. Concrete surfaces exposed to airborne chlorides.";
+                    break;
+                case "XD2":
+                    description = "Corrosion induced by chlorides. Wet, rarely dry. Swimming pools. Concrete components exposed to industrial waters containing chlorides.";
+                    break;
+                case "XD3":
+                    description = "Corrosion induced by chlorides. Cyclic wet and dry. Parts of bridges exposed to spray containing chlorides. Pavements. Car park slabs.";
+                    break;
+                case "XS1":
+                    description = "Corrosion induced by chlorides from sea water. Exposed to airborne salt but not in direct contact with sea water. Structures near to or on the coast.";
+                    break;
+                case "XS2":
+                    description = "Corrosion induced by chlorides from sea water. Permanently submerged. Parts of marine structures.";
+                    break;
+                case "XS3":
+                    description = "Corrosion induced by chlorides from sea water. Tidal, splash and spray zones. Parts of marine structures.";
+                    break;
+                case "XF1":
+                    description = "Freeze/Thaw attack. Moderate water saturation, without de-icing agent. Vertical concrete surfaces exposed to rain and freezing";
+                    break;
+                case "XF2":
+                    description = "Freeze/Thaw attack. Moderate water saturation, with de-icing agent. Vertical concrete surfaces of road structures exposed to freezing and airborne de-icing agents.";
+                    break;
+                case "XF3":
+                    description = "Freeze/Thaw attack. High water saturation, without de-icing agents. Horizontal concrete surfaces exposed to rain and freezing.";
+                    break;
+                case "XF4":
+                    description = "Freeze/Thaw attack. High water saturation with de-icing agents or sea water. Road and bridge decks exposed to de-icing agents. Concrete surfaces exposed to direct spray containing de-icing agents and freezing. Splash zone of marine structures exposed to freezing.";
+                    break;
+                case "XA1":
+                    description = "Chemical attack. Slightly aggressive chemical environment according to EN 206-1, Table 2. Natural soils and ground water.";
+                    break;
+                case "XA2":
+                    description = "Chemical attack. Moderately aggressive chemical environment according to EN 206-1, Table 2. Natural soils and ground water.";
+                    break;
+                case "XA3":
+                    description = "Chemical attack. Highly aggressive chemical environment according to EN 206-1, Table 2. Natural soils and ground water.";
+                    break;
+                default:
+                    description = "No description.";
+                    break;
+            }
+            return description;
+        }
+    });
+</script>
