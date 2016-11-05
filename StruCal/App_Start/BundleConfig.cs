@@ -28,6 +28,10 @@ namespace StruCal
                       "~/Content/bootstrap.css",
                       "~/Content/custom.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/svg").Include(
+                "~/Scripts/svg.js"
+                ));
         }
     }
 }
