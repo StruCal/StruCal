@@ -15,7 +15,7 @@
         <br />
 
         <div class="row">
-            <div class="col-xs-3 text-left">
+            <div class="col-xs-12 col-sm-6 text-left">
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -64,37 +64,36 @@
                                 Model.BaseStructuralClassSelectList,
                                 new { @class = "form-control" })
                             </div>
-                            <div class="checkbox" data-toggle="tooltip" title="Specify whether nominal maximum aggregate size is greater than 32mm (PN-EN 1992-1-1 Table 4.2).">
-                                <label><input type="checkbox" value="" id="NominalMaximumAggregateSizeIsGreaterThan32mmCheckbox">Is nominal maximum aggregate size is greater than 32mm?</label>
+                            <div class="form-group form-inline">
+                                <div data-toggle="tooltip" title="Specify whether nominal maximum aggregate size is greater than 32mm (PN-EN 1992-1-1 Table 4.2).">
+                                    @Html.CheckBoxFor(model => model.NominalMaximumAggregateSizeIsGreaterThan32mm, htmlAttributes: new { @class = "control-label" })
+                                    @Html.LabelFor(model => model.NominalMaximumAggregateSizeIsGreaterThan32mm, htmlAttributes: new { @class = "control-label" })
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="col-xs-4 text-left">
-                <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">Structure properties</h3>
                         </div>
                         <div class="panel-body">
-                            <div class="form-group">
-                                <div class="checkbox" data-toggle="tooltip" title="Specify whether design working life is greater then 100 years (PN-EN 1992-1-1 Table 4.3N).">
+                            <div class="form-group form-inline">
+                                <div data-toggle="tooltip" title="Specify whether design working life is greater then 100 years (PN-EN 1992-1-1 Table 4.3N).">
+                                    @Html.CheckBoxFor(model => model.DesignWorkingLifeOf100Years, htmlAttributes: new { @class = "control-label" })
                                     @Html.LabelFor(model => model.DesignWorkingLifeOf100Years, htmlAttributes: new { @class = "control-label" })
-                                    @Html.EditorFor(model => model.DesignWorkingLifeOf100Years)
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="checkbox" data-toggle="tooltip" title="Specify whether member has slab geometry (PN-EN 1992-1-1 Table 4.3N).">
+                            <div class="form-group form-inline">
+                                <div data-toggle="tooltip" title="Specify whether member has slab geometry (PN-EN 1992-1-1 Table 4.3N).">
+                                    @Html.CheckBoxFor(model => model.MemberWithSlabGeometry, htmlAttributes: new { @class = "control-label" })
                                     @Html.LabelFor(model => model.MemberWithSlabGeometry, htmlAttributes: new { @class = "control-label" })
-                                    @Html.EditorFor(model => model.MemberWithSlabGeometry)
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="checkbox" data-toggle="tooltip" title="Specify whether special quality control of the concrete production is ensured (PN-EN 1992-1-1 Table 4.3N).">
+                            <div class="form-group form-inline">
+                                <div data-toggle="tooltip" title="Specify whether special quality control of the concrete production is ensured (PN-EN 1992-1-1 Table 4.3N).">
+                                    @Html.CheckBoxFor(model => model.SpecialQualityControlOfTheConcreteProductionEnsured, htmlAttributes: new { @class = "control-label" })
                                     @Html.LabelFor(model => model.SpecialQualityControlOfTheConcreteProductionEnsured, htmlAttributes: new { @class = "control-label" })
-                                    @Html.EditorFor(model => model.SpecialQualityControlOfTheConcreteProductionEnsured)
                                 </div>
                             </div>
                         </div>
@@ -113,7 +112,7 @@
                                     @Html.ValidationMessageFor(model => model.AdditiveSafetyElement, "", new { @class = "text-danger" })
                                 </div>
                             </form>
- 
+
                             @Html.LabelFor(model => model.ReductionOfMinimumCoverForUseOfStainlessSteel, htmlAttributes: new { @class = "control-label" })
                             <div class="form-group" data-toggle="tooltip" title="Specify reduction of minimum cover for use of stainless steel (PN-EN 1992-1-1 4.4.1.2 (7)).">
                                 @Html.EditorFor(model => model.ReductionOfMinimumCoverForUseOfStainlessSteel, new { htmlAttributes = new { @class = "form-control", @placeholder = "0 mm" } })
@@ -137,9 +136,9 @@
                 </div>
             </div>
 
-            <div class="col-xs-5 text-left">
-                <input type="submit" id="CalculateButton" value="Calculate" class="btn btn-info" data-toggle="tooltip"
-                        title="Click to calculate concrete cover.">
+            <div class="col-xs-12 col-sm-6 text-center">
+                <input type="submit" id="CalculateButton" value="Calculate" class="btn btn-lg btn-primary" data-toggle="tooltip"
+                       title="Click to calculate concrete cover." style="margin-bottom: 5px; width:100%;">
 
                 <div class="panel-group">
                     <div class="panel panel-default">
@@ -148,7 +147,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
-                                <h3 class="form-horizontal" data-toggle="tooltip" title="Calculated structural class (PN-EN 1992-1-1 Table 4.4N, 4.5N).">                              
+                                <h3 class="form-horizontal" data-toggle="tooltip" title="Calculated structural class (PN-EN 1992-1-1 Table 4.4N, 4.5N).">
                                     <span class="label label-info">@Html.LabelFor(model => model.NominalCover, new { @class = "control-label" }): @Model.NominalCover [mm]</span>
                                 </h3>
                             </div>
@@ -187,7 +186,7 @@
 <script>
     $(function () {
         $("#CalculateButton").click(function () {
-            $(this).val("Nominal");
+            $(this).val("...");
         });
     });
 

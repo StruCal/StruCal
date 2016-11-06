@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" value="Run" class="btn btn-primary" />
+                        <input id="runButton" type="submit" value="Run" class="btn btn-primary" />
                     </div>
                 </div>
 
@@ -57,13 +57,13 @@
     @if (ViewBag.ShowResults)
     {
         <hr />
-        <div class="col-md-4">
+        <div class="col-xs-12 col-md-4">
             @Html.DisplayFor(e => Model.BaseSystemProperties, TemplateNames.SectionPropertyTableTemplate, new { name = "Base properties" })
         </div>
-        <div class="col-md-4">
+        <div class="col-xs-12 col-md-4">
             @Html.DisplayFor(e => Model.CentralSystemProperties, TemplateNames.SectionPropertyTableTemplate, new { name = "Central properties" })
         </div>
-        <div class="col-md-4">
+        <div class="col-xs-12 col-md-4">
             @Html.DisplayFor(e => Model.PrincipalSystemProperties, TemplateNames.SectionPropertyTableTemplate, new { name = "Principal properties" })
         </div>   
             @*<table style="width:auto" class="table table-bordered">
@@ -95,6 +95,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.3.6/svg.min.js"></script>
 @Scripts.Render("~/bundles/jquery")
 <script>
+    /*(Dawid: scroll down after clicking Run button to show the table, simple example, maybe add if/else whether button run was clicked or not?)
+    PROPOSALS:
+    - round values,
+    - show units, 
+    - show symbols with sub/superscripts, greek symbols
+    */
+    $(window).load(function () {
+        $("html,body").scrollTop(10000);
+    });
+
     $(document).ready(function () {
 
         createDrawing();

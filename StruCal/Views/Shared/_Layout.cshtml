@@ -1,63 +1,113 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - simpledesign</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <title>simpledesign</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--Add Roboto font-->
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,400italic,500italic&subset=latin,latin-ext' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--Add Montserrat font-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+
+    @Styles.Render("~/Content/custom")
+    @Scripts.Render("~/bundles/custom")
+    @RenderSection("scripts", required: false)
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <nav id="navbar"class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed"
-                        data-toggle="collapse" data-target="#mainmenu"
-                        aria-expanded="false">
-                    <span class="sr-only"></span>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">simple<strong>design</strong></a>
+                <a id="title" class="navbar-brand site-title" href="@Url.Action("Index", "Home")">simple<strong>design</strong></a>
+                <span id="home">home</span>
             </div>
-
-            <div class="navbar-collapse collapse navbar-right mainmenu" id="mainmenu">
-                <ul class="nav navbar-nav">
-                    <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Demo", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#about">ABOUT</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-haspopup="true" aria-expanded="false">Calculators<span class="caret"></span></a>
+                        <a href="#portfolio" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                            aria-haspopup="true" aria-expanded="false">PRODUCTS<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Section properties", "Index", "SectionProperties")</li>
-                            <li>@Html.ActionLink("Concrete Cover", "Index", "ConcreteCover")</li>
+                            <li><a>FREE</a></li>
                             <li role="separator" class="divider"></li>
-                            <li>@Html.ActionLink("Fajny separator", " ", " ")</li>
+                            <li>@Html.ActionLink("SECTION PROPERTIES", "Index", "SectionProperties")</li>
+                            <li>@Html.ActionLink("CONCRETE COVER", "Index", "ConcreteCover")</li>
                         </ul>
                     </li>
-                    <li><a href="#" class="btn btn-default">Buy</a></li>
+                    <li><a href="#pricing">LICENSE</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                    <li><a href="#login">LOGIN</a></li>
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="container-fluid">
-        @RenderBody()
-    </div>
-    <br />
-    <div class="container footer">
-        <div class="row">
-            <div class="col-xs-12">
-                <p>&copy; @DateTime.Now.Year simple<strong>design</strong>. All rights reserved.</p>
-            </div>
-        </div>
-    </div>
+    </nav>
+
+    @RenderBody()
+
+    <script>
+        $(document).ready(function(){
+          // Add smooth scrolling to all links in navbar + footer link
+          $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+
+           // Make sure this.hash has a value before overriding default behavior
+          if (this.hash !== "") {
+
+            // Prevent default anchor click behavior
+            event.preventDefault();
+
+            // Store hash
+            var hash = this.hash;
+
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+            $('html, body').animate({
+              scrollTop: $(hash).offset().top
+            }, 900, function(){
+
+              // Add hash (#) to URL when done scrolling (default click behavior)
+              window.location.hash = hash;
+              });
+            } // End if
+          });
+        })
+
+        $(window).scroll(function () {
+            $(".slideanim").each(function () {
+                var pos = $(this).offset().top;
+
+                var winTop = $(window).scrollTop();
+                if (pos < winTop + 400) {
+                    $(this).addClass("slide");
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            var scroll_start = 0;
+            var startchange = $('#startchange');
+            var offset = startchange.offset();
+            if (startchange.length) {
+                $(document).scroll(function () {
+                    scroll_start = $(this).scrollTop();
+                    if (scroll_start > offset.top - $("#myNavbar").height() - 10) {
+                        $('.navbar-default').css('border-bottom', '0');
+                        $('#navbar').addClass('scrolled-nav');
+
+
+                    } else {
+                        $(".navbar-default").css('border-bottom', '1px solid #fff');
+                        $('#navbar').removeClass('scrolled-nav');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

@@ -26,5 +26,12 @@ namespace StruCal.Controllers
 
             return View();
         }
+
+        public ActionResult NewIndex()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }
