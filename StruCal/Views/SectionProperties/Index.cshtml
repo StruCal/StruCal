@@ -82,8 +82,7 @@
         }
     </div>
 </div>
-@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
-@*<script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.3.6/svg.min.js"></script>*@
+
 @Scripts.Render("~/bundles/svg")
 @Scripts.Render("~/bundles/jquery")
 <script>
@@ -93,39 +92,37 @@
         $("#inputForms input").change(createDrawing);
         $("#inputForms input").keyup(createDrawing);
         $(window).resize(createDrawing);
-        function createDrawing() {
-            var canvasObject = $('#canvas');
-            var xString = $("#XCoordinates").val();
-            var yString = $("#YCoordinates").val();
-
-            var x = splitCoordinates(xString);
-            var y = splitCoordinates(yString);
-
-            if (x.length != y.length) {
-                return;
-            }
-
-            fillCanvas(x, y, 'canvas');
-        }
     });
-
-
-
 
 
     //---SHOULD BE PUT TO SEPARATE FILE--//
 
     //main function for filling canvas with objects: section, vertical and horizontal lines,
     //axes of coordinate system
-    function fillCanvas(xCoordinates, yCoordinates, canvasParentId) {
-        var canvasObject = $('#' + canvasParentId);
+    function createDrawing() {
+        var canvasObject = $('#canvas');
+        var xString = $("#XCoordinates").val();
+        var yString = $("#YCoordinates").val();
+
+        var x = splitCoordinates(xString);
+        var y = splitCoordinates(yString);
+
+        if (x.length != y.length) {
+            return;
+        }
+
+        fillCanvas(x, y, canvasObject);
+    }
+
+    function fillCanvas(xCoordinates, yCoordinates, canvasObject) {
+        //var canvasObject = $('#' + canvasParentId);
         canvasObject.empty();
 
         var canvasWidth = canvasObject.width();
         var canvasHeight = canvasWidth * 0.5;
         canvasObject.height(canvasHeight);
 
-        var drawing = SVG('canvas').size(canvasWidth, canvasHeight);
+        var drawing = SVG(canvasObject.attr('id')).size(canvasWidth, canvasHeight);
 
         //drawVerticalLines(drawing, canvasWidth, canvasHeight);
         //drawHorizontalLines(drawing, canvasWidth, canvasHeight);
