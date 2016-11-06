@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Common.Extensions;
 
 namespace StruCal.ViewModels
 {
@@ -104,6 +105,7 @@ namespace StruCal.ViewModels
             var centralSystemResults = new List<SectionPropertyViewData>();
             var principalSystemResults = new List<SectionPropertyViewData>();
 
+
             foreach (var item in sectionPropertiesResult)
             {
                 var property = item.Property;
@@ -111,7 +113,7 @@ namespace StruCal.ViewModels
                 var sectionResult = new SectionPropertyViewData
                 {
                     Name = item.Property.ToString(),
-                    Value = item.Value.ToString(),
+                    Value = item.Value.ToString("F"),
                     Description = sectionPropertyDescriptions[property]
                 };
 
@@ -128,6 +130,8 @@ namespace StruCal.ViewModels
             result.CentralSystemProperties = centralSystemResults;
             result.PrincipalSystemProperties = principalSystemResults;
             return result;
-        }
+        } 
     }
+
+    
 }

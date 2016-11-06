@@ -8,7 +8,7 @@
                 <tr>
                     <th>Name</th>
                     <th></th>
-                    <th>Value</th>
+                    <th style="padding-right:20%;text-align:right">Value</th>@*todo: change to style*@
                 </tr>
             </thead>
             @foreach (var item in Model)
@@ -20,7 +20,9 @@
                             <span class="glyphicon glyphicon-info-sign"></span>
                         </a>
                     </td>
-                    <td>@Html.DisplayFor(e => item.Value)</td>
+                    <td style="padding-right:20%;text-align:right">@*todo: change to style*@
+                        @Html.DisplayFor(e => item.Value)
+                    </td>
                 </tr>
             }
 

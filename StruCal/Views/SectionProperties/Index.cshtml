@@ -6,11 +6,24 @@
 
 <div class="container">
     <h2>Welcome to the Section Properties Calculator</h2>
+    <h5>
+        The calculator provides section properties such as
+        area, centre of gravity, moments of inertia of the sections with any custom sections.
+        It is reliable, fast and avilable anytime and anywhere.
+    </h5>
+    <br />
+    <div class="pill-content">
+        <ul class="nav nav-pills">
+            <li role="presentation" class="active"><a data-toggle="tab" href="#results">Custom</a></li>
+            <li role="presentation"><a data-toggle="tab" href="#results">Rectangular</a></li>
+            <li role="presentation"><a data-toggle="tab" href="#results">Circular</a></li>
+            <li role="presentation"><a data-toggle="tab" href="#results">T-Section</a></li>
+            <li role="presentation"><a data-toggle="tab" href="#results">I-Section</a></li>
+        </ul>
+    </div>
     <br />
     <p class="text-justify">
-        The calculator is able to calculte section properties such as
-        area, centre of gravity, moments of inertia of the sections with any custom geometry.
-        <br />The cordinates of the section should be provided as a chain of numbers separated by semicolonsas shown in the following example: <em>5.5;10;20.4;18.8;</em>.
+        The cordinates of the section should be provided as a chain of numbers separated by semicolonsas shown in the following example: <em>5.5;10;20.4;18.8;</em>.
         <br />Please note that the chain of numbers should be ended with semicolon.
     </p>
     <br />
@@ -45,7 +58,7 @@
                 </div>
 
             }
-            
+
         </div>
         <div class="col-md-8">
             <div id="canvas">
@@ -54,6 +67,7 @@
         </div>
     </div>
     <div class="row" id="results">
+<<<<<<< HEAD
     @if (ViewBag.ShowResults)
     {
         <hr />
@@ -89,6 +103,21 @@
 
             </table>*@
     }
+=======
+        @if (ViewBag.ShowResults)
+        {
+            <hr />
+            <div class="col-md-4">
+                @Html.DisplayFor(e => Model.BaseSystemProperties, TemplateNames.SectionPropertyTableTemplate, new { name = "Base properties" })
+            </div>
+            <div class="col-md-4">
+                @Html.DisplayFor(e => Model.CentralSystemProperties, TemplateNames.SectionPropertyTableTemplate, new { name = "Central properties" })
+            </div>
+            <div class="col-md-4">
+                @Html.DisplayFor(e => Model.PrincipalSystemProperties, TemplateNames.SectionPropertyTableTemplate, new { name = "Principal properties" })
+            </div>
+        }
+>>>>>>> origin/master
     </div>
 </div>
 @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
@@ -168,7 +197,7 @@
         var sectionCentreX = getSectionCentre(minX, maxX);
         var sectionCentreY = getSectionCentre(minY, maxY);
 
-        console.log('centers: '+sectionCentreX + '   ' + sectionCentreY);
+        console.log('centers: ' + sectionCentreX + '   ' + sectionCentreY);
 
         var canvasWidth = canvasObject.width();
         var canvasHeight = canvasObject.height();
@@ -189,8 +218,7 @@
         var polygon = drawing.polygon(chainCoordinates).fill({ color: '#3276b1', opacity: 0.9 }).stroke({ width: 3, color: '#054072' });
     }
 
-    function drawBackgroundPattern(drawing, width, height)
-    {
+    function drawBackgroundPattern(drawing, width, height) {
         //drawVerticalLines(drawing, width, height);
         //drawHorizontalLines(drawing, width, height);
 
@@ -269,7 +297,7 @@
     }
 
     function transferXToCanvasSystem(pointX, centreX, scale, canvasWidth) {
-        
+
         var x = ((pointX - centreX) * scale) + canvasWidth / 2;
         console.log('poinX:' + pointX + ' centreX:' + centreX + ' scale:' + scale + ' canvasWidth:' + canvasWidth + ' x:' + x);
         return x;
@@ -288,8 +316,7 @@
         return Math.min.apply(null, array);
     }
 
-    function getSectionCentre(minCoordinate,maxCoordinate)
-    {
+    function getSectionCentre(minCoordinate, maxCoordinate) {
         return ((maxCoordinate - minCoordinate) / 2) + minCoordinate;
     }
 
