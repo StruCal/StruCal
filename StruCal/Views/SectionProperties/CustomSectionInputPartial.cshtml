@@ -1,0 +1,30 @@
+﻿@using StruCal.Views.Shared
+@model StruCal.ViewModels.SectionPropertiesViewModel
+
+@using (Html.BeginForm())
+            {
+    @Html.AntiForgeryToken()
+
+    <div id="inputForms">
+        @if (ViewBag.InputErrors)
+        {
+            <div class="form-group">
+                <div class="alert alert-danger" role="alert">
+                    <p>The provided input data is invalid.</p>
+                </div>
+            </div>
+        }
+        <div class="form-group">
+            @Html.LabelFor(model => model.XCoordinates, new { @class = "control-label" })
+            @Html.EditorFor(model => model.XCoordinates, new { htmlAttributes = new { @class = "form-control", @placeholder = "10;20;30;" } })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.YCoordinates, new { @class = "control-label" })
+            @Html.EditorFor(model => model.YCoordinates, new { htmlAttributes = new { @class = "form-control", @placeholder = "10;20;30;" } })
+        </div>
+
+        <div class="form-group">
+            <input id="runButton" type="submit" value="Run" class="btn btn-primary" />
+        </div>
+    </div>
+}
