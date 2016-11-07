@@ -67,43 +67,7 @@
         </div>
     </div>
     <div class="row" id="results">
-<<<<<<< HEAD
-    @if (ViewBag.ShowResults)
-    {
-        <hr />
-        <div class="col-xs-12 col-md-4">
-            @Html.DisplayFor(e => Model.BaseSystemProperties, TemplateNames.SectionPropertyTableTemplate, new { name = "Base properties" })
-        </div>
-        <div class="col-xs-12 col-md-4">
-            @Html.DisplayFor(e => Model.CentralSystemProperties, TemplateNames.SectionPropertyTableTemplate, new { name = "Central properties" })
-        </div>
-        <div class="col-xs-12 col-md-4">
-            @Html.DisplayFor(e => Model.PrincipalSystemProperties, TemplateNames.SectionPropertyTableTemplate, new { name = "Principal properties" })
-        </div>   
-            @*<table style="width:auto" class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th></th>
-                        <th>Value</th>
-                    </tr>
-                </thead>
-                @foreach (var item in Model.BaseSystemProperties)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(e => item.Name) </td>
-                        <td>
-                            <a data-toggle="tooltip" data-placement="bottom" title="@item.Description">
-                                <span class="glyphicon glyphicon-info-sign"></span>
-                            </a>
-                        </td>
-                        <td>@Html.DisplayFor(e => item.Value)</td>
-                    </tr>
-                }
 
-            </table>*@
-    }
-=======
         @if (ViewBag.ShowResults)
         {
             <hr />
@@ -117,7 +81,6 @@
                 @Html.DisplayFor(e => Model.PrincipalSystemProperties, TemplateNames.SectionPropertyTableTemplate, new { name = "Principal properties" })
             </div>
         }
->>>>>>> origin/master
     </div>
 </div>
 
