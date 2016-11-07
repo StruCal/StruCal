@@ -3,22 +3,7 @@
     text-decoration: none;
 }
 
-div > a {
-    color: #222222 !important;
-    text-decoration: none;
-}
-
-.a-white {
-    color: #fff !important;
-    text-decoration: none;
-}
-
-div > a:hover {
-    color: #818181 !important;
-    text-decoration: none;
-}
-
-a:visited {
+a:active {
     color: #818181;
     text-decoration: none;
 }
@@ -28,7 +13,12 @@ a:hover {
     text-decoration: none;
 }
 
-a:active {
+.a-white {
+    color: #fff !important;
+    text-decoration: none;
+}
+
+a:visited {
     color: #818181;
     text-decoration: none;
 }
@@ -43,16 +33,16 @@ a:active {
     }
 }
 
-.bg-topLine {
-    border-top: 1px solid #222222;
-    padding: 60px 50px;
-}
-
 .bg-contact {
     background-color: #222222;
     color: #ffffff;
     font-family: Montserrat, sans-serif;
     padding: 100px 25px;
+}
+
+.bg-topLine {
+    border-top: 1px solid #222222;
+    padding: 60px 50px;
 }
 
 body {
@@ -62,8 +52,18 @@ body {
     color: #818181;
 }
 
-.container-fluid {
+.container-fluid-body {
     padding: 60px 60px;
+}
+
+div > a {
+    color: #222222 !important;
+    text-decoration: none;
+}
+
+div > a:hover {
+    color: #818181 !important;
+    text-decoration: none;
 }
 
 .dropdown .dropdown-menu {
@@ -133,19 +133,6 @@ header ul{
     margin: 0;
 }
 
-/* Go from 0% to 100% opacity (see-through) and specify the percentage from when to slide in the element along the Y-axis */
-@keyframes slide {
-    0% {
-        opacity: 0;
-        transform: translateY(70%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0%);
-    }
-}
-
 .logo {
     color: #222222;
     font-size: 200px;
@@ -171,7 +158,7 @@ header ul{
     border-bottom: 1px solid #fff;
     border-color: #fff;
     font-size: 12px !important;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
     border-radius: 0;
     /*height: 80px;*/
     /*line-height: 80px !important;*/
@@ -183,6 +170,14 @@ header ul{
         color: #fff !important;
         line-height: 30px;
     }
+
+.navbar-header {
+    /*position: relative;*/
+}
+
+.navbar-header .navbar-brand {
+    /*position: relative;*/
+}
 
 .navbar-nav li a:hover, .navbar-nav li.active a {
     color: #222 !important;
@@ -201,10 +196,6 @@ header ul{
 
 .navbar .navbar-collapse {
     text-align: center;
-}
-
-.navbar-header {
-    position: relative;
 }
 
 nav {
@@ -289,6 +280,7 @@ nav {
     font-size: 2em;
 }
 
+    /*#home above site title*/
     .site-title + span {
         position: relative;
         left: -66px;
@@ -318,6 +310,19 @@ nav {
     -webkit-animation-duration: 1s;
     /* Make the element visible */
     visibility: visible;
+}
+
+/* Go from 0% to 100% opacity (see-through) and specify the percentage from when to slide in the element along the Y-axis */
+@keyframes slide {
+    0% {
+        opacity: 0;
+        transform: translateY(70%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
 }
 
 .thumbnail {

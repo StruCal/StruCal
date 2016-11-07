@@ -15,11 +15,11 @@
         <br />
 
         <div class="row">
-            <div class="col-xs-12 col-sm-6 text-left">
+            <div class="col-xs-12 col-lg-6 text-left">
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Rebars properties</h3>
+                            <h3 class="panel-title">Material properties</h3>
                         </div>
                         <div class="panel-body">
                             <div class="form-group" data-toggle="tooltip" title="Select rebars diameter.">
@@ -32,16 +32,9 @@
                                 @Html.LabelFor(model => model.ArrangementOfBarsSelectList, new { @class = "control-label" })
                                 @Html.DropDownListFor(x => x.SelectedArrangementOfBars,
                                 Model.ArrangementOfBarsSelectList,
-                                new { @class = "form-control" })
+                                new { @class = "form-control"})
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Concrete properties</h3>
-                        </div>
-                        <div class="panel-body">
                             <div class="form-group" data-toggle="tooltip" title="Select concrete class (PN-EN 1992-1-1 Table 3.1).">
                                 @Html.LabelFor(model => model.ConcreteClassSelectList, new { @class = "control-label" })
                                 @Html.DropDownListFor(x => x.SelectedConcreteClass,
@@ -136,7 +129,7 @@
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-6 text-center">
+            <div class="col-xs-12 col-lg-6 text-center">
                 <input type="submit" id="CalculateButton" value="Calculate" class="btn btn-lg btn-primary" data-toggle="tooltip"
                        title="Click to calculate concrete cover." style="margin-bottom: 5px; width:100%;">
 
@@ -178,6 +171,8 @@
                         </div>
                     </div>
                 </div>
+                <input type="button" id="SaveButton" value="Save" class="btn btn-lg btn-info" data-toggle="tooltip"
+                       title="Click to save concrete cover calculations." style="width:100%;">
             </div>
         </div>
     </div>

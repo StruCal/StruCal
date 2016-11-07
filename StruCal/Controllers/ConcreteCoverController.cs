@@ -17,7 +17,6 @@ namespace StruCal.Controllers
                 IsCalculated = false,
                 AllowanceInDesignForDeviation = 0.01d * 1000d,
                 StructuralClass = "S4",
-
             };
 
             return View(viewModel);
@@ -37,6 +36,7 @@ namespace StruCal.Controllers
                 BaseStructuralClass = viewModel.ConvertStringToStructuralClass(viewModel.SelectedBaseStructuralClass),
                 NominalMaximumAggregateSizeIsGreaterThan32mm = viewModel.NominalMaximumAggregateSizeIsGreaterThan32mm,
                 DesignWorkingLifeOf100Years = viewModel.DesignWorkingLifeOf100Years,
+                MemberWithSlabGeometry = viewModel.MemberWithSlabGeometry,
                 SpecialQualityControlOfTheConcreteProductionEnsured = viewModel.SpecialQualityControlOfTheConcreteProductionEnsured,
                 AdditiveSafetyElement = viewModel.AdditiveSafetyElement / 1000d,
                 ReductionOfMinimumCoverForUseOfAdditionalProtection = viewModel.ReductionOfMinimumCoverForUseOfAdditionalProtection / 1000d,
