@@ -216,7 +216,7 @@ nav {
 
 .panel {
     border: 1px solid #222222;
-    border-radius: 0;
+    border-radius: 0 !important;
     transition: box-shadow 0.5s;
 }
 
@@ -232,13 +232,21 @@ nav {
 
 .panel-heading {
     color: #fff !important;
-    background-color: #222222 !important;
-    padding: 25px;
+    padding: 15px;
     border-bottom: 1px solid transparent;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
+}
+
+.panel-default .panel-heading {
+    background-color: #222222 !important;
+}
+
+.panel-info .panel-heading {
+    background-color: #222222 !important;
+    cursor: move;
 }
 
 .panel-footer {
@@ -347,4 +355,12 @@ nav {
         opacity: 1;
         -webkit-transform: translateY(0%);
     }
+}
+
+.widget {
+    display: block;
+    border: 0px !important;
+    z-index: 99999 !important;
+    position: fixed;
+    float: right;
 }
