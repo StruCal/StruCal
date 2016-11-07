@@ -25,6 +25,8 @@ namespace StruCal.ViewModels
                 Text = name,
                 Value = name
             }).ToList();
+            //HACK - remove Bundled
+            ArrangementOfBarsSelectList.RemoveAt(1);
             // Select Separated arragement as default
             ArrangementOfBarsSelectList[0].Selected = true;
 

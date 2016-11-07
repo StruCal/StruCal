@@ -86,6 +86,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ConcreteCoverControllerTests.cs" />
     <Compile Include="Controllers\SectionPropertiesControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
@@ -97,6 +98,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Calculators\Calculators.csproj">
+      <Project>{8714154A-8818-4E4B-BFD8-F222D5034B32}</Project>
+      <Name>Calculators</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StruCal\StruCal.csproj">
       <Project>{124CE20A-03FC-4FAE-ADA7-B77E8BC6DAD0}</Project>
       <Name>StruCal</Name>
