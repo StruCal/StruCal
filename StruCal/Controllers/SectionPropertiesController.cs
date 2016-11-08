@@ -20,12 +20,12 @@ namespace StruCal.Controllers
         {
             ViewBag.ShowResults = false;
             ViewBag.InputErrors = false;
-            return View(new SectionPropertiesViewModel());
+            return View(new CustomSectionViewModel());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CustomSection(SectionPropertiesViewModel viewModel)
+        public ActionResult CustomSection(CustomSectionViewModel viewModel)
         {
             ViewBag.ShowResults = false;
             ViewBag.InputErrors = false;
@@ -42,6 +42,13 @@ namespace StruCal.Controllers
             else
                 ViewBag.InputErrors = true;
             return View(resultViewModel);
+        }
+
+        public ActionResult RectangularSection()
+        {
+            ViewBag.ShowResults = false;
+            ViewBag.InputErrors = false;
+            return View(new RectangularSectionViewModel());
         }
     }
 }
