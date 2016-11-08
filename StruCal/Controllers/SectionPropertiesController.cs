@@ -16,16 +16,37 @@ namespace StruCal.Controllers
     public class SectionPropertiesController : Controller
     {
         // GET: SectionProperties
-        public ActionResult Index()
+        public ActionResult CustomSection()
         {
             ViewBag.ShowResults = false;
             ViewBag.InputErrors = false;
-            return View(new SectionPropertiesViewModel());
+            return View(new CustomSectionViewModel());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(SectionPropertiesViewModel viewModel)
+        public ActionResult CustomSection(CustomSectionViewModel viewModel)
+        {
+            var resultViewModel = this.performCalculations<CustomSectionViewModel>(viewModel);
+            return View(resultViewModel);
+        }
+
+        public ActionResult RectangularSection()
+        {
+            ViewBag.ShowResults = false;
+            ViewBag.InputErrors = false;
+            return View(new RectangularSectionViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RectangularSection(RectangularSectionViewModel viewModel)
+        {
+            var resultViewModel = this.performCalculations<RectangularSectionViewModel>(viewModel);
+            return View(resultViewModel);
+        }
+
+        private ISectionPropertiesViewModel performCalculations<T>(ISectionPropertiesViewModel viewModel) where T : ISectionPropertiesViewModel, new()
         {
             ViewBag.ShowResults = false;
             ViewBag.InputErrors = false;
@@ -33,15 +54,19 @@ namespace StruCal.Controllers
             if (ModelState.IsValid)
             {
                 var propertiesCalculator = new SectionPropertiesCalculator();
-                var calculationResult = propertiesCalculator.CalculateProperties(viewModel.XCoordinates, viewModel.YCoordinates);
+
+                var x = viewModel.GetXCoordinates();
+                var y = viewModel.GetYCoordinates();
+
+                var calculationResult = propertiesCalculator.CalculateProperties(x, y);
 
                 var resultConverter = new SectionPropertiesOutputDataConverter();
-                resultViewModel = resultConverter.PrepareData(calculationResult);
+                resultViewModel = resultConverter.PrepareData<T>(calculationResult);
                 ViewBag.ShowResults = true;
             }
             else
                 ViewBag.InputErrors = true;
-            return View(resultViewModel);
+            return resultViewModel;
         }
     }
 }

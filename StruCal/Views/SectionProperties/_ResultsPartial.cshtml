@@ -1,0 +1,19 @@
+﻿@using StruCal.Views.Shared
+@model StruCal.ViewModels.ISectionPropertiesViewModel
+
+<div class="row" id="results">
+
+    @if (ViewBag.ShowResults)
+    {
+        <hr />
+            <div class="col-md-4">
+                @Html.DisplayFor(e => Model.BaseSystemProperties, TemplateNames.SectionPropertyTableTemplate, new { name = "Base properties" })
+            </div>
+            <div class="col-md-4">
+                @Html.DisplayFor(e => Model.CentralSystemProperties, TemplateNames.SectionPropertyTableTemplate, new { name = "Central properties" })
+            </div>
+            <div class="col-md-4">
+                @Html.DisplayFor(e => Model.PrincipalSystemProperties, TemplateNames.SectionPropertyTableTemplate, new { name = "Principal properties" })
+            </div>
+    }
+</div>
