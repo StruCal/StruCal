@@ -33,7 +33,11 @@ namespace StruCal.Controllers
             if (ModelState.IsValid)
             {
                 var propertiesCalculator = new SectionPropertiesCalculator();
-                var calculationResult = propertiesCalculator.CalculateProperties(viewModel.XCoordinates, viewModel.YCoordinates);
+
+                var x = viewModel.GetXCoordinates();
+                var y = viewModel.GetYCoordinates();
+
+                var calculationResult = propertiesCalculator.CalculateProperties(x, y);
 
                 var resultConverter = new SectionPropertiesOutputDataConverter();
                 resultViewModel = resultConverter.PrepareData(calculationResult);
@@ -50,5 +54,15 @@ namespace StruCal.Controllers
             ViewBag.InputErrors = false;
             return View(new RectangularSectionViewModel());
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RectangularSection(RectangularSectionViewModel viewModel)
+        {
+
+            return View();
+        }
+
+        
     }
 }

@@ -16,14 +16,17 @@ namespace StruCal.ViewModels
 
     }
 
-    public interface ISectionPropertiesResult
+    public interface ISectionPropertiesViewModel
     {
         IEnumerable<SectionPropertyViewData> BaseSystemProperties { get; set; }
         IEnumerable<SectionPropertyViewData> CentralSystemProperties { get; set; }
         IEnumerable<SectionPropertyViewData> PrincipalSystemProperties { get; set; }
+
+        string GetXCoordinates();
+        string GetYCoordinates();
     }
 
-    public class CustomSectionViewModel :ISectionPropertiesResult
+    public class CustomSectionViewModel :ISectionPropertiesViewModel
     {
         private const string validationPattern = @"^((((-?)(0|[1-9][0-9]*)(\.[0-9]+)?);)+?)$";//@"^([1-9][0-9]+\.?[0-9]*;?)*$";
 
@@ -40,9 +43,19 @@ namespace StruCal.ViewModels
         [Required]
         [RegularExpression(validationPattern)]
         public string YCoordinates { get; set; }
+
+        public string GetXCoordinates()
+        {
+            return XCoordinates;
+        }
+
+        public string GetYCoordinates()
+        {
+            return YCoordinates;
+        }
     }
 
-    public class RectangularSectionViewModel :ISectionPropertiesResult
+    public class RectangularSectionViewModel :ISectionPropertiesViewModel
     {
         public IEnumerable<SectionPropertyViewData> BaseSystemProperties { get; set; }
         public IEnumerable<SectionPropertyViewData> CentralSystemProperties { get; set; }
@@ -55,6 +68,18 @@ namespace StruCal.ViewModels
         [Required]
         [Display(Name ="Height:")]
         public double Height { get; set; }
+
+        public string GetXCoordinates()
+        {
+            var result = string.Format("0;{0};{0};0", this.Width);
+            return result;
+        }
+
+        public string GetYCoordinates()
+        {
+            var result = string.Format("0;0;{0};{0}", this.Height);
+            return result;
+        }
     }
 
 
