@@ -27,24 +27,7 @@ namespace StruCal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CustomSection(CustomSectionViewModel viewModel)
         {
-            ViewBag.ShowResults = false;
-            ViewBag.InputErrors = false;
-            var resultViewModel = viewModel;
-            if (ModelState.IsValid)
-            {
-                var propertiesCalculator = new SectionPropertiesCalculator();
-
-                var x = viewModel.GetXCoordinates();
-                var y = viewModel.GetYCoordinates();
-
-                var calculationResult = propertiesCalculator.CalculateProperties(x, y);
-
-                var resultConverter = new SectionPropertiesOutputDataConverter();
-                resultViewModel = resultConverter.PrepareData(calculationResult);
-                ViewBag.ShowResults = true;
-            }
-            else
-                ViewBag.InputErrors = true;
+            var resultViewModel = this.performCalculations<CustomSectionViewModel>(viewModel);
             return View(resultViewModel);
         }
 
@@ -59,10 +42,31 @@ namespace StruCal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RectangularSection(RectangularSectionViewModel viewModel)
         {
-
-            return View();
+            var resultViewModel = this.performCalculations<RectangularSectionViewModel>(viewModel);
+            return View(resultViewModel);
         }
 
-        
+        private ISectionPropertiesViewModel performCalculations<T>(ISectionPropertiesViewModel viewModel) where T : ISectionPropertiesViewModel, new()
+        {
+            ViewBag.ShowResults = false;
+            ViewBag.InputErrors = false;
+            var resultViewModel = viewModel;
+            if (ModelState.IsValid)
+            {
+                var propertiesCalculator = new SectionPropertiesCalculator();
+
+                var x = viewModel.GetXCoordinates();
+                var y = viewModel.GetYCoordinates();
+
+                var calculationResult = propertiesCalculator.CalculateProperties(x, y);
+
+                var resultConverter = new SectionPropertiesOutputDataConverter();
+                resultViewModel = resultConverter.PrepareData<T>(calculationResult);
+                ViewBag.ShowResults = true;
+            }
+            else
+                ViewBag.InputErrors = true;
+            return resultViewModel;
+        }
     }
 }

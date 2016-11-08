@@ -145,9 +145,9 @@ namespace StruCal.ViewModels
             { SectionProperty.yI_min,"Extereme negative Y coordinate in principal coordinate system" },
         };
 
-        public CustomSectionViewModel PrepareData(IEnumerable<SectionPropertiesResult> sectionPropertiesResult)
+        public ISectionPropertiesViewModel PrepareData<T>(IEnumerable<SectionPropertiesResult> sectionPropertiesResult) where T:ISectionPropertiesViewModel,new()
         {
-            var result = new CustomSectionViewModel();
+            var result = new T();
 
             var baseSystemResults = new List<SectionPropertyViewData>();
             var centralSystemResults = new List<SectionPropertyViewData>();
