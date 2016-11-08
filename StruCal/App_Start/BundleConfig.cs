@@ -35,6 +35,10 @@ namespace StruCal
                 "~/Scripts/svg.js"
                 ));
 
+            bundles.Add(new ScriptBundle("~/bundles/drawing").Include(
+
+                "~/Scripts/drawing.js"));
+
             bundles.Add(new StyleBundle("~/Content/custom").Include(
                       "~/Content/custom.css"));
         }
