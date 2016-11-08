@@ -16,7 +16,7 @@ namespace StruCal.Controllers
     public class SectionPropertiesController : Controller
     {
         // GET: SectionProperties
-        public ActionResult Index()
+        public ActionResult CustomSection()
         {
             ViewBag.ShowResults = false;
             ViewBag.InputErrors = false;
@@ -25,7 +25,7 @@ namespace StruCal.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(SectionPropertiesViewModel viewModel)
+        public ActionResult CustomSection(SectionPropertiesViewModel viewModel)
         {
             ViewBag.ShowResults = false;
             ViewBag.InputErrors = false;
