@@ -15,8 +15,6 @@
     @Styles.Render("~/Content/custom")
     @Scripts.Render("~/bundles/custom")
     @RenderSection("scripts", required: false)
-
-
     <script>
         $(document).ready(function(){
           // Add smooth scrolling to all links in navbar + footer link
@@ -112,12 +110,13 @@
                     <li><a href="#about">ABOUT</a></li>
                     <li class="dropdown">
                         <a href="#portfolio" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                            aria-haspopup="true" aria-expanded="false">PRODUCTS<span class="caret"></span></a>
+                           aria-haspopup="true" aria-expanded="false">PRODUCTS<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a>FREE</a></li>
                             <li role="separator" class="divider"></li>
                             <li>@Html.ActionLink("SECTION PROPERTIES", "Index", "SectionProperties")</li>
                             <li>@Html.ActionLink("CONCRETE COVER", "Index", "ConcreteCover")</li>
+                            <li>@Html.ActionLink("RC BEAM", "Index", "RCBeam")</li>
                         </ul>
                     </li>
                     <li><a href="#pricing">LICENSE</a></li>
@@ -127,7 +126,6 @@
             </div>
         </div>
     </nav>
-
     @RenderBody()
 </body>
 </html>
