@@ -1,5 +1,5 @@
 ﻿.a {
-    color: #444444 !important;
+    color: #333333 !important;
     text-decoration: none;
 }
 
@@ -34,14 +34,14 @@ a:visited {
 }
 
 .bg-contact {
-    background-color: #444444;
+    background-color: #333333;
     color: #ffffff;
     font-family: Montserrat, sans-serif;
     padding: 100px 25px;
 }
 
 .bg-topLine {
-    border-top: 1px solid #444444;
+    border-top: 1px solid #333333;
     padding: 60px 50px;
 }
 
@@ -57,7 +57,7 @@ body {
 }
 
 div > a {
-    color: #444444 !important;
+    color: #333333 !important;
     text-decoration: none;
 }
 
@@ -76,7 +76,7 @@ div > a:hover {
     display: block;
     overflow: hidden;
     opacity: 0;
-    background-color: #444444;
+    background-color: #333333;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -85,18 +85,18 @@ div > a:hover {
 }
 
 footer {
-    background-color: #444444;
+    background-color: #333333;
     border-top: 1px solid #ffffff;
 }
 
     footer .glyphicon {
         font-size: 20px;
         margin-bottom: 20px;
-        color: #444444;
+        color: #333333;
     }
 
 .jumbotron {
-    background-color: #444444;
+    background-color: #333333;
     color: #ffffff;
     font-family: Montserrat, sans-serif;
     padding: 100px 25px;
@@ -105,7 +105,7 @@ footer {
 h2 {
     font-size: 24px;
     text-transform: uppercase;
-    color: #444444;
+    color: #333333;
     font-weight: 600;
     margin-bottom: 30px;
 }
@@ -117,13 +117,13 @@ h2 {
 h4 {
     font-size: 19px;
     line-height: 1.375em;
-    color: #444444;
+    color: #333333;
     font-weight: 400;
     margin-bottom: 30px;
 }
 
 .href {
-    color: #444444;
+    color: #333333;
     text-decoration: none;
 }
 
@@ -134,12 +134,12 @@ header ul{
 }
 
 .logo {
-    color: #444444;
+    color: #333333;
     font-size: 200px;
 }
 
 .logo-small {
-    color: #444444;
+    color: #333333;
     font-size: 50px;
 }
 
@@ -152,7 +152,7 @@ header ul{
 
 .navbar {
     margin-bottom: 0;
-    background-color: #444444;
+    background-color: #333333;
     font-family: Montserrat, sans-serif;
     z-index: 9999;
     border-bottom: 1px solid #ffffff;
@@ -180,7 +180,7 @@ header ul{
 }
 
 .navbar-nav li a:hover, .navbar-nav li.active a {
-    color: #444444 !important;
+    color: #333333 !important;
     background-color: #ffffff !important;
 }
 
@@ -204,7 +204,7 @@ nav {
 }
 
     nav.navbar {
-        background-color: #444444;
+        background-color: #333333;
         /*Animation*/
         -webkit-transition: all 0.4s ease;
         transition: all 0.4s ease;
@@ -215,7 +215,7 @@ nav {
 }*/
 
 .panel {
-    border: 1px solid #444444;
+    border: 1px solid #333333;
     /*border-radius: 0 !important;*/
     transition: box-shadow 0.5s;
 }
@@ -225,9 +225,9 @@ nav {
     }
 
 .panel-footer .btn:hover {
-    border: 1px solid #444444;
+    border: 1px solid #333333;
     background-color: #ffffff !important;
-    color: #444444;
+    color: #333333;
 }
 
 .panel-heading {
@@ -241,11 +241,11 @@ nav {
 }
 
 .panel-default .panel-heading {
-    background-color: #444444 !important;
+    background-color: #333333 !important;
 }
 
 .panel-info .panel-heading {
-    background-color: #444444 !important;
+    background-color: #333333 !important;
     cursor: move;
 }
 
@@ -264,7 +264,7 @@ nav {
 
     .panel-footer .btn {
         margin: 15px 0;
-        background-color: #444444;
+        background-color: #333333;
         color: #ffffff;
     }
 
@@ -292,7 +292,7 @@ nav {
     .site-title + span {
         position: relative;
         left: -66px;
-        color: #444444;
+        color: #333333;
         -o-transition: color 0.5s linear;
         -moz-transition: color 0.5s linear;
         -khtml-transition: color 0.5s linear;
@@ -363,4 +363,11 @@ nav {
     z-index: 99999 !important;
     position: fixed;
     float: right;
+}
+
+/*------------------------------*/
+/*jQuery UI*/
+/*------------------------------*/
+div.ui-tooltip {
+    width: 600px !important;
 }

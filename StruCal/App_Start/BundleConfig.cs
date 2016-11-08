@@ -24,7 +24,8 @@ namespace StruCal
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
-                      "~/Scripts/custom.js"));
+                      "~/Scripts/custom.js",
+                      "~/Scripts/jquery-ui.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
@@ -35,7 +36,8 @@ namespace StruCal
                 ));
 
             bundles.Add(new StyleBundle("~/Content/custom").Include(
-                      "~/Content/custom.css"));
+                "~/Content/jquery-ui.css",
+                "~/Content/custom.css"));
         }
     }
 }

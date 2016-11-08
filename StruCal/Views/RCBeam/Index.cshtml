@@ -1,0 +1,60 @@
+﻿@model StruCal.ViewModels.ConcreteCoverViewModel
+@{
+    ViewBag.Title = "RCBeam";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>RCBeam</h2>
+
+<script>
+    $(function () {
+        $("#materialsDialog").dialog({
+            autoOpen: false,
+            show: {
+                effect: "fade",
+                duration: 500
+            },
+            hide: {
+                effect: "fade",
+                duration: 500
+            }
+        });
+
+        $("#materialsBtn").on("click", function () {
+            $("#materialsDialog").dialog("open");
+        });
+    });
+</script>
+
+<div class="container">
+
+    <h2>Reinforced concrete members calculator</h2>
+    <br />
+
+    @*!ATTENTION! Name of the dialog must match with button name. !ATTENTION!*@
+    <div id="materialsDialog" title="Concrete">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="form-group" data-toggle="tooltip" title="Select rebars diameter.">
+                    @Html.LabelFor(model => model.RebarDiameterSelectList, new { @class = "control-label" })
+                    <div class="form-group">
+                        <label for="sel1">Select list:</label>
+                        <select class="form-control" id="sel1">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-lg-6">
+
+            <button class="btn btn-primary" id="materialsBtn">Materials</button>
+        </div>
+    </div>
+</div>
