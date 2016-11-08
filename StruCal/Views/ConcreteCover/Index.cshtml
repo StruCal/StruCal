@@ -5,6 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@*<link rel="stylesheet" href="~/Content/jquery-ui.css">*@
+<script src="~/Scripts/jquery-ui.js"></script>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -130,9 +133,6 @@
             </div>
 
             <div class="col-xs-12 col-lg-6 text-center">
-                <input type="submit" id="CalculateButton" value="Calculate" class="btn btn-lg btn-primary" data-toggle="tooltip"
-                       title="Click to calculate concrete cover." style="margin-bottom: 5px; width:100%;">
-
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -171,8 +171,20 @@
                         </div>
                     </div>
                 </div>
-                <input type="button" id="SaveButton" value="Save" class="btn btn-lg btn-info" data-toggle="tooltip"
-                       title="Click to save concrete cover calculations." style="width:100%;">
+            </div>
+
+            <div id="toolbarWidget" class="widget">
+                <div class="row">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">Toolbar</div>
+                        </div>
+                        <div class="panel-body">
+                            <input type="submit" id="CalculateButton" value="Calculate" class="btn btn-lg btn-primary">
+                            <input type="button" id="SaveButton" value="Save" class="btn btn-lg btn-default">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
