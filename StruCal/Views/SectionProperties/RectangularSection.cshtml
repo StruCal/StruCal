@@ -25,11 +25,11 @@ Please provide the width and the height of the rectangular section.
                 }
                 <div class="form-group">
                     @Html.LabelFor(model => model.Width, new { @class = "control-label" })
-                    @Html.EditorFor(model => model.Width, new { htmlAttributes = new { @class = "form-control", @placeholder = "10;20;30;" } })
+                    @Html.EditorFor(model => model.Width, new { htmlAttributes = new { @class = "form-control", @placeholder = "7" } })
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.Height, new { @class = "control-label" })
-                    @Html.EditorFor(model => model.Height, new { htmlAttributes = new { @class = "form-control", @placeholder = "10;20;30;" } })
+                    @Html.EditorFor(model => model.Height, new { htmlAttributes = new { @class = "form-control",@placeholder="5" } })
                 </div>
 
                 <div class="form-group">
@@ -46,3 +46,26 @@ Please provide the width and the height of the rectangular section.
 </div>
 @Html.Partial("_ResultsPartial", Model)
 
+<script>
+    /*(Dawid: scroll down after clicking Run button to show the table, simple example, maybe add if/else whether button run was clicked or not?)
+    PROPOSALS:
+    - round values,
+    - show units,
+    - show symbols with sub/superscripts, greek symbols
+    */
+    $(window).load(function () {
+        $("html,body").scrollTop(10000);
+    });
+
+    $(document).ready(function () {
+        
+        //set default values for input
+        $("#Width").val("");
+        $("#Height").val("");
+
+        createRectangularDrawing();
+        $("#inputForms input").change(createRectangularDrawing);
+        $("#inputForms input").keyup(createRectangularDrawing);
+        $(window).resize(createRectangularDrawing);
+    });
+</script>

@@ -63,6 +63,7 @@ namespace StruCal.ViewModels
 
         [Required]
         [Display(Name ="Width:")]
+        
         public double Width { get; set; }
 
         [Required]

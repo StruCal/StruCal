@@ -66,20 +66,4 @@
         $("#inputForms input").keyup(createCustomDrawing);
         $(window).resize(createCustomDrawing);
     });
-
-    //---SHOULD BE PUT TO SEPARATE FILE--//
-    function createCustomDrawing() {
-        var canvasObject = $('#canvas');
-        var xString = $("#XCoordinates").val();
-        var yString = $("#YCoordinates").val();
-
-        var x = splitCoordinates(xString);
-        var y = splitCoordinates(yString);
-
-        if (x.length != y.length) {
-            return;
-        }
-
-        fillCanvas(x, y, canvasObject);
-    }
 </script>
