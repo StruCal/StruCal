@@ -315,7 +315,7 @@ namespace Calculators.SectionProperties
                 else if (crossPrd < 0)
                 {
                     //counterclockwise
-                    tempCoord.Reverse();
+                    tempCoord = tempCoord.Reverse().ToList();
                     break;
                 }
             }

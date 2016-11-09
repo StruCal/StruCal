@@ -31,7 +31,7 @@ function drawSection(drawing, xCoordinates, yCoordinates, canvasObject) {
     var sectionCentreX = getSectionCentre(minX, maxX);
     var sectionCentreY = getSectionCentre(minY, maxY);
 
-    console.log('centers: ' + sectionCentreX + '   ' + sectionCentreY);
+    //console.log('centers: ' + sectionCentreX + '   ' + sectionCentreY);
 
     var canvasWidth = canvasObject.width();
     var canvasHeight = canvasObject.height();
@@ -48,7 +48,7 @@ function drawSection(drawing, xCoordinates, yCoordinates, canvasObject) {
     }
 
     var chainCoordinates = transferCoordinatesToPlot(transferedX, transferedY);
-    console.log('chaincoordinates:' + chainCoordinates);
+    //console.log('chaincoordinates:' + chainCoordinates);
     var polygon = drawing.polygon(chainCoordinates).fill({ color: '#3276b1', opacity: 0.9 }).stroke({ width: 3, color: '#054072' });
 }
 
@@ -88,9 +88,9 @@ function drawVerticalLines(drawing, width, height) {
         var y1 = 0;
         var y2 = height;
 
-        console.log(x1);
+        //console.log(x1);
         var input = convertCoordinatesToLineInput(x1, y1, x2, y2);
-        console.log(input);
+        //console.log(input);
         var line = drawing.line(input).stroke({ width: 1, color: 'Gray' });
     }
 }
@@ -104,9 +104,9 @@ function drawHorizontalLines(drawing, width, height) {
         var y1 = 0 + i * distance;
         var y2 = 0 + i * distance;
 
-        console.log(x1);
+        //console.log(x1);
         var input = convertCoordinatesToLineInput(x1, y1, x2, y2);
-        console.log(input);
+        //console.log(input);
         var line = drawing.line(input).stroke({ width: 1, color: 'Gray' });
     }
 }
@@ -133,7 +133,7 @@ function transferCoordinatesToPlot(xCoordinates, yCoordinates) {
 function transferXToCanvasSystem(pointX, centreX, scale, canvasWidth) {
 
     var x = ((pointX - centreX) * scale) + canvasWidth / 2;
-    console.log('poinX:' + pointX + ' centreX:' + centreX + ' scale:' + scale + ' canvasWidth:' + canvasWidth + ' x:' + x);
+    //console.log('poinX:' + pointX + ' centreX:' + centreX + ' scale:' + scale + ' canvasWidth:' + canvasWidth + ' x:' + x);
     return x;
 }
 

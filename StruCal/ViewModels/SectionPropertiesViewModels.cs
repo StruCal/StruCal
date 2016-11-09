@@ -72,18 +72,53 @@ namespace StruCal.ViewModels
 
         public string GetXCoordinates()
         {
-            var result = string.Format("0;{0};{0};0", this.Width);
+            var result = string.Format("0;{0};{0};0;", this.Width);
             return result;
         }
 
         public string GetYCoordinates()
         {
-            var result = string.Format("0;0;{0};{0}", this.Height);
+            var result = string.Format("0;0;{0};{0};", this.Height);
             return result;
         }
     }
 
+    public class CircularSectionViewModel : ISectionPropertiesViewModel
+    {
+        public IEnumerable<SectionPropertyViewData> BaseSystemProperties { get; set; }
+        public IEnumerable<SectionPropertyViewData> CentralSystemProperties { get; set; }
+        public IEnumerable<SectionPropertyViewData> PrincipalSystemProperties { get; set; }
 
+
+        [Required]
+        [Display(Name = "Radious:")]
+        public double Radious { get; set; }
+
+        public string GetXCoordinates()
+        {
+            var result = this.getCoordinates(e => Math.Sin(e));
+            return result;
+        }
+
+        public string GetYCoordinates()
+        {
+            var result = this.getCoordinates(e => Math.Cos(e));
+            return result;
+        }
+
+        private string getCoordinates(Func<double,double> coordinateFunction)
+        {
+            var result = string.Empty;
+
+            for (int i = 0; i <= 360; i++)
+            {
+                var alfa = (i - 90) * Math.PI / 180;
+                var x = this.Radious*coordinateFunction(alfa);
+                result = result + x.ToString() + ";";
+            }
+            return result;
+        }
+    }
 
     enum CoordinateSystemType
     {

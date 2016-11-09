@@ -1,11 +1,11 @@
-﻿@model StruCal.ViewModels.RectangularSectionViewModel
+﻿@model StruCal.ViewModels.CircularSectionViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "_SectionPropertiesLayout.cshtml";
 }
 
 <p class="text-justify">
-Please provide the width and the height of the rectangular section.
+    Please provide the radious of the circular section.
 </p>
 <br />
 <div class="row">
@@ -24,12 +24,8 @@ Please provide the width and the height of the rectangular section.
                     </div>
                 }
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Width, new { @class = "control-label" })
-                    @Html.EditorFor(model => model.Width, new { htmlAttributes = new { @class = "form-control", @placeholder = "7" } })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Height, new { @class = "control-label" })
-                    @Html.EditorFor(model => model.Height, new { htmlAttributes = new { @class = "form-control",@placeholder="5" } })
+                    @Html.LabelFor(model => model.Radious, new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Radious, new { htmlAttributes = new { @class = "form-control", @placeholder = "7" } })
                 </div>
 
                 <div class="form-group">
@@ -58,18 +54,14 @@ Please provide the width and the height of the rectangular section.
     });
 
     $(document).ready(function () {
-        
-        //set default values for input
-        if ($("#Width").val() == 0) {
-            $("#Width").val("");
-        }
-        if ($("#Height").val() == 0) {
-            $("#Height").val("");
-        }
 
-        createRectangularDrawing();
-        $("#inputForms input").change(createRectangularDrawing);
-        $("#inputForms input").keyup(createRectangularDrawing);
-        $(window).resize(createRectangularDrawing);
+        //set default values for input
+        if ($("#Radious").val() == 0) {
+            $("#Radious").val("");
+        }
+        createCircularDrawing();
+        $("#inputForms input").change(createCircularDrawing);
+        $("#inputForms input").keyup(createCircularDrawing);
+        $(window).resize(createCircularDrawing);
     });
 </script>

@@ -46,6 +46,21 @@ namespace StruCal.Controllers
             return View(resultViewModel);
         }
 
+        public ActionResult CircularSection()
+        {
+            ViewBag.ShowResults = false;
+            ViewBag.InputErrors = false;
+            return View(new CircularSectionViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CircularSection(CircularSectionViewModel viewModel)
+        {
+            var resultViewModel = this.performCalculations<CircularSectionViewModel>(viewModel);
+            return View(resultViewModel);
+        }
+
         private ISectionPropertiesViewModel performCalculations<T>(ISectionPropertiesViewModel viewModel) where T : ISectionPropertiesViewModel, new()
         {
             ViewBag.ShowResults = false;
