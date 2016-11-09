@@ -40,7 +40,7 @@ function drawSection(drawing, xCoordinates, yCoordinates, canvasObject) {
     //convert coordinates to canvas
     var transferedX = [];
     var transferedY = [];
-    for (i = 0; i < xCoordinates.length ; i++) {
+    for (i = 0; i < xCoordinates.length; i++) {
         transferedX[i] = transferXToCanvasSystem(xCoordinates[i], sectionCentreX, scale, canvasWidth);
         transferedY[i] = transferYToCanvasSystem(yCoordinates[i], sectionCentreY, scale, canvasHeight);
 
@@ -119,14 +119,16 @@ function convertCoordinatesToLineInput(x1, y1, x2, y2) {
 //transfers arrays of x and y coordinates to the following string
 function transferCoordinatesToPlot(xCoordinates, yCoordinates) {
     var coordinates = "";
-    for (i = 0; i < xCoordinates.length; i++) {
-        var x = xCoordinates[i].toString();
-        var y = yCoordinates[i].toString();
+    for (i = 0; i < xCoordinates.length - 1; i++) {
+        var x = xCoordinates[i].toFixed(2);
+        var y = yCoordinates[i].toFixed(2);
+        //console.log(xCoordinates[i].toFixed(2) + " " + yCoordinates[i].toFixed(2));
         //console.log(x + " " + y);
+        //console.log("======");
         var insert = x + "," + y;
         coordinates = coordinates + insert + " ";
     }
-
+    console.log("plot: " + coordinates);
     return coordinates;
 }
 
@@ -171,5 +173,6 @@ function getDrawingScale(canvasWidth, canvasHeight, sectionWidth, sectionHeight)
 
 function splitCoordinates(coordinates) {
     var splitedCoordinates = coordinates.split(";");
+    console.log("Splited coordinates: "+splitedCoordinates);
     return splitedCoordinates
 }
