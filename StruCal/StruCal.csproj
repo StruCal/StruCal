@@ -223,6 +223,7 @@
     <Content Include="Views\ReinforcedConcreteBeam\Index.cshtml" />
     <Content Include="Views\RCBeam\Index.cshtml" />
     <Content Include="Views\SectionProperties\CircularSection.cshtml" />
+    <Content Include="Views\SectionProperties\TSection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

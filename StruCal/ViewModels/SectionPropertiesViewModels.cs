@@ -5,6 +5,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Common.Extensions;
+using System.Text;
+using Common.Geometry;
 
 namespace StruCal.ViewModels
 {
@@ -89,7 +91,6 @@ namespace StruCal.ViewModels
         public IEnumerable<SectionPropertyViewData> CentralSystemProperties { get; set; }
         public IEnumerable<SectionPropertyViewData> PrincipalSystemProperties { get; set; }
 
-
         [Required]
         [Display(Name = "Radious:")]
         public double Radious { get; set; }
@@ -117,6 +118,61 @@ namespace StruCal.ViewModels
                 result = result + x.ToString() + ";";
             }
             return result;
+        }
+    }
+
+    public class TSectionViewModel : ISectionPropertiesViewModel
+    {
+
+        public IEnumerable<SectionPropertyViewData> BaseSystemProperties { get; set; }
+        public IEnumerable<SectionPropertyViewData> CentralSystemProperties { get; set; }
+        public IEnumerable<SectionPropertyViewData> PrincipalSystemProperties { get; set; }
+
+        [Required]
+        [Display(Name = "Section Height:")]
+        public double Height { get; set; }
+
+        [Required]
+        [Display(Name ="Flange width:")]
+        public double FlangeWidth { get; set; }
+
+        [Required]
+        [Display(Name ="Flange thickness:")]
+        public double FlangeThickness { get; set; }
+
+        [Required]
+        [Display(Name ="Web thickness:")]
+        public double WebThickness { get; set; }
+
+        public string GetXCoordinates()
+        {
+            var coordinates = getCoordinates();
+            var x = coordinates.Select(e => e.X);
+            var result = string.Join(";", x);
+
+            return result;
+        }
+
+        public string GetYCoordinates()
+        {
+            var coordinates = getCoordinates();
+            var y = coordinates.Select(e => e.Y);
+            var result = string.Join(";", y);
+            return result;
+        }
+
+        private IEnumerable<PointD> getCoordinates()
+        {
+            var coordinates = new List<PointD>();
+            coordinates.Add(new PointD(0, this.Height));
+            coordinates.Add(new PointD(0, this.Height - this.FlangeThickness));
+            coordinates.Add(new PointD(this.FlangeWidth / 2 - this.WebThickness / 2, this.Height - this.FlangeThickness));
+            coordinates.Add(new PointD(this.FlangeWidth / 2 - this.WebThickness / 2, 0));
+            coordinates.Add(new PointD(this.FlangeWidth / 2 + this.WebThickness / 2, 0));
+            coordinates.Add(new PointD(this.FlangeWidth / 2 + this.WebThickness / 2, this.Height - this.FlangeThickness));
+            coordinates.Add(new PointD(this.FlangeWidth, this.Height - this.FlangeThickness));
+            coordinates.Add(new PointD(this.FlangeWidth, this.Height));                                        
+            return coordinates;
         }
     }
 

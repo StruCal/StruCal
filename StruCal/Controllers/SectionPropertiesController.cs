@@ -61,6 +61,21 @@ namespace StruCal.Controllers
             return View(resultViewModel);
         }
 
+        public ActionResult TSection()
+        {
+            ViewBag.ShowResults = false;
+            ViewBag.InputErrors = false;
+            return View(new TSectionViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TSection(TSectionViewModel viewModel)
+        {
+            var resultViewModel = this.performCalculations<TSectionViewModel>(viewModel);
+            return View(resultViewModel);
+        }
+
         private ISectionPropertiesViewModel performCalculations<T>(ISectionPropertiesViewModel viewModel) where T : ISectionPropertiesViewModel, new()
         {
             ViewBag.ShowResults = false;
