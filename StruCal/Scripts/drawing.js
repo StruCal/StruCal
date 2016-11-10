@@ -119,7 +119,7 @@ function convertCoordinatesToLineInput(x1, y1, x2, y2) {
 //transfers arrays of x and y coordinates to the following string
 function transferCoordinatesToPlot(xCoordinates, yCoordinates) {
     var coordinates = "";
-    for (i = 0; i < xCoordinates.length - 1; i++) {
+    for (i = 0; i < xCoordinates.length; i++) {
         var x = xCoordinates[i].toFixed(2);
         var y = yCoordinates[i].toFixed(2);
         //console.log(xCoordinates[i].toFixed(2) + " " + yCoordinates[i].toFixed(2));
@@ -173,6 +173,13 @@ function getDrawingScale(canvasWidth, canvasHeight, sectionWidth, sectionHeight)
 
 function splitCoordinates(coordinates) {
     var splitedCoordinates = coordinates.split(";");
-    console.log("Splited coordinates: "+splitedCoordinates);
-    return splitedCoordinates
+    console.log("Splited coordinates: " + splitedCoordinates);
+
+    var result = new Array();
+    for (var i = 0; i < splitedCoordinates.length; i++) {
+        if (splitedCoordinates[i] != "")
+            result[i] = splitedCoordinates[i];
+    }
+
+    return result;
 }

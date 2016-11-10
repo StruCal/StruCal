@@ -1,8 +1,8 @@
 ﻿
 function createCustomDrawing() {
     var canvasObject = $('#canvas');
-    var xString = $("#XCoordinates").val();
-    var yString = $("#YCoordinates").val();
+    var xString = $("#XCoordinates").val() == "" ? $("#XCoordinates").attr("placeholder") : $("#XCoordinates").val();
+    var yString = $("#YCoordinates").val() == "" ? $("#YCoordinates").attr("placeholder") : $("#YCoordinates").val();
 
     var x = splitCoordinates(xString);
     var y = splitCoordinates(yString);
@@ -17,14 +17,11 @@ function createCustomDrawing() {
 function createRectangularDrawing() {
     var canvasObject = $('#canvas');
 
-    var width = $("#Width").val();
-    var height = $("#Height").val();
+    var width = $("#Width").val() == "" ? $("#Width").attr("placeholder") : $("#Width").val();
+    var height = $("#Height").val() == "" ? $("#Height").attr("placeholder") : $("#Height").val();
 
     var xString = "0;" + width + ";" + width + ";0;";
     var yString = "0;0;" + height + ";" + height + ";";
-
-    //var xString = $("#XCoordinates").val();
-    //var yString = $("#YCoordinates").val();
 
     var x = splitCoordinates(xString);
     var y = splitCoordinates(yString);
@@ -39,8 +36,7 @@ function createRectangularDrawing() {
 function createCircularDrawing() {
     var canvasObject = $('#canvas');
 
-    var radious = $("#Radious").val();
-
+    var radious = $("#Radious").val() == "" ? $("#Radious").attr("placeholder") : $("#Radious").val();
 
     var xString = "";
     var yString = "";
