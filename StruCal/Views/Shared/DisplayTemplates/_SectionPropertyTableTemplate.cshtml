@@ -16,7 +16,16 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@Html.DisplayFor(e => item.Name) </td>
+                    <td>
+                        @if (item.Name == "alfa")
+                        {
+                            <p>&phi;</p>
+                        }
+                        else
+                        {
+                            <p>@item.Name[0]<sub>@item.Name.Substring(1)</sub></p>
+                        }
+                    </td>
                     <td style="width:auto;text-align:center">
                         <a data-toggle="tooltip" data-placement="bottom" title="@item.Description">
                             <span class="glyphicon glyphicon-info-sign"></span>
