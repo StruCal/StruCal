@@ -146,8 +146,16 @@ namespace StruCal.ViewModels
 
         public string GetXCoordinates()
         {
-            var coordinates = getCoordinates();
-            var x = coordinates.Select(e => e.X);
+            var x = new List<double>();
+            x.Add(0);
+            x.Add(0);
+            x.Add(this.FlangeWidth / 2 - this.WebThickness / 2);
+            x.Add(this.FlangeWidth / 2 - this.WebThickness / 2);
+            x.Add(this.FlangeWidth / 2 + this.WebThickness / 2);
+            x.Add(this.FlangeWidth / 2 + this.WebThickness / 2);
+            x.Add(this.FlangeWidth);
+            x.Add(this.FlangeWidth);
+
             var result = string.Join(";", x);
 
             return result;
@@ -155,25 +163,20 @@ namespace StruCal.ViewModels
 
         public string GetYCoordinates()
         {
-            var coordinates = getCoordinates();
-            var y = coordinates.Select(e => e.Y);
+            var y = new List<double>();
+            y.Add(this.Height);
+            y.Add(this.Height - this.FlangeThickness);
+            y.Add(this.Height - this.FlangeThickness);
+            y.Add(0);
+            y.Add(0);
+            y.Add(this.Height - this.FlangeThickness);
+            y.Add(this.Height - this.FlangeThickness);
+            y.Add(this.Height);
+
             var result = string.Join(";", y);
             return result;
         }
 
-        private IEnumerable<PointD> getCoordinates()
-        {
-            var coordinates = new List<PointD>();
-            coordinates.Add(new PointD(0, this.Height));
-            coordinates.Add(new PointD(0, this.Height - this.FlangeThickness));
-            coordinates.Add(new PointD(this.FlangeWidth / 2 - this.WebThickness / 2, this.Height - this.FlangeThickness));
-            coordinates.Add(new PointD(this.FlangeWidth / 2 - this.WebThickness / 2, 0));
-            coordinates.Add(new PointD(this.FlangeWidth / 2 + this.WebThickness / 2, 0));
-            coordinates.Add(new PointD(this.FlangeWidth / 2 + this.WebThickness / 2, this.Height - this.FlangeThickness));
-            coordinates.Add(new PointD(this.FlangeWidth, this.Height - this.FlangeThickness));
-            coordinates.Add(new PointD(this.FlangeWidth, this.Height));                                        
-            return coordinates;
-        }
     }
 
     enum CoordinateSystemType

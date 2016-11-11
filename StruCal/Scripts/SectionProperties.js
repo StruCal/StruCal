@@ -76,11 +76,32 @@ function createTSectionDrawing() {
     var webThickness = getInputValue("#WebThickness");
     var flangeThickness = getInputValue("#FlangeThickness");
     var flangeWidth = getInputValue("#FlangeWidth");
+    alert(height);
+    var x = new Array();
+    x.push(0);
+    x.push(0);
+    x.push(flangeWidth / 2 - webThickness / 2);
+    x.push(flangeWidth / 2 - webThickness / 2);
+    x.push(flangeWidth / 2 + webThickness / 2);
+    x.push(flangeWidth / 2 + webThickness / 2);
+    x.push(flangeWidth);
+    x.push(flangeWidth);
 
-    var xString = "";
-    var yString = "";
+    var y = new Array();
+    y.push(height);
+    y.push(height - flangeThickness);
+    y.push(height - flangeThickness);
+    y.push(0);
+    y.push(0);
+    y.push(height - flangeThickness);
+    y.push(height - flangeThickness);
+    y.push(height);
 
+    var xString = x.join(";");
+    var yString = y.join(";");
 
+    alert(xString);
+    alert(yString);
 
     var x = splitCoordinates(xString);
     var y = splitCoordinates(yString);
