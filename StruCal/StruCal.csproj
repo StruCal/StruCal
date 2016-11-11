@@ -224,6 +224,7 @@
     <Content Include="Views\RCBeam\Index.cshtml" />
     <Content Include="Views\SectionProperties\CircularSection.cshtml" />
     <Content Include="Views\SectionProperties\TSection.cshtml" />
+    <Content Include="Views\SectionProperties\ISection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

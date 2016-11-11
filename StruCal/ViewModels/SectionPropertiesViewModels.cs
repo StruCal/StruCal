@@ -179,6 +179,80 @@ namespace StruCal.ViewModels
 
     }
 
+    public class ISectionViewModel : ISectionPropertiesViewModel
+    {
+
+        public IEnumerable<SectionPropertyViewData> BaseSystemProperties { get; set; }
+        public IEnumerable<SectionPropertyViewData> CentralSystemProperties { get; set; }
+        public IEnumerable<SectionPropertyViewData> PrincipalSystemProperties { get; set; }
+
+        [Required]
+        [Display(Name = "Section Height:")]
+        public double Height { get; set; }
+
+        [Required]
+        [Display(Name = "Top Flange width:")]
+        public double TopFlangeWidth { get; set; }
+
+        [Required]
+        [Display(Name = "Top Flange thickness:")]
+        public double TopFlangeThickness { get; set; }
+
+        [Required]
+        [Display(Name = "Bottom Flange width:")]
+        public double BottomFlangeWidth { get; set; }
+
+        [Required]
+        [Display(Name = "Bottom Flange thickness:")]
+        public double BottomFlangeThickness { get; set; }
+
+        [Required]
+        [Display(Name = "Web thickness:")]
+        public double WebThickness { get; set; }
+
+        public string GetXCoordinates()
+        {
+            var x = new List<double>();
+            x.Add(-this.TopFlangeWidth/2);//upper left corner
+            x.Add(-this.TopFlangeWidth/2);
+            x.Add(-this.WebThickness/2);
+            x.Add(-this.WebThickness/2);
+            x.Add(-this.BottomFlangeWidth/2);
+            x.Add(-this.BottomFlangeWidth/2);
+            x.Add(this.BottomFlangeWidth/2);
+            x.Add(this.BottomFlangeWidth/2);
+            x.Add(this.WebThickness/2);
+            x.Add(this.WebThickness/2);
+            x.Add(this.TopFlangeWidth/2);
+            x.Add(this.TopFlangeWidth/2);
+
+            var result = string.Join(";", x);
+
+            return result;
+        }
+
+        public string GetYCoordinates()
+        {
+            var y = new List<double>();
+            y.Add(this.Height);
+            y.Add(this.Height-this.TopFlangeThickness);
+            y.Add(this.Height-this.TopFlangeThickness);
+            y.Add(this.BottomFlangeThickness);
+            y.Add(this.BottomFlangeThickness);
+            y.Add(0);
+            y.Add(0);
+            y.Add(this.BottomFlangeThickness);
+            y.Add(this.BottomFlangeThickness);
+            y.Add(this.Height-this.TopFlangeThickness);
+            y.Add(this.Height-this.TopFlangeThickness);
+            y.Add(this.Height);
+
+            var result = string.Join(";", y);
+            return result;
+        }
+
+    }
+
     enum CoordinateSystemType
     {
         Base,

@@ -110,6 +110,57 @@ function createTSectionDrawing() {
     fillCanvas(x, y, canvasObject);
 }
 
+function createISectionDrawing() {
+    var canvasObject = $('#canvas');
+
+    var height = getInputValue("#Height");
+    var webThickness = getInputValue("#WebThickness");
+    var topFlangeThickness = getInputValue("#TopFlangeThickness");
+    var topFlangeWidth = getInputValue("#TopFlangeWidth");
+    var bottomFlangeThickness = getInputValue("#BottomFlangeThickness");
+    var bottomFlangeWidth = getInputValue("#BottomFlangeWidth");
+
+    var x = new Array();
+    x.push(-topFlangeWidth / 2);//upper left corner
+    x.push(-topFlangeWidth / 2);
+    x.push(-webThickness / 2);
+    x.push(-webThickness / 2);
+    x.push(-bottomFlangeWidth / 2);
+    x.push(-bottomFlangeWidth / 2);
+    x.push(bottomFlangeWidth / 2);
+    x.push(bottomFlangeWidth / 2);
+    x.push(webThickness / 2);
+    x.push(webThickness / 2);
+    x.push(topFlangeWidth / 2);
+    x.push(topFlangeWidth / 2);
+
+    var y = new Array();
+    y.push(height);
+    y.push(height - topFlangeThickness);
+    y.push(height - topFlangeThickness);
+    y.push(bottomFlangeThickness);
+    y.push(bottomFlangeThickness);
+    y.push(0);
+    y.push(0);
+    y.push(bottomFlangeThickness);
+    y.push(bottomFlangeThickness);
+    y.push(height - topFlangeThickness);
+    y.push(height - topFlangeThickness);
+    y.push(height);
+
+    var xString = x.join(";");
+    var yString = y.join(";");
+
+    var x = splitCoordinates(xString);
+    var y = splitCoordinates(yString);
+
+    if (x.length != y.length) {
+        return;
+    }
+
+    fillCanvas(x, y, canvasObject);
+}
+
 function getInputValue(id)
 {
     return $(id).val() == "" ? $(id).attr("placeholder") : $(id).val();
