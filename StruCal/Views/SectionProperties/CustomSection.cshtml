@@ -21,7 +21,8 @@
                 {
                     <div class="form-group">
                         <div class="alert alert-danger" role="alert">
-                            <p>The provided input data is invalid.</p>
+                            @Html.ValidationSummary()
+                            @*<p>The provided input data is invalid.</p>*@
                         </div>
                     </div>
                 }

@@ -7,6 +7,7 @@ using System.Web;
 using Common.Extensions;
 using System.Text;
 using Common.Geometry;
+using StruCal.Validators;
 
 namespace StruCal.ViewModels
 {
@@ -36,14 +37,15 @@ namespace StruCal.ViewModels
         public IEnumerable<SectionPropertyViewData> CentralSystemProperties { get; set; }
         public IEnumerable<SectionPropertyViewData> PrincipalSystemProperties { get; set; }
 
-        [Display(Name = "X coordinates:")]
         [Required]
-        [RegularExpression(validationPattern)]
+        [Display(Name = "X coordinates:")]
+        [RegularExpression(validationPattern,ErrorMessage ="Provided input for X Coordinates is invalid.")]
+        [TheSameLength(nameof(YCoordinates),ErrorMessage ="The number of X and Y coordinates should be the same.")]
         public string XCoordinates { get; set; }
 
-        [Display(Name = "Y coordinates:")]
         [Required]
-        [RegularExpression(validationPattern)]
+        [Display(Name = "Y coordinates:")]
+        [RegularExpression(validationPattern, ErrorMessage = "Provided input for Y Coordinates is invalid.")]
         public string YCoordinates { get; set; }
 
         public string GetXCoordinates()
