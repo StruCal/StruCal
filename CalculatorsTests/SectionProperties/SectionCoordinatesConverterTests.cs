@@ -22,12 +22,12 @@ namespace Calculators.SectionProperties.Calculations.Tests
             var actualResult = sectionCoordinatesConverter.ConvertToSectionCoordinates(x, y);
 
             var expectedPoints = new List<PointD>();
-            expectedPoints.Add(new PointD(10, 12.5));
-            expectedPoints.Add(new PointD(20, 30));
-            expectedPoints.Add(new PointD(40, 50.2));
-            expectedPoints.Add(new PointD(80, 38));
             expectedPoints.Add(new PointD(90, -10));
-            expectedPoints.Add(new PointD(10, 12.5)); //first and last point in section cordinates should be the same
+            expectedPoints.Add(new PointD(80, 38));
+            expectedPoints.Add(new PointD(40, 50.2));
+            expectedPoints.Add(new PointD(20, 30));
+            expectedPoints.Add(new PointD(10, 12.5)); 
+            expectedPoints.Add(new PointD(90, -10));//first and last point in section cordinates should be the same
             var expectedResult = new SectionCoordinates(expectedPoints);
 
 

@@ -157,6 +157,7 @@
     </Compile>
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validators\RegexPatterns.cs" />
     <Compile Include="Validators\TheSameLength.cs" />
     <Compile Include="ViewModels\ConcreteCoverViewModel.cs" />
     <Compile Include="ViewModels\SectionPropertiesViewModels.cs" />

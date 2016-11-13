@@ -1,1 +1,9 @@
-﻿
+﻿@if (ViewBag.InputErrors)
+{
+    <div class="form-group">
+        <div class="alert alert-danger" role="alert">
+            @Html.ValidationSummary()
+            @*<p>The provided input data is invalid.</p>*@
+        </div>
+    </div>
+}

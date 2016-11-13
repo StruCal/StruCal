@@ -20,12 +20,16 @@ namespace StruCal.Validators
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var properties = this.PropertyNames.Select(validationContext.ObjectType.GetProperty);
-            var valueToCompare = properties.Select(p => p.GetValue(validationContext.ObjectInstance, null)).OfType<string>().FirstOrDefault();
+            var firstValue = Convert.ToString(value);
+            var secondValue = properties.Select(p => p.GetValue(validationContext.ObjectInstance, null)).OfType<string>().FirstOrDefault();
 
-            var valueLength = Convert.ToString(value).Split(separator).Length;
-            var valueToCompareLength = valueToCompare.Split(separator).Length;
+            if (string.IsNullOrEmpty(firstValue) || string.IsNullOrEmpty(secondValue))
+                return null;
 
-            if (valueLength != valueToCompareLength)
+            var firstValueLength = Convert.ToString(value).Split(separator).Length;
+            var secondValueLength = secondValue.Split(separator).Length;
+
+            if (firstValueLength != secondValueLength)
             {
                 return new ValidationResult(this.FormatErrorMessage(validationContext.DisplayName));
             }

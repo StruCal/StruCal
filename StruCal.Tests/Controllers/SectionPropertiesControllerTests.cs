@@ -31,9 +31,9 @@ namespace StruCal.Controllers.Tests
         [TestCase("nm10;20;30")]
         [TestCase("10,5;20,8;30")]
         [TestCase("+10;20;30.2.3;")]
-        public void SectionPropertiesController_ValidationViewModelTests_ValidationShowErrors(string inputData)
+        public void SectionPropertiesController_CustomSectionViewModelValidation_ValidationShowErrors(string inputData)
         {
-            var viewModel = new SectionPropertiesViewModel()
+            var viewModel = new CustomSectionViewModel()
             {
                 XCoordinates = inputData,
                 YCoordinates = inputData,
@@ -48,9 +48,9 @@ namespace StruCal.Controllers.Tests
         [TestCase("1.1;2.2;-5.02;")]
         [TestCase("0.0;2;-30;")]
         [TestCase("4;2.2;5;10;15;")]
-        public void SectionPropertiesController_ValidationViewModelTests_ValidationPassed(string inputData)
+        public void SectionPropertiesController_CustomSectionViewModelValidation_ValidationPassed(string inputData)
         {
-            var viewModel = new SectionPropertiesViewModel()
+            var viewModel = new CustomSectionViewModel()
             {
                 XCoordinates = inputData,
                 YCoordinates = inputData,
@@ -59,5 +59,6 @@ namespace StruCal.Controllers.Tests
             var actualErrors = validateModel(viewModel);
             Assert.IsTrue(actualErrors.Count == 0);
         }
+
     }
 }

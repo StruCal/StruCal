@@ -15,14 +15,7 @@
             @Html.AntiForgeryToken()
 
             <div id="inputForms">
-                @if (ViewBag.InputErrors)
-                {
-                    <div class="form-group">
-                        <div class="alert alert-danger" role="alert">
-                            <p>The provided input data is invalid.</p>
-                        </div>
-                    </div>
-                }
+                @Html.Partial("_ValidationPartial")
                 <div class="form-group">
                     @Html.LabelFor(model => model.Height, new { @class = "control-label" })
                     @Html.EditorFor(model => model.Height, new { htmlAttributes = new { @class = "form-control", @placeholder = "10" } })
@@ -60,9 +53,10 @@
     - show units,
     - show symbols with sub/superscripts, greek symbols
     */
-    $(window).load(function () {
-        $("html,body").scrollTop(10000);
-    });
+    //$(window).load(function () {
+    //    //$("html,body").scrollTop(10000);
+    //    location.href = "#results"
+    //});
 
     $(document).ready(function () {
 

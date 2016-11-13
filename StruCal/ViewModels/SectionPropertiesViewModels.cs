@@ -11,12 +11,13 @@ using StruCal.Validators;
 
 namespace StruCal.ViewModels
 {
+    
+
     public class SectionPropertyViewData
     {
         public string Name { get; set; }
         public string Description { get; set; }
         public string Value { get; set; }
-
     }
 
     public interface ISectionPropertiesViewModel
@@ -31,21 +32,20 @@ namespace StruCal.ViewModels
 
     public class CustomSectionViewModel :ISectionPropertiesViewModel
     {
-        private const string validationPattern = @"^((((-?)(0|[1-9][0-9]*)(\.[0-9]+)?);)+?)$";//@"^([1-9][0-9]+\.?[0-9]*;?)*$";
-
+        
         public IEnumerable<SectionPropertyViewData> BaseSystemProperties { get; set; }
         public IEnumerable<SectionPropertyViewData> CentralSystemProperties { get; set; }
         public IEnumerable<SectionPropertyViewData> PrincipalSystemProperties { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "X coordinates are empty.")]
         [Display(Name = "X coordinates:")]
-        [RegularExpression(validationPattern,ErrorMessage ="Provided input for X Coordinates is invalid.")]
+        [RegularExpression(RegexPatterns.CustomSectionValidationPattern,ErrorMessage ="Provided input for X Coordinates is invalid.")]
         [TheSameLength(nameof(YCoordinates),ErrorMessage ="The number of X and Y coordinates should be the same.")]
         public string XCoordinates { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Y coordinates are empty.")]
         [Display(Name = "Y coordinates:")]
-        [RegularExpression(validationPattern, ErrorMessage = "Provided input for Y Coordinates is invalid.")]
+        [RegularExpression(RegexPatterns.CustomSectionValidationPattern, ErrorMessage = "Provided input for Y Coordinates is invalid.")]
         public string YCoordinates { get; set; }
 
         public string GetXCoordinates()
@@ -65,14 +65,15 @@ namespace StruCal.ViewModels
         public IEnumerable<SectionPropertyViewData> CentralSystemProperties { get; set; }
         public IEnumerable<SectionPropertyViewData> PrincipalSystemProperties { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Width is empty.")]
         [Display(Name ="Width:")]
-        
-        public double Width { get; set; }
+        [RegularExpression(RegexPatterns.PositiveNumberValidationPattern,ErrorMessage ="Width is not a positive number.")]
+        public string Width { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Height is empty.")]
         [Display(Name ="Height:")]
-        public double Height { get; set; }
+        [RegularExpression(RegexPatterns.PositiveNumberValidationPattern, ErrorMessage = "Height is not a positive number.")]
+        public string Height { get; set; }
 
         public string GetXCoordinates()
         {
@@ -93,9 +94,11 @@ namespace StruCal.ViewModels
         public IEnumerable<SectionPropertyViewData> CentralSystemProperties { get; set; }
         public IEnumerable<SectionPropertyViewData> PrincipalSystemProperties { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Radious is empty.")]
         [Display(Name = "Radious:")]
-        public double Radious { get; set; }
+        [RegularExpression(RegexPatterns.PositiveNumberValidationPattern, ErrorMessage = "Radious is not a positive number.")]
+        
+        public string Radious { get; set; }
 
         public string GetXCoordinates()
         {
@@ -113,10 +116,11 @@ namespace StruCal.ViewModels
         {
             var result = string.Empty;
 
+            var radious = double.Parse(this.Radious);
             for (int i = 0; i <= 360; i++)
             {
                 var alfa = (i - 90) * Math.PI / 180;
-                var x = this.Radious*coordinateFunction(alfa);
+                var x = radious*coordinateFunction(alfa);
                 result = result + x.ToString() + ";";
             }
             return result;
@@ -130,33 +134,40 @@ namespace StruCal.ViewModels
         public IEnumerable<SectionPropertyViewData> CentralSystemProperties { get; set; }
         public IEnumerable<SectionPropertyViewData> PrincipalSystemProperties { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Height is empty.")]
         [Display(Name = "Section Height:")]
-        public double Height { get; set; }
+        [RegularExpression(RegexPatterns.PositiveNumberValidationPattern, ErrorMessage = "Height is not a positive number.")]
+        public string Height { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Flange Width is empty.")]
         [Display(Name ="Flange width:")]
-        public double FlangeWidth { get; set; }
+        [RegularExpression(RegexPatterns.PositiveNumberValidationPattern, ErrorMessage = "Width is not a positive number.")]
+        public string FlangeWidth { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Flange thickness is empty.")]
         [Display(Name ="Flange thickness:")]
-        public double FlangeThickness { get; set; }
+        [RegularExpression(RegexPatterns.PositiveNumberValidationPattern, ErrorMessage = "Flange thickness is not a positive number.")]
+        public string FlangeThickness { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Web thickness is empty.")]
         [Display(Name ="Web thickness:")]
-        public double WebThickness { get; set; }
+        [RegularExpression(RegexPatterns.PositiveNumberValidationPattern, ErrorMessage = "Web thickness is not a positive number.")]
+        public string WebThickness { get; set; }
 
         public string GetXCoordinates()
         {
+            var flangeWidth = double.Parse(this.FlangeWidth);
+            var webThickness = double.Parse(this.WebThickness); 
+
             var x = new List<double>();
             x.Add(0);
             x.Add(0);
-            x.Add(this.FlangeWidth / 2 - this.WebThickness / 2);
-            x.Add(this.FlangeWidth / 2 - this.WebThickness / 2);
-            x.Add(this.FlangeWidth / 2 + this.WebThickness / 2);
-            x.Add(this.FlangeWidth / 2 + this.WebThickness / 2);
-            x.Add(this.FlangeWidth);
-            x.Add(this.FlangeWidth);
+            x.Add(flangeWidth / 2 - webThickness / 2);
+            x.Add(flangeWidth / 2 - webThickness / 2);
+            x.Add(flangeWidth / 2 + webThickness / 2);
+            x.Add(flangeWidth / 2 + webThickness / 2);
+            x.Add(flangeWidth);
+            x.Add(flangeWidth);
 
             var result = string.Join(";", x);
 
@@ -165,15 +176,18 @@ namespace StruCal.ViewModels
 
         public string GetYCoordinates()
         {
+            var height = double.Parse(this.Height);
+            var flangeThickness = double.Parse(this.FlangeThickness);
+
             var y = new List<double>();
-            y.Add(this.Height);
-            y.Add(this.Height - this.FlangeThickness);
-            y.Add(this.Height - this.FlangeThickness);
+            y.Add(height);
+            y.Add(height - flangeThickness);
+            y.Add(height - flangeThickness);
             y.Add(0);
             y.Add(0);
-            y.Add(this.Height - this.FlangeThickness);
-            y.Add(this.Height - this.FlangeThickness);
-            y.Add(this.Height);
+            y.Add(height - flangeThickness);
+            y.Add(height - flangeThickness);
+            y.Add(height);
 
             var result = string.Join(";", y);
             return result;
@@ -188,45 +202,55 @@ namespace StruCal.ViewModels
         public IEnumerable<SectionPropertyViewData> CentralSystemProperties { get; set; }
         public IEnumerable<SectionPropertyViewData> PrincipalSystemProperties { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Section height is empty.")]
         [Display(Name = "Section Height:")]
-        public double Height { get; set; }
+        [RegularExpression(RegexPatterns.PositiveNumberValidationPattern, ErrorMessage = "Height is not a positive number.")]
+        public string Height { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Top Flange width is empty.")]
         [Display(Name = "Top Flange width:")]
-        public double TopFlangeWidth { get; set; }
+        [RegularExpression(RegexPatterns.PositiveNumberValidationPattern, ErrorMessage = "Top flange width is not a positive number.")]
+        public string TopFlangeWidth { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Top Flange thickness is empty.")]
         [Display(Name = "Top Flange thickness:")]
-        public double TopFlangeThickness { get; set; }
+        [RegularExpression(RegexPatterns.PositiveNumberValidationPattern, ErrorMessage = "Top flange thickness is not a positive number.")]
+        public string TopFlangeThickness { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Bottom Flange width is empty.")]
         [Display(Name = "Bottom Flange width:")]
-        public double BottomFlangeWidth { get; set; }
+        [RegularExpression(RegexPatterns.PositiveNumberValidationPattern, ErrorMessage = "Bottom flange width is not a positive number.")]
+        public string BottomFlangeWidth { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Bottom Flange thickness is empty.")]
         [Display(Name = "Bottom Flange thickness:")]
-        public double BottomFlangeThickness { get; set; }
+        [RegularExpression(RegexPatterns.PositiveNumberValidationPattern, ErrorMessage = "Bottom flange thickness is not a positive number.")]
+        public string BottomFlangeThickness { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Web thickness is empty.")]
         [Display(Name = "Web thickness:")]
-        public double WebThickness { get; set; }
+        [RegularExpression(RegexPatterns.PositiveNumberValidationPattern, ErrorMessage = "Web thickness is not a positive number.")]
+        public string WebThickness { get; set; }
 
         public string GetXCoordinates()
         {
+            var topFlangeWidth = double.Parse(this.TopFlangeWidth);
+            var webThickness = double.Parse(this.WebThickness);
+            var bottomFlangeWidth = double.Parse(this.BottomFlangeWidth);
+            
             var x = new List<double>();
-            x.Add(-this.TopFlangeWidth/2);//upper left corner
-            x.Add(-this.TopFlangeWidth/2);
-            x.Add(-this.WebThickness/2);
-            x.Add(-this.WebThickness/2);
-            x.Add(-this.BottomFlangeWidth/2);
-            x.Add(-this.BottomFlangeWidth/2);
-            x.Add(this.BottomFlangeWidth/2);
-            x.Add(this.BottomFlangeWidth/2);
-            x.Add(this.WebThickness/2);
-            x.Add(this.WebThickness/2);
-            x.Add(this.TopFlangeWidth/2);
-            x.Add(this.TopFlangeWidth/2);
+            x.Add(-topFlangeWidth/2);//upper left corner
+            x.Add(-topFlangeWidth/2);
+            x.Add(-webThickness/2);
+            x.Add(-webThickness/2);
+            x.Add(-bottomFlangeWidth/2);
+            x.Add(-bottomFlangeWidth/2);
+            x.Add(bottomFlangeWidth/2);
+            x.Add(bottomFlangeWidth/2);
+            x.Add(webThickness/2);
+            x.Add(webThickness/2);
+            x.Add(topFlangeWidth/2);
+            x.Add(topFlangeWidth/2);
 
             var result = string.Join(";", x);
 
@@ -235,19 +259,23 @@ namespace StruCal.ViewModels
 
         public string GetYCoordinates()
         {
+            var height = double.Parse(this.Height);
+            var bottomFlangeThickness = double.Parse(this.BottomFlangeThickness);
+            var topFlangeThickness = double.Parse(this.TopFlangeThickness);
+
             var y = new List<double>();
-            y.Add(this.Height);
-            y.Add(this.Height-this.TopFlangeThickness);
-            y.Add(this.Height-this.TopFlangeThickness);
-            y.Add(this.BottomFlangeThickness);
-            y.Add(this.BottomFlangeThickness);
+            y.Add(height);
+            y.Add(height-topFlangeThickness);
+            y.Add(height-topFlangeThickness);
+            y.Add(bottomFlangeThickness);
+            y.Add(bottomFlangeThickness);
             y.Add(0);
             y.Add(0);
-            y.Add(this.BottomFlangeThickness);
-            y.Add(this.BottomFlangeThickness);
-            y.Add(this.Height-this.TopFlangeThickness);
-            y.Add(this.Height-this.TopFlangeThickness);
-            y.Add(this.Height);
+            y.Add(bottomFlangeThickness);
+            y.Add(bottomFlangeThickness);
+            y.Add(height-topFlangeThickness);
+            y.Add(height-topFlangeThickness);
+            y.Add(height);
 
             var result = string.Join(";", y);
             return result;
