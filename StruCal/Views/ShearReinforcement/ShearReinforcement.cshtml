@@ -1,7 +1,113 @@
 ﻿
 @{
-    ViewBag.Title = "ShearReinforcement";
+    ViewBag.Title = "Shear Reinforcement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    //list of input fields
+    //
+    var input = new List<string>();
+    //label name | input field id | unit value
+    input.Add("\\(f_{ck}\\);fck;\\(N \\over mm\\)");//fck
+    input.Add("\\(d\\);d;\\(mm\\)");                //d
+    input.Add("\\(b_w\\);bw;\\(mm\\)");             //bw                
+    input.Add("\\(h\\);h;\\(mm\\)");                //h  
+    input.Add("\\(N_{Ed}\\);Ned;\\(N\\)");          //Ned
+    input.Add("\\(\\gamma_C\\);gammaC;");           //GammaC 
 }
 
-<h2>ShearReinforcement</h2>
+
+<br />
+<br />
+<br />
+<div class="container">
+
+    <h2>Shear reinforcement calculator</h2>
+    <br />
+
+    <div class="row">
+        <div class="col-xs-12 col-lg-6 text-left">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Input Data</h3>
+                    </div>
+                    <div class="panel-body" id="inputPanel">
+                        <div class="form-horizontal">
+                            @foreach (var item in input)
+                            {
+                                var values = item.Split(';');
+                                <div class="form-group">
+                                    <div class="col-sm-1" tabindex="-1">
+                                        <span>@values[0]</span>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <span>\(=\)</span>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="text" id=@values[1] class="form-control" />
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <span>@values[2]</span>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*results*@
+        <div class="col-xs-12 col-lg-6 text-center">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Calculated cover</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <h3 class="form-horizontal" data-toggle="tooltip" title="Calculated structural class (PN-EN 1992-1-1 Table 4.4N, 4.5N).">
+                                <span class="label label-info">k</span>
+                            </h3>
+                        </div>
+                        <div class="form-group">
+                            <b class="form-horizontal" data-toggle="tooltip" title="Calculated structural class (PN-EN 1992-1-1 Table 4.4N, 4.5N).">
+
+                                <label class="control-label">b</label>
+                            </b>
+                        </div>
+                        <div class="form-group">
+                            <b class="form-horizontal" data-toggle="tooltip" title="Calculated minimum cover due to bond requirement (PN-EN 1992-1-1 4.4.1.2(3)).">
+
+                                <label class="control-label"></label>
+                            </b>
+                        </div>
+                        <div class="form-group">
+                            <b class="form-horizontal" data-toggle="tooltip" title="Calculated minimum cover due to environmental conditions (PN-EN 1992-1-1 4.4.1.2(5)).">
+
+                                <label class="control-label"></label>
+                            </b>
+                        </div>
+                        <div class="form-group">
+                            <b class="form-horizontal" data-toggle="tooltip" title="Calculated minimum cover (PN-EN 1992-1-1 Eq. 4.2).">
+
+                                <label class="control-label"></label>
+                            </b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+}
+
+
+<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full'></script>
+<script>
+    
+</script>
 
