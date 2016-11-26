@@ -25,7 +25,7 @@ namespace StruCal.Controllers
             var result = new ShearReinforcementOutput
             {
                 Crdc = 1d,
-                fck = 20000d,
+                fcd = 20000d,
                 k1 = 3000d
             };
             return result;

@@ -8,14 +8,28 @@
     //
     var input = new List<string>();
     //label name | input field id | unit value
-    input.Add("\\(f_{ck}\\);fck;\\(N \\over mm\\)");//fck
+    input.Add("\\(f_{ck}\\);fck;\\(N \\over mm^2\\)");//fck
     input.Add("\\(d\\);d;\\(mm\\)");                //d
-    input.Add("\\(b_w\\);bw;\\(mm\\)");             //bw                
-    input.Add("\\(h\\);h;\\(mm\\)");                //h  
+    input.Add("\\(b_w\\);bw;\\(mm\\)");             //bw
+    input.Add("\\(h\\);h;\\(mm\\)");                //h
     input.Add("\\(N_{Ed}\\);Ned;\\(N\\)");          //Ned
-    input.Add("\\(\\gamma_C\\);gammaC;");           //GammaC 
+    input.Add("\\(\\gamma_C\\);gammaC;");           //GammaC
+    input.Add("\\(k_1\\);k1;");                     //k
+    input.Add("\\(A_{sl}\\);Asl;\\(mm^2\\)");          //Asl
 }
+@{
+    //list of output fields
 
+    var output = new List<string>();
+    //output field id
+    output.Add("Crdc");
+    output.Add("k");
+    output.Add("ro1");
+    output.Add("vmin");
+    output.Add("sigmacp");
+    output.Add("Vrdc1");
+    output.Add("Vrdc2");
+}
 
 <br />
 <br />
@@ -26,7 +40,7 @@
     <br />
 
     <div class="row">
-        <div class="col-xs-12 col-lg-6 text-left">
+        <div class="col-lg-3 text-left" id="inputData">
             <div class="panel-group">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -38,16 +52,16 @@
                             {
                                 var values = item.Split(';');
                                 <div class="form-group">
-                                    <div class="col-sm-1" tabindex="-1">
+                                    <div class="col-lg-2" tabindex="-1">
                                         <span>@values[0]</span>
                                     </div>
-                                    <div class="col-sm-1">
+                                    <div class="col-lg-1">
                                         <span>\(=\)</span>
                                     </div>
-                                    <div class="col-sm-2">
-                                        <input type="text" id=@values[1] class="form-control" />
+                                    <div class="col-lg-4">
+                                        <input type="text" id=@values[1] data-bind="value: @values[1], valueUpdate: 'afterkeydown'" class="form-control" />
                                     </div>
-                                    <div class="col-sm-1">
+                                    <div class="col-lg-1">
                                         <span>@values[2]</span>
                                     </div>
                                 </div>
@@ -59,42 +73,20 @@
         </div>
 
         @*results*@
-        <div class="col-xs-12 col-lg-6 text-center">
+        <div class="col-lg-9 text-left">
             <div class="panel-group">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Calculated cover</h3>
+                        <h3 class="panel-title">Results</h3>
                     </div>
                     <div class="panel-body">
-                        <div class="form-group">
-                            <h3 class="form-horizontal" data-toggle="tooltip" title="Calculated structural class (PN-EN 1992-1-1 Table 4.4N, 4.5N).">
-                                <span class="label label-info">k</span>
-                            </h3>
-                        </div>
-                        <div class="form-group">
-                            <b class="form-horizontal" data-toggle="tooltip" title="Calculated structural class (PN-EN 1992-1-1 Table 4.4N, 4.5N).">
-
-                                <label class="control-label">b</label>
-                            </b>
-                        </div>
-                        <div class="form-group">
-                            <b class="form-horizontal" data-toggle="tooltip" title="Calculated minimum cover due to bond requirement (PN-EN 1992-1-1 4.4.1.2(3)).">
-
-                                <label class="control-label"></label>
-                            </b>
-                        </div>
-                        <div class="form-group">
-                            <b class="form-horizontal" data-toggle="tooltip" title="Calculated minimum cover due to environmental conditions (PN-EN 1992-1-1 4.4.1.2(5)).">
-
-                                <label class="control-label"></label>
-                            </b>
-                        </div>
-                        <div class="form-group">
-                            <b class="form-horizontal" data-toggle="tooltip" title="Calculated minimum cover (PN-EN 1992-1-1 Eq. 4.2).">
-
-                                <label class="control-label"></label>
-                            </b>
-                        </div>
+                        @foreach (var item in output)
+                        {
+                            var bindName = item + "Result";
+                            <div class="form-group">
+                                <p class="text-left" id=@item data-bind="text: @bindName"></p>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -102,12 +94,94 @@
 
 
     </div>
+    <span id="test" data-bind="text: test"></span>
 </div>
 }
 
 
 <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>
 <script>
-    
+
+    var inputDataViewModel = function()
+    {
+        var self = this;
+
+        //input parameters
+        this.fck = ko.observable(10);
+        this.d = ko.observable(2);
+        this.bw = ko.observable(3);
+        this.h = ko.observable(4);
+        this.Ned = ko.observable(5);
+        this.gammaC = ko.observable(1);
+        this.k1 = ko.observable(0.15);
+        this.Asl = ko.observable(1);
+
+        this.fck.subscribe(getData);
+
+
+        //output parameters
+        this.Crdc = ko.observable(1);
+        this.CrdcResult = ko.pureComputed(function()
+        {
+            var part1 = "C_{Rd,c}=";
+            var part2 = "\\frac {0.18}{\\gamma_C}=";
+            var part3 = "\\frac {0.18}" + self.gammaC() + "=" + self.Crdc();
+            return "\\(" + part1 + part2 + part3 + "\\)";
+        })
+        this.k = ko.observable(1);
+        this.kResult = ko.pureComputed(function () {
+            var part1 = "k=";
+            var part2 = "1+ \\sqrt{\\frac{200}{d}}=";
+            var part3 = "1+ \\sqrt{\\frac{200}{"+self.d()+"}}="+self.k()+"\\leq 2.0";
+            return "\\(" + part1 + part2 + part3 + "\\)";
+        });
+        this.ro1 = ko.observable(1);
+        this.ro1Result = ko.pureComputed(function () {
+            var part1 = "\\rho_I=";
+            var part2 = "\\frac{A_{sl}}{b_w \\cdot d}=";
+            var part3 = "\\frac{"+self.Asl()+"}{"+self.bw()+ "\\cdot "+self.d()+"}="+self.ro1()+"\\leq 0.02";
+            return "\\(" + part1 + part2 + part3 + "\\)";
+        });
+        this.vmin = ko.observable(1);
+        this.vminResult = ko.pureComputed(function () {
+            var part1 = "v_{min}=";
+            var part2 = "0.035 \\cdot k^{3/2} \\cdot f_{ck}^{1/2}=";
+            var part3 = "0.035 \\cdot"+ self.k()+"^{3/2} \\cdot "+ self.fck()+"^{1/2}="+self.vmin();
+            return "\\(" + part1 + part2 + part3 + "\\)";
+        });
+        this.sigmacp = ko.observable(1);
+        this.sigmacpResult = ko.pureComputed(function () {
+            var part1 = "\\sigma_{cp}=";
+            var part2 = "\\frac{N_{Ed}}{b_w \\cdot h}=";
+            var part3 = "\\frac{"+self.Ned()+"}{"+self.bw()+"\\cdot"+self.h()+"}="+self.sigmacp()+"{N \\over mm^2}";
+            return "\\(" + part1 + part2 + part3 + "\\)";
+        });
+        this.Vrdc1 = ko.observable(1);
+        this.Vrdc1Result = ko.pureComputed(function () {
+            var part1 = "V_{Rd,c}=";
+            var part2 = "[C_{Rd,c} k (100 \\rho_I f_{ck})^{1/3}+k_1 \\sigma_{cp}] b_w d=";
+            var part3 = "\\frac{"+self.Ned()+"}{"+self.bw()+"\\cdot"+self.h()+"}="+self.sigmacp()+"{N \\over mm^2}";
+            return "\\(" + part1 + part2 + part3 + "\\)";
+        });
+
+        function getData(newValue)
+        {
+
+        }
+    }
+
+
+
+
+
+
+
+    $(document).ready(function () {
+        ko.applyBindings(new inputDataViewModel());
+        $('#inputData input').click(function () {
+            $(this).select();
+        });
+    });
 </script>
 

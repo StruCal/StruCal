@@ -17,6 +17,7 @@ namespace Calculators.ShearReinforcement
         public double d { get; set; }
         public double Asl { get; set; }
         public double h { get; set; }
+        public double k1 { get; set; }
     }
     public class ShearReinforcementOutput
     {
@@ -26,7 +27,7 @@ namespace Calculators.ShearReinforcement
         public double Crdc { get; set; }
         public double sigmacp { get; set; }
         public double vmin { get; set; }
-        public double fck { get; set; }
+        public double fcd { get; set; }
         public double ro1 { get; set; }
         public double k1 { get; set; }
         public double k { get; set; }
@@ -46,6 +47,7 @@ namespace Calculators.ShearReinforcement
             var VRdc1 = (Crdc * k * Math.Pow(100 * ro1 * inputData.fck, 1 / 3) + k1 * sigmacp) * inputData.bw * inputData.d;
             var VRdc2 = (vmin + k1 * sigmacp) * inputData.bw * inputData.d;
             var Vrdc = Math.Min(VRdc1, VRdc2);
+            var fcd = inputData.fck / inputData.gammaC;
 
             var shearReinforcement = new ShearReinforcementOutput
             {
@@ -57,7 +59,8 @@ namespace Calculators.ShearReinforcement
                 vmin = vmin,
                 Vrdc1 = VRdc1,
                 Vrdc2 = VRdc2,
-                Vrdc = Vrdc
+                Vrdc = Vrdc,
+                fcd = fcd,
             };
 
             return shearReinforcement;
