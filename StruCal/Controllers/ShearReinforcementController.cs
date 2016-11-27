@@ -19,8 +19,8 @@ namespace StruCal.Controllers
 
     public class ShearReinforcementApiController : ApiController
     {
-        [System.Web.Http.HttpGet]
-        public ShearReinforcementOutput Test()
+        [System.Web.Http.HttpPost]
+        public ShearReinforcementOutput Test(ShearReinforcementInput input)
         {
             var result = new ShearReinforcementOutput
             {

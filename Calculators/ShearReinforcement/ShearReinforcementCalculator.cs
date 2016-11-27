@@ -10,6 +10,7 @@ namespace Calculators.ShearReinforcement
     {
         //all values accordint to EN-1992-2
         //all units in [mm] and [N]
+        public double Ved { get; set; }
         public double fck { get; set; }
         public double Ned { get; set; }
         public double gammaC { get; set; }
