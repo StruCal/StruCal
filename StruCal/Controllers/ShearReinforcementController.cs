@@ -22,12 +22,9 @@ namespace StruCal.Controllers
         [System.Web.Http.HttpPost]
         public ShearReinforcementOutput Test(ShearReinforcementInput input)
         {
-            var result = new ShearReinforcementOutput
-            {
-                Crdc = 1d,
-                fcd = 20000d,
-                k1 = 3000d
-            };
+            var calculator = new ShearReinforcementCalculator();
+            var result = calculator.CalculateShearReinforcement(input);
+            
             return result;
         }
     }

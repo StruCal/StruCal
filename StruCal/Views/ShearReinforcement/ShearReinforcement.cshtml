@@ -90,6 +90,12 @@
                                 <p class="text-left" id=@item data-bind="text: @bindName"></p>
                             </div>
                         }
+                        <h3 class="form-horizontal" data-bind="visible: Ved() < Vrdc()">
+                            <span class="label label-success">Section does not require shear reinforcement</span>
+                        </h3>
+                        <h3 class="form-horizontal" data-bind="visible: Ved() >= Vrdc()">
+                            <span class="label label-warning">Section requires shear reinforcement</span>
+                        </h3>
                     </div>
                 </div>
             </div>
@@ -97,8 +103,7 @@
 
 
     </div>
-    <span id="test" data-bind="text: test"></span>
-    <button onclick=refresh()>click</button>
+    
 </div>
 }
 
@@ -137,7 +142,7 @@
         this.CrdcResult = ko.pureComputed(function () {
             var part1 = "C_{Rd,c}=";
             var part2 = "\\frac {0.18}{\\gamma_C}=";
-            var part3 = "\\frac {0.18}" + self.gammaC() + "=" + self.Crdc();
+            var part3 = "\\frac {0.18}{" + self.gammaC() + "}=" + self.Crdc();
             return "\\(" + part1 + part2 + part3 + "\\)";
         });
         this.k = ko.observable(1);
@@ -185,59 +190,63 @@
         this.Vrdc2Result = ko.pureComputed(function () {
             var part1 = "V_{Rd,c2}=";
             var part2 = "(v_{min}+k_1 \\cdot \\sigma_{cp}) \\cdot b_w \\cdot d=";
-            var part3 = "("+self.vmin()+"+"+self.k1()+" \\cdot"+self.sigmacp()+") \\cdot"+self.bw()+"\\cdot"+self.d()+" d="+self.Vrdc2()+"N";
+            var part3 = "("+self.vmin()+"+"+self.k1()+" \\cdot"+self.sigmacp()+") \\cdot"+self.bw()+"\\cdot"+self.d()+" ="+self.Vrdc2()+"N";
             return "\\(" + part1 + part2 + part3 + "\\)";
         });
         this.Vrdc = ko.observable(1);
         this.VrdcResult = ko.pureComputed(function () {
             var part1 = "V_{Rd,c}=";
-            var part2 = "min(V_{Rd,c1};V_{Rd,c2})=";
-            var part3 = "min(" + self.Vrdc1() + ";" + self.Vrdc2() + ")=" + self.Vrdc() + "N";
+            var part2 = "max(V_{Rd,c1};V_{Rd,c2})=";
+            var part3 = "max(" + self.Vrdc1() + ";" + self.Vrdc2() + ")=" + self.Vrdc() + "N";
             return "\\(" + part1 + part2 + part3 + "\\)";
         });
 
         //this.vminResult.subscribe(getData);
 
-        this.CrdcResult.subscribe(getData);
-        this.kResult.subscribe(getData);
-        this.ro1Result.subscribe(getData);
-        this.vminResult.subscribe(getData);
-        this.sigmacpResult.subscribe(getData);
-        this.Vrdc1Result.subscribe(getData);
-        this.Vrdc2Result.subscribe(getData);
-        this.VrdcResult.subscribe(getData);
+        this.CrdcResult.subscribe(refreshFormulas);
+        this.kResult.subscribe(refreshFormulas);
+        this.ro1Result.subscribe(refreshFormulas);
+        this.vminResult.subscribe(refreshFormulas);
+        this.sigmacpResult.subscribe(refreshFormulas);
+        this.Vrdc1Result.subscribe(refreshFormulas);
+        this.Vrdc2Result.subscribe(refreshFormulas);
+        this.VrdcResult.subscribe(refreshFormulas);
+        
         
 
-        function getData(newValue)
-        {
-            //update formulas
-            //alert("ok");
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-        }
-    }
-
-
-    function refresh() {
-
-        var input = {
-            Ved: 2000,
-            fck: 3000,
-            Ned: 4000,
-            gammaC: 5000,
-            bw: 6000,
-            d: 7000,
-            Asl: 80000,
-            h: 9000,
-            k1: 1000,
+        function getData(newValue) {
+            var inputData = {
+                Ved: self.Ved(),
+                fck: self.fck(),
+                Ned: self.Ned(),
+                gammaC: self.gammaC(),
+                bw: self.bw(),
+                d: self.d(),
+                Asl: self.Asl(),
+                h: self.h(),
+                k1: self.k1(),
+            };
+            $.post("/api/ShearReinforcementApi", inputData, function (returnedData) {
+                self.Vrdc1(returnedData.Vrdc1);
+                self.Vrdc2(returnedData.Vrdc2);
+                self.Vrdc(returnedData.Vrdc);
+                self.Crdc(returnedData.Crdc);
+                self.sigmacp(returnedData.sigmacp);
+                self.vmin(returnedData.vmin);
+                //self.fcd(returnedData.fcd);
+                self.ro1(returnedData.ro1);
+                self.k(returnedData.k);
+                //console.log(returnedData);
+                //alert("Ok");
+                //$('#test').text(returnedData.k1);
+            });
+            refreshFormulas(newValue);
         };
 
-        $.post("/api/ShearReinforcementApi", input, function (returnedData) {
-            console.log(returnedData);
-            $('#test').text(returnedData.k1);
-        })
+        function refreshFormulas(newValue) {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        };
     }
-
-
 
 
     $(document).ready(function () {
