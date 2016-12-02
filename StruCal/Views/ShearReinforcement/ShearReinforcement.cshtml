@@ -9,30 +9,50 @@
     var input = new List<string>();
     //label name | input field id | unit value
     input.Add("\\(V_{Ed}\\);Ved;\\(N\\)");
-    input.Add("\\(f_{ck}\\);fck;\\(N \\over mm^2\\)");//fck
-    input.Add("\\(d\\);d;\\(mm\\)");                //d
+    input.Add("\\(s\\);s;\\(mm\\)");                //mm
+    input.Add("\\(A_{sw}\\);Asw;\\(mm^2\\)");       //Asw
     input.Add("\\(b_w\\);bw;\\(mm\\)");             //bw
+    input.Add("\\(d\\);d;\\(mm\\)");                //d
     input.Add("\\(h\\);h;\\(mm\\)");                //h
-    input.Add("\\(N_{Ed}\\);Ned;\\(N\\)");          //Ned
+    input.Add("\\(f_{ywk}\\);fywk;\\(N \\over mm^2\\)");//fywk
+    input.Add("\\(\\gamma_S\\);gammaS;");           //GammaS
+    input.Add("\\(f_{ck}\\);fck;\\(N \\over mm^2\\)");//fck
     input.Add("\\(\\gamma_C\\);gammaC;");           //GammaC
+    input.Add("\\(N_{Ed}\\);Ned;\\(N\\)");          //Ned
     input.Add("\\(k_1\\);k1;");                     //k
     input.Add("\\(A_{sl}\\);Asl;\\(mm^2\\)");          //Asl
+    input.Add("\\(\\cot \\theta_{min}\\);cotThetaMin;"); //cotThetaMax
+    input.Add("\\(\\cot \\theta_{max}\\);cotThetaMax;"); //cotThetaMax
 }
 @{
-    //list of output fields
+    //list of output fields for members NOT requiring shear reinforcement
 
-    var output = new List<string>();
+    var outputNoShear = new List<string>();
     //output field id
-    output.Add("Crdc");
-    output.Add("k");
-    output.Add("ro1");
-    output.Add("vmin");
-    output.Add("sigmacp");
-    output.Add("Vrdc1");
-    output.Add("Vrdc1SecondLine");
-    output.Add("Vrdc2");
-    output.Add("Vrdc");
+    outputNoShear.Add("Crdc");
+    outputNoShear.Add("fcd");
+    outputNoShear.Add("k");
+    outputNoShear.Add("ro1");
+    outputNoShear.Add("vmin");
+    outputNoShear.Add("sigmacp");
+    outputNoShear.Add("Vrdc1");
+    outputNoShear.Add("Vrdc1SecondLine");
+    outputNoShear.Add("Vrdc2");
+    outputNoShear.Add("Vrdc");
 }
+@{ 
+    //list of output fields for members REQUIRING shear reinforcement
+    var outputShear = new List<string>();
+    outputShear.Add("fywd");
+    outputShear.Add("z");
+    outputShear.Add("v1");
+    outputShear.Add("alfaCw");
+    outputShear.Add("theta");
+    outputShear.Add("cotTheta");
+    outputShear.Add("Vrdmax");
+    outputShear.Add("Vrds");
+}
+
 
 <br />
 <br />
@@ -43,7 +63,7 @@
     <br />
 
     <div class="row">
-        <div class="col-lg-3 text-left" id="inputData">
+        <div class="col-lg-4 text-left" id="inputData">
             <div class="panel-group">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -75,33 +95,58 @@
             </div>
         </div>
 
-        @*results*@
-        <div class="col-lg-9 text-left">
+        <div class="col-lg-8 text-left">
+            @*results - members NOT requiring shear reinforcement*@
             <div class="panel-group">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Members not requiring design shear reinforcement</h3>
                     </div>
                     <div class="panel-body">
-                        @foreach (var item in output)
+                        @foreach (var item in outputNoShear)
                         {
                             var bindName = item + "Result";
                             <div class="form-group">
                                 <p class="text-left" id=@item data-bind="text: @bindName"></p>
                             </div>
                         }
-                        <h3 class="form-horizontal" data-bind="visible: Ved() < Vrdc()">
-                            <span class="label label-success">Section does not require shear reinforcement</span>
-                        </h3>
-                        <h3 class="form-horizontal" data-bind="visible: Ved() >= Vrdc()">
-                            <span class="label label-warning">Section requires shear reinforcement</span>
-                        </h3>
+                        <div class="form-horizontal" data-bind="visible: Ved() <= Vrdc()">
+                            <p data-bind="text: VrdcSummary"></p>
+                            <h3><span class="label label-success">Section does not require shear reinforcement</span></h3>
+                        </div>
+                        <div class="form-horizontal" data-bind="visible: Ved() > Vrdc()">
+                            <p data-bind="text: VrdcSummary"></p>
+                            <h3><span class="label label-warning">Section requires shear reinforcement</span></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*results - members requiring shear reinforcement*@
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Members requiring design shear reinforcement</h3>
+                    </div>
+                    <div class="panel-body">
+                        @foreach (var item in outputShear)
+                        {
+                            var bindName = item + "Result";
+                            <div class="form-group">
+                                <p class="text-left" id=@item data-bind="text: @bindName"></p>
+                            </div>
+                        }
+                        <div class="form-horizontal" data-bind="visible: Ved() <= Vrds()">
+                            <p data-bind="text: VrdsSummary"></p>
+                            <h3><span class="label label-success">Section does not require shear reinforcement</span></h3>
+                        </div>
+                        <div class="form-horizontal" data-bind="visible: Ved() > Vrds()">
+                            <p data-bind="text: VrdsSummary"></p>
+                            <h3><span class="label label-warning">Section requires shear reinforcement</span></h3>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
     
 </div>
@@ -117,102 +162,226 @@
         var self = this;
 
         //input parameters
-        this.Ved = ko.observable(200);
-        this.fck = ko.observable(10);
-        this.d = ko.observable(2);
-        this.bw = ko.observable(3);
-        this.h = ko.observable(4);
-        this.Ned = ko.observable(5);
-        this.gammaC = ko.observable(1);
-        this.k1 = ko.observable(0.15);
-        this.Asl = ko.observable(1);
+        self.Ved = ko.observable(200000);
+        self.s = ko.observable(100);
+        self.Asw = ko.observable(200);
+        self.bw = ko.observable(300);
+        self.d = ko.observable(200);
+        self.h = ko.observable(300);
+        self.fywk = ko.observable(500);
+        self.gammaS = ko.observable(1.15);
+        self.fck = ko.observable(30);
+        self.gammaC = ko.observable(1.5);
+        self.Ned = ko.observable(5000);
+        self.k1 = ko.observable(0.15);
+        self.Asl = ko.observable(200);
+        self.cotThetaMax = ko.observable(2.5);
+        self.cotThetaMin = ko.observable(1);
 
-        this.Ved.subscribe(getData);
-        this.fck.subscribe(getData);
-        this.d.subscribe(getData);
-        this.bw.subscribe(getData);
-        this.h.subscribe(getData);
-        this.Ned.subscribe(getData);
-        this.gammaC.subscribe(getData);
-        this.k1.subscribe(getData);
-        this.Asl.subscribe(getData);
+        self.Ved.subscribe(getData);
+        self.bw.subscribe(getData);
+        self.s.subscribe(getData);
+        self.Asw.subscribe(getData);
+        self.d.subscribe(getData);
+        self.h.subscribe(getData);
+        self.fywk.subscribe(getData);
+        self.gammaS.subscribe(getData);
+        self.fck.subscribe(getData);
+        self.gammaC.subscribe(getData);
+        self.Ned.subscribe(getData);
+        self.k1.subscribe(getData);
+        self.Asl.subscribe(getData);
+        self.cotThetaMax.subscribe(getData);
+        self.cotThetaMin.subscribe(getData);
 
-        //output parameters
-        this.Crdc = ko.observable(1);
-        this.CrdcResult = ko.pureComputed(function () {
+        //output for members NOT requiring shear reinforcement
+        self.Crdc = ko.observable(1);
+        self.CrdcResult = ko.pureComputed(function () {
             var part1 = "C_{Rd,c}=";
             var part2 = "\\frac {0.18}{\\gamma_C}=";
             var part3 = "\\frac {0.18}{" + self.gammaC() + "}=" + self.Crdc();
             return "\\(" + part1 + part2 + part3 + "\\)";
         });
-        this.k = ko.observable(1);
-        this.kResult = ko.pureComputed(function () {
+        self.fcd = ko.observable(1);
+        self.fcdResult = ko.pureComputed(function () {
+            var part1 = "f_{cd}=";
+            var part2 = "\\frac {f_{ck}}{\\gamma_S}=";
+            var part3 = "\\frac {" + self.fck() + " }{" + self.gammaC() + "}=" + self.fcd() + "{N \\over mm^2}";
+            return "\\(" + part1 + part2 + part3 + "\\)";
+        });
+        self.k = ko.observable(1);
+        self.kResult = ko.pureComputed(function () {
             var part1 = "k=";
             var part2 = "1+ \\sqrt{\\frac{200}{d}}=";
             var part3 = "1+ \\sqrt{\\frac{200}{"+self.d()+"}}="+self.k()+"\\leq 2.0";
             return "\\(" + part1 + part2 + part3 + "\\)";
         });
-        this.ro1 = ko.observable(1);
-        this.ro1Result = ko.pureComputed(function () {
+        self.ro1 = ko.observable(1);
+        self.ro1Result = ko.pureComputed(function () {
             var part1 = "\\rho_I=";
             var part2 = "\\frac{A_{sl}}{b_w \\cdot d}=";
             var part3 = "\\frac{"+self.Asl()+"}{"+self.bw()+ "\\cdot "+self.d()+"}="+self.ro1()+"\\leq 0.02";
             return "\\(" + part1 + part2 + part3 + "\\)";
         });
-        this.vmin = ko.observable(1);
-        this.vminResult = ko.pureComputed(function () {
+        self.vmin = ko.observable(1);
+        self.vminResult = ko.pureComputed(function () {
             var part1 = "v_{min}=";
             var part2 = "0.035 \\cdot k^{3/2} \\cdot f_{ck}^{1/2}=";
             var part3 = "0.035 \\cdot" + self.k() + "^{3/2} \\cdot " + self.fck() + "^{1/2}=" + self.vmin();
             return "\\(" + part1 + part2 + part3 + "\\)";
         });
-        this.sigmacp = ko.observable(1);
-        this.sigmacpResult = ko.pureComputed(function () {
+        self.sigmacp = ko.observable(1);
+        self.sigmacpResult = ko.pureComputed(function () {
             var part1 = "\\sigma_{cp}=";
             var part2 = "\\frac{N_{Ed}}{b_w \\cdot h}=";
             var part3 = "\\frac{"+self.Ned()+"}{"+self.bw()+"\\cdot"+self.h()+"}="+self.sigmacp()+"{N \\over mm^2}";
             return "\\(" + part1 + part2 + part3 + "\\)";
         });
-        this.Vrdc1 = ko.observable(1);
-        this.Vrdc1Result = ko.pureComputed(function () {
+        self.Vrdc1 = ko.observable(1);
+        self.Vrdc1Result = ko.pureComputed(function () {
             var part1 = "V_{Rd,c1}=";
             var part2 = "[C_{Rd,c} \\cdot k \\cdot (100 \\cdot \\rho_I \\cdot f_{ck})^{1/3}+k_1 \\cdot \\sigma_{cp}] \\cdot b_w \\cdot d=...";
             var part3 = "";
             return "\\(" + part1 + part2+ part3 + "\\)";
         });
-        this.Vrdc1SecondLineResult = ko.pureComputed(function () {
+        self.Vrdc1SecondLineResult = ko.pureComputed(function () {
             var part1 = "";
             var part2 = "\\qquad \\quad \\!...=["+self.Crdc() +" \\cdot"+self.k()+" \\cdot (100 \\cdot "+self.ro1()+" \\cdot"+self.fck()+"^{1/3}+"+self.k1()+" \\cdot "+self.sigmacp()+"] \\cdot"+self.bw()+"\\cdot"+self.d()+"="+self.Vrdc1()+"N";
             var part3 = "";
             return " \\(" + part1 + part2 + part3 + "\\)";
         });
-        this.Vrdc2 = ko.observable(1);
-        this.Vrdc2Result = ko.pureComputed(function () {
+        self.Vrdc2 = ko.observable(1);
+        self.Vrdc2Result = ko.pureComputed(function () {
             var part1 = "V_{Rd,c2}=";
             var part2 = "(v_{min}+k_1 \\cdot \\sigma_{cp}) \\cdot b_w \\cdot d=";
             var part3 = "("+self.vmin()+"+"+self.k1()+" \\cdot"+self.sigmacp()+") \\cdot"+self.bw()+"\\cdot"+self.d()+" ="+self.Vrdc2()+"N";
             return "\\(" + part1 + part2 + part3 + "\\)";
         });
-        this.Vrdc = ko.observable(1);
-        this.VrdcResult = ko.pureComputed(function () {
+        self.Vrdc = ko.observable(1);
+        self.VrdcResult = ko.pureComputed(function () {
             var part1 = "V_{Rd,c}=";
             var part2 = "max(V_{Rd,c1};V_{Rd,c2})=";
             var part3 = "max(" + self.Vrdc1() + ";" + self.Vrdc2() + ")=" + self.Vrdc() + "N";
             return "\\(" + part1 + part2 + part3 + "\\)";
         });
-
+        self.VrdcSummary = ko.pureComputed(function () {
+            var part1 = "V_{Ed}=" + self.Ved() +"N";
+            var part2 = self.Ved() > self.Vrdc() ? ">" : "\\leq ";
+            var part3 = "V_{Rd,c}=" + self.Vrdc() + "N";
+            return "\\(" + part1 + part2 + part3 + "\\)";
+        });
         //this.vminResult.subscribe(getData);
 
-        this.CrdcResult.subscribe(refreshFormulas);
-        this.kResult.subscribe(refreshFormulas);
-        this.ro1Result.subscribe(refreshFormulas);
-        this.vminResult.subscribe(refreshFormulas);
-        this.sigmacpResult.subscribe(refreshFormulas);
-        this.Vrdc1Result.subscribe(refreshFormulas);
-        this.Vrdc2Result.subscribe(refreshFormulas);
-        this.VrdcResult.subscribe(refreshFormulas);
+        self.CrdcResult.subscribe(refreshFormulas);
+        self.fcd.subscribe(refreshFormulas);
+        self.kResult.subscribe(refreshFormulas);
+        self.ro1Result.subscribe(refreshFormulas);
+        self.vminResult.subscribe(refreshFormulas);
+        self.sigmacpResult.subscribe(refreshFormulas);
+        self.Vrdc1Result.subscribe(refreshFormulas);
+        self.Vrdc2Result.subscribe(refreshFormulas);
+        self.VrdcResult.subscribe(refreshFormulas);
+        self.VrdcSummary.subscribe(refreshFormulas);
         
-        
+        //output for members REQUIRING shear reinfrcement
+        self.fywd = ko.observable(1);
+        self.fywdResult = ko.pureComputed(function () {
+            var part1 = "f_{ywd}=";
+            var part2 = "\\frac {f_{ywk}}{\\gamma_S}=";
+            var part3 = "\\frac {"+self.fywk()+" }{" + self.gammaS() + "}=" + self.fywd()+"{N \\over mm^2}";
+            //return "\\(" + part1 + part2 + part3 + "\\)";
+            return convertToFormula(part1, part2, part3);
+        });
+        self.z = ko.observable(1);
+        self.zResult = ko.pureComputed(function () {
+            var part1 = "z=";
+            var part2 = "0.9 \\cdot d=";
+            var part3 = "0.9 \\cdot" + self.d()+"=" + self.z()+ "mm";
+            //return "\\(" + part1 + part2 + part3 + "\\)";
+            return convertToFormula(part1, part2, part3);
+        });
+        self.v1 = ko.observable(1);
+        self.v1Result = ko.pureComputed(function () {
+            var part1 = "v_1=";
+            var part2 = "0.6 \\cdot [1 - \\frac{f_{ck}}{250}]=";
+            var part3 = "0.6 \\cdot [1-\\frac{"+self.fck()+"}{250}]="+self.v1();
+            //return "\\(" + part1 + part2 + part3 + "\\)";
+            return convertToFormula(part1, part2, part3);
+        });
+        self.alfaCw = ko.observable(1);
+        self.alfaCwResult = ko.pureComputed(function () {
+            var part1 = "\\alpha_{cw}=";
+            var part2 = "";
+            var part3 = "";
+            if (self.sigmacp() <= 0.25 * self.fcd()) {
+                part2 = "(1+\\frac{\\sigma_{cp}}{f_{cd}})=";
+                part3 = "(1+\\frac{"+self.sigmacp()+"}{"+self.fcd()+"})="+self.alfaCw();
+            }
+            else if (0.25 * self.fcd() < self.sigmacp() && self.sigmacp() <= 0.5 * self.fcd()) {
+                part2 = self.sigmacp();
+            }
+            else
+            {
+                part2 = "2.5 \\cdot (1 - \\frac{\\sigma_{cp}}{f_{cd}})="
+                part3 = "2.5 \\cdot (1 - \\frac{" + self.sigmacp() + "}{" + self.fcd() + "})=" + self.alfaCw();
+            }
+            //var part2 = "0.6 \\cdot [1 - \\frac{f_{ck}}{250}]=";
+            //var part3 = "0.6 \\cdot [1-\\frac{" + self.fck() + "}{250}]=" + self.v1();
+            //return "\\(" + part1 + part2 + part3 + "\\)";
+            return convertToFormula(part1, part2, part3);
+        });
+        self.theta = ko.observable(1);
+        self.thetaResult = ko.pureComputed(function () {
+            var part1 = "\\theta=";
+            var part2 = "\\frac{1}{2} \\cdot \\arcsin \\frac{2 \\cdot V_{Ed}}{\\alpha_{cw} \\cdot b_w \\cdot z \\cdot v_1 \\cdot f_{cd}}=";
+            var part3 = "\\frac{1}{2} \\cdot \\arcsin \\frac{2 \\cdot"+self.Ved()+"}{"+self.alfaCw()+"\\cdot"+self.bw()+"\\cdot"+self.z()+"\\cdot"+self.v1()+ "\\cdot"+self.fcd()+"}="+self.theta();
+            //return "\\(" + part1 + part2 + part3 + "\\)";
+            return convertToFormula(part1, part2, part3);
+        });
+        self.cotTheta = ko.observable(1);
+        self.cotThetaResult = ko.pureComputed(function () {
+            var part1 = "";
+            var part2 = "\\cot \\theta_{min}="+self.cotThetaMin()+"\\leq \\cot \\theta="+self.cotTheta()+"\\leq \\cot \\theta_{max}="+self.cotThetaMax();
+            var part3 = "";
+            //return "\\(" + part1 + part2 + part3 + "\\)";
+            return convertToFormula(part1, part2, part3);
+        });
+        self.tanTheta = ko.observable(1);
+        self.Vrdmax = ko.observable(1);
+        self.VrdmaxResult = ko.pureComputed(function () {
+            var part1 = "V_{Rd,max}=";
+            var part2 = "\\frac{\\alpha_{cw} \\cdot b_w \\cdot z \\cdot v_1 \\cdot f_{cd}}{\\cot \\theta + \\tan \\theta}=";
+            var part3 = "\\frac{"+self.alfaCw()+"\\cdot"+self.bw()+"\\cdot"+self.z()+"\\cdot"+self.v1()+"\\cdot"+self.fcd()+"}{"+self.cotTheta()+"+"+self.tanTheta()+"}="+self.Vrdmax()+"N";
+            //return "\\(\\displaystyle " + part1 + part2 + part3 + "\\)";
+            return convertToFormula(part1, part2, part3);
+        });
+        self.Vrds = ko.observable(1);
+        self.VrdsResult = ko.pureComputed(function () {
+            var part1 = "V_{Rd,s}=";
+            var part2 = "\\frac{A_{sw}}{s} \\cdot z \\cdot f_{ywd} \\cdot \\cot \\theta=";
+            var part3 = "\\frac{"+self.Asw()+"}{"+self.s()+"} \\cdot"+ self.z()+"\\cdot"+self.fywd()+"\\cdot"+self.cotTheta()+"="+self.Vrds()+"N";
+            //return "\\(" + part1 + part2 + part3 + "\\)";
+            return convertToFormula(part1, part2, part3);
+        });
+        self.VrdsSummary = ko.pureComputed(function () {
+            var part1 = "V_{Ed}=" + self.Ved() + "N";
+            var part2 = self.Ved() > self.Vrds() ? ">" : "\\leq ";
+            var part3 = "V_{Rd,s}=" + self.Vrds() + "N";
+            return "\\(" + part1 + part2 + part3 + "\\)";
+        });
+
+        self.zResult.subscribe(refreshFormulas);
+        self.v1Result.subscribe(refreshFormulas);
+        self.alfaCwResult.subscribe(refreshFormulas);
+        self.thetaResult.subscribe(refreshFormulas);
+        self.cotThetaResult.subscribe(refreshFormulas);
+        self.VrdmaxResult.subscribe(refreshFormulas);
+        self.VrdsResult.subscribe(refreshFormulas);
+        self.VrdsSummary.subscribe(refreshFormulas);
+
+
+
+
 
         function getData(newValue) {
             var inputData = {
@@ -225,6 +394,12 @@
                 Asl: self.Asl(),
                 h: self.h(),
                 k1: self.k1(),
+                cotThetaMax: self.cotThetaMax(),
+                cotThetaMin: self.cotThetaMin(),
+                fywk: self.fywk(),
+                gammaS: self.gammaS(),
+                Asw: self.Asw(),
+                s: self.s(),
             };
             $.post("/api/ShearReinforcementApi", inputData, function (returnedData) {
                 self.Vrdc1(returnedData.Vrdc1);
@@ -233,9 +408,20 @@
                 self.Crdc(returnedData.Crdc);
                 self.sigmacp(returnedData.sigmacp);
                 self.vmin(returnedData.vmin);
-                //self.fcd(returnedData.fcd);
+                self.fcd(returnedData.fcd);
                 self.ro1(returnedData.ro1);
                 self.k(returnedData.k);
+                self.fcd(returnedData.fcd);
+                
+                self.v1(returnedData.v1);
+                self.z(returnedData.z);
+                self.alfaCw(returnedData.alfaCw);
+                self.fywd(returnedData.fywd);
+                self.cotTheta(returnedData.cotTheta);
+                self.tanTheta(returnedData.tanTheta);
+                self.theta(returnedData.theta);
+                self.Vrdmax(returnedData.Vrdmax);
+                self.Vrds(returnedData.Vrds);
                 //console.log(returnedData);
                 //alert("Ok");
                 //$('#test').text(returnedData.k1);
@@ -246,15 +432,27 @@
         function refreshFormulas(newValue) {
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         };
+
+        function convertToFormula()
+        {
+            var input = "";
+            for (var i = 0; i < arguments.length; i++) {
+                input = input + arguments[i];
+                console.log(input);
+            }
+            return "\\(\\displaystyle \\ " + input + "\\)"
+        }
     }
 
 
     $(document).ready(function () {
-        ko.applyBindings(new inputDataViewModel());
+        var inputVM = new inputDataViewModel();
+        ko.applyBindings(inputVM);
+        inputVM.fck(40);
 
-        $('#inputData input').click(function () {
-            $(this).select();
-        });
+        //$('#inputData input').click(function () {
+        //    $(this).select();
+        //});
     });
 </script>
 
