@@ -275,7 +275,7 @@
             //return "\\(" + part1 + part2 + part3 + "\\)";
         });
         self.VrdcSummary = ko.pureComputed(function () {
-            var part1 = "V_{Ed}=" + self.Ved() +"N";
+            var part1 = "V_{Ed}=" + self.Ved().formatNumber() +"N";
             var part2 = self.Ved() > self.Vrdc() ? ">" : "\\leq ";
             var part3 = "V_{Rd,c}=" + self.Vrdc() + "N";
             return convertToFormula(part1, part2, part3);
@@ -461,13 +461,18 @@
         ko.applyBindings(inputVM);
         inputVM.fck(40);
         
-        $(window).scroll(function () {
-            $("#inputData").stop().animate({ "marginTop": ($(window).scrollTop()) + "px" }, "slow");
-        });
+        //$(window).scroll(function () {
+        //    $("#inputData").stop().animate({ "marginTop": ($(window).scrollTop()) + "px" }, "slow");
+        //});
 
         //$('#inputData input').click(function () {
         //    $(this).select();
         //});
     });
+
+    Number.prototype.formatNumber = function () {
+        var number = this;
+        return number + ".0001";
+    }
 </script>
 
