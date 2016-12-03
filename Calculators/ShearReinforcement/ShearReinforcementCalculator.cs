@@ -64,8 +64,8 @@ namespace Calculators.ShearReinforcement
             var sigmacp = inputData.Ned / (inputData.h * inputData.bw);
             var Crdc = 0.18 / inputData.gammaC;
             var vmin = 0.035 * Math.Pow(k, 3 / 2) * Math.Sqrt(inputData.fck);
-            var VRdc1 = (Crdc * k * Math.Pow(100 * ro1 * inputData.fck, 1 / 3) + k1 * sigmacp) * inputData.bw * inputData.d;
-            var VRdc2 = (vmin + k1 * sigmacp) * inputData.bw * inputData.d;
+            var VRdc2 = (Crdc * k * Math.Pow(100 * ro1 * inputData.fck, 1 / 3) + k1 * sigmacp) * inputData.bw * inputData.d;
+            var VRdc1 = (vmin + k1 * sigmacp) * inputData.bw * inputData.d;
             var Vrdc = Math.Max(VRdc1, VRdc2);
             var fcd = inputData.fck / inputData.gammaC;
 

@@ -21,8 +21,8 @@
     input.Add("\\(N_{Ed}\\);Ned;\\(N\\)");          //Ned
     input.Add("\\(k_1\\);k1;");                     //k
     input.Add("\\(A_{sl}\\);Asl;\\(mm^2\\)");          //Asl
-    input.Add("\\(\\cot \\theta_{min}\\);cotThetaMin;"); //cotThetaMax
-    input.Add("\\(\\cot \\theta_{max}\\);cotThetaMax;"); //cotThetaMax
+    //input.Add("\\(\\cot \\theta_{min}\\);cotThetaMin;"); //cotThetaMax
+    //input.Add("\\(\\cot \\theta_{max}\\);cotThetaMax;"); //cotThetaMax
 }
 @{
     //list of output fields for members NOT requiring shear reinforcement
@@ -62,8 +62,8 @@
     <h2>Shear reinforcement calculator</h2>
     <br />
 
-    <div class="row">
-        <div class="col-lg-4 text-left" id="inputData">
+    <div class="row" id="row">
+        <div class="col-lg-4 text-left" id="inputData" style="cursor:ns-resize">
             <div class="panel-group">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -239,7 +239,7 @@
         self.sigmacpResult = ko.pureComputed(function () {
             var part1 = "\\sigma_{cp}=";
             var part2 = "\\frac{N_{Ed}}{b_w \\cdot h}=";
-            var part3 = "\\frac{"+self.Ned()+"}{"+self.bw()+"\\cdot"+self.h()+"}="+self.sigmacp()+"{N \\over mm^2}";
+            var part3 = "\\frac{"+formatNumber(self.Ned())+"}{"+self.bw()+"\\cdot"+self.h()+"}="+self.sigmacp()+"{N \\over mm^2}";
             return convertToFormula(part1, part2, part3);
             //return "\\(" + part1 + part2 + part3 + "\\)";
         });
@@ -253,7 +253,7 @@
         });
         self.Vrdc1SecondLineResult = ko.pureComputed(function () {
             var part1 = "";
-            var part2 = "\\qquad \\quad \\!...=["+self.Crdc() +" \\cdot"+self.k()+" \\cdot (100 \\cdot "+self.ro1()+" \\cdot"+self.fck()+"^{1/3}+"+self.k1()+" \\cdot "+self.sigmacp()+"] \\cdot"+self.bw()+"\\cdot"+self.d()+"="+self.Vrdc1()+"N";
+            var part2 = "\\qquad \\quad \\!...=["+self.Crdc() +" \\cdot"+self.k()+" \\cdot (100 \\cdot "+self.ro1()+" \\cdot"+self.fck()+"^{1/3}+"+self.k1()+" \\cdot "+self.sigmacp()+"] \\cdot"+self.bw()+"\\cdot"+self.d()+"="+formatNumber(self.Vrdc1())+"N";
             var part3 = "";
             return convertToFormula(part1, part2, part3);
             //return " \\(" + part1 + part2 + part3 + "\\)";
@@ -262,7 +262,7 @@
         self.Vrdc2Result = ko.pureComputed(function () {
             var part1 = "V_{Rd,c2}=";
             var part2 = "(v_{min}+k_1 \\cdot \\sigma_{cp}) \\cdot b_w \\cdot d=";
-            var part3 = "("+self.vmin()+"+"+self.k1()+" \\cdot"+self.sigmacp()+") \\cdot"+self.bw()+"\\cdot"+self.d()+" ="+self.Vrdc2()+"N";
+            var part3 = "("+self.vmin()+"+"+self.k1()+" \\cdot"+self.sigmacp()+") \\cdot"+self.bw()+"\\cdot"+self.d()+" ="+formatNumber(self.Vrdc2())+"N";
             return convertToFormula(part1, part2, part3);
             //return "\\(" + part1 + part2 + part3 + "\\)";
         });
@@ -270,14 +270,16 @@
         self.VrdcResult = ko.pureComputed(function () {
             var part1 = "V_{Rd,c}=";
             var part2 = "max(V_{Rd,c1};V_{Rd,c2})=";
-            var part3 = "max(" + self.Vrdc1() + ";" + self.Vrdc2() + ")=" + self.Vrdc() + "N";
+            var part3 = "max(" + formatNumber(self.Vrdc1()) + ";" + formatNumber(self.Vrdc2()) + ")=" + formatNumber(self.Vrdc()) + "N";
             return convertToFormula(part1, part2, part3);
             //return "\\(" + part1 + part2 + part3 + "\\)";
         });
         self.VrdcSummary = ko.pureComputed(function () {
-            var part1 = "V_{Ed}=" + self.Ved().formatNumber() +"N";
+            //alert(formatNumber(self.Ved()));
+            var ved = formatNumber(self.Ved());//;
+            var part1 = "V_{Ed}=" + ved +"N";
             var part2 = self.Ved() > self.Vrdc() ? ">" : "\\leq ";
-            var part3 = "V_{Rd,c}=" + self.Vrdc() + "N";
+            var part3 = "V_{Rd,c}=" + formatNumber(self.Vrdc()) + "N";
             return convertToFormula(part1, part2, part3);
             //return "\\(" + part1 + part2 + part3 + "\\)";
         });
@@ -294,6 +296,7 @@
         self.VrdcResult.subscribe(refreshFormulas);
         self.VrdcSummary.subscribe(refreshFormulas);
         
+
         //output for members REQUIRING shear reinfrcement
         self.fywd = ko.observable(1);
         self.fywdResult = ko.pureComputed(function () {
@@ -345,7 +348,7 @@
         self.thetaResult = ko.pureComputed(function () {
             var part1 = "\\theta=";
             var part2 = "\\frac{1}{2} \\cdot \\arcsin \\frac{2 \\cdot V_{Ed}}{\\alpha_{cw} \\cdot b_w \\cdot z \\cdot v_1 \\cdot f_{cd}}=";
-            var part3 = "\\frac{1}{2} \\cdot \\arcsin \\frac{2 \\cdot"+self.Ved()+"}{"+self.alfaCw()+"\\cdot"+self.bw()+"\\cdot"+self.z()+"\\cdot"+self.v1()+ "\\cdot"+self.fcd()+"}="+self.theta();
+            var part3 = "\\frac{1}{2} \\cdot \\arcsin \\frac{2 \\cdot"+formatNumber(self.Ved())+"}{"+self.alfaCw()+"\\cdot"+self.bw()+"\\cdot"+self.z()+"\\cdot"+self.v1()+ "\\cdot"+self.fcd()+"}="+self.theta();
             //return "\\(" + part1 + part2 + part3 + "\\)";
             return convertToFormula(part1, part2, part3);
         });
@@ -362,7 +365,7 @@
         self.VrdmaxResult = ko.pureComputed(function () {
             var part1 = "V_{Rd,max}=";
             var part2 = "\\frac{\\alpha_{cw} \\cdot b_w \\cdot z \\cdot v_1 \\cdot f_{cd}}{\\cot \\theta + \\tan \\theta}=";
-            var part3 = "\\frac{"+self.alfaCw()+"\\cdot"+self.bw()+"\\cdot"+self.z()+"\\cdot"+self.v1()+"\\cdot"+self.fcd()+"}{"+self.cotTheta()+"+"+self.tanTheta()+"}="+self.Vrdmax()+"N";
+            var part3 = "\\frac{"+self.alfaCw()+"\\cdot"+self.bw()+"\\cdot"+self.z()+"\\cdot"+self.v1()+"\\cdot"+self.fcd()+"}{"+self.cotTheta()+"+"+self.tanTheta()+"}="+formatNumber(self.Vrdmax())+"N";
             //return "\\(\\displaystyle " + part1 + part2 + part3 + "\\)";
             return convertToFormula(part1, part2, part3);
         });
@@ -370,14 +373,14 @@
         self.VrdsResult = ko.pureComputed(function () {
             var part1 = "V_{Rd,s}=";
             var part2 = "\\frac{A_{sw}}{s} \\cdot z \\cdot f_{ywd} \\cdot \\cot \\theta=";
-            var part3 = "\\frac{"+self.Asw()+"}{"+self.s()+"} \\cdot"+ self.z()+"\\cdot"+self.fywd()+"\\cdot"+self.cotTheta()+"="+self.Vrds()+"N";
+            var part3 = "\\frac{"+self.Asw()+"}{"+self.s()+"} \\cdot"+ self.z()+"\\cdot"+self.fywd()+"\\cdot"+self.cotTheta()+"="+formatNumber(self.Vrds())+"N";
             //return "\\(" + part1 + part2 + part3 + "\\)";
             return convertToFormula(part1, part2, part3);
         });
         self.VrdsSummary = ko.pureComputed(function () {
-            var part1 = "V_{Ed}=" + self.Ved() + "N";
+            var part1 = "V_{Ed}=" + formatNumber(self.Ved()) + "N";
             var part2 = self.Ved() > self.Vrds() ? ">" : "\\leq ";
-            var part3 = "V_{Rd,s}=" + self.Vrds() + "N";
+            var part3 = "V_{Rd,s}=" + formatNumber(self.Vrds()) + "N";
             return "\\(" + part1 + part2 + part3 + "\\)";
         });
 
@@ -424,6 +427,8 @@
                 self.k(returnedData.k);
                 self.fcd(returnedData.fcd);
                 
+                self.VrdcSummary.call();
+
                 self.v1(returnedData.v1);
                 self.z(returnedData.z);
                 self.alfaCw(returnedData.alfaCw);
@@ -465,14 +470,54 @@
         //    $("#inputData").stop().animate({ "marginTop": ($(window).scrollTop()) + "px" }, "slow");
         //});
 
+        $('#inputData').draggable({ axis: "y",containment:"#row" });
+
         //$('#inputData input').click(function () {
         //    $(this).select();
         //});
     });
+    function formatNumber(inputNumber) {
+        var number = inputNumber.toString();
+        var separator = "\\;"//space from latex
+        
+        var decimalPart;
+        var naturalPart;
+        var dotPosition = number.indexOf('.');
+        if (dotPosition != -1)
+        {
+            decimalPart = number.substr(dotPosition);
+            naturalPart = number.substr(0, dotPosition);
+        }
+        else
+        {
+            decimalPart = "";
+            naturalPart = number;
+        }
+        var startNumber = naturalPart.length % 3;
 
-    Number.prototype.formatNumber = function () {
-        var number = this;
-        return number + ".0001";
+        var result = "";
+
+        for (var i = 0; i < startNumber; i++)
+        {
+            result = result + naturalPart[i];
+        }
+        if (startNumber != 0) {
+            result = result + separator;
+        }
+
+        var currentIndex = 0;
+        for (var i = startNumber; i < naturalPart.length; i++)
+        {
+            var currentChar = naturalPart[i];
+            result = result + currentChar;
+            currentIndex++;
+            if (currentIndex == 3 && i != naturalPart.length - 1)
+            {
+                result = result + separator;
+                currentIndex = 0;
+            }
+        }
+        return result.trim() +decimalPart;
     }
 </script>
 
