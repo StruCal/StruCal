@@ -90,6 +90,8 @@ namespace Calculators.ShearReinforcement
                 changeSection = false;
                 tanTheta = Math.Tan(theta);
                 cotTheta = Math.Pow(tanTheta, -1);
+                cotTheta = cotTheta >= inputData.cotThetaMax ? inputData.cotThetaMax : cotTheta;
+                tanTheta = Math.Pow(cotTheta, -1);
                 Vrdmax = alfaCw * inputData.bw * z * v1 * fcd / (tanTheta + cotTheta);
                 Vrds = (inputData.Asw / inputData.s) * z * fywd * cotTheta;
             }
