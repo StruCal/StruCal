@@ -44,13 +44,14 @@ namespace Calculators.ShearReinforcement
         public double theta { get; set; }
         public double fywd { get; set; }
         public double cotTheta { get; set; }
+        public double cotThetaCalcs { get; set; }
         public double tanTheta { get; set; }
         public double z { get; set; }
         public double v1 { get; set; }
         public double alfaCw { get; set; }
         public double Vrds { get; set; }
         public double Vrdmax { get; set; }
-        public bool ChangeSection { get; set; }
+        public bool NoSolution { get; set; }
     }
 
     public class ShearReinforcementCalculator
@@ -75,25 +76,26 @@ namespace Calculators.ShearReinforcement
             var alfaCw = getAlfaCw(fcd, sigmacp);
             var fywd = inputData.fywk / inputData.gammaS;
             var theta = 0.5 * Math.Asin((2 * inputData.Ved) / (alfaCw * inputData.bw * z * v1 * fcd));
-            var changeSection = false;
+            var noSolution = false;
             var cotTheta = 0.0;
+            var cotThetaCalcs = 0.0;
             var tanTheta = 0.0;
             var Vrdmax = 0.0;
             var Vrds = 0.0;
             if (theta.IsNaN())
             {
                 //concrete strut fails
-                changeSection = true;
+                noSolution = true;
             }
             else
             {
-                changeSection = false;
-                tanTheta = Math.Tan(theta);
-                cotTheta = Math.Pow(tanTheta, -1);
-                cotTheta = cotTheta >= inputData.cotThetaMax ? inputData.cotThetaMax : cotTheta;
-                tanTheta = Math.Pow(cotTheta, -1);
-                Vrdmax = alfaCw * inputData.bw * z * v1 * fcd / (tanTheta + cotTheta);
-                Vrds = (inputData.Asw / inputData.s) * z * fywd * cotTheta;
+                noSolution = false;
+                
+                cotTheta = Math.Pow(Math.Tan(theta), -1);
+                cotThetaCalcs = cotTheta >= inputData.cotThetaMax ? inputData.cotThetaMax : cotTheta;
+                tanTheta = Math.Pow(cotThetaCalcs, -1);
+                Vrdmax = alfaCw * inputData.bw * z * v1 * fcd / (tanTheta + cotThetaCalcs);
+                Vrds = (inputData.Asw / inputData.s) * z * fywd * cotThetaCalcs;
             }
 
             var shearReinforcement = new ShearReinforcementOutput
@@ -113,8 +115,9 @@ namespace Calculators.ShearReinforcement
                 alfaCw=alfaCw.Round(),
                 fywd= fywd.Round(),
                 cotTheta= cotTheta.Round(),
+                cotThetaCalcs = cotThetaCalcs.Round(),
                 tanTheta=tanTheta.Round(),
-                ChangeSection= changeSection,
+                NoSolution= noSolution,
                 theta= theta.Round(),
                 Vrdmax= Vrdmax.Round(),
                 Vrds= Vrds.Round(),
