@@ -21,8 +21,8 @@
     input.Add("\\(N_{Ed}\\);Ned;\\(N\\)");          //Ned
     input.Add("\\(k_1\\);k1;");                     //k
     input.Add("\\(A_{sl}\\);Asl;\\(mm^2\\)");          //Asl
-    //input.Add("\\(\\cot \\theta_{min}\\);cotThetaMin;"); //cotThetaMax
-    //input.Add("\\(\\cot \\theta_{max}\\);cotThetaMax;"); //cotThetaMax
+                                                       //input.Add("\\(\\cot \\theta_{min}\\);cotThetaMin;"); //cotThetaMax
+                                                       //input.Add("\\(\\cot \\theta_{max}\\);cotThetaMax;"); //cotThetaMax
 }
 @{
     //list of output fields for members NOT requiring shear reinforcement
@@ -40,7 +40,7 @@
     outputNoShear.Add("Vrdc2");
     outputNoShear.Add("Vrdc");
 }
-@{ 
+@{
     //list of output fields for members REQUIRING shear reinforcement
     //name of knockout field || determines if hide if no results
     var outputShear = new List<string>();
@@ -163,17 +163,111 @@
             </div>
         </div>
     </div>
-    
+
 </div>
+
+@*modal window to select reinforcement*@
+
+@{
+    var barDiameters = new List<int> { 4, 8, 10, 12, 14, 16, 20, 25, 32, 40 };
+    var maxNumber = 12;
 }
+
+<style>
+    th.centered, td.centered{
+        text-align:center;
+        vertical-align:central;
+        position:center;
+    }
+    th, td {
+        vertical-align: bottom;
+    }
+</style>
+
+<div class="modal fade" id="reinfModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <br />
+                <button type="button" class="close" data-dissmiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Reinforcement</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-condensed"
+                    <thead>
+                        <tr>
+                            <th rowspan="3">d [mm]</th>
+                            <th class="centered" colspan="@maxNumber">Area [mm<sup>2</sup>]</th>
+                        </tr>
+                        <tr>
+                            <th class="centered" colspan="@maxNumber">Number of bars</th>
+                        </tr>
+                        <tr>
+                            @for (int i = 1; i <= maxNumber; i++)
+                            {
+                                <th class="centered" >@i</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var diameter in barDiameters)
+                        {
+                            <tr>
+                                @for (int i = 0; i <= maxNumber; i++)
+                                {
+                                    if (i == 0)
+                                    {
+                                        <td class="centered">@diameter</td>
+                                    }
+                                    else
+                                    {
+                                        var area = Math.Round(i * Math.PI * diameter * diameter / 4, 2);
+                                        <td class="centered">
+                                            <a data-toggle="tooltip" data-placement="bottom" title="@area">
+                                                <button class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
+                                            </a>
+                                        </td>
+                                    }
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dissmiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save and close</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    $("#reinfModal table button").click(function () {
+        $('#reinfModal table button').each(function () {
+            if ($(this).hasClass('btn-success'))
+            {
+                $(this).removeClass("btn-success");
+                $(this).addClass("btn-default");
+                $(this).children('span').removeClass('glyphicon glyphicon-remove');
+                $(this).children('span').addClass('glyphicon glyphicon-info-sign');
+            }
+        });
+        $(this).removeClass("btn-default");
+        $(this).addClass("btn-success");
+        $(this).children('span').removeClass('glyphicon glyphicon-info-sign');
+        $(this).children('span').addClass('glyphicon glyphicon-remove');
+    });
+</script>
 
 
 <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>
 <script>
 
-    var inputDataViewModel = function()
-    {
+    var inputDataViewModel = function () {
         var self = this;
 
         //input parameters
@@ -230,7 +324,7 @@
         self.kResult = ko.pureComputed(function () {
             var part1 = "k=";
             var part2 = "1+ \\sqrt{\\frac{200}{d}}=";
-            var part3 = "1+ \\sqrt{\\frac{200}{"+self.d()+"}}="+self.k()+"\\leq 2.0";
+            var part3 = "1+ \\sqrt{\\frac{200}{" + self.d() + "}}=" + self.k() + "\\leq 2.0";
             return convertToFormula(part1, part2, part3);
             //return "\\(" + part1 + part2 + part3 + "\\)";
         });
@@ -238,7 +332,7 @@
         self.ro1Result = ko.pureComputed(function () {
             var part1 = "\\rho_I=";
             var part2 = "\\frac{A_{sl}}{b_w \\cdot d}=";
-            var part3 = "\\frac{"+self.Asl()+"}{"+self.bw()+ "\\cdot "+self.d()+"}="+self.ro1()+"\\leq 0.02";
+            var part3 = "\\frac{" + self.Asl() + "}{" + self.bw() + "\\cdot " + self.d() + "}=" + self.ro1() + "\\leq 0.02";
             return convertToFormula(part1, part2, part3);
             //return "\\(" + part1 + part2 + part3 + "\\)";
         });
@@ -254,7 +348,7 @@
         self.sigmacpResult = ko.pureComputed(function () {
             var part1 = "\\sigma_{cp}=";
             var part2 = "\\frac{N_{Ed}}{b_w \\cdot h}=";
-            var part3 = "\\frac{"+formatNumber(self.Ned())+"}{"+self.bw()+"\\cdot"+self.h()+"}="+self.sigmacp()+"{N \\over mm^2}";
+            var part3 = "\\frac{" + formatNumber(self.Ned()) + "}{" + self.bw() + "\\cdot" + self.h() + "}=" + self.sigmacp() + "{N \\over mm^2}";
             return convertToFormula(part1, part2, part3);
             //return "\\(" + part1 + part2 + part3 + "\\)";
         });
@@ -268,7 +362,7 @@
         });
         self.Vrdc1SecondLineResult = ko.pureComputed(function () {
             var part1 = "";
-            var part2 = "\\qquad \\quad \\!...=["+self.Crdc() +" \\cdot"+self.k()+" \\cdot (100 \\cdot "+self.ro1()+" \\cdot"+self.fck()+"^{1/3}+"+self.k1()+" \\cdot "+self.sigmacp()+"] \\cdot"+self.bw()+"\\cdot"+self.d()+"="+formatNumber(self.Vrdc1())+"N";
+            var part2 = "\\qquad \\quad \\!...=[" + self.Crdc() + " \\cdot" + self.k() + " \\cdot (100 \\cdot " + self.ro1() + " \\cdot" + self.fck() + "^{1/3}+" + self.k1() + " \\cdot " + self.sigmacp() + "] \\cdot" + self.bw() + "\\cdot" + self.d() + "=" + formatNumber(self.Vrdc1()) + "N";
             var part3 = "";
             return convertToFormula(part1, part2, part3);
             //return " \\(" + part1 + part2 + part3 + "\\)";
@@ -277,7 +371,7 @@
         self.Vrdc2Result = ko.pureComputed(function () {
             var part1 = "V_{Rd,c2}=";
             var part2 = "(v_{min}+k_1 \\cdot \\sigma_{cp}) \\cdot b_w \\cdot d=";
-            var part3 = "("+self.vmin()+"+"+self.k1()+" \\cdot"+self.sigmacp()+") \\cdot"+self.bw()+"\\cdot"+self.d()+" ="+formatNumber(self.Vrdc2())+"N";
+            var part3 = "(" + self.vmin() + "+" + self.k1() + " \\cdot" + self.sigmacp() + ") \\cdot" + self.bw() + "\\cdot" + self.d() + " =" + formatNumber(self.Vrdc2()) + "N";
             return convertToFormula(part1, part2, part3);
             //return "\\(" + part1 + part2 + part3 + "\\)";
         });
@@ -292,7 +386,7 @@
         self.VrdcSummary = ko.pureComputed(function () {
             //alert(formatNumber(self.Ved()));
             var ved = formatNumber(self.Ved());//;
-            var part1 = "V_{Ed}=" + ved +"N";
+            var part1 = "V_{Ed}=" + ved + "N";
             var part2 = self.Ved() > self.Vrdc() ? ">" : "\\leq ";
             var part3 = "V_{Rd,c}=" + formatNumber(self.Vrdc()) + "N";
             return convertToFormula(part1, part2, part3);
@@ -310,14 +404,14 @@
         self.Vrdc2Result.subscribe(refreshFormulas);
         self.VrdcResult.subscribe(refreshFormulas);
         self.VrdcSummary.subscribe(refreshFormulas);
-        
+
 
         //output for members REQUIRING shear reinfrcement
         self.fywd = ko.observable(1);
         self.fywdResult = ko.pureComputed(function () {
             var part1 = "f_{ywd}=";
             var part2 = "\\frac {f_{ywk}}{\\gamma_S}=";
-            var part3 = "\\frac {"+self.fywk()+" }{" + self.gammaS() + "}=" + self.fywd()+"{N \\over mm^2}";
+            var part3 = "\\frac {" + self.fywk() + " }{" + self.gammaS() + "}=" + self.fywd() + "{N \\over mm^2}";
             //return "\\(" + part1 + part2 + part3 + "\\)";
             return convertToFormula(part1, part2, part3);
         });
@@ -325,7 +419,7 @@
         self.zResult = ko.pureComputed(function () {
             var part1 = "z=";
             var part2 = "0.9 \\cdot d=";
-            var part3 = "0.9 \\cdot" + self.d()+"=" + self.z()+ "mm";
+            var part3 = "0.9 \\cdot" + self.d() + "=" + self.z() + "mm";
             //return "\\(" + part1 + part2 + part3 + "\\)";
             return convertToFormula(part1, part2, part3);
         });
@@ -333,7 +427,7 @@
         self.v1Result = ko.pureComputed(function () {
             var part1 = "v_1=";
             var part2 = "0.6 \\cdot [1 - \\frac{f_{ck}}{250}]=";
-            var part3 = "0.6 \\cdot [1-\\frac{"+self.fck()+"}{250}]="+self.v1();
+            var part3 = "0.6 \\cdot [1-\\frac{" + self.fck() + "}{250}]=" + self.v1();
             //return "\\(" + part1 + part2 + part3 + "\\)";
             return convertToFormula(part1, part2, part3);
         });
@@ -344,13 +438,12 @@
             var part3 = "";
             if (self.sigmacp() <= 0.25 * self.fcd()) {
                 part2 = "(1+\\frac{\\sigma_{cp}}{f_{cd}})=";
-                part3 = "(1+\\frac{"+self.sigmacp()+"}{"+self.fcd()+"})="+self.alfaCw();
+                part3 = "(1+\\frac{" + self.sigmacp() + "}{" + self.fcd() + "})=" + self.alfaCw();
             }
             else if (0.25 * self.fcd() < self.sigmacp() && self.sigmacp() <= 0.5 * self.fcd()) {
                 part2 = self.sigmacp();
             }
-            else
-            {
+            else {
                 part2 = "2.5 \\cdot (1 - \\frac{\\sigma_{cp}}{f_{cd}})="
                 part3 = "2.5 \\cdot (1 - \\frac{" + self.sigmacp() + "}{" + self.fcd() + "})=" + self.alfaCw();
             }
@@ -363,14 +456,14 @@
         self.thetaResult = ko.pureComputed(function () {
             var part1 = "\\theta=";
             var part2 = "\\frac{1}{2} \\cdot \\arcsin \\frac{2 \\cdot V_{Ed}}{\\alpha_{cw} \\cdot b_w \\cdot z \\cdot v_1 \\cdot f_{cd}}=";
-            var part3 = "\\frac{1}{2} \\cdot \\arcsin \\frac{2 \\cdot"+formatNumber(self.Ved())+"}{"+self.alfaCw()+"\\cdot"+self.bw()+"\\cdot"+self.z()+"\\cdot"+self.v1()+ "\\cdot"+self.fcd()+"}="+self.theta();
+            var part3 = "\\frac{1}{2} \\cdot \\arcsin \\frac{2 \\cdot" + formatNumber(self.Ved()) + "}{" + self.alfaCw() + "\\cdot" + self.bw() + "\\cdot" + self.z() + "\\cdot" + self.v1() + "\\cdot" + self.fcd() + "}=" + self.theta();
             //return "\\(" + part1 + part2 + part3 + "\\)";
             return convertToFormula(part1, part2, part3);
         });
         self.cotTheta = ko.observable(1);
         self.cotThetaResult = ko.pureComputed(function () {
             var part1 = "";
-            var part2 = "\\cot \\theta_{min}="+self.cotThetaMin()+"\\leq \\cot \\theta="+self.cotTheta()+"\\leq \\cot \\theta_{max}="+self.cotThetaMax();
+            var part2 = "\\cot \\theta_{min}=" + self.cotThetaMin() + "\\leq \\cot \\theta=" + self.cotTheta() + "\\leq \\cot \\theta_{max}=" + self.cotThetaMax();
             var part3 = "";
             //return "\\(" + part1 + part2 + part3 + "\\)";
             return convertToFormula(part1, part2, part3);
@@ -388,7 +481,7 @@
         self.VrdmaxResult = ko.pureComputed(function () {
             var part1 = "V_{Rd,max}=";
             var part2 = "\\frac{\\alpha_{cw} \\cdot b_w \\cdot z \\cdot v_1 \\cdot f_{cd}}{\\cot \\theta + \\tan \\theta}=";
-            var part3 = "\\frac{"+self.alfaCw()+"\\cdot"+self.bw()+"\\cdot"+self.z()+"\\cdot"+self.v1()+"\\cdot"+self.fcd()+"}{"+self.cotTheta()+"+"+self.tanTheta()+"}="+formatNumber(self.Vrdmax())+"N";
+            var part3 = "\\frac{" + self.alfaCw() + "\\cdot" + self.bw() + "\\cdot" + self.z() + "\\cdot" + self.v1() + "\\cdot" + self.fcd() + "}{" + self.cotTheta() + "+" + self.tanTheta() + "}=" + formatNumber(self.Vrdmax()) + "N";
             //return "\\(\\displaystyle " + part1 + part2 + part3 + "\\)";
             return convertToFormula(part1, part2, part3);
         });
@@ -396,7 +489,7 @@
         self.VrdsResult = ko.pureComputed(function () {
             var part1 = "V_{Rd,s}=";
             var part2 = "\\frac{A_{sw}}{s} \\cdot z \\cdot f_{ywd} \\cdot \\cot \\theta=";
-            var part3 = "\\frac{"+self.Asw()+"}{"+self.s()+"} \\cdot"+ self.z()+"\\cdot"+self.fywd()+"\\cdot"+self.cotTheta()+"="+formatNumber(self.Vrds())+"N";
+            var part3 = "\\frac{" + self.Asw() + "}{" + self.s() + "} \\cdot" + self.z() + "\\cdot" + self.fywd() + "\\cdot" + self.cotTheta() + "=" + formatNumber(self.Vrds()) + "N";
             //return "\\(" + part1 + part2 + part3 + "\\)";
             return convertToFormula(part1, part2, part3);
         });
@@ -449,7 +542,7 @@
                 self.ro1(returnedData.ro1);
                 self.k(returnedData.k);
                 self.fcd(returnedData.fcd);
-                
+
                 self.VrdcSummary.call();
 
                 self.v1(returnedData.v1);
@@ -474,8 +567,7 @@
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         };
 
-        function convertToFormula()
-        {
+        function convertToFormula() {
             var input = "";
             for (var i = 0; i < arguments.length; i++) {
                 input = input + arguments[i];
@@ -492,31 +584,24 @@
         var inputVM = new inputDataViewModel();
         ko.applyBindings(inputVM);
         inputVM.fck(40);
-        
-        //$(window).scroll(function () {
-        //    $("#inputData").stop().animate({ "marginTop": ($(window).scrollTop()) + "px" }, "slow");
-        //});
 
-        $('#inputData').draggable({ axis: "y",containment:"#row" });
+        $('#inputData').draggable({ axis: "y", containment: "#row" });
 
-        //$('#inputData input').click(function () {
-        //    $(this).select();
-        //});
+        $('#reinfModal').modal('show');
+
     });
     function formatNumber(inputNumber) {
         var number = inputNumber.toString();
         var separator = "\\;"//space from latex
-        
+
         var decimalPart;
         var naturalPart;
         var dotPosition = number.indexOf('.');
-        if (dotPosition != -1)
-        {
+        if (dotPosition != -1) {
             decimalPart = number.substr(dotPosition);
             naturalPart = number.substr(0, dotPosition);
         }
-        else
-        {
+        else {
             decimalPart = "";
             naturalPart = number;
         }
@@ -524,8 +609,7 @@
 
         var result = "";
 
-        for (var i = 0; i < startNumber; i++)
-        {
+        for (var i = 0; i < startNumber; i++) {
             result = result + naturalPart[i];
         }
         if (startNumber != 0) {
@@ -533,18 +617,15 @@
         }
 
         var currentIndex = 0;
-        for (var i = startNumber; i < naturalPart.length; i++)
-        {
+        for (var i = startNumber; i < naturalPart.length; i++) {
             var currentChar = naturalPart[i];
             result = result + currentChar;
             currentIndex++;
-            if (currentIndex == 3 && i != naturalPart.length - 1)
-            {
+            if (currentIndex == 3 && i != naturalPart.length - 1) {
                 result = result + separator;
                 currentIndex = 0;
             }
         }
-        return result.trim() +decimalPart;
+        return result.trim() + decimalPart;
     }
 </script>
-
