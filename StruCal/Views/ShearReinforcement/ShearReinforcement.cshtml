@@ -7,20 +7,20 @@
     //list of input fields
     //
     var input = new List<string>();
-    //label name | input field id | unit value
-    input.Add("\\(V_{Ed}\\);Ved;\\(N\\)");
-    input.Add("\\(s\\);s;\\(mm\\)");                //mm
-    input.Add("\\(A_{sw}\\);Asw;\\(mm^2\\)");       //Asw
-    input.Add("\\(b_w\\);bw;\\(mm\\)");             //bw
-    input.Add("\\(d\\);d;\\(mm\\)");                //d
-    input.Add("\\(h\\);h;\\(mm\\)");                //h
-    input.Add("\\(f_{ywk}\\);fywk;\\(N \\over mm^2\\)");//fywk
-    input.Add("\\(\\gamma_S\\);gammaS;");           //GammaS
-    input.Add("\\(f_{ck}\\);fck;\\(N \\over mm^2\\)");//fck
-    input.Add("\\(\\gamma_C\\);gammaC;");           //GammaC
-    input.Add("\\(N_{Ed}\\);Ned;\\(N\\)");          //Ned
-    input.Add("\\(k_1\\);k1;");                     //k
-    input.Add("\\(A_{sl}\\);Asl;\\(mm^2\\)");          //Asl
+    //label name | input field id | unit value | popOverButton
+    input.Add("\\(V_{Ed}\\);Ved;\\(N\\);");
+    input.Add("\\(s\\);s;\\(mm\\);");                //mm
+    input.Add("\\(A_{sw}\\);Asw;\\(mm^2\\);popover");       //Asw
+    input.Add("\\(b_w\\);bw;\\(mm\\);");             //bw
+    input.Add("\\(d\\);d;\\(mm\\);");                //d
+    input.Add("\\(h\\);h;\\(mm\\);");                //h
+    input.Add("\\(f_{ywk}\\);fywk;\\(N \\over mm^2\\);");//fywk
+    input.Add("\\(\\gamma_S\\);gammaS;;");           //GammaS
+    input.Add("\\(f_{ck}\\);fck;\\(N \\over mm^2\\);");//fck
+    input.Add("\\(\\gamma_C\\);gammaC;;");           //GammaC
+    input.Add("\\(N_{Ed}\\);Ned;\\(N\\);");          //Ned
+    input.Add("\\(k_1\\);k1;;");                     //k
+    input.Add("\\(A_{sl}\\);Asl;\\(mm^2\\);");          //Asl
                                                        //input.Add("\\(\\cot \\theta_{min}\\);cotThetaMin;"); //cotThetaMax
                                                        //input.Add("\\(\\cot \\theta_{max}\\);cotThetaMax;"); //cotThetaMax
 }
@@ -84,7 +84,19 @@
                                         <span>\(=\)</span>
                                     </div>
                                     <div class="col-lg-5">
-                                        <input type="text" id=@values[1] data-bind="value: @values[1], valueUpdate: 'afterkeydown'" class="form-control" />@*, valueUpdate: 'afterkeydown'*@
+                                        @if (values[3] == "popover")
+                                        {
+                                            <div class="input-group">
+                                                <input type="text" id=@values[1] data-bind="value: @values[1], valueUpdate: 'afterkeydown'" class="form-control" />@*, valueUpdate: 'afterkeydown'*@
+                                                <span class="input-group-btn">
+                                                    <button id="reinforcement-popover" rel="popover" class="btn btn-default" type="button" data-trigger="click"><span class="glyphicon glyphicon-arrow-right"></span> </button>
+                                                </span>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <input type="text" id=@values[1] data-bind="value: @values[1], valueUpdate: 'afterkeydown'" class="form-control" />@*, valueUpdate: 'afterkeydown'*@
+                                        }
                                     </div>
                                     <div class="col-lg-1">
                                         <span>@values[2]</span>
@@ -166,101 +178,24 @@
 
 </div>
 
-@*modal window to select reinforcement*@
-
-@{
-    var barDiameters = new List<int> { 4, 8, 10, 12, 14, 16, 20, 25, 32, 40 };
-    var maxNumber = 12;
-}
-
-<style>
-    th.centered, td.centered{
-        text-align:center;
-        vertical-align:central;
-        position:center;
-    }
-    th, td {
-        vertical-align: bottom;
-    }
-</style>
-
-<div class="modal fade" id="reinfModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <br />
-                <button type="button" class="close" data-dissmiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Reinforcement</h4>
-            </div>
-            <div class="modal-body">
-                <table class="table table-bordered table-condensed"
-                    <thead>
-                        <tr>
-                            <th rowspan="3">d [mm]</th>
-                            <th class="centered" colspan="@maxNumber">Area [mm<sup>2</sup>]</th>
-                        </tr>
-                        <tr>
-                            <th class="centered" colspan="@maxNumber">Number of bars</th>
-                        </tr>
-                        <tr>
-                            @for (int i = 1; i <= maxNumber; i++)
-                            {
-                                <th class="centered" >@i</th>
-                            }
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var diameter in barDiameters)
-                        {
-                            <tr>
-                                @for (int i = 0; i <= maxNumber; i++)
-                                {
-                                    if (i == 0)
-                                    {
-                                        <td class="centered">@diameter</td>
-                                    }
-                                    else
-                                    {
-                                        var area = Math.Round(i * Math.PI * diameter * diameter / 4, 2);
-                                        <td class="centered">
-                                            <a data-toggle="tooltip" data-placement="bottom" title="@area">
-                                                <button class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></button>
-                                            </a>
-                                        </td>
-                                    }
-                                }
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dissmiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save and close</button>
-            </div>
-        </div>
+<div id="reinforcement-popover-content" class="hidden">
+    <div class="form-group">
+        <label for="countInput">Number of bars</label>
+        <input type="number" class="form-control" id="countInput" />
     </div>
-
+    <div class="form-group">
+        <label for="diameterInput">Diameter [mm<sup>2</sup>]</label>
+        <input type="number" class="form-control" id="diameterInput" />
+    </div>
+    <button class="btn btn-primary" id="applyReinforcement">Apply</button>
+    <button class="btn btn-default" id="cancelReinforcement">Cancel</button>
 </div>
-<script>
-    $("#reinfModal table button").click(function () {
-        $('#reinfModal table button').each(function () {
-            if ($(this).hasClass('btn-success'))
-            {
-                $(this).removeClass("btn-success");
-                $(this).addClass("btn-default");
-                $(this).children('span').removeClass('glyphicon glyphicon-remove');
-                $(this).children('span').addClass('glyphicon glyphicon-info-sign');
-            }
-        });
-        $(this).removeClass("btn-default");
-        $(this).addClass("btn-success");
-        $(this).children('span').removeClass('glyphicon glyphicon-info-sign');
-        $(this).children('span').addClass('glyphicon glyphicon-remove');
-    });
-</script>
+
+<div id="reinforcement-popover-title" class="hidden">
+    <b>Reinforcement</b>
+</div>
+
+
 
 
 <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full'></script>
@@ -481,7 +416,7 @@
         self.VrdmaxResult = ko.pureComputed(function () {
             var part1 = "V_{Rd,max}=";
             var part2 = "\\frac{\\alpha_{cw} \\cdot b_w \\cdot z \\cdot v_1 \\cdot f_{cd}}{\\cot \\theta + \\tan \\theta}=";
-            var part3 = "\\frac{" + self.alfaCw() + "\\cdot" + self.bw() + "\\cdot" + self.z() + "\\cdot" + self.v1() + "\\cdot" + self.fcd() + "}{" + self.cotTheta() + "+" + self.tanTheta() + "}=" + formatNumber(self.Vrdmax()) + "N";
+            var part3 = "\\frac{" + self.alfaCw() + "\\cdot" + self.bw() + "\\cdot" + self.z() + "\\cdot" + self.v1() + "\\cdot" + self.fcd() + "}{" + self.cotThetaCalcs() + "+" + self.tanTheta() + "}=" + formatNumber(self.Vrdmax()) + "N";
             //return "\\(\\displaystyle " + part1 + part2 + part3 + "\\)";
             return convertToFormula(part1, part2, part3);
         });
@@ -489,7 +424,7 @@
         self.VrdsResult = ko.pureComputed(function () {
             var part1 = "V_{Rd,s}=";
             var part2 = "\\frac{A_{sw}}{s} \\cdot z \\cdot f_{ywd} \\cdot \\cot \\theta=";
-            var part3 = "\\frac{" + self.Asw() + "}{" + self.s() + "} \\cdot" + self.z() + "\\cdot" + self.fywd() + "\\cdot" + self.cotTheta() + "=" + formatNumber(self.Vrds()) + "N";
+            var part3 = "\\frac{" + self.Asw() + "}{" + self.s() + "} \\cdot" + self.z() + "\\cdot" + self.fywd() + "\\cdot" + self.cotThetaCalcs() + "=" + formatNumber(self.Vrds()) + "N";
             //return "\\(" + part1 + part2 + part3 + "\\)";
             return convertToFormula(part1, part2, part3);
         });
@@ -587,7 +522,23 @@
 
         $('#inputData').draggable({ axis: "y", containment: "#row" });
 
-        $('#reinfModal').modal('show');
+
+        $("#reinforcement-popover").popover({
+            html : true, 
+            container: 'body',
+            placement: 'right',
+            content: function() {
+                return $("#reinforcement-popover-content").html();
+            },
+            title: function() {
+                return $("#reinforcement-popover-title").html();
+            }
+        });
+
+        $("#applyReinforcement").click(function () {
+            alert("ok");
+            $("#reinforcement-popover").popover('toggle');
+        })
 
     });
     function formatNumber(inputNumber) {
