@@ -20,7 +20,7 @@
     input.Add("\\(\\gamma_C\\);gammaC;;");           //GammaC
     input.Add("\\(N_{Ed}\\);Ned;\\(N\\);");          //Ned
     input.Add("\\(k_1\\);k1;;");                     //k
-    input.Add("\\(A_{sl}\\);Asl;\\(mm^2\\);");          //Asl
+    input.Add("\\(A_{sl}\\);Asl;\\(mm^2\\);popover");          //Asl
                                                        //input.Add("\\(\\cot \\theta_{min}\\);cotThetaMin;"); //cotThetaMax
                                                        //input.Add("\\(\\cot \\theta_{max}\\);cotThetaMax;"); //cotThetaMax
 }
@@ -89,7 +89,7 @@
                                             <div class="input-group">
                                                 <input type="text" id=@values[1] data-bind="value: @values[1], valueUpdate: 'afterkeydown'" class="form-control" />@*, valueUpdate: 'afterkeydown'*@
                                                 <span class="input-group-btn">
-                                                    <button id="reinforcement-popover" rel="popover" class="btn btn-default" type="button" data-trigger="click"><span class="glyphicon glyphicon-arrow-right"></span> </button>
+                                                    <button id="@values[1]-popover" rel="popover" class="btn btn-default" type="button" data-trigger="manual" data-toggle="popover"><span class="glyphicon glyphicon-arrow-right"></span> </button>
                                                 </span>
                                             </div>
                                         }
@@ -186,6 +186,7 @@
     <div class="form-group">
         <label for="diameterInput">Diameter [mm<sup>2</sup>]</label>
         <input type="number" class="form-control" id="diameterInput" />
+        <p>Area:</p>
     </div>
     <button class="btn btn-primary" id="applyReinforcement">Apply</button>
     <button class="btn btn-default" id="cancelReinforcement">Cancel</button>
@@ -523,7 +524,7 @@
         $('#inputData').draggable({ axis: "y", containment: "#row" });
 
 
-        $("#reinforcement-popover").popover({
+        $('[data-toggle="popover"]').popover({
             html : true, 
             container: 'body',
             placement: 'right',
@@ -533,12 +534,22 @@
             title: function() {
                 return $("#reinforcement-popover-title").html();
             }
+        }).click(function(){
+            $(this).popover('show');
         });
 
         $("#applyReinforcement").click(function () {
             alert("ok");
             $("#reinforcement-popover").popover('toggle');
-        })
+        });
+
+          
+
+        $('body').on('click',"#applyReinforcement",function(event){
+            var id = $(event.target).attr('id');
+            alert(id);
+            $("#reinforcement-popover").popover('hide');
+        });
 
     });
     function formatNumber(inputNumber) {
