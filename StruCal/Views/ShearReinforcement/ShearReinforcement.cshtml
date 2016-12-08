@@ -89,7 +89,7 @@
                                             <div class="input-group">
                                                 <input type="text" id=@values[1] data-bind="value: @values[1], valueUpdate: 'afterkeydown'" class="form-control" />@*, valueUpdate: 'afterkeydown'*@
                                                 <span class="input-group-btn">
-                                                    <button id="@values[1]-popover" rel="popover" class="btn btn-default" type="button" data-trigger="manual" data-toggle="popover"><span class="glyphicon glyphicon-arrow-right"></span> </button>
+                                                    <button class="btn btn-default" type="button" data-trigger="manual" data-toggle="popover"><span class="glyphicon glyphicon-arrow-right"></span> </button>
                                                 </span>
                                             </div>
                                         }
@@ -186,7 +186,9 @@
     <div class="form-group">
         <label for="diameterInput">Diameter [mm<sup>2</sup>]</label>
         <input type="number" class="form-control" id="diameterInput" />
-        <p>Area:</p>
+    </div>
+    <div class="form-group">
+        <label id="areaLabel">Area: [mm<sup>2</sup>]</label>
     </div>
     <button class="btn btn-primary" id="applyReinforcement">Apply</button>
     <button class="btn btn-default" id="cancelReinforcement">Cancel</button>
@@ -198,10 +200,51 @@
 
 
 
-
 <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>
 <script>
+
+   
+
+
+    $(document).ready(function () {
+
+        ko.options.deferUpdates = true;
+        var inputVM = new inputDataViewModel();
+        ko.applyBindings(inputVM);
+        inputVM.fck(40);
+
+        $('#inputData').draggable({ axis: "y", containment: "#row" });
+
+
+        $('[data-toggle="popover"]').popover({
+            html : true, 
+            container: 'body',
+            placement: 'right',
+            content: function() {
+                return $("#reinforcement-popover-content").html();
+            },
+            title: function() {
+                return $("#reinforcement-popover-title").html();
+            }
+        }).click(function(){
+            $(this).popover('show');
+        });
+
+        $('body').on('click',"#applyReinforcement",function(event){
+            var id = $(event.target).attr('id');
+            //alert(id);
+            $("#reinforcement-popover").popover('hide');
+        });
+
+        $('body').on('change','#reinforcement-popover-content input',function(){
+            var count = $('#countInput').val();
+            var diameter = $('#diameterInput').val();
+            var area = count*diameter*diameter/4;
+            $('#areaLabel').val(area);
+        });
+
+    });
 
     var inputDataViewModel = function () {
         var self = this;
@@ -512,46 +555,6 @@
             return "\\(\\displaystyle \\ " + input + "\\)"
         }
     }
-
-
-    $(document).ready(function () {
-
-        ko.options.deferUpdates = true;
-        var inputVM = new inputDataViewModel();
-        ko.applyBindings(inputVM);
-        inputVM.fck(40);
-
-        $('#inputData').draggable({ axis: "y", containment: "#row" });
-
-
-        $('[data-toggle="popover"]').popover({
-            html : true, 
-            container: 'body',
-            placement: 'right',
-            content: function() {
-                return $("#reinforcement-popover-content").html();
-            },
-            title: function() {
-                return $("#reinforcement-popover-title").html();
-            }
-        }).click(function(){
-            $(this).popover('show');
-        });
-
-        $("#applyReinforcement").click(function () {
-            alert("ok");
-            $("#reinforcement-popover").popover('toggle');
-        });
-
-          
-
-        $('body').on('click',"#applyReinforcement",function(event){
-            var id = $(event.target).attr('id');
-            alert(id);
-            $("#reinforcement-popover").popover('hide');
-        });
-
-    });
     function formatNumber(inputNumber) {
         var number = inputNumber.toString();
         var separator = "\\;"//space from latex
