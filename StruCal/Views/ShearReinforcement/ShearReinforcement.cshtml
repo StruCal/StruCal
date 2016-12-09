@@ -202,11 +202,8 @@
 
 <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>
+
 <script>
-
-   
-
-
     $(document).ready(function () {
 
         ko.options.deferUpdates = true;
@@ -216,18 +213,18 @@
 
         $('#inputData').draggable({ axis: "y", containment: "#row" });
 
-
+        
         $('[data-toggle="popover"]').popover({
-            html : true, 
+            html: true,
             container: 'body',
             placement: 'right',
-            content: function() {
+            content: function () {
                 return $("#reinforcement-popover-content").html();
             },
-            title: function() {
+            title: function () {
                 return $("#reinforcement-popover-title").html();
             }
-        }).click(function(){
+        }).click(function () {
             $(this).popover('show');
         });
 
@@ -237,11 +234,12 @@
             $("#reinforcement-popover").popover('hide');
         });
 
-        $('body').on('change','#reinforcement-popover-content input',function(){
-            var count = $('#countInput').val();
-            var diameter = $('#diameterInput').val();
-            var area = count*diameter*diameter/4;
-            $('#areaLabel').val(area);
+        $('body').on('change','#diameterInput, #countInput',function(event){
+            var count = Number($('.popover #countInput').val());
+            var diameter = Number($('.popover #diameterInput').val());
+            var area = Math.round( count * Math.PI * diameter * diameter / 4 *100)/100;
+            //alert("ccc" + count +" "+diameter+" "+ area);
+            $('.popover #areaLabel').html("Area: " + area + " mm<sup>2</sup>");
         });
 
     });
