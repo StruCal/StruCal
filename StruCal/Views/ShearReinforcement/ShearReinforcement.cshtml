@@ -213,7 +213,7 @@
 
         $('#inputData').draggable({ axis: "y", containment: "#row" });
 
-        
+        //main settings for popover
         $('[data-toggle="popover"]').popover({
             html: true,
             container: 'body',
@@ -237,40 +237,55 @@
             $(this).off('shown.bs.popover').on('shown.bs.popover', function () {
                 $('.popover button').data('context', $this);
             });
+
+            //getValues from local storage
+            var inputName = $(this).parent('span').siblings('input').attr('id');
+            var area = localStorage.getItem(inputName + "area");
+            var diameter = localStorage.getItem(inputName + "diamter");
+            var count = localStorage.getItem(inputName + "count");
+
+            $('.popover #areaValue').text(area);
+            $('.popover #diameterInput').val(diameter);
+            $('.popover #countInput').val(count);
+
             e.stopPropagation();
         });
 
-        //$('body').on('click',"#applyReinforcement",function(event){
-        //    var id = $(event.target).attr('id');
-        //    //alert(id);
-        //    $("#reinforcement-popover").popover('hide');
-        //});
-
         //chnages the area based on number of bars and diameter in popup
         $('body').on('change', '#diameterInput, #countInput', function (event) {
+
             var count = Number($('.popover #countInput').val());
             var diameter = Number($('.popover #diameterInput').val());
             var area = Math.round(count * Math.PI * diameter * diameter / 4 * 100) / 100;
             //alert("ccc" + count +" "+diameter+" "+ area);
             $('.popover #areaValue').html(area);
         })
-        .on('click', '#applyReinforcement', function () {
+        .on('click', '#applyReinforcement', function () { //apply button on popover
             var $context = $(this).data('context'); //button which triggered the popover
             var area = $('.popover #areaValue').text();
-            
+            var diameter = $('.popover #diameterInput').val();
+            var count = $('.popover #countInput').val();
+
+
             var inputName = $context.parent('span').siblings('input').attr('id');
-            if (inputName == 'Asw')
-            {
+            if (inputName == 'Asw') {
                 inputVM.Asw(area);
             }
-            else if (inputName == 'Asl')
-            {
+            else if (inputName == 'Asl') {
                 inputVM.Asl(area);
             }
 
+            //save values to local storage
+            localStorage.setItem(inputName + "area", area);
+            localStorage.setItem(inputName + "diamter", diameter);
+            localStorage.setItem(inputName + "count", count);
+
+            $context.popover('hide');
+        })
+        .on('click', '#cancelReinforcement', function () {//cancel button on poover
+            var $context = $(this).data('context'); //button which triggered the popover
             $context.popover('hide');
         });
-
     });
 
     var inputDataViewModel = function () {
