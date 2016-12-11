@@ -89,7 +89,7 @@
                                             <div class="input-group">
                                                 <input type="text" id=@values[1] data-bind="value: @values[1], valueUpdate: 'afterkeydown'" class="form-control" />@*, valueUpdate: 'afterkeydown'*@
                                                 <span class="input-group-btn">
-                                                    <button class="btn btn-default" type="button" data-trigger="manual" data-toggle="popover"><span class="glyphicon glyphicon-arrow-right"></span> </button>
+                                                    <button class="btn btn-default" type="button" data-trigger="manual" data-toggle="popover"><span class="glyphicon glyphicon-cog"></span> </button>
                                                 </span>
                                             </div>
                                         }
@@ -188,7 +188,7 @@
         <input type="number" class="form-control" id="diameterInput" />
     </div>
     <div class="form-group">
-        <label id="areaLabel">Area: [mm<sup>2</sup>]</label>
+        <label>Area: <span id="areaValue"></span>[mm<sup>2</sup>]</label>
     </div>
     <button class="btn btn-primary" id="applyReinforcement">Apply</button>
     <button class="btn btn-default" id="cancelReinforcement">Cancel</button>
@@ -224,22 +224,51 @@
             title: function () {
                 return $("#reinforcement-popover-title").html();
             }
-        }).click(function () {
+        });
+
+        //click function to open popover
+        $('[data-toggle="popover"]').on('click', function (e) {
+
+            //var ma = $(this).parents('.input-group');
+            $('[data-toggle="popover"]').not($(this)).popover('hide');
+            //alert(ma.html());
             $(this).popover('show');
+            var $this = $(this);
+            $(this).off('shown.bs.popover').on('shown.bs.popover', function () {
+                $('.popover button').data('context', $this);
+            });
+            e.stopPropagation();
         });
 
-        $('body').on('click',"#applyReinforcement",function(event){
-            var id = $(event.target).attr('id');
-            //alert(id);
-            $("#reinforcement-popover").popover('hide');
-        });
+        //$('body').on('click',"#applyReinforcement",function(event){
+        //    var id = $(event.target).attr('id');
+        //    //alert(id);
+        //    $("#reinforcement-popover").popover('hide');
+        //});
 
-        $('body').on('change','#diameterInput, #countInput',function(event){
+        //chnages the area based on number of bars and diameter in popup
+        $('body').on('change', '#diameterInput, #countInput', function (event) {
             var count = Number($('.popover #countInput').val());
             var diameter = Number($('.popover #diameterInput').val());
-            var area = Math.round( count * Math.PI * diameter * diameter / 4 *100)/100;
+            var area = Math.round(count * Math.PI * diameter * diameter / 4 * 100) / 100;
             //alert("ccc" + count +" "+diameter+" "+ area);
-            $('.popover #areaLabel').html("Area: " + area + " mm<sup>2</sup>");
+            $('.popover #areaValue').html(area);
+        })
+        .on('click', '#applyReinforcement', function () {
+            var $context = $(this).data('context'); //button which triggered the popover
+            var area = $('.popover #areaValue').text();
+            
+            var inputName = $context.parent('span').siblings('input').attr('id');
+            if (inputName == 'Asw')
+            {
+                inputVM.Asw(area);
+            }
+            else if (inputName == 'Asl')
+            {
+                inputVM.Asl(area);
+            }
+
+            $context.popover('hide');
         });
 
     });
