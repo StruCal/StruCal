@@ -20,7 +20,7 @@ namespace StruCal.Controllers
     public class ShearReinforcementApiController : ApiController
     {
         [System.Web.Http.HttpPost]
-        public ShearReinforcementOutput Test(ShearReinforcementInput input)
+        public ShearReinforcementOutput GetResults(ShearReinforcementInput input)
         {
             var calculator = new ShearReinforcementCalculator();
             var result = calculator.CalculateShearReinforcement(input);

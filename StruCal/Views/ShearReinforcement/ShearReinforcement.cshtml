@@ -180,11 +180,11 @@
 
 <div id="reinforcement-popover-content" class="hidden">
     <div class="form-group">
-        <label for="countInput">Number of bars</label>
+        <label class="control-label" for="countInput">Number of bars</label>
         <input type="number" class="form-control" id="countInput" />
     </div>
     <div class="form-group">
-        <label for="diameterInput">Diameter [mm<sup>2</sup>]</label>
+        <label class="control-label" for="diameterInput">Diameter [mm<sup>2</sup>]</label>
         <input type="number" class="form-control" id="diameterInput" />
     </div>
     <div class="form-group">
@@ -204,6 +204,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>
 
 <script>
+
+    var numberPattern = /^((0|[1-9][0-9]*)(\.[0-9]+)?)$/;
+
     $(document).ready(function () {
 
         ko.options.deferUpdates = true;
@@ -252,13 +255,24 @@
         });
 
         //chnages the area based on number of bars and diameter in popup
-        $('body').on('change', '#diameterInput, #countInput', function (event) {
+        $('body').on('input', '#diameterInput, #countInput', function (event) {
 
-            var count = Number($('.popover #countInput').val());
-            var diameter = Number($('.popover #diameterInput').val());
-            var area = Math.round(count * Math.PI * diameter * diameter / 4 * 100) / 100;
-            //alert("ccc" + count +" "+diameter+" "+ area);
-            $('.popover #areaValue').html(area);
+            if ($(this).val().match(numberPattern)) {
+                $(this).parent().removeClass('has-error');
+                $('.popover #applyReinforcement').prop('disabled', false);
+
+                var count = Number($('.popover #countInput').val());
+                var diameter = Number($('.popover #diameterInput').val());
+                var area = Math.round(count * Math.PI * diameter * diameter / 4 * 100) / 100;
+                //alert("ccc" + count +" "+diameter+" "+ area);
+                $('.popover #areaValue').html(area);
+            }
+            else
+            {
+                $(this).parent().addClass('has-error');
+                $('.popover #applyReinforcement').prop('disabled', true);
+            }
+            
         })
         .on('click', '#applyReinforcement', function () { //apply button on popover
             var $context = $(this).data('context'); //button which triggered the popover
