@@ -76,7 +76,8 @@
                             @foreach (var item in input)
                             {
                                 var values = item.Split(';');
-                                <div class="form-group">
+                                var validationFormula =values[1] + "Validation()";
+                                <div class="form-group" data-bind="css: { 'has-error': @validationFormula == 0}">
                                     <div class="col-lg-2" tabindex="-1">
                                         <span>@values[0]</span>
                                     </div>
@@ -89,7 +90,7 @@
                                             <div class="input-group">
                                                 <input type="text" id=@values[1] data-bind="value: @values[1], valueUpdate: 'afterkeydown'" class="form-control" />@*, valueUpdate: 'afterkeydown'*@
                                                 <span class="input-group-btn">
-                                                    <button class="btn btn-default" type="button" data-trigger="manual" data-toggle="popover"><span class="glyphicon glyphicon-cog"></span> </button>
+                                                    <button class="btn" data-bind="css: { 'btn-danger': @validationFormula == 0, 'btn-default': @validationFormula == 1}" type="button" data-trigger="manual" data-toggle="popover"><span class="glyphicon glyphicon-cog"></span> </button>
                                                 </span>
                                             </div>
                                         }
@@ -116,7 +117,7 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Members not requiring design shear reinforcement</h3>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body" data-bind="visible: inputValidated()">
                         @foreach (var item in outputNoShear)
                         {
                             var bindName = item + "Result";
@@ -141,7 +142,7 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Members requiring design shear reinforcement</h3>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body" data-bind="visible: inputValidated()">
                         @foreach (var item in outputShear)
                         {
                             var value = item.Split(';');
@@ -206,7 +207,10 @@
 <script>
 
     var numberPattern = /^((0|[1-9][0-9]*)(\.[0-9]+)?)$/;
-
+    function validateNumber(value) {
+        var regex = new RegExp(numberPattern);
+        return regex.test(value);
+    }
     $(document).ready(function () {
 
         ko.options.deferUpdates = true;
@@ -307,20 +311,77 @@
 
         //input parameters
         self.Ved = ko.observable(200000);
+        self.VedValidation = ko.pureComputed(function () {
+            return validateNumber(self.Ved());
+        });
         self.s = ko.observable(100);
+        self.sValidation = ko.pureComputed(function () {
+            return validateNumber(self.s());
+        });
         self.Asw = ko.observable(200);
+        self.AswValidation = ko.pureComputed(function () {
+            return validateNumber(self.Asw());
+        });
         self.bw = ko.observable(300);
+        self.bwValidation = ko.pureComputed(function () {
+            return validateNumber(self.bw());
+        });
         self.d = ko.observable(200);
+        self.dValidation = ko.pureComputed(function () {
+            return validateNumber(self.d());
+        });
         self.h = ko.observable(300);
+        self.hValidation = ko.pureComputed(function () {
+            return validateNumber(self.h());
+        });
         self.fywk = ko.observable(500);
+        self.fywkValidation = ko.pureComputed(function () {
+            return validateNumber(self.fywk());
+        });
         self.gammaS = ko.observable(1.15);
+        self.gammaSValidation = ko.pureComputed(function () {
+            return validateNumber(self.gammaS());
+        });
         self.fck = ko.observable(30);
+        self.fckValidation = ko.pureComputed(function () {
+            return validateNumber(self.fck());
+        });
         self.gammaC = ko.observable(1.5);
+        self.gammaCValidation = ko.pureComputed(function () {
+            return validateNumber(self.gammaC());
+        });
         self.Ned = ko.observable(5000);
+        self.NedValidation = ko.pureComputed(function () {
+            return validateNumber(self.Ned());
+        });
         self.k1 = ko.observable(0.15);
+        self.k1Validation = ko.pureComputed(function () {
+            return validateNumber(self.k1());
+        });
         self.Asl = ko.observable(200);
+        self.AslValidation = ko.pureComputed(function () {
+            return validateNumber(self.Asl());
+        });
         self.cotThetaMax = ko.observable(2.5);
         self.cotThetaMin = ko.observable(1);
+
+        self.inputValidated = ko.pureComputed(function () {
+            var result = true
+                       & self.VedValidation()
+                       & self.sValidation()
+                       & self.AswValidation()
+                       & self.bwValidation()
+                       & self.dValidation()
+                       & self.hValidation()
+                       & self.fywkValidation()
+                       & self.gammaSValidation()
+                       & self.fckValidation()
+                       & self.gammaCValidation()
+                       & self.NedValidation()
+                       & self.k1Validation()
+                       & self.AslValidation();
+            return result;
+        });
 
         self.Ved.subscribe(getData);
         self.bw.subscribe(getData);
@@ -546,56 +607,76 @@
         self.NoSolution = ko.observable(false);
 
 
-
+        //self.inputValidated = ko.pureComputed(function () {
+        //    var result = true;
+        //    $('#inputData input').each(function (index,element) {
+        //        var validated = $(this).text().match(numberPattern);
+        //        alert(validated +" "+numberPattern);
+        //        result = result & validated;
+        //        if (!validated) {
+        //            $(this).parent().addClass('has-error');
+        //        }
+        //        else {
+        //            $(this).parent().removeClass('has-error');
+        //        }
+        //    });
+        //    alert(result);
+        //    return result;
+        //});
 
         function getData(newValue) {
-            var inputData = {
-                Ved: self.Ved(),
-                fck: self.fck(),
-                Ned: self.Ned(),
-                gammaC: self.gammaC(),
-                bw: self.bw(),
-                d: self.d(),
-                Asl: self.Asl(),
-                h: self.h(),
-                k1: self.k1(),
-                cotThetaMax: self.cotThetaMax(),
-                cotThetaMin: self.cotThetaMin(),
-                fywk: self.fywk(),
-                gammaS: self.gammaS(),
-                Asw: self.Asw(),
-                s: self.s(),
-            };
-            $.post("/api/ShearReinforcementApi", inputData, function (returnedData) {
-                self.Vrdc1(returnedData.Vrdc1);
-                self.Vrdc2(returnedData.Vrdc2);
-                self.Vrdc(returnedData.Vrdc);
-                self.Crdc(returnedData.Crdc);
-                self.sigmacp(returnedData.sigmacp);
-                self.vmin(returnedData.vmin);
-                self.fcd(returnedData.fcd);
-                self.ro1(returnedData.ro1);
-                self.k(returnedData.k);
-                self.fcd(returnedData.fcd);
+            //validate input fields
+            //var allInputsValidated = self.inputValidated();
+            //if (allInputsValidated) {
+                var inputData = {
+                    Ved: self.Ved(),
+                    fck: self.fck(),
+                    Ned: self.Ned(),
+                    gammaC: self.gammaC(),
+                    bw: self.bw(),
+                    d: self.d(),
+                    Asl: self.Asl(),
+                    h: self.h(),
+                    k1: self.k1(),
+                    cotThetaMax: self.cotThetaMax(),
+                    cotThetaMin: self.cotThetaMin(),
+                    fywk: self.fywk(),
+                    gammaS: self.gammaS(),
+                    Asw: self.Asw(),
+                    s: self.s(),
+                };
+                $.post("/api/ShearReinforcementApi", inputData, function (returnedData) {
+                    self.Vrdc1(returnedData.Vrdc1);
+                    self.Vrdc2(returnedData.Vrdc2);
+                    self.Vrdc(returnedData.Vrdc);
+                    self.Crdc(returnedData.Crdc);
+                    self.sigmacp(returnedData.sigmacp);
+                    self.vmin(returnedData.vmin);
+                    self.fcd(returnedData.fcd);
+                    self.ro1(returnedData.ro1);
+                    self.k(returnedData.k);
+                    self.fcd(returnedData.fcd);
 
-                self.VrdcSummary.call();
+                    self.VrdcSummary.call();
 
-                self.v1(returnedData.v1);
-                self.z(returnedData.z);
-                self.alfaCw(returnedData.alfaCw);
-                self.fywd(returnedData.fywd);
-                self.cotTheta(returnedData.cotTheta);
-                self.cotThetaCalcs(returnedData.cotThetaCalcs);
-                self.tanTheta(returnedData.tanTheta);
-                self.theta(returnedData.theta);
-                self.Vrdmax(returnedData.Vrdmax);
-                self.Vrds(returnedData.Vrds);
-                self.NoSolution(returnedData.NoSolution);
-                //console.log(returnedData);
-                //alert("Ok");
-                //$('#test').text(returnedData.k1);
-            });
-            refreshFormulas(newValue);
+                    self.v1(returnedData.v1);
+                    self.z(returnedData.z);
+                    self.alfaCw(returnedData.alfaCw);
+                    self.fywd(returnedData.fywd);
+                    self.cotTheta(returnedData.cotTheta);
+                    self.cotThetaCalcs(returnedData.cotThetaCalcs);
+                    self.tanTheta(returnedData.tanTheta);
+                    self.theta(returnedData.theta);
+                    self.Vrdmax(returnedData.Vrdmax);
+                    self.Vrds(returnedData.Vrds);
+                    self.NoSolution(returnedData.NoSolution);
+                    //console.log(returnedData);
+                    //alert("Ok");
+                    //$('#test').text(returnedData.k1);
+                });
+                refreshFormulas(newValue);
+            //}
+
         };
 
         function refreshFormulas(newValue) {
