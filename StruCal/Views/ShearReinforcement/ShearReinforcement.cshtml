@@ -8,20 +8,20 @@
     //
     var input = new List<string>();
     //label name | input field id | unit value | popOverButton
-    input.Add("\\(V_{Ed}\\);Ved;\\(N\\);");
-    input.Add("\\(s\\);s;\\(mm\\);");                       //mm
-    input.Add("\\(A_{sw}\\);Asw;\\(mm^2\\);popover");       //Asw
-    input.Add("\\(b_w\\);bw;\\(mm\\);");                    //bw
-    input.Add("\\(d\\);d;\\(mm\\);");                       //d
-    input.Add("\\(h\\);h;\\(mm\\);");                       //h
-    input.Add("\\(f_{ywk}\\);fywk;\\(N \\over mm^2\\);");   //fywk
-    input.Add("\\(\\gamma_S\\);gammaS;;");                  //GammaS
-    input.Add("\\(f_{ck}\\);fck;\\(N \\over mm^2\\);");     //fck
-    input.Add("\\(\\gamma_C\\);gammaC;;");                  //GammaC
-    input.Add("\\(N_{Ed}\\);Ned;\\(N\\);");                 //Ned
-    input.Add("\\(k_1\\);k1;;");                            //k
-    input.Add("\\(A_{sl}\\);Asl;\\(mm^2\\);popover");       //Asl
-
+    input.Add("V_{Ed}   ;Ved   ;N     ;       ");
+    input.Add("s        ;s     ;mm    ;       ");         
+    input.Add("A_{sw}   ;Asw   ;mm^2  ;popover");         
+    input.Add("b_w      ;bw    ;mm    ;       ");         
+    input.Add("d        ;d     ;mm    ;       ");         
+    input.Add("h        ;h     ;mm    ;       ");   
+    input.Add("f_{ywk}  ;fywk  ;N/mm^2;       ");   
+    input.Add("\\gamma_S;gammaS;      ;       ");   
+    input.Add("f_{ck}   ;fck   ;N/mm^2;       ");   
+    input.Add("\\gamma_C;gammaC;      ;       ");   
+    input.Add("N_{Ed}   ;Ned   ;N     ;       ");   
+    input.Add("k_1      ;k1    ;      ;       ");   
+    input.Add("A_{sl}   ;Asl   ;mm^2  ;popover");         
+                                                                                 
 }
 @{
     //list of output fields for members NOT requiring shear reinforcement
@@ -78,15 +78,15 @@
 
                                 //label name | input field id | unit value | popOverButton
 
-                                var name = values[0];
-                                var id = values[1];
-                                var unit = values[2];
-                                var popoverButton = values[3];
+                                var name = values[0].Trim();
+                                var id = values[1].Trim();
+                                var unit = values[2].Trim();
+                                var popoverButton = values[3].Trim();
 
                                 var validationFormula = id + "Validation()";
                                 <div class="form-group" data-bind="css: { 'has-error': @validationFormula == 0}">
                                     <div class="col-lg-2" tabindex="-1">
-                                        <span>@name</span>
+                                        <span>\(@name\)</span>
                                     </div>
                                     <div class="col-lg-1">
                                         <span>\(=\)</span>
@@ -107,7 +107,10 @@
                                         }
                                     </div>
                                     <div class="col-lg-1">
-                                        <span>@unit</span>
+                                        @if (!string.IsNullOrWhiteSpace(unit))
+                                        {
+                                            <span>\(@unit.Replace("/"," \\over ")\)</span>
+                                        }
                                     </div>
                                 </div>
                             }
