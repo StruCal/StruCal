@@ -59,30 +59,56 @@ namespace Calculators.ShearReinforcement
     {
         private ShearReinforcementInput inputData;
         private ShearReinforcementOutput outputData;
+        private double sigmacp;
+        private double fcd;
+
         //members not requiring design shear reinforcement
         public ShearReinforcementOutput CalculateShearReinforcement(ShearReinforcementInput inputData)
         {
             this.inputData = inputData;
             this.outputData = new ShearReinforcementOutput();
 
+            this.calculateCommonValues();
+            this.calculateMembersNotRequiringShearReinforcement();
+            this.claculateMembersRequiringShearReinforcement();
 
-            var k1 = inputData.k1;
-            var k = Math.Min(1 + Math.Sqrt(200 / inputData.d), 2d);
-            var ro1 = inputData.Asl / (inputData.bw * inputData.d);
-            var sigmacp = inputData.Ned / (inputData.h * inputData.bw);
-            var Crdc = 0.18 / inputData.gammaC;
-            var vmin = 0.035 * Math.Pow(k, 3 / 2) * Math.Sqrt(inputData.fck);
-            var VRdc1 = (Crdc * k * Math.Pow(100 * ro1 * inputData.fck, 1 / 3) + k1 * sigmacp) * inputData.bw * inputData.d;
-            var VRdc2 = (vmin + k1 * sigmacp) * inputData.bw * inputData.d;
-            var Vrdc = Math.Max(VRdc1, VRdc2);
-            var fcd = inputData.fck / inputData.gammaC;
+            return this.outputData;
+        }
 
+        private void calculateCommonValues()
+        {
+            this.sigmacp = (this.inputData.Ned / (inputData.h * inputData.bw)).Round();
+            this.fcd = (this.inputData.fck / inputData.gammaC).Round();
 
-            var v1 = 0.6 * (1 - inputData.fck / 250);
-            var z = 0.9 * inputData.d;
+            this.outputData.fcd = fcd;
+            this.outputData.sigmacp = sigmacp;
+        }
+        private void calculateMembersNotRequiringShearReinforcement()
+        {
+            var k = Math.Min(1 + Math.Sqrt(200 / inputData.d), 2d).Round();
+            var ro1 = (inputData.Asl / (inputData.bw * inputData.d)).Round();
+            
+            var Crdc = (0.18 / inputData.gammaC).Round();
+            var vmin = (0.035 * Math.Pow(k, 3 / 2) * Math.Sqrt(inputData.fck)).Round();
+            var Vrdc1 = ((Crdc * k * Math.Pow(100 * ro1 * inputData.fck, 1 / 3) + inputData.k1 * sigmacp) * inputData.bw * inputData.d).Round();
+            var Vrdc2 = ((vmin + inputData.k1 * sigmacp) * inputData.bw * inputData.d).Round();
+            var Vrdc = Math.Max(Vrdc1, Vrdc2);
+
+            this.outputData.k = k;
+            this.outputData.ro1 = ro1;
+            this.outputData.Crdc = Crdc;
+            this.outputData.vmin = vmin;
+            this.outputData.Vrdc1 = Vrdc1;
+            this.outputData.Vrdc2 = Vrdc2;
+            this.outputData.Vrdc = Vrdc;
+        }
+        private void claculateMembersRequiringShearReinforcement()
+        {
+            var v1 = (0.6 * (1 - inputData.fck / 250)).Round();
+            var z = (0.9 * inputData.d).Round();
             var alfaCw = getAlfaCw(fcd, sigmacp);
-            var fywd = inputData.fywk / inputData.gammaS;
-            var theta = 0.5 * Math.Asin((2 * inputData.Ved) / (alfaCw * inputData.bw * z * v1 * fcd));
+            var fywd = (inputData.fywk / inputData.gammaS).Round();
+            var theta = (0.5 * Math.Asin((2 * inputData.Ved) / (alfaCw * inputData.bw * z * v1 * fcd))).Round();
             var noSolution = false;
             var cotTheta = 0.0;
             var cotThetaCalcs = 0.0;
@@ -97,47 +123,26 @@ namespace Calculators.ShearReinforcement
             else
             {
                 noSolution = false;
-                
-                cotTheta = Math.Pow(Math.Tan(theta), -1);
+                cotTheta = (Math.Pow(Math.Tan(theta), -1)).Round();
                 cotThetaCalcs = cotTheta >= inputData.cotThetaMax ? inputData.cotThetaMax : cotTheta;
-                tanTheta = Math.Pow(cotThetaCalcs, -1);
-                Vrdmax = alfaCw * inputData.bw * z * v1 * fcd / (tanTheta + cotThetaCalcs);
-                Vrds = (inputData.Asw / inputData.s) * z * fywd * cotThetaCalcs;
+                tanTheta = Math.Pow(cotThetaCalcs, -1).Round();
+                Vrdmax = (alfaCw * inputData.bw * z * v1 * fcd / (tanTheta + cotThetaCalcs)).Round();
+                Vrds = ((inputData.Asw / inputData.s) * z * fywd * cotThetaCalcs).Round();
             }
 
-            var shearReinforcement = new ShearReinforcementOutput
-            {
-                k = k.Round(),
-                ro1 = ro1.Round(),
-                sigmacp = sigmacp.Round(),
-                Crdc = Crdc.Round(),
-                vmin = vmin.Round(),
-                Vrdc1 = VRdc1.Round(),
-                Vrdc2 = VRdc2.Round(),
-                Vrdc = Vrdc.Round(),
-                fcd = fcd.Round(),
-
-                v1= v1.Round(),
-                z= z.Round(),
-                alfaCw=alfaCw.Round(),
-                fywd= fywd.Round(),
-                cotTheta= cotTheta.Round(),
-                cotThetaCalcs = cotThetaCalcs.Round(),
-                tanTheta=tanTheta.Round(),
-                NoSolution= noSolution,
-                theta= theta.Round(),
-                Vrdmax= Vrdmax.Round(),
-                Vrds= Vrds.Round(),
-            };
-
-            return shearReinforcement;
-        }
-
-        private void calculateMembersNotRequiringShearReinforcement()
-        {
+            this.outputData.v1 = v1;
+            this.outputData.z = z;
+            this.outputData.alfaCw = alfaCw;
+            this.outputData.fywd = fywd;
+            this.outputData.cotTheta = cotTheta;
+            this.outputData.cotThetaCalcs = cotThetaCalcs;
+            this.outputData.tanTheta = tanTheta;
+            this.outputData.NoSolution = noSolution;
+            this.outputData.theta = theta;
+            this.outputData.Vrdmax = Vrdmax;
+            this.outputData.Vrds = Vrds;
 
         }
-
         private ShearReinforcementInput roundInputData(ShearReinforcementInput inputData)
         {
             var properties = typeof(ShearReinforcementInput).GetProperties();
@@ -154,11 +159,11 @@ namespace Calculators.ShearReinforcement
         {
             var result = 0.0;
             if (sigmaCp <= 0.25 * fcd)
-                result = 1 + sigmaCp / fcd;
+                result = (1 + sigmaCp / fcd).Round();
             else if (0.25 * fcd < sigmaCp && sigmaCp <= 0.5 * fcd)
                 result = 1.25;
             else if (0.5 * fcd < sigmaCp && sigmaCp <= fcd)
-                result = 2.5 * (1 - sigmaCp / fcd);
+                result = (2.5 * (1 - sigmaCp / fcd)).Round();
 
             return result;
         }
