@@ -44,6 +44,8 @@ namespace StruCal
                 "~/Content/custom.css"));
             bundles.Add(new ScriptBundle("~/bundles/sectionProperties").Include(
                 "~/Scripts/sectionProperties.js"));
+            bundles.Add(new ScriptBundle("~/bundles/shearReinforcement").Include(
+                "~/Scripts/shearReinforcement.js"));
 
         }
     }
