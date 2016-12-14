@@ -68,5 +68,15 @@ namespace Common.Extensions
             return double.IsNaN(initialValue);
         }
 
+        /// <summary>
+        /// Simplified method to calculate the power of the given number
+        /// </summary>
+        /// <param name="base">The base of the power</param>
+        /// <param name="exponent">The exponent</param>
+        /// <returns></returns>
+        public static double Power(this double @base,double exponent)
+        {
+            return Math.Pow(@base, exponent);
+        }
     }
 }

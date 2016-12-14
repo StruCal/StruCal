@@ -9,20 +9,19 @@
     var input = new List<string>();
     //label name | input field id | unit value | popOverButton
     input.Add("\\(V_{Ed}\\);Ved;\\(N\\);");
-    input.Add("\\(s\\);s;\\(mm\\);");                //mm
+    input.Add("\\(s\\);s;\\(mm\\);");                       //mm
     input.Add("\\(A_{sw}\\);Asw;\\(mm^2\\);popover");       //Asw
-    input.Add("\\(b_w\\);bw;\\(mm\\);");             //bw
-    input.Add("\\(d\\);d;\\(mm\\);");                //d
-    input.Add("\\(h\\);h;\\(mm\\);");                //h
-    input.Add("\\(f_{ywk}\\);fywk;\\(N \\over mm^2\\);");//fywk
-    input.Add("\\(\\gamma_S\\);gammaS;;");           //GammaS
-    input.Add("\\(f_{ck}\\);fck;\\(N \\over mm^2\\);");//fck
-    input.Add("\\(\\gamma_C\\);gammaC;;");           //GammaC
-    input.Add("\\(N_{Ed}\\);Ned;\\(N\\);");          //Ned
-    input.Add("\\(k_1\\);k1;;");                     //k
-    input.Add("\\(A_{sl}\\);Asl;\\(mm^2\\);popover");          //Asl
-                                                       //input.Add("\\(\\cot \\theta_{min}\\);cotThetaMin;"); //cotThetaMax
-                                                       //input.Add("\\(\\cot \\theta_{max}\\);cotThetaMax;"); //cotThetaMax
+    input.Add("\\(b_w\\);bw;\\(mm\\);");                    //bw
+    input.Add("\\(d\\);d;\\(mm\\);");                       //d
+    input.Add("\\(h\\);h;\\(mm\\);");                       //h
+    input.Add("\\(f_{ywk}\\);fywk;\\(N \\over mm^2\\);");   //fywk
+    input.Add("\\(\\gamma_S\\);gammaS;;");                  //GammaS
+    input.Add("\\(f_{ck}\\);fck;\\(N \\over mm^2\\);");     //fck
+    input.Add("\\(\\gamma_C\\);gammaC;;");                  //GammaC
+    input.Add("\\(N_{Ed}\\);Ned;\\(N\\);");                 //Ned
+    input.Add("\\(k_1\\);k1;;");                            //k
+    input.Add("\\(A_{sl}\\);Asl;\\(mm^2\\);popover");       //Asl
+
 }
 @{
     //list of output fields for members NOT requiring shear reinforcement
@@ -76,19 +75,27 @@
                             @foreach (var item in input)
                             {
                                 var values = item.Split(';');
-                                var validationFormula =values[1] + "Validation()";
+
+                                //label name | input field id | unit value | popOverButton
+
+                                var name = values[0];
+                                var id = values[1];
+                                var unit = values[2];
+                                var popoverButton = values[3];
+
+                                var validationFormula = id + "Validation()";
                                 <div class="form-group" data-bind="css: { 'has-error': @validationFormula == 0}">
                                     <div class="col-lg-2" tabindex="-1">
-                                        <span>@values[0]</span>
+                                        <span>@name</span>
                                     </div>
                                     <div class="col-lg-1">
                                         <span>\(=\)</span>
                                     </div>
                                     <div class="col-lg-5">
-                                        @if (values[3] == "popover")
+                                        @if (popoverButton == "popover")
                                         {
                                             <div class="input-group">
-                                                <input type="text" id=@values[1] data-bind="value: @values[1], valueUpdate: 'afterkeydown'" class="form-control" />@*, valueUpdate: 'afterkeydown'*@
+                                                <input type="text" id=@id data-bind="value: @id, valueUpdate: 'afterkeydown'" class="form-control" />@*, valueUpdate: 'afterkeydown'*@
                                                 <span class="input-group-btn">
                                                     <button class="btn" data-bind="css: { 'btn-danger': @validationFormula == 0, 'btn-default': @validationFormula == 1}" type="button" data-trigger="manual" data-toggle="popover"><span class="glyphicon glyphicon-cog"></span> </button>
                                                 </span>
@@ -96,11 +103,11 @@
                                         }
                                         else
                                         {
-                                            <input type="text" id=@values[1] data-bind="value: @values[1], valueUpdate: 'afterkeydown'" class="form-control" />@*, valueUpdate: 'afterkeydown'*@
+                                            <input type="text" id=@id data-bind="value: @id, valueUpdate: 'afterkeydown'" class="form-control" />@*, valueUpdate: 'afterkeydown'*@
                                         }
                                     </div>
                                     <div class="col-lg-1">
-                                        <span>@values[2]</span>
+                                        <span>@unit</span>
                                     </div>
                                 </div>
                             }
@@ -147,7 +154,8 @@
                         {
                             var value = item.Split(';');
                             var bindName = value[0] + "Result";
-                            if (value[1] == "hide")
+                            var shouldHide = value[1];
+                            if (shouldHide == "hide")
                             {
                                 <div class="form-group" data-bind="visible: !NoSolution()">
                                     <p class="text-left" id=@item data-bind="text: @bindName"></p>
@@ -271,12 +279,11 @@
                 //alert("ccc" + count +" "+diameter+" "+ area);
                 $('.popover #areaValue').html(area);
             }
-            else
-            {
+            else {
                 $(this).parent().addClass('has-error');
                 $('.popover #applyReinforcement').prop('disabled', true);
             }
-            
+
         })
         .on('click', '#applyReinforcement', function () { //apply button on popover
             var $context = $(this).data('context'); //button which triggered the popover
@@ -607,74 +614,56 @@
         self.NoSolution = ko.observable(false);
 
 
-        //self.inputValidated = ko.pureComputed(function () {
-        //    var result = true;
-        //    $('#inputData input').each(function (index,element) {
-        //        var validated = $(this).text().match(numberPattern);
-        //        alert(validated +" "+numberPattern);
-        //        result = result & validated;
-        //        if (!validated) {
-        //            $(this).parent().addClass('has-error');
-        //        }
-        //        else {
-        //            $(this).parent().removeClass('has-error');
-        //        }
-        //    });
-        //    alert(result);
-        //    return result;
-        //});
 
         function getData(newValue) {
-            //validate input fields
-            //var allInputsValidated = self.inputValidated();
-            //if (allInputsValidated) {
-                var inputData = {
-                    Ved: self.Ved(),
-                    fck: self.fck(),
-                    Ned: self.Ned(),
-                    gammaC: self.gammaC(),
-                    bw: self.bw(),
-                    d: self.d(),
-                    Asl: self.Asl(),
-                    h: self.h(),
-                    k1: self.k1(),
-                    cotThetaMax: self.cotThetaMax(),
-                    cotThetaMin: self.cotThetaMin(),
-                    fywk: self.fywk(),
-                    gammaS: self.gammaS(),
-                    Asw: self.Asw(),
-                    s: self.s(),
-                };
-                $.post("/api/ShearReinforcementApi", inputData, function (returnedData) {
-                    self.Vrdc1(returnedData.Vrdc1);
-                    self.Vrdc2(returnedData.Vrdc2);
-                    self.Vrdc(returnedData.Vrdc);
-                    self.Crdc(returnedData.Crdc);
-                    self.sigmacp(returnedData.sigmacp);
-                    self.vmin(returnedData.vmin);
-                    self.fcd(returnedData.fcd);
-                    self.ro1(returnedData.ro1);
-                    self.k(returnedData.k);
-                    self.fcd(returnedData.fcd);
+            
+            var inputData = {
+                Ved: self.Ved(),
+                fck: self.fck(),
+                Ned: self.Ned(),
+                gammaC: self.gammaC(),
+                bw: self.bw(),
+                d: self.d(),
+                Asl: self.Asl(),
+                h: self.h(),
+                k1: self.k1(),
+                cotThetaMax: self.cotThetaMax(),
+                cotThetaMin: self.cotThetaMin(),
+                fywk: self.fywk(),
+                gammaS: self.gammaS(),
+                Asw: self.Asw(),
+                s: self.s(),
+            };
+            $.post("/api/ShearReinforcementApi", inputData, function (returnedData) {
+                self.Vrdc1(returnedData.Vrdc1);
+                self.Vrdc2(returnedData.Vrdc2);
+                self.Vrdc(returnedData.Vrdc);
+                self.Crdc(returnedData.Crdc);
+                self.sigmacp(returnedData.sigmacp);
+                self.vmin(returnedData.vmin);
+                self.fcd(returnedData.fcd);
+                self.ro1(returnedData.ro1);
+                self.k(returnedData.k);
+                self.fcd(returnedData.fcd);
 
-                    self.VrdcSummary.call();
+                self.VrdcSummary.call();
 
-                    self.v1(returnedData.v1);
-                    self.z(returnedData.z);
-                    self.alfaCw(returnedData.alfaCw);
-                    self.fywd(returnedData.fywd);
-                    self.cotTheta(returnedData.cotTheta);
-                    self.cotThetaCalcs(returnedData.cotThetaCalcs);
-                    self.tanTheta(returnedData.tanTheta);
-                    self.theta(returnedData.theta);
-                    self.Vrdmax(returnedData.Vrdmax);
-                    self.Vrds(returnedData.Vrds);
-                    self.NoSolution(returnedData.NoSolution);
-                    //console.log(returnedData);
-                    //alert("Ok");
-                    //$('#test').text(returnedData.k1);
-                });
-                refreshFormulas(newValue);
+                self.v1(returnedData.v1);
+                self.z(returnedData.z);
+                self.alfaCw(returnedData.alfaCw);
+                self.fywd(returnedData.fywd);
+                self.cotTheta(returnedData.cotTheta);
+                self.cotThetaCalcs(returnedData.cotThetaCalcs);
+                self.tanTheta(returnedData.tanTheta);
+                self.theta(returnedData.theta);
+                self.Vrdmax(returnedData.Vrdmax);
+                self.Vrds(returnedData.Vrds);
+                self.NoSolution(returnedData.NoSolution);
+                //console.log(returnedData);
+                //alert("Ok");
+                //$('#test').text(returnedData.k1);
+            });
+            refreshFormulas(newValue);
             //}
 
         };

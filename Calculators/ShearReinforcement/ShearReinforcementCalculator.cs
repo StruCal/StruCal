@@ -9,7 +9,8 @@ namespace Calculators.ShearReinforcement
 {
     public class ShearReinforcementInput
     {
-        //all values accordint to EN-1992-2
+        //all values accordintg to EN-1992-2
+        //Naming according to EN-1992-2
         //all units in [mm] and [N]
         public double Ved { get; set; }
         public double fck { get; set; }
@@ -56,17 +57,23 @@ namespace Calculators.ShearReinforcement
 
     public class ShearReinforcementCalculator
     {
+        private ShearReinforcementInput inputData;
+        private ShearReinforcementOutput outputData;
         //members not requiring design shear reinforcement
         public ShearReinforcementOutput CalculateShearReinforcement(ShearReinforcementInput inputData)
         {
+            this.inputData = inputData;
+            this.outputData = new ShearReinforcementOutput();
+
+
             var k1 = inputData.k1;
             var k = Math.Min(1 + Math.Sqrt(200 / inputData.d), 2d);
             var ro1 = inputData.Asl / (inputData.bw * inputData.d);
             var sigmacp = inputData.Ned / (inputData.h * inputData.bw);
             var Crdc = 0.18 / inputData.gammaC;
             var vmin = 0.035 * Math.Pow(k, 3 / 2) * Math.Sqrt(inputData.fck);
-            var VRdc2 = (Crdc * k * Math.Pow(100 * ro1 * inputData.fck, 1 / 3) + k1 * sigmacp) * inputData.bw * inputData.d;
-            var VRdc1 = (vmin + k1 * sigmacp) * inputData.bw * inputData.d;
+            var VRdc1 = (Crdc * k * Math.Pow(100 * ro1 * inputData.fck, 1 / 3) + k1 * sigmacp) * inputData.bw * inputData.d;
+            var VRdc2 = (vmin + k1 * sigmacp) * inputData.bw * inputData.d;
             var Vrdc = Math.Max(VRdc1, VRdc2);
             var fcd = inputData.fck / inputData.gammaC;
 
@@ -126,7 +133,24 @@ namespace Calculators.ShearReinforcement
             return shearReinforcement;
         }
 
-        private double getAlfaCw(double fcd,double sigmaCp)
+        private void calculateMembersNotRequiringShearReinforcement()
+        {
+
+        }
+
+        private ShearReinforcementInput roundInputData(ShearReinforcementInput inputData)
+        {
+            var properties = typeof(ShearReinforcementInput).GetProperties();
+            foreach (var property in properties)
+            {
+                var value = (double)property.GetValue(inputData);
+                var roundedValue = value.Round();
+                property.SetValue(inputData, roundedValue);
+            }
+            return inputData;
+        }
+
+        private static double getAlfaCw(double fcd,double sigmaCp)
         {
             var result = 0.0;
             if (sigmaCp <= 0.25 * fcd)
