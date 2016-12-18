@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<svg viewBox ="0 0 600 600" 
+     xmlns="http://www.w3.org/2000/svg" 
+     xmlns:svg="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <defs>
+  <marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="leftarrow" orient="auto" markerUnits="strokeWidth" id="se_marker_start_svg_5">
+   <path stroke-width="10" stroke="#000000" fill="#000000" d="m0,50l100,40l-30,-40l30,-40z"/>
+  </marker>
+  <marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="rightarrow" orient="auto" markerUnits="strokeWidth" id="se_marker_end_svg_6">
+   <path stroke-width="10" stroke="#000000" fill="#000000" d="m100,50l-100,40l30,-40l-30,-40z"/>
+  </marker>
+  <marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="mcircle" orient="auto" markerUnits="strokeWidth" id="se_marker_mid_svg_7">
+   <circle stroke-width="10" stroke="#000000" fill="#000000" cy="50" cx="50" r="30"/>
+  </marker>
+ </defs>
+ <g>
+  <title>Layer 1</title>
+  <line marker-start="url(#se_marker_start_svg_5)" stroke-width="10" id="svg_5" y2="550" x2="50" y1="550" x1="550" stroke-linecap="square" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="none"/>
+  <line marker-end="url(#se_marker_end_svg_6)" id="svg_6" y2="50" x2="50" y1="550" x1="50" stroke-linecap="square" stroke-linejoin="null" stroke-dasharray="null" stroke-width="10" stroke="#000000" fill="none"/>
+  <path marker-mid="url(#se_marker_mid_svg_7)" id="svg_7" d="m100,400c0,0 200,100 200,100c0,0 200,-100 200,-100c0,0 40,-200 40,-200c0,0 -240,-150 -240,-150c0,0 -100,210 -100,210c0,0 -100,140 -100,140z" stroke-linecap="square" stroke-linejoin="null" stroke-dasharray="null" stroke-width="13" stroke="#000000" fill="none"/>
+ </g>
+</svg>

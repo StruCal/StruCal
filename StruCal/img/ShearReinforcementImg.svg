@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<svg viewBox ="0 0 600 600" 
+     xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_9" height="500" width="500" y="50" x="50" stroke-linecap="square" stroke-linejoin="null" stroke-dasharray="null" stroke-width="10" stroke="#000000" fill="none"/>
+  <rect ry="69" rx="69" id="svg_10" height="400" width="400" y="100" x="100" stroke-linecap="square" stroke-linejoin="null" stroke-dasharray="null" stroke-width="19" stroke="#000000" fill="none"/>
+  <line stroke="#000000" id="svg_11" y2="156" x2="228" y1="106" x1="158" stroke-linecap="square" stroke-linejoin="null" stroke-dasharray="null" stroke-width="19" fill="none"/>
+  <line stroke="#000000" id="svg_12" y2="220" x2="180" y1="170" x1="110" stroke-linecap="square" stroke-linejoin="null" stroke-dasharray="null" stroke-width="19" fill="none"/>
+  <circle id="svg_13" r="20" cy="150" cx="150" stroke-linecap="round" stroke-linejoin="null" stroke-dasharray="null" stroke-width="19" stroke="#000000" fill="#000000"/>
+  <circle id="svg_15" r="20" cy="150" cx="450" stroke-linecap="round" stroke-linejoin="null" stroke-dasharray="null" stroke-width="19" stroke="#000000" fill="#000000"/>
+  <circle id="svg_16" r="20" cy="450" cx="450" stroke-linecap="round" stroke-linejoin="null" stroke-dasharray="null" stroke-width="19" stroke="#000000" fill="#000000"/>
+  <circle id="svg_17" r="20" cy="450" cx="150" stroke-linecap="round" stroke-linejoin="null" stroke-dasharray="null" stroke-width="19" stroke="#000000" fill="#000000"/>
+ </g>
+</svg>
