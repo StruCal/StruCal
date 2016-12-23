@@ -86,7 +86,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\ConcreteCoverControllerTests.cs" />
+    <None Include="Controllers\ConcreteCoverControllerTests.cs" />
     <Compile Include="Controllers\SectionPropertiesControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />

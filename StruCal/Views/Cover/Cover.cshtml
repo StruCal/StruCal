@@ -1,0 +1,231 @@
+﻿@{
+    ViewBag.Title = "Concrete Cover";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<link rel="stylesheet" href="~/Content/jquery-ui.css">*@
+<script src="~/Scripts/jquery-ui.js"></script>
+
+<div class="container">
+
+    <h2>Concrete cover calculator</h2>
+    <br />
+
+    <div class="row">
+        <div class="col-xs-12 col-lg-6 text-left">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Material properties</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group" data-toggle="tooltip" title="Select rebars diameter.">
+                            <label for="RebarDiameter">Rebar diameter</label>
+                            <select class="form-control" id="RebarDiameter" data-bind="options: RebarDiameterList, value: RebarDiameter"></select>
+                        </div>
+
+                        <div class="form-group" data-toggle="tooltip" title="Select type of the rebars arrangement (PN-EN 1992-1-1 Table 4.2).">
+                            <label for="ArrangementOfBars">Arrangement of bars</label>
+                            <select class="form-control" id="ArrangementOfBars" data-bind="options: ArrangementOfBarsList, value: ArrangementOfBars"></select>
+                        </div>
+
+                        <div class="form-group" data-toggle="tooltip" title="Select concrete class (PN-EN 1992-1-1 Table 3.1).">
+                            <label for="ConcreteClass">Concrete class</label>
+                            <select class="form-control" id="ConcreteClass" data-bind="options: ConcreteClassList, value: ConcreteClass"></select>
+                        </div>
+
+                        <div class="form-group" data-toggle="tooltip" title="Select exposure class (PN-EN 1992-1-1 Table 4.1). Hover the cursor over the name of the exposure class to see its description.">
+                            <label for="ExposureClass">Exposure class</label>
+                            <select class="form-control" id="ExposureClassSelectList" data-bind="options: ExposureClassList, value: ExposureClass"></select>
+                        </div>
+
+                        <div class="form-group" data-toggle="tooltip" title="Select base structural class (PN-EN 1992-1-1 4.4.1.2 (5)).">
+                            <label for="BaseStructuralClass">Base structural class</label>
+                            <select class="form-control" id="BaseStructuralClass" data-bind="options: BaseStructuralClassList, value: BaseStructuralClass"></select>
+                        </div>
+
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="" data-bind="checked: NominalMaximumAggregateSizeIsGreaterThan32mm" data-toggle="tooltip" title="Specify whether nominal maximum aggregate size is greater than 32mm (PN-EN 1992-1-1 Table 4.2).">Is nominal maximum aggregate size is greater than 32 mm?</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Structure properties</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="hej" data-bind="checked: DesignWorkingLifeOf100Years" data-toggle="tooltip" title="Specify whether design working life is greater then 100 years (PN-EN 1992-1-1 Table 4.3N).">Is design working life of 100 years?</label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="" data-bind="checked: MemberWithSlabGeometry" data-toggle="tooltip" title="Specify whether member has slab geometry (PN-EN 1992-1-1 Table 4.3N).">Is member with slab geometry?</label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="" data-bind="checked: SpecialQualityControlOfTheConcreteProductionEnsured" data-toggle="tooltip" title="Specify whether special quality control of the concrete production is ensured (PN-EN 1992-1-1 Table 4.3N).">Is special quality control of the concrete production ensured?</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Additional properties</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group" data-toggle="tooltip" title="Specify additive safety element (PN-EN 1992-1-1 4.4.1.2 (6)).">
+                            <label for="usr">Additive safety element:</label>
+                            <div class="form-inline">
+                                <input type="text" class="form-control" id="AdditiveSafetyElement" data-bind="value: AdditiveSafetyElement, valueUpdate: 'afterkeydown'">
+                                <label>[mm]</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group" data-toggle="tooltip" title="Specify reduction of minimum cover for use of stainless steel (PN-EN 1992-1-1 4.4.1.2 (7)).">
+                            <label for="usr">Reduction of minimum cover for use of stainless steel:</label>
+                            <div class="form-inline">
+                                <input type="text" class="form-control" id="ReductionOfMinimumCoverForUseOfStainlessSteel" data-bind="value: ReductionOfMinimumCoverForUseOfStainlessSteel, valueUpdate: 'afterkeydown'">
+                                <label>[mm]</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group" data-toggle="tooltip" title="Specify reduction of minimum cover for use of additional protection (PN-EN 1992-1-1 4.4.1.2 (8)).">
+                            <label for="usr">Reduction of minimum cover for use of additional protection:</label>
+                            <div class="form-inline">
+                                <input type="text" class="form-control" id="ReductionOfMinimumCoverForUseOfAdditionalProtection" data-bind="value: ReductionOfMinimumCoverForUseOfAdditionalProtection, valueUpdate: 'afterkeydown'">
+                                <label>[mm]</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group" data-toggle="tooltip" title="Specify whether deviation in design is allowed (PN-EN 1992-1-1 4.4.1.3).">
+                            <label for="usr">Allowance in design for deviation:</label>
+                            <div class="form-inline">
+                                <input type="text" class="form-control" id="AllowanceInDesignForDeviation" data-bind="value: AllowanceInDesignForDeviation, valueUpdate: 'afterkeydown'">
+                                <label>[mm]</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-lg-6 text-left">
+            <div class="panel-group concreteCoverWidget">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Calculated cover</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="form-inline">
+                            <span>Structural class:</span>
+                            <label class="label label-default  label-cover" data-bind="text: StructuralClass" data-toggle="tooltip" title="Calculated structural class (PN-EN 1992-1-1 Table 4.4N, 4.5N).">Structural class</label>
+                        </p>
+                        <p class="form-inline">
+                            <span>Minimum cover due to bond requirement = </span>
+                            <label class="label label-default label-cover" data-bind="text: MinimumCoverDueToBondRequirement" data-toggle="tooltip" title="Calculated minimum cover due to bond requirement (PN-EN 1992-1-1 4.4.1.2(3))."></label>
+                        </p>
+                        <p class="form-inline">
+                            <span>Minimum cover due to environmental conditions = </span>
+                            <label class="label label-default label-cover" data-bind="text: MinimumCoverDueToEnvironmentalConditions" data-toggle="tooltip" title="Calculated minimum cover due to environmental conditions (PN-EN 1992-1-1 4.4.1.2(5))."></label>
+                        </p>
+                        <p class="form-inline">
+                            <span>Minimum cover = </span>
+                            <label class="label label-default label-cover" data-bind="text: MinimumCover" data-toggle="tooltip" title="Calculated minimum cover (PN-EN 1992-1-1 Eq. 4.2)."></label>
+                        </p>
+                        <h3 class="form-inline">
+                            <span>Nominal cover = </span>
+                            <label class="label label-primary label-cover" data-bind="text: NominalCover" data-toggle="tooltip" title="Calculated nominal cover (PN-EN 1992-1-1 Eq. 4.1)."></label>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("#ExposureClassSelectList").each(function () {
+            var i = 0;
+            var s = this;
+
+            for (i = 0; i < s.length; i++) {
+                s.options[i].title = DisplayExposureClassDescription(s.options[i].text);
+            }
+            if (s.selectedIndex > -1) {
+                s.onmousemove = function () { s.title = s.options[s.selectedIndex].title; };
+            }
+        });
+
+        function DisplayExposureClassDescription(selectedValue) {
+            var description;
+
+            switch (selectedValue) {
+                case "X0":
+                    description = "No risk of corrosion or attack. For concrete without reinforcement or embedded metal. All exposures except where there is freeze/thaw, abrasion or chemical attack. Concrete inside buildings with very low air humidity."
+                    break;
+                case "XC1":
+                    description = "Corrosion induced by carbonation. Dry or permanently wet. Concrete inside buildings with low air humidity. Concrete permanently submerged in water.";
+                    break;
+                case "XC2":
+                    description = "Corrosion induced by carbonation. Wet, rarely dry. Concrete surfaces subject to long-term water contact. Many foundations.";
+                    break;
+                case "XC3":
+                    description = "Corrosion induced by carbonation. Moderate humidity. Concrete inside buildings with moderate or high air humidity. External concrete sheltered from rain.";
+                    break;
+                case "XC4":
+                    description = "Corrosion induced by carbonation. Cyclic wet and dry. Concrete surfaces subject to water contact, not within exposure class XC2.";
+                    break;
+                case "XD1":
+                    description = "Corrosion induced by chlorides. Moderate humidity. Concrete surfaces exposed to airborne chlorides.";
+                    break;
+                case "XD2":
+                    description = "Corrosion induced by chlorides. Wet, rarely dry. Swimming pools. Concrete components exposed to industrial waters containing chlorides.";
+                    break;
+                case "XD3":
+                    description = "Corrosion induced by chlorides. Cyclic wet and dry. Parts of bridges exposed to spray containing chlorides. Pavements. Car park slabs.";
+                    break;
+                case "XS1":
+                    description = "Corrosion induced by chlorides from sea water. Exposed to airborne salt but not in direct contact with sea water. Structures near to or on the coast.";
+                    break;
+                case "XS2":
+                    description = "Corrosion induced by chlorides from sea water. Permanently submerged. Parts of marine structures.";
+                    break;
+                case "XS3":
+                    description = "Corrosion induced by chlorides from sea water. Tidal, splash and spray zones. Parts of marine structures.";
+                    break;
+                case "XF1":
+                    description = "Freeze/Thaw attack. Moderate water saturation, without de-icing agent. Vertical concrete surfaces exposed to rain and freezing";
+                    break;
+                case "XF2":
+                    description = "Freeze/Thaw attack. Moderate water saturation, with de-icing agent. Vertical concrete surfaces of road structures exposed to freezing and airborne de-icing agents.";
+                    break;
+                case "XF3":
+                    description = "Freeze/Thaw attack. High water saturation, without de-icing agents. Horizontal concrete surfaces exposed to rain and freezing.";
+                    break;
+                case "XF4":
+                    description = "Freeze/Thaw attack. High water saturation with de-icing agents or sea water. Road and bridge decks exposed to de-icing agents. Concrete surfaces exposed to direct spray containing de-icing agents and freezing. Splash zone of marine structures exposed to freezing.";
+                    break;
+                case "XA1":
+                    description = "Chemical attack. Slightly aggressive chemical environment according to EN 206-1, Table 2. Natural soils and ground water.";
+                    break;
+                case "XA2":
+                    description = "Chemical attack. Moderately aggressive chemical environment according to EN 206-1, Table 2. Natural soils and ground water.";
+                    break;
+                case "XA3":
+                    description = "Chemical attack. Highly aggressive chemical environment according to EN 206-1, Table 2. Natural soils and ground water.";
+                    break;
+                default:
+                    description = "No description.";
+                    break;
+            }
+            return description;
+        }
+    });
+</script>
+
+<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>
+
+@Scripts.Render("~/bundles/concreteCover")

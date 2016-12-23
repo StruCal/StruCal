@@ -42,11 +42,15 @@ namespace StruCal
             bundles.Add(new StyleBundle("~/Content/custom").Include(
                 "~/Content/jquery-ui.css",
                 "~/Content/custom.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/sectionProperties").Include(
                 "~/Scripts/sectionProperties.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/shearReinforcement").Include(
                 "~/Scripts/shearReinforcement.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/concreteCover").Include(
+                "~/Scripts/cover.js"));
         }
     }
 }

@@ -15,14 +15,21 @@ namespace CalculatorsTests.ConcreteCover
         [TestCase(1, 0.03d, 0.01d, 0.02d)]
         public void CalculateNominalConcreteCoverTests_(int testCaseNumber, double minimumCover, double allowanceInDesignForDeviation, double expectedCover)
         {
-            ConcreteCoverCalculator coverCalculator = new ConcreteCoverCalculator()
+            ConcreteCoverInput inputData = new ConcreteCoverInput()
             {
-                MinimumCover = minimumCover,
+                ArrangementOfBars = "Separated",
+                RebarDiameter = "16 mm",
+                ExposureClass = "XC3",
+                ConcreteClass = "C30/37",
+                BaseStructuralClass = "S4",
                 AllowanceInDesignForDeviation = allowanceInDesignForDeviation
             };
 
-            coverCalculator.CalculateNominalConcreteCover();
-            Assert.AreEqual(expectedCover, coverCalculator.NominalCover);
+            ConcreteCoverCalculator coverCalculator = new ConcreteCoverCalculator();
+            coverCalculator.outputData.MinimumCover = minimumCover;
+
+            var result = coverCalculator.CalculateNominalConcreteCover(inputData);
+            Assert.AreEqual(expectedCover, result.NominalCover);
         }
     }
 }

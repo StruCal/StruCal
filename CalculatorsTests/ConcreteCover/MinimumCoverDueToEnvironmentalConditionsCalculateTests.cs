@@ -59,14 +59,16 @@ namespace CalculatorsTests.ConcreteCover
         public void CalculateMinimumCoverDueToEnvironmentalConditionsTests(int testCaseNumber, ExposureClass exposureClass,
             StructuralClass structuralClass, double expectedCover)
         {
-            ConcreteCoverCalculator coverCalculator = new ConcreteCoverCalculator()
+            ConcreteCoverInput inputData = new ConcreteCoverInput()
             {
-                ExposureClass = exposureClass,
-                StructuralClass = structuralClass
+                ExposureClass = ConcreteCoverCalculator.ConvertExposureClassToString(exposureClass),
             };
 
-            coverCalculator.CalculateMinimumCoverDueToEnvironmentalConditions();
-            Assert.AreEqual(expectedCover, coverCalculator.MinimumCoverDueToEnvironmentalConditions);
+            ConcreteCoverCalculator coverCalculator = new ConcreteCoverCalculator();
+            coverCalculator.outputData.StructuralClass = ConcreteCoverCalculator.ConvertStructuralClassToString(structuralClass);
+
+            var result = coverCalculator.CalculateMinimumCoverDueToEnvironmentalConditions(inputData);
+            Assert.AreEqual(expectedCover, result.MinimumCoverDueToEnvironmentalConditions);
         }
     }
 }

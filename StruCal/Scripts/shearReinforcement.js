@@ -397,8 +397,6 @@ var inputDataViewModel = function () {
     self.VrdsSummary.subscribe(refreshFormulas);
     self.NoSolution = ko.observable(false);
 
-
-
     function getData(newValue) {
 
         var inputData = {

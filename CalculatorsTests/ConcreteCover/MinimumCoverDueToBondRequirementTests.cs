@@ -19,15 +19,17 @@ namespace CalculatorsTests.ConcreteCover
         public void CalculateMinimumCoverDueToBondRequirementTests(int testCaseNumber, ArrangementOfBars arrangementOfBars,
             double rebarDiameter, bool NominalMaximumAggregateSizeIsGreaterThan32mm, double expectedCover)
         {
-            ConcreteCoverCalculator coverCalculator = new ConcreteCoverCalculator()
+            ConcreteCoverInput inputData = new ConcreteCoverInput()
             {
-                ArrangementOfBars = arrangementOfBars,
-                RebarDiameter = rebarDiameter,
+                ArrangementOfBars = ConcreteCoverCalculator.ConvertArrangementOfBarsToString(arrangementOfBars),
+                RebarDiameter = (rebarDiameter * 1000).ToString() + " mm",
                 NominalMaximumAggregateSizeIsGreaterThan32mm = NominalMaximumAggregateSizeIsGreaterThan32mm
             };
 
-            coverCalculator.CalculateMinimumCoverDueToBondRequirement();
-            Assert.AreEqual(expectedCover, coverCalculator.MinimumCoverDueToBondRequirement);
+            ConcreteCoverCalculator coverCalculator = new ConcreteCoverCalculator();
+
+            var result = coverCalculator.CalculateMinimumCoverDueToBondRequirement(inputData);
+            Assert.AreEqual(expectedCover, result.MinimumCoverDueToBondRequirement);
         }
     }
 }
