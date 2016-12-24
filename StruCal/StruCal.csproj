@@ -211,6 +211,8 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\cover.js" />
     <Content Include="Scripts\drawing.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
