@@ -51,6 +51,9 @@ namespace StruCal
 
             bundles.Add(new ScriptBundle("~/bundles/concreteCover").Include(
                 "~/Scripts/cover.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/rcBeam").Include(
+                "~/Scripts/rcBeam.js"));
         }
     }
 }
