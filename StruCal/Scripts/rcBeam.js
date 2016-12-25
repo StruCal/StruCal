@@ -17,31 +17,38 @@ var inputDataViewModel = function () {
     });
 
     self.Fck = ko.observable(37);
+    self.Fcd = ko.computed(function () { return Number(self.Fck()) + 10 }, this);
 
     self.AlphaCC = ko.observable('1');
     self.AlphaCCValidation = ko.pureComputed(function () {
         return self.AlphaCC();
     });
 
-    this.RedValue = ko.observable(300);
-    this.GreenValue = ko.observable(50);
-    this.YellowValue = ko.observable(100);
+
     this.StressStrain = {
-        labels: ["Red", "Green", "Yellow"],
+        labels: ["0", "", "\u03B5"],
         datasets: [
             {
-                data: [self.Fck, this.GreenValue, this.YellowValue],
-                backgroundColor: [
-                    "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56"
-                ],
-                hoverBackgroundColor: [
-                    "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56"
-                ]
-            }]
+                label: 'Characteristic',
+                backgroundColor: "rgba(220,220,220,0.2)",
+                borderColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [{x: 0, y: 0}, {x: 1, y: self.Fck}, {x: 2, y: self.Fck}],
+            },
+            {
+                label: 'Design',
+                backgroundColor: "rgba(151,187,205,0.2)",
+                borderColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: [{ x: 0, y: 0}, {x: 1, y: self.Fcd}, {x: 2, y: self.Fcd}],
+            }
+        ]
     };
 }
 
