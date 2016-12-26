@@ -65,17 +65,17 @@
                                                     string gammaC = "\\gamma_C";
                                                     <label>\(@gammaC = \)</label>
                                                 }
-                                                <input type="number" class="form-control" id="PartialFactorForConcrete" data-bind="value: GammaC, valueUpdate: 'afterkeydown'">
+                                                <input type="text" class="form-control" id="PartialFactorForConcrete" data-bind="value: PartialFactorForConcrete, valueUpdate: 'afterkeydown'">
                                                 <label>[-]</label>
                                             </div>
 
                                             <label for="PartialFactorForConcrete">Partial factor for steel:</label>
                                             <div class="form-inline">
                                                 @{
-                                                    string gammaS = "\\gamma_S";
+                                                    string gammaS = "\\gamma_C";
                                                     <label>\(@gammaS = \)</label>
                                                 }
-                                                <input type="number" class="form-control" id="PartialFactorForConcrete" data-bind="value: GammaS, valueUpdate: 'afterkeydown'">
+                                                <input type="text" class="form-control" id="PartialFactorForConcrete" data-bind="value: PartialFactorForConcrete, valueUpdate: 'afterkeydown'">
                                                 <label>[-]</label>
                                             </div>
                                         </div>
@@ -104,7 +104,7 @@
 
     <!-- Modal Concrete-->
     <div class="modal fade" id="modalConcrete" role="dialog">
-        <div class="modal-dialog" style="max-height:75%;">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">
@@ -127,48 +127,12 @@
                             <label>\(@fck = \)</label>
 
                         }
-                        <input type="number" class="form-control" id="fck" data-bind="value: Fck, valueUpdate: 'afterkeydown'">
+                        <input type="number" class="form-control" id="ConcreteClass" data-bind="value: Fck, valueUpdate: 'afterkeydown'">
                         <label>[MPa]</label>
-                    </div>
-
-                    @*Design Compressive Cylinder Strength Of Concrete Input*@
-                    <label for="DesignCompressiveCylinderStrengthOfConcrete">Design compressive cylinder strength of concrete at 28 days:</label>
-                    <div class="form-inline">
-                        @{
-                            string fcd = "f_{cd}";
-                            <label>\(@fcd = \)</label>
-
-                        }
-                        <span class="form-control" data-bind="text: Fcd"></span>
-                        <label>[MPa]</label>
-                    </div>
-
-                    @*Compressive strain in the concrete at the peak stress*@
-                    <label for="CompressiveStrainInTheConcreteAtThePeakStress">Compressive strain in the concrete at the peak stress:</label>
-                    <div class="form-inline">
-                        @{
-                            string epsilonC2 = "\\epsilon_{c2}";
-                            <label>\(@epsilonC2 = \)</label>
-
-                        }
-                        <input type="number" class="form-control" id="fck" data-bind="value: EpsilonC2, valueUpdate: 'afterkeydown'">
-                        <label>[-]</label>
-                    </div>
-
-                    @*Ultimate compressive strain in the concrete*@
-                    <label for="UltimateCompressiveStrainInTheConcrete">Ultimate compressive strain in the concrete:</label>
-                    <div class="form-inline">
-                        @{
-                            string epsilonCU2 = "\\epsilon_{cu2}";
-                            <label>\(@epsilonCU2 = \)</label>
-
-                        }
-                        <input type="number" class="form-control" id="fck" data-bind="value: EpsilonCU2, valueUpdate: 'afterkeydown'">
-                        <label>[-]</label>
                     </div>
 
                     <canvas id="StressStrainConcrete"
-                            data-bind="chart: { type: 'line', data: StressStrainConcrete, options: { observeChanges: true, throttle: 1000}}">
+                            data-bind="chart: { type: 'line', data: StressStrain, options: { observeChanges: true, throttle: 1000}}">
                     </canvas>
 
                     @*Coefficient taking into account of long term effects on the compressive strength and of unfavourable effects resulting from the way load is applied*@
@@ -179,62 +143,9 @@
                             <label>\(@alphaCC = \)</label>
 
                         }
-                        <input type="number" class="form-control" id="alphaCC" data-bind="value: AlphaCC, valueUpdate: 'afterkeydown'">
+                        <input type="text" class="form-control" id="alphaCC" data-bind="value: AlphaCC, valueUpdate: 'afterkeydown'">
                         <label>[-]</label>
                     </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Steel-->
-    <div class="modal fade" id="modalSteel" role="dialog">
-        <div class="modal-dialog" style="max-height:75%;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Steel</h4>
-                </div>
-                <div class="modal-body">
-                    @*Steel Class Select*@
-                    <div class="form-group" data-toggle="tooltip" title="Select steel class.">
-                        <label for="SteelClass">Steel class</label>
-                        <select class="form-control" id="SteelClass" data-bind="options: SteelClassList, value: SteelClass"></select>
-                    </div>
-
-                    @*Characteristic yield strength of steel Input*@
-                    <label for="CharacteristicYieldStrengthOfSteel">Characteristic yield strength of steel:</label>
-                    <div class="form-inline">
-                        @{
-                            string fyk = "f_{yk}";
-                            <label>\(@fyk = \)</label>
-
-                        }
-                        <input type="number" class="form-control" id="fyk" data-bind="value: Fyk, valueUpdate: 'afterkeydown'">
-                        <label>[MPa]</label>
-                    </div>
-                    @*Design yield strength of steel Input*@
-                    <label for="DesignYieldStrengthOfSteel">Design yield strength of steel:</label>
-                    <div class="form-inline">
-                        @{
-                            string fyd = "f_{yd}";
-                            <label>\(@fyd = \)</label>
-
-                        }
-                        <input type="number" class="form-control" id="fyd" data-bind="value: Fyd, valueUpdate: 'afterkeydown'">
-                        <label>[MPa]</label>
-                    </div>
-
-                    <canvas id="StressStrainSteel"
-                            data-bind="chart: { type: 'line', data: StressStrainSteel, options: { observeChanges: true, throttle: 1000}}"></canvas>
-
 
                 </div>
                 <div class="modal-footer">
