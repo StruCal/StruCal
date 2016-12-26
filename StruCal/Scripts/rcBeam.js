@@ -60,6 +60,11 @@ var inputDataViewModel = function () {
         return self.AlphaCC();
     });
 
+    self.N = ko.observable(2);
+    self.NValidation = ko.pureComputed(function () {
+        return self.N();
+    });
+
     self.StressStrainConcrete = {
         labels: ["0", self.EpsilonC2, self.EpsilonCU2],
         datasets: [
