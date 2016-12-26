@@ -10,6 +10,16 @@ var inputDataViewModel = function () {
     var self = this;
 
     //input parameters
+    self.GammaC = ko.observable(1.4);
+    self.GammaCValidation = ko.pureComputed(function () {
+        return self.GammaC();
+    });
+
+    self.GammaS = ko.observable(1.15);
+    self.GammaSValidation = ko.pureComputed(function () {
+        return self.GammaS();
+    });
+
     self.ConcreteClassList = ko.observableArray(['C12/15', 'C16/20', 'C20/25', 'C25/30', 'C30/37', 'C35/45', 'C40/50', 'C45/55', 'C50/60', 'C55/67', 'C60/75', 'C70/80', 'C80/95', 'C90/105']);
     self.ConcreteClass = ko.observable('C30/37');
     self.ConcreteClassValidation = ko.pureComputed(function () {
@@ -17,36 +27,78 @@ var inputDataViewModel = function () {
     });
 
     self.Fck = ko.observable(37);
-    self.Fcd = ko.computed(function () { return Number(self.Fck()) + 10 }, this);
+    self.Fcd = ko.computed(function () { return Number(self.Fck()) / Number(self.GammaC()) }, this);
+    self.EpsilonC2 = ko.observable(0.0025);
+    self.EpsilonCU2 = ko.observable(0.0035);
 
-    self.AlphaCC = ko.observable('1');
+    self.AlphaCC = ko.observable(1);
     self.AlphaCCValidation = ko.pureComputed(function () {
         return self.AlphaCC();
     });
 
-
-    this.StressStrain = {
-        labels: ["0", "", "\u03B5"],
+    this.StressStrainConcrete = {
+        labels: ["0", self.EpsilonC2, self.EpsilonCU2],
         datasets: [
             {
                 label: 'Characteristic',
+                lineTension: 0,
                 backgroundColor: "rgba(220,220,220,0.2)",
                 borderColor: "rgba(220,220,220,1)",
                 pointColor: "rgba(220,220,220,1)",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(220,220,220,1)",
-                data: [{x: 0, y: 0}, {x: 1, y: self.Fck}, {x: 2, y: self.Fck}],
+                data: [{ x: 0, y: 0 }, { x: self.EpsilonC2, y: self.Fck }, {x: self.EpsilonCU2, y: self.Fck }],
             },
             {
                 label: 'Design',
+                lineTension: 0,
                 backgroundColor: "rgba(151,187,205,0.2)",
                 borderColor: "rgba(151,187,205,1)",
                 pointColor: "rgba(151,187,205,1)",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(151,187,205,1)",
-                data: [{ x: 0, y: 0}, {x: 1, y: self.Fcd}, {x: 2, y: self.Fcd}],
+                data: [{ x: 0, y: 0 }, { x: self.EpsilonC2, y: self.Fcd }, {x: self.EpsilonCU2, y: self.Fcd }],
+            }
+        ]
+    };
+
+    self.SteelClassList = ko.observableArray(['400', '500', '600']);
+    self.SteelClass = ko.observable('500 MPa');
+    self.SteelClassValidation = ko.pureComputed(function () {
+        return self.SteelClass();
+    });
+
+    self.Fyk = ko.observable(400);
+    self.Fyd = ko.computed(function () { return Number(self.Fyk()) / Number(self.GammaS()) }, this);
+    self.EpsilonY = ko.observable(0.0025);
+    self.EpsilonU = ko.observable(0.0035);
+
+    this.StressStrainSteel = {
+        labels: ["0", self.EpsilonY, self.EpsilonU],
+        datasets: [
+            {
+                label: 'Characteristic',
+                lineTension: 0,
+                backgroundColor: "rgba(220,220,220,0.2)",
+                borderColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [{ x: 0, y: 0 }, { x: self.EpsilonY, y: self.Fyk }, { x: self.EpsilonU, y: self.Fyk }],
+            },
+            {
+                label: 'Design',
+                lineTension: 0,
+                backgroundColor: "rgba(151,187,205,0.2)",
+                borderColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: [{ x: 0, y: 0 }, { x: self.EpsilonY, y: self.Fyd }, { x: self.EpsilonU, y: self.Fyd }],
             }
         ]
     };
@@ -60,6 +112,8 @@ $(function () {
         var modal = $(this),
             dialog = modal.find('.modal-dialog');
         modal.css('display', 'block');
+
+        var top_nav_height = $(".navbar").height();
 
         // Dividing by two centers the modal exactly, but dividing by three
         // or four works better for larger screens.
