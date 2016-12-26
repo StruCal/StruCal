@@ -129,6 +129,8 @@ var inputDataViewModel = function () {
 
     self.RectWidth = ko.observable(25);
     self.RectHeight = ko.observable(50);
+
+    self.Moment = ko.observable(200);
 }
 
 /**
