@@ -31,7 +31,7 @@ function drawSection(drawing, xCoordinates, yCoordinates, canvasObject) {
     var sectionCentreX = getSectionCentre(minX, maxX);
     var sectionCentreY = getSectionCentre(minY, maxY);
 
-    //console.log('centers: ' + sectionCentreX + '   ' + sectionCentreY);
+    console.log('centers: ' + sectionCentreX + '   ' + sectionCentreY);
 
     var canvasWidth = canvasObject.width();
     var canvasHeight = canvasObject.height();
@@ -44,11 +44,11 @@ function drawSection(drawing, xCoordinates, yCoordinates, canvasObject) {
         transferedX[i] = transferXToCanvasSystem(xCoordinates[i], sectionCentreX, scale, canvasWidth);
         transferedY[i] = transferYToCanvasSystem(yCoordinates[i], sectionCentreY, scale, canvasHeight);
 
-        //console.log(String(transferedX[i]) + " " + String(transferedY[i]));
+        console.log(String(transferedX[i]) + " " + String(transferedY[i]));
     }
 
     var chainCoordinates = transferCoordinatesToPlot(transferedX, transferedY);
-    //console.log('chaincoordinates:' + chainCoordinates);
+    console.log('chaincoordinates:' + chainCoordinates);
     var polygon = drawing.polygon(chainCoordinates).fill({ color: '#3276b1', opacity: 0.9 }).stroke({ width: 3, color: '#054072' });
 }
 

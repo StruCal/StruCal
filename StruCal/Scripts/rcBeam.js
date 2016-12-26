@@ -4,6 +4,30 @@
     var inputVM = new inputDataViewModel();
     ko.applyBindings(inputVM);
 
+    function drawRectCrossSection() {
+        var canvasObject = $('#rectCrossSection');
+
+        var width = Number(inputVM.RectWidth());
+        var height = Number(inputVM.RectHeight());
+
+        var xString = "0;" + width + ";" + width + ";0;";
+        var yString = "0;0;" + height + ";" + height + ";";
+
+        var x = splitCoordinates(xString);
+        var y = splitCoordinates(yString);
+
+        if (x.length != y.length) {
+            return;
+        }
+
+        fillCanvas(x, y, canvasObject);
+    }
+
+    //Delay is necessary due to initialisation of div dimensions?
+    setTimeout(drawRectCrossSection, 1000)
+    $("#rectWidth").change(drawRectCrossSection);
+    $("#rectHeight").change(drawRectCrossSection);
+    $(window).resize(drawRectCrossSection);
 });
 
 var inputDataViewModel = function () {
@@ -36,7 +60,7 @@ var inputDataViewModel = function () {
         return self.AlphaCC();
     });
 
-    this.StressStrainConcrete = {
+    self.StressStrainConcrete = {
         labels: ["0", self.EpsilonC2, self.EpsilonCU2],
         datasets: [
             {
@@ -75,7 +99,7 @@ var inputDataViewModel = function () {
     self.EpsilonY = ko.observable(0.0025);
     self.EpsilonU = ko.observable(0.0035);
 
-    this.StressStrainSteel = {
+    self.StressStrainSteel = {
         labels: ["0", self.EpsilonY, self.EpsilonU],
         datasets: [
             {
@@ -102,6 +126,9 @@ var inputDataViewModel = function () {
             }
         ]
     };
+
+    self.RectWidth = ko.observable(25);
+    self.RectHeight = ko.observable(50);
 }
 
 /**
@@ -112,8 +139,6 @@ $(function () {
         var modal = $(this),
             dialog = modal.find('.modal-dialog');
         modal.css('display', 'block');
-
-        var top_nav_height = $(".navbar").height();
 
         // Dividing by two centers the modal exactly, but dividing by three
         // or four works better for larger screens.
