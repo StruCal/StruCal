@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "ConcreteProperties";
+}
+<br />
+<br />
+<br />
+
+<h2>ConcreteProperties</h2>
+<div ng-app="app" ng-controller="someCtrl">
+    <div class="container">
+        <h4>W polu numer 1 wpisz liczbę 1000, następnie w polu number 2 wpisz liczbę 2000.</h4>
+        <div data-lucky-number=""></div>
+    </div>
+
+    <div ng-init="names=['a','b','c','d','e']">
+        <ul>
+            <li ng-repeat="name in names">
+                {{name}}
+            </li>
+        </ul>
+    </div>
+
+    <form name="MyForm">
+        <input name="MyInput" ng-model="MyInput" required />
+
+        <p>The input vald's state is:</p>
+        <h4 ng-show="MyForm.MyInput.$valid">Forma zwalidowana</h4>
+        <span ng-show="MyForm.MyInput.$touched && MyForm.MyInput.$invalid">The name is required.</span>
+    </form>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
+<script>
+    var app = angular.module('app', []);
+    
+
+    app.controller('someCtrl', function($scope) {
+        
+    });
+
+    app.directive('luckyNumber', function () {
+        var alertElement = angular.element(
+        "<div class=\"well\">{{data.number}}<br/>{{data.number2}}</div>"
+        );
+
+        var link = function(scope)
+        {
+            scope.$watch("data.number1", function (value) {
+                if (value == "1000") {
+                    alertElement.fadeOut(800);
+                }
+            });
+            scope.$watch("data.number2", function (value) {
+                if (value == "2000") {
+                    alertElement.fadeIn(800);
+                }
+            });
+        }
+
+        return {
+            restrict: "AE",
+            replace: true,
+            template: "<div>Number 1: <input class=\"form-control\" type=\"text\" ng-model=\"data.number1\"><br/>Number 2: <input class=\"form-control\" type=\"text\" ng-model=\"data.number2\"></div>",
+            compile: function (tElem) {
+                tElem.append(alertElement);
+                return link;
+            }
+                        
+        }
+    })
+
+</script>
