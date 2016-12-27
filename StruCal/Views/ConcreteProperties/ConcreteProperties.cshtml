@@ -8,25 +8,22 @@
 
 <h2>ConcreteProperties</h2>
 <div ng-app="app" ng-controller="someCtrl">
-    <div class="container">
-        <h4>W polu numer 1 wpisz liczbę 1000, następnie w polu number 2 wpisz liczbę 2000.</h4>
-        <div data-lucky-number=""></div>
-    </div>
-
-    <div ng-init="names=['a','b','c','d','e']">
-        <ul>
-            <li ng-repeat="name in names">
-                {{name}}
-            </li>
-        </ul>
-    </div>
+    
 
     <form name="MyForm">
-        <input name="MyInput" ng-model="MyInput" required />
+        <p>Podaj pierwsza wartość:</p>
+        <input type="number" name="MyInput1" ng-model="input1" required />
 
+        <p>Podaj drugą wartość:</p>
+        <input type="number" name="MyInput2" ng-model="input2" required />
+
+
+        <p ng-show="input1 > input2">Input 1 jest wiekszy od input2</p>
+        <p ng-show="input1 < input2">Input 1 jest mniejszy od input2</p>
+        @*<p></p>
         <p>The input vald's state is:</p>
         <h4 ng-show="MyForm.MyInput.$valid">Forma zwalidowana</h4>
-        <span ng-show="MyForm.MyInput.$touched && MyForm.MyInput.$invalid">The name is required.</span>
+        <span ng-show="MyForm.MyInput.$touched && MyForm.MyInput.$invalid">The name is required.</span>*@
     </form>
 </div>
 
