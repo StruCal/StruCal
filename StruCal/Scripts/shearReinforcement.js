@@ -39,9 +39,15 @@ $(document).ready(function () {
 
         //getValues from local storage
         var inputName = $(this).parent('span').siblings('input').attr('id');
-        var area = localStorage.getItem(inputName + "area");
-        var diameter = localStorage.getItem(inputName + "diamter");
+        
+        var diameter = localStorage.getItem(inputName + "diameter");
+
+        diameter = diameter == null ? 1 : diameter;
         var count = localStorage.getItem(inputName + "count");
+        count = count == null ? 1 : count;
+
+        area = Math.round(count * Math.PI * diameter * diameter / 4 * 100) / 100;
+
 
         $('.popover #areaValue').text(area);
         $('.popover #diameterInput').val(diameter);
@@ -71,7 +77,7 @@ $(document).ready(function () {
     })
     .on('click', '#applyReinforcement', function () { //apply button on popover
         var $context = $(this).data('context'); //button which triggered the popover
-        var area = $('.popover #areaValue').text();
+        //var area = $('.popover #areaValue').text();
         var diameter = $('.popover #diameterInput').val();
         var count = $('.popover #countInput').val();
 
@@ -86,7 +92,7 @@ $(document).ready(function () {
 
         //save values to local storage
         localStorage.setItem(inputName + "area", area);
-        localStorage.setItem(inputName + "diamter", diameter);
+        localStorage.setItem(inputName + "diameter", diameter);
         localStorage.setItem(inputName + "count", count);
 
         $context.popover('hide');
