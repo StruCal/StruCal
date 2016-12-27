@@ -54,6 +54,9 @@ namespace StruCal
 
             bundles.Add(new ScriptBundle("~/bundles/rcBeam").Include(
                 "~/Scripts/rcBeam.js"));
+
+            bundles.Add(new StyleBundle("~/Content/PanelTabs").Include(
+                "~/Content/PanelTabs.css"));
         }
     }
 }

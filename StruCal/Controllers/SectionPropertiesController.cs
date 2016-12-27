@@ -41,7 +41,12 @@ namespace StruCal.Controllers
         {
             ViewBag.ShowResults = false;
             ViewBag.InputErrors = false;
-            return View(new RectangularSectionViewModel());
+            var viewModel = new RectangularSectionViewModel
+            {
+                Height = "10",
+                Width = "4"
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -56,7 +61,11 @@ namespace StruCal.Controllers
         {
             ViewBag.ShowResults = false;
             ViewBag.InputErrors = false;
-            return View(new CircularSectionViewModel());
+            var viewModel = new CircularSectionViewModel
+            {
+                Radious = "10"
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -71,7 +80,14 @@ namespace StruCal.Controllers
         {
             ViewBag.ShowResults = false;
             ViewBag.InputErrors = false;
-            return View(new TSectionViewModel());
+            var viewModel = new TSectionViewModel
+            {
+                WebThickness = "0.2",
+                FlangeThickness = "0.2",
+                FlangeWidth = "1",
+                Height = "2"
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -86,7 +102,16 @@ namespace StruCal.Controllers
         {
             ViewBag.ShowResults = false;
             ViewBag.InputErrors = false;
-            return View(new ISectionViewModel());
+            var viewModel = new ISectionViewModel
+            {
+                WebThickness = "0.2",
+                TopFlangeThickness = "0.2",
+                TopFlangeWidth = "1",
+                Height = "2",
+                BottomFlangeThickness = "0.1",
+                BottomFlangeWidth = "0.5",
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
