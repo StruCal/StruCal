@@ -22,38 +22,38 @@ namespace StruCal.Controllers.Tests
             return validationResults;
         }
 
-        [TestCase("10;20;30")]
-        [TestCase("00;20;30")]
-        [TestCase("10;20;30.")]
-        [TestCase("i10;20;30;")]
-        [TestCase("10;20k;30;")]
-        [TestCase("10;20;;30;")]
-        [TestCase("nm10;20;30")]
-        [TestCase("10,5;20,8;30")]
-        [TestCase("+10;20;30.2.3;")]
+        [TestCase("10;20; 30")]
+        [TestCase("00;20 30;20")]
+        [TestCase("10;20 30.;20")]
+        [TestCase("i10;20 ;30;")]
+        [TestCase("10;20k 30;20.2")]
+        [TestCase("10;20  30;80")]
+        [TestCase("nm10;20 30;80.")]
+        [TestCase("10,5;20,8 30;20.2")]
+        [TestCase("+10;20 30.2.3;")]
         public void SectionPropertiesController_CustomSectionViewModelValidation_ValidationShowErrors(string inputData)
         {
             var viewModel = new CustomSectionViewModel()
             {
-                XCoordinates = inputData,
-                YCoordinates = inputData,
+                Coordinates = inputData,
+                //YCoordinates = inputData,
             };
 
             var actualErrors = validateModel(viewModel);
             Assert.IsTrue(actualErrors.Count > 0);
         }
 
-        [TestCase("10;20;30;")]
-        [TestCase("-10;20;-30;")]
-        [TestCase("1.1;2.2;-5.02;")]
-        [TestCase("0.0;2;-30;")]
-        [TestCase("4;2.2;5;10;15;")]
+        [TestCase("10;20 30;40")]
+        [TestCase("-10;20 -30;20.2")]
+        [TestCase("1.1;2.2 -5.02;50.2")]
+        [TestCase("0.0;2 -30;0.002")]
+        [TestCase("4;2.2 10;15")]
         public void SectionPropertiesController_CustomSectionViewModelValidation_ValidationPassed(string inputData)
         {
             var viewModel = new CustomSectionViewModel()
             {
-                XCoordinates = inputData,
-                YCoordinates = inputData,
+                Coordinates = inputData,
+                //YCoordinates = inputData,
             };
 
             var actualErrors = validateModel(viewModel);

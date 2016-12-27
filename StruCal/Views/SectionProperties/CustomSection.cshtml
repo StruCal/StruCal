@@ -5,9 +5,9 @@
     Layout = "_SectionPropertiesLayout.cshtml";
 }
 
+
 <p class="text-justify">
-    Please provide the cordinates of the section. The coordinates should be provided as a chain of numbers separated by semicolons as shown in the following example: <strong><em>5.5;10;20.4;18.8;</em></strong>.
-    <br />Please note that the chain of numbers should be ended with a semicolon.
+    Please provide the cordinates of the section. The coordinates should be provided as pairs of X and Y numbers separated by semicolons as shown in the following example: <strong><em>5.5;10 20.4;18.8 30;-80</em></strong>.
 </p>
 <br />
 <div class="row">
@@ -19,13 +19,13 @@
             <div id="inputForms">
                 @Html.Partial("_ValidationPartial")
                 <div class="form-group">
-                    @Html.LabelFor(model => model.XCoordinates, new { @class = "control-label" })
-                    @Html.EditorFor(model => model.XCoordinates, new { htmlAttributes = new { @class = "form-control", @placeholder = "10;20;30;40;" } })
+                    @Html.LabelFor(model => model.Coordinates, new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Coordinates, new { htmlAttributes = new { @class = "form-control", @placeholder = "0;0 10;0 10;10 0;10" } })
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.YCoordinates, new { @class = "control-label" })
-                    @Html.EditorFor(model => model.YCoordinates, new { htmlAttributes = new { @class = "form-control", @placeholder = "10;20;20;10;" } })
-                </div>
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.YCoordinates, new { @class = "control-label" })
+                        @Html.EditorFor(model => model.YCoordinates, new { htmlAttributes = new { @class = "form-control", @placeholder = "10;20;20;10;" } })
+                    </div>*@
 
                 <div class="form-group">
                     <input id="runButton" type="submit" value="Run" class="btn btn-primary" />
@@ -39,6 +39,7 @@
         </div>
     </div>
 </div>
+
 @Html.Partial("_ResultsPartial", Model)
 
 <script>

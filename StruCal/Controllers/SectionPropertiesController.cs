@@ -20,7 +20,13 @@ namespace StruCal.Controllers
         {
             ViewBag.ShowResults = false;
             ViewBag.InputErrors = false;
-            return View(new CustomSectionViewModel());
+
+            var viewModel = new CustomSectionViewModel()
+            {
+                Coordinates = "0;10 10;0 20;0 30;10"
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]

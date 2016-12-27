@@ -18,7 +18,7 @@ namespace StruCal.Tests.Validators
         [TestCase("i10;20 30;20")]
         [TestCase("10;20 30;20;")]
         [TestCase("10;20;; 30;")]
-        [TestCase("10;20 20;5")]
+        [TestCase("10;20 20;5..0")]
         [TestCase("10,5; 20,8 ;30")]
         [TestCase("+10;20 30.2.3;")]
         public void RegexPatternTests_CustomSectionValidationPattern_ValidationShowErrors(string inputData)

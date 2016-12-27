@@ -3,12 +3,22 @@ function createCustomDrawing() {
     var canvasObject = $('#canvas');
     //var xString = $("#XCoordinates").val() == "" ? $("#XCoordinates").attr("placeholder") : $("#XCoordinates").val();
     //var yString = $("#YCoordinates").val() == "" ? $("#YCoordinates").attr("placeholder") : $("#YCoordinates").val();
-    var xString = getInputValue("#XCoordinates");
-    var yString = getInputValue("#YCoordinates");
+    var coordinates = getInputValue("#Coordinates");
+    //var yString = getInputValue("#YCoordinates");
 
+    var xCoord = "";
+    var yCoord = "";
 
-    var x = splitCoordinates(xString);
-    var y = splitCoordinates(yString);
+    var splitedCoordinates = coordinates.split(" ");
+
+    for (var i = 0; i < splitedCoordinates.length; i++) {
+        var tempCoord = splitedCoordinates[i].split(";");
+        xCoord = xCoord + tempCoord[0] + ";";
+        yCoord = yCoord + tempCoord[1] + ";";
+    }
+
+    var x = splitCoordinates(xCoord);
+    var y = splitCoordinates(yCoord);
 
     if (x.length != y.length) {
         return;

@@ -37,25 +37,38 @@ namespace StruCal.ViewModels
         public IEnumerable<SectionPropertyViewData> CentralSystemProperties { get; set; }
         public IEnumerable<SectionPropertyViewData> PrincipalSystemProperties { get; set; }
 
-        [Required(ErrorMessage = "X coordinates are empty.")]
-        [Display(Name = "X coordinates:")]
+        [Required(ErrorMessage = "Coordinates are empty.")]
+        [Display(Name = "Coordinates:")]
         [RegularExpression(RegexPatterns.CustomSectionValidationPattern,ErrorMessage ="Provided input for X Coordinates is invalid.")]
-        [TheSameLength(nameof(YCoordinates),ErrorMessage ="The number of X and Y coordinates should be the same.")]
-        public string XCoordinates { get; set; }
+        public string Coordinates { get; set; }
 
-        [Required(ErrorMessage = "Y coordinates are empty.")]
-        [Display(Name = "Y coordinates:")]
-        [RegularExpression(RegexPatterns.CustomSectionValidationPattern, ErrorMessage = "Provided input for Y Coordinates is invalid.")]
-        public string YCoordinates { get; set; }
 
         public string GetXCoordinates()
         {
-            return XCoordinates;
+            var result = convertCoordinates(e=>e[0]);
+
+            return result;
         }
 
         public string GetYCoordinates()
         {
-            return YCoordinates;
+            var result = convertCoordinates(e => e[1]);
+
+            return result;
+        }
+
+        private string convertCoordinates(Func<string[],string> coordinatePicker)
+        {
+            var coordinates = this.Coordinates.Split(' ');
+
+            var result = string.Empty;
+            foreach (var coord in coordinates)
+            {
+                var tempCoord = coord.Split(';');
+                result = result + coordinatePicker?.Invoke(tempCoord) + ";";
+            }
+
+            return result;
         }
     }
 
