@@ -7,66 +7,38 @@
 <br />
 
 <h2>ConcreteProperties</h2>
-<div ng-app="app" ng-controller="someCtrl">
-    
 
-    <form name="MyForm">
-        <p>Podaj pierwsza wartość:</p>
-        <input type="number" name="MyInput1" ng-model="input1" required />
+    <div ng-app="app" >
+        <div ng-controller="someCtrl">
+            {{message}}
+            
+        </div>
+        <div ng-controller="otherCtrl">
+            {{otherMessage}}
+        </div>
+    </div>
+        
 
-        <p>Podaj drugą wartość:</p>
-        <input type="number" name="MyInput2" ng-model="input2" required />
-
-
-        <p ng-show="input1 > input2">Input 1 jest wiekszy od input2</p>
-        <p ng-show="input1 < input2">Input 1 jest mniejszy od input2</p>
-        @*<p></p>
-        <p>The input vald's state is:</p>
-        <h4 ng-show="MyForm.MyInput.$valid">Forma zwalidowana</h4>
-        <span ng-show="MyForm.MyInput.$touched && MyForm.MyInput.$invalid">The name is required.</span>*@
-    </form>
-</div>
-
-
+<style>
+    .error{
+        border:solid #ff0000 2px;
+    }
+</style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
 <script>
+    
     var app = angular.module('app', []);
+
+    var app2 = angular.module('app2',[]);
     
 
-    app.controller('someCtrl', function($scope) {
-        
+    app.controller('someCtrl', function ($scope) {
+        $scope.message = 'Hello, Arek!';
     });
 
-    app.directive('luckyNumber', function () {
-        var alertElement = angular.element(
-        "<div class=\"well\">{{data.number}}<br/>{{data.number2}}</div>"
-        );
-
-        var link = function(scope)
-        {
-            scope.$watch("data.number1", function (value) {
-                if (value == "1000") {
-                    alertElement.fadeOut(800);
-                }
-            });
-            scope.$watch("data.number2", function (value) {
-                if (value == "2000") {
-                    alertElement.fadeIn(800);
-                }
-            });
-        }
-
-        return {
-            restrict: "AE",
-            replace: true,
-            template: "<div>Number 1: <input class=\"form-control\" type=\"text\" ng-model=\"data.number1\"><br/>Number 2: <input class=\"form-control\" type=\"text\" ng-model=\"data.number2\"></div>",
-            compile: function (tElem) {
-                tElem.append(alertElement);
-                return link;
-            }
-                        
-        }
-    })
+    app.controller('otherCtrl', function ($scope) {
+        $scope.otherMessage = 'Hello,Darek';
+    });
 
 </script>
