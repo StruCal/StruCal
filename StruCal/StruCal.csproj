@@ -160,6 +160,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ConcretePropertiesController.cs" />
     <None Include="Controllers\ConcreteCoverController.cs" />
     <Compile Include="Controllers\CoverController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -215,6 +216,7 @@
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\cover.js" />
+    <Content Include="Scripts\concreteProperties.js" />
     <Content Include="Scripts\drawing.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -275,6 +277,7 @@
     <Content Include="Views\SectionProperties\ISection.cshtml" />
     <Content Include="Views\SectionProperties\_ValidationPartial.cshtml" />
     <Content Include="Views\ShearReinforcement\ShearReinforcement.cshtml" />
+    <Content Include="Views\ConcreteProperties\ConcreteProperties.cshtml" />
     <Content Include="Views\Cover\Cover.cshtml" />
   </ItemGroup>
   <ItemGroup>

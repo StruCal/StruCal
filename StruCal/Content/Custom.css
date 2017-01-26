@@ -410,6 +410,10 @@ nav {
     float: right;
 }
 
+    table.centre td, th {
+        text-align: center;
+    }
+
 /*------------------------------*/
 /*jQuery UI*/
 /*------------------------------*/

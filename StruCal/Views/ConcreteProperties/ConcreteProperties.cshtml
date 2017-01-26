@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "ConcreteProperties";
+}
+<br />
+<br />
+<br />
+<div class="container-fluid" ng-app="concretePropertiesApp">
+    <h2>Concrete Properties</h2>
+
+    <div ng-controller="mainCtrl">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Input data
+            </div>
+            <div class="panel-body">
+                <div class="col-md-4">
+                    <form name="inputForm">
+                        <div class="form-group">
+                            <label class="control-label" for="concreteClasses">Concrete class:</label>
+                            <select class="form-control" name="concreteClasses" ng-model="selectedConcrete">
+                                <option ng-repeat="concrete in concretes" value="{{concrete}}">{{concrete}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="cementClasses">Cement type:</label>
+                            <select class="form-control" name="cementClasses" ng-model="selectedCement">
+                                <option ng-repeat="cement in cementes" value="{{cement}}">{{cement}}</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Concrete properties
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed centre">
+                    <thead>
+                        <tr>
+                            <th ng-repeat="(name, value) in properties">{{$parent.convert(name)}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td ng-repeat="(name, value) in properties">{{value}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div ng-controller="chartCtrl">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p class="text-center">\(f_{ck}(t) [{\small MPa}]\)</p>
+                        <canvas id="chart" class="chart chart-line" chart-data="fckData"
+                                chart-labels="fckLabels" chart-series="series" chart-options="options"
+                                chart-dataset-override="datasetOverride"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p class="text-center">\(E_{cm}(t) [{\small GPa}]\)</p>
+                        <canvas id="chart" class="chart chart-line" chart-data="EcmData"
+                                chart-labels="EcmLabels" chart-series="series" chart-options="options"
+                                chart-dataset-override="datasetOverride"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p class="text-center">\(f_{ctm}(t) [{\small MPa}]\)</p>
+                        <canvas id="chart" class="chart chart-line" chart-data="fcmData"
+                                chart-labels="fcmLabels" chart-series="series" chart-options="options"
+                                chart-dataset-override="datasetOverride"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p class="text-center">\(f_{ctm}(t) [{\small MPa}]\)</p>
+                        <canvas id="chart" class="chart chart-line" chart-data="fctmData"
+                                chart-labels="fctmLabels" chart-series="series" chart-options="options"
+                                chart-dataset-override="datasetOverride"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<br />
+<br />
+
+<style>
+    table.centre td, th {
+        text-align: center;
+    }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-chart.js/1.1.1/angular-chart.min.js"></script>
+@Styles.Render("~/Content/custom")
+@Scripts.Render("~/bundles/concreteProperties")
+<script>
+    
+</script>

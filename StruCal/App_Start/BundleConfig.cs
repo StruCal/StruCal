@@ -36,8 +36,9 @@ namespace StruCal
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/drawing").Include(
-
                 "~/Scripts/drawing.js"));
+            bundles.Add(new ScriptBundle("~/bundles/concreteProperties").Include(
+                "~/Scripts/concreteProperties.js"));
 
             bundles.Add(new StyleBundle("~/Content/custom").Include(
                 "~/Content/jquery-ui.css",
