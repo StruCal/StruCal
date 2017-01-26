@@ -5,37 +5,39 @@
 <br />
 <br />
 <br />
-<div class="container" ng-app="concretePropertiesApp">
+<div class="container-fluid" ng-app="concretePropertiesApp">
     <h2>Concrete Properties</h2>
 
-    <div ng-controller="inputDataCtrl">
+    <div ng-controller="mainCtrl">
         <div class="panel panel-default">
             <div class="panel-heading">
-
+                Input data
             </div>
             <div class="panel-body">
-                <form name="inputForm">
-                    <div class="form-group">
-                        <label class="control-label" for="concreteClasses">Select concrete class:</label>
-                        <select class="form-control" name="concreteClasses" ng-model="selectedConcrete">
-                            <option ng-repeat="concrete in concreteClasses" value="{{concrete}}">{{concrete}}</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="cementClasses">Select cement class:</label>
-                        <select class="form-control" name="cementClasses" ng-model="selectedCement">
-                            <option ng-repeat="cement in cementClasses" value="{{cement}}">{{cement}}</option>
-                        </select>
-                    </div>
-                </form>
+                <div class="col-md-4">
+                    <form name="inputForm">
+                        <div class="form-group">
+                            <label class="control-label" for="concreteClasses">Concrete class:</label>
+                            <select class="form-control" name="concreteClasses" ng-model="selectedConcrete">
+                                <option ng-repeat="concrete in concretes" value="{{concrete}}">{{concrete}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="cementClasses">Cement type:</label>
+                            <select class="form-control" name="cementClasses" ng-model="selectedCement">
+                                <option ng-repeat="cement in cementes" value="{{cement}}">{{cement}}</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">
-
+                Concrete properties
             </div>
             <div class="panel-body">
-                <table class="table table-condensed">
+                <table class="table table-condensed centre">
                     <thead>
                         <tr>
                             <th ng-repeat="(name, value) in properties">{{$parent.convert(name)}}</th>
@@ -49,25 +51,61 @@
                 </table>
             </div>
         </div>
-        <test name={{fck}}></test>
     </div>
     <div ng-controller="chartCtrl">
         <div class="row">
             <div class="col-md-6">
-                <canvas id="chart" class="chart chart-line" chart-data="data"
-                        chart-labels="labels" chart-series="series" chart-options="options"
-                        chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p class="text-center">\(f_{ck}(t) [{\small MPa}]\)</p>
+                        <canvas id="chart" class="chart chart-line" chart-data="fckData"
+                                chart-labels="fckLabels" chart-series="series" chart-options="options"
+                                chart-dataset-override="datasetOverride"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p class="text-center">\(E_{cm}(t) [{\small GPa}]\)</p>
+                        <canvas id="chart" class="chart chart-line" chart-data="EcmData"
+                                chart-labels="EcmLabels" chart-series="series" chart-options="options"
+                                chart-dataset-override="datasetOverride"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p class="text-center">\(f_{ctm}(t) [{\small MPa}]\)</p>
+                        <canvas id="chart" class="chart chart-line" chart-data="fcmData"
+                                chart-labels="fcmLabels" chart-series="series" chart-options="options"
+                                chart-dataset-override="datasetOverride"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p class="text-center">\(f_{ctm}(t) [{\small MPa}]\)</p>
+                        <canvas id="chart" class="chart chart-line" chart-data="fctmData"
+                                chart-labels="fctmLabels" chart-series="series" chart-options="options"
+                                chart-dataset-override="datasetOverride"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    
+
 </div>
 <br />
 <br />
 
 <style>
-    .error {
-        border: solid #ff0000 2px;
+    table.centre td, th {
+        text-align: center;
     }
 </style>
 
@@ -77,17 +115,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-chart.js/1.1.1/angular-chart.js"></script>
 <script>
 
-    function refreshFormulas() {
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-    };
 
 
 
     var charts = angular.module('charts', ['chart.js']);
-
-    charts.controller('chartCtrl', function ($scope) {
+    charts.controller('chartCtrl', function ($scope, concreteFunctions) {
         $scope.series = ['fcm', ];
-        
+
         $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
         $scope.options = {
             scales: {
@@ -100,68 +134,74 @@
                   }
                 ],
                 xAxes: [{
-                    display: false,
+                    scaleLabel: {
+                        display: true,
+                        labelString: "t [Days]",
+                        fontSize: 15
+                    },
+                    display: true,
+                    ticks: {
+                        maxRotation: 0,
+                        autoSkipPadding: 20,
+                    }
                 }],
             },
-            title: {
-                text: '\(f_{cm} [MPa]\)',
-                display: true,
+            //title: {
+            //    text: '\(f_{cm} [MPa]\)',
+            //    display: true,
+            //},
+            tooltips: {
+                enabled: true,
             },
-            tooltips:{
-                enabled: false,
+            legend: {
+
             },
             elements:
                 {
                     point: {
                         radius: 0,
                         hitRadius: 0,
-                        hoverRadius:0,
+                        hoverRadius: 10,
                     },
-                    
+
                 },
         };
 
         $scope.$on('concreteChange', function (event, arg) {
-            var timeFunc = new timeFunctions(arg.fck, arg.fcm, arg.cementClass);
-            var values = timeFunc.fcmValues();
-            $scope.labels = values.x;
-            $scope.data = [values.y];
+            var data = concreteFunctions.getFunctions(arg.fck, arg.fcm, arg.fctm,arg.Ecm, arg.cementClass);
+
+            var fckValues = data.fck();
+            $scope.fckLabels = fckValues.x;
+            $scope.fckData = [fckValues.y];
+
+            var EcmValues = data.Ecm();
+            $scope.EcmLabels = EcmValues.x;
+            $scope.EcmData = [EcmValues.y];
+
+            var fcmValues = data.fcm();
+            $scope.fcmLabels = fcmValues.x;
+            $scope.fcmData = [fcmValues.y];
+
+            var fctmValues = data.fctm();
+            $scope.fctmLabels = fctmValues.x;
+            $scope.fctmData = [fctmValues.y];
         });
     });
 
     var application = angular.module('concretePropertiesApp', ['charts']);
-
-    application.directive("test", function () {
-        return {
-            restrict: "E",
-            scope: {
-                name: "@@",
-                func: "&"
-            },
-            template:
-                "<div>"+
-                "{{name}}"+
-                "</div>",
-            replace: true,
-            transclude: false,
-            controller: ["$scope", function ($scope) {
-
-            }],
-        }
-        });
-
-    application.controller("inputDataCtrl", function ($scope,$rootScope, concreteClasses, concreteProperties, nameConverter) {
+    application.controller("mainCtrl", function ($scope, $rootScope, concreteFactory, concreteProperties, nameConverter) {
 
         $scope.convert = nameConverter.convertName;
 
-        $scope.concreteClasses = concreteClasses.concrete;//.classes()
-        $scope.selectedConcrete = concreteClasses.concrete[0];//.classes()[0];
+        $scope.concretes = concreteFactory.concreteClass;//.classes()
+        $scope.selectedConcrete = concreteFactory.concreteClass[0];//.classes()[0];
 
-        $scope.cementClasses = concreteClasses.cement;
-        $scope.selectedCement = concreteClasses.cement[0];
+        $scope.cementes = concreteFactory.cementType;
+        $scope.selectedCement = concreteFactory.cementType[0];
 
         $scope.$watch('selectedConcrete', () =>update());
         $scope.$watch('selectedCement', () =>update());
+
 
         var update = function () {
             //properties = new concretePropertiesProvider($scope.selectedClass)
@@ -175,18 +215,19 @@
                 {
                     fck: $scope.fck,
                     fcm: properties.fcm,
+                    fctm: properties.fctm,
+                    Ecm:properties.Ecm,
                     cementClass: $scope.selectedCement
                 });
 
-            refreshFormulas();
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
-
     });
 
-    application.factory('concreteClasses', function () {
+    application.factory('concreteFactory', function () {
         return {
-            concrete: ["C12/15", "C16/20", "C20/25", "C25/30", "C30/37", "C35/45", "C40/50"],
-            cement: ["S", "N", "R"],
+            concreteClass: ["C12/15", "C16/20", "C20/25", "C25/30", "C30/37", "C35/45", "C40/50","C45/55","C50/60","C55/67","C60/75","C70/85","C80/95","C90/105"],
+            cementType: ["S", "N", "R"],
         }
     });
 
@@ -237,72 +278,122 @@
 
     });
 
-    function timeFunctions(fck, fcm, cementType) {
+    application.service('concreteFunctions', function () {
+        const startDay = 3;
+        const endDay = 60;
 
-        var cementFactor = (function () {
-            var result;
-            switch (cementType) {
-                case "R":
-                    result = 0.2;
-                    break;
-                case "N":
-                    result = 0.25;
-                    break;
-                case "S":
-                    result = 0.38;
-                    break;
-                default: result = 1
+        this.getFunctions = function timeFunctions(fck, fcm, fctm,Ecm, cementType) {
+            var cementFactor = (function () {
+                var result;
+                switch (cementType) {
+                    case "R":
+                        result = 0.2;
+                        break;
+                    case "N":
+                        result = 0.25;
+                        break;
+                    case "S":
+                        result = 0.38;
+                        break;
+                    default: result = 1
+                }
+                return result;
+            })();
+            var betaCC = function (t) {
+                var result = Math.exp(cementFactor * (1 - (Math.sqrt(28 / t))));
+                return result;
+            };
+
+            var fctmFunction = function (t) {
+                var alpha = t >= 28 ? 2 / 3 : 1;
+
+                var result = Math.pow(betaCC(t), alpha) * fctm;
+                return result;
+            };
+
+            var fcmFunction = function (t) {
+                var result = betaCC(t) * fcm;
+                return result;
             }
-            return result;
-        })();
-        var betaCC = function (t) {
-            var result = Math.exp(cementFactor * (1 - (Math.sqrt(28 / t))));
-            return result;
-        };
 
-        var fcmFunction = function (t) {
-            var alpha = t >= 28 ? 2 / 3 : 1;
-
-            var result = Math.pow(betaCC(t),alpha) * fcm;
-            return result;
-        };
-
-        this.fcmValues = function () {
-            var x = new Array();
-            var y = new Array();
-            for (var i = 0; i < 60; i++) {
-                var value = fcmFunction(i);
-                x.push(i);
-                y.push(value);
+            var fckFunction = function (t) {
+                var result = t<=28 ? fcmFunction(t) - 8 : fck;
+                return result;
             }
-            return { x: x, y: y };
+            var EcmFunction = function (t) {
+                var result =Math.pow(fcmFunction(t)/fcm,0.3) *Ecm;
+                return result;
+            }
+
+            var fcmValues = function () {
+                var x = new Array();
+                var y = new Array();
+                for (var i = startDay; i < endDay; i++) {
+                    var value = fcmFunction(i);
+                    x.push(i);
+                    y.push(value);
+                }
+                return { x: x, y: y };
+            }
+            var fctmValues = function () {
+                var x = new Array();
+                var y = new Array();
+                for (var i = startDay; i < endDay; i++) {
+                    var value = fctmFunction(i);
+                    x.push(i);
+                    y.push(value);
+                }
+                return { x: x, y: y };
+            }
+            var fckValues = function () {
+                var x = new Array();
+                var y = new Array();
+                for (var i = startDay; i < endDay; i++) {
+                    var value = fckFunction(i);
+                    x.push(i);
+                    y.push(value);
+                }
+                return { x: x, y: y };
+            }
+            var EcmValues = function () {
+                var x = new Array();
+                var y = new Array();
+                for (var i = startDay; i < endDay; i++) {
+                    var value = EcmFunction(i);
+                    x.push(i);
+                    y.push(value);
+                }
+                return { x: x, y: y };
+            }
+            return {
+                fcm: fcmValues,
+                fctm: fctmValues,
+                fck: fckValues,
+                Ecm:EcmValues,
+            }
         }
-    }
+    })
 
     application.service('nameConverter', function () {
-
         this.convertName = function convert(name) {
             var names = {
                 fck: "\\(f_{ck} [{\\small MPa}]\\)",
-                fckcube: "\\(f_{ck,cube} [MPa]\\)",
-                fcm: "\\(f_{cm} [MPa]\\)",
-                fctm: "\\(f_{ctm}\\)",
-                fctk005: "\\(f_{ctk,005}\\)",
-                fctk095: "\\(f_{ctk,095}\\)",
-                Ecm: "\\(E_{cm}\\)",
+                fckcube: "\\(f_{ck,cube} [{\\small MPa}]\\)",
+                fcm: "\\(f_{cm} [{\\small MPa}]\\)",
+                fctm: "\\(f_{ctm} [{\\small MPa}]\\)",
+                fctk005: "\\(f_{ctk,005} [{\\small MPa}]\\)",
+                fctk095: "\\(f_{ctk,095} [{\\small MPa}]\\)",
+                Ecm: "\\(E_{cm} [{\\small GPa}]\\)",
                 ec1: "\\(\\varepsilon_{c1} [{\\small^0/_{00}}]\\) ",
-                ecu1: "\\(\\varepsilon_{cu1} [{\\tiny^0/_{00}}]\\)",
-                ec2: "\\(\\varepsilon_{c2} [{\\tiny^0/_{00}}]\\)",
-                ecu2: "\\(\\varepsilon_{cu2} [{\\tiny^0/_{00}}]\\)",
-                n: "\\(n [{\\tiny-}]\\)",
-                ec3: "\\(\\varepsilon_{c3} [{\\tiny^0/_{00}}]\\)",
-                ecu3: "\\(\\varepsilon_{cu3} [{\\tiny^0/_{00}}]\\)",
+                ecu1: "\\(\\varepsilon_{cu1} [{\\small^0/_{00}}]\\)",
+                ec2: "\\(\\varepsilon_{c2} [{\\small^0/_{00}}]\\)",
+                ecu2: "\\(\\varepsilon_{cu2} [{\\small^0/_{00}}]\\)",
+                n: "\\(n [{\\small-}]\\)",
+                ec3: "\\(\\varepsilon_{c3} [{\\small^0/_{00}}]\\)",
+                ecu3: "\\(\\varepsilon_{cu3} [{\\small^0/_{00}}]\\)",
             }
             return names[name];
         }
     })
-
-
-
 
 </script>
