@@ -1,1 +1,102 @@
-﻿
+﻿<!-- Modal Concrete-->
+<div class="modal fade" id="modalConcrete" role="dialog" ng-controller="concreteCtrl">
+    <div class="modal-dialog" style="max-height:75%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">Concrete</h4>
+            </div>
+            <div class="modal-body">
+                @*Concrete Class Select*@
+                <div class="form-group" data-toggle="tooltip" title="Select concrete class.">
+                    <label >Concrete class</label>
+                    <select class="form-control" ng-model="selectedConcrete">
+                        <option ng-repeat="concrete in concretes" value="{{concrete}}">{{concrete}}</option>
+                    </select>
+                </div>
+
+                @*Characteristic Compressive Cylinder Strength Of Concrete Input*@
+                <div>
+                <label class="control-label">Characteristic compressive cylinder strength of concrete at 28 days:</label>
+                </div>
+                    <div class="form-group">
+                    <label class="control-label col-md-1">\(f_{ck} = \)</label>
+                    <div class="col-md-2">
+                    <input type="number" class="form-control" ng-model="fck" required min="1">
+                        </div>
+                    <label class="control-label col-md-1">[MPa]</label>
+                </div>
+
+                @*Design Compressive Cylinder Strength Of Concrete Input*@
+
+                <div>
+                <label class="control-label">Design compressive cylinder strength of concrete at 28 days:</label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-1">\(f_{cd} = \)</label>
+                    <div class="col-md-2">
+                    <span class="form-control">{{fcd | number:2}}</span>
+                        </div>
+                    <label class="control-label col-md-1">[MPa]</label>
+                </div>
+
+                @*Compressive strain in the concrete at the peak stress*@
+                <div>
+                    <h2>Compressive strain in the concrete at the peak stress:</h2>
+                </div>                
+                <div class="form-group">
+                    <label class="control-label col-md-1">\(\epsilon_{c2} = \)</label>
+                    <div class="col-md-2">
+                    <input type="number" class="form-control" ng-model="ec2">
+                        </div>
+                    <label class="control-label col-md-1">[-]</label>
+                </div>
+
+                @*Ultimate compressive strain in the concrete*@
+                <div>
+                    <label class="control-label">Ultimate compressive strain in the concrete:</label>
+                </div>                <div class="form-group">
+                    <label class="control-label col-md-1">\(\epsilon_{cu2} = \)</label>
+                    <div class="col-md-2">
+                    <input type="number" class="form-control" ng-model="ecu2">
+                        </div>
+                    <label class="control-label col-md-1">[-]</label>
+                </div>
+
+                <canvas id="StressStrainConcrete"
+                        data-bind="chart: { type: 'line', data: StressStrainConcrete, options: { observeChanges: true, throttle: 1000}}"></canvas>
+
+                @*Coefficient taking into account of long term effects on the compressive strength and of unfavourable effects resulting from the way load is applied*@
+                <div>
+                    <label class="control-label">Coefficient:</label>
+                </div>                <div class="form-group">
+                    <label class="control-label col-md-1">alpha_{cc} = \)</label>
+                    <div class="col-md-2">
+                    <input type="number" class="form-control" ng-model="alphaCC">
+                        </div>
+                    <label class="control-label col-md-1">[-]</label>
+                </div>
+
+                @*Exponent*@
+                <div>
+                    <label class="control-label">Exponent:</label>
+                </div>                <div class="form-group">
+                    <label class="control-label col-md-1">\(n = \)</label>
+                    <div class="col-md-2">
+                    <input type="number" class="form-control" ng-model="n">
+                        </div>
+                    <label class="control-label col-md-1">[-]</label>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
