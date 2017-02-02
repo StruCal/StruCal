@@ -273,25 +273,91 @@
         $scope.concretes = concreteProvider.getConcreteClasses();
         $scope.selectedConcrete = $scope.concretes[0];
         $scope.alphaCC = 1;
+        $scope.fck = 20;
+        var gammaC = 1.5;
 
+        $scope.save = function() {
+            $rootScope.$broadcast('fcd', $scope.fcd);
+            $('#modalConcrete').modal('toggle');
+        }
         $scope.$watch('selectedConcrete', function () {
-            var properties = concreteProvider.getProperties($scope.selectedConcrete);
+            updateProperties($scope.selectedConcrete);
+        });
+        $scope.$watch('alphaCC', function () {
+            $scope.fcd = $scope.fck / gammaC * $scope.alphaCC;
+            updateChart();
+        });
+        $scope.$watch('fck', function () {
+            updateProperties($scope.fck)
+        });
+        
+        //chart
+        $scope.series = ['Design Stress','Characteristic stress' ];
+        $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
+        $scope.options = {
+            scales: {
+                yAxes: [
+                  {
+                      id: 'y-axis-1',
+                      type: 'linear',
+                      display: true,
+                      position: 'left'
+                  }
+                ],
+                xAxes: [{
+                    scaleLabel: {
+                        display: false,
+                        labelString: "t [Days]",
+                        fontSize: 15
+                    },
+                    display: true,
+                    ticks: {
+                        maxRotation: 0,
+                        autoSkipPadding: 20,
+                    }
+                }],
+            },
+            tooltips: {
+                enabled: true,
+            },
+            legend: {
+                display: true,
+                position: 'top'
+            },
+            elements:
+                {
+                    point: {
+                        radius: 0,
+                        hitRadius: 0,
+                        hoverRadius: 10,
+                    },
+
+                },
+            animation:
+                {
+                    duration:1000,
+                }
+        };
+
+        $scope.$on('gammaC', function (event, arg) {
+            gammaC = arg;
+            updateValues();
+        });
+        function updateProperties(concreteClass)
+        {
+            var properties = concreteProvider.getProperties(concreteClass);
             $scope.fck = properties.fck;
             $scope.fcd = properties.fck / gammaC * $scope.alphaCC;
             $scope.n = properties.n;
             $scope.ec2 = properties.ec2;
             $scope.ecu2 = properties.ecu2;
-        });
-        $scope.$watch('alphaCC', function () {
-            $scope.fcd = $scope.fck / gammaC * $scope.alphaCC;
-        })
-
-        var gammaC = 1.5;
-        $scope.$on('gammaC', function (event, arg) {
-            gammaC = arg;
-        });
-
-
+            updateChart();
+        }
+        function updateChart() {
+            var chartValues = concreteProvider.getChartValues($scope.fck, gammaC,$scope.alphaCC);
+            $scope.concreteLabels = chartValues.strain;
+            $scope.concreteData = [chartValues.designStress, chartValues.charStress];
+        }
         
 
     });
@@ -322,11 +388,11 @@
             }
 
         }
-        this.getChartValues = function (concreteClass,gammaC) {
-            var properties = self.getProperties(concreteClass,gammaC);
+        this.getChartValues = function (concreteClass,gammaC,alphaCC) {
+            var properties = self.getProperties(concreteClass);
 
             var fck = properties.fck;
-            var fcd = fck/gammaC;
+            var fcd = fck/gammaC*alphaCC;
             var ec2 = properties.ec2;
             var ecu2 = properties.ecu2;
             var n = properties.n;
@@ -338,11 +404,13 @@
             var designStress = new Array();
 
             while (currentStrain <= ecu2) {
-                strain.push(currentStrain);
+                strain.push(currentStrain.toFixed(4));
 
-                var currentCharStress = strain <= ecu2 ? fck * (1 - Math.pow(1 - currentStrain / ec2, n)) : fck;
+                var currentCharStress = currentStrain <= ec2 ? fck * (1 - Math.pow(1 - currentStrain / ec2, n)) : fck;
                 charStress.push(currentCharStress);
-                designStress.push(currentCharStress / gammaC);
+                designStress.push(currentCharStress / gammaC*alphaCC);
+                currentStrain = currentStrain + increase;
+
             }
             return {
                 strain: strain,
@@ -352,7 +420,7 @@
         }
 
         var convertFck = function (concreteClass) {
-            var strength = concreteClass.replace("C", "").split("/");
+            var strength = concreteClass.toString().replace("C", "").split("/");
 
             var fck = Number(strength[0]);
             return fck;
