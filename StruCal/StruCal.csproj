@@ -177,6 +177,8 @@
     <Compile Include="ViewModels\ConcreteCoverViewModel.cs" />
     <Compile Include="ViewModels\SectionPropertiesViewModels.cs" />
     <Compile Include="Views\Shared\TemplateNames.cs" />
+    <Content Include="Scripts\RcBeam\coefficientsCtrl.js" />
+    <Content Include="Scripts\RcBeam\concreteCtrl.js" />
     <Content Include="Views\RCBeam\_CoefficientsModal.cshtml" />
     <Content Include="Views\RCBeam\_ConcreteModal.cshtml" />
     <Content Include="Views\RCBeam\_SteelView.cshtml" />
