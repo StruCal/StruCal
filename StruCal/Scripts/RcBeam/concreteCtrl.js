@@ -1,5 +1,5 @@
-﻿angular.module('rcBeam').controller('concreteCtrl', function ($scope, $rootScope, concreteProvider) {
-    $scope.concretes = concreteProvider.getConcreteClasses();
+﻿angular.module('rcBeam').controller('concreteCtrl', function ($scope, $rootScope, concreteService) {
+    $scope.concretes = concreteService.getConcreteClasses();
     $scope.selectedConcrete = $scope.concretes[0];
     $scope.alphaCC = 1;
     $scope.fck = 20;
@@ -73,7 +73,7 @@
         updateValues();
     });
     function updateProperties(concreteClass) {
-        var properties = concreteProvider.getProperties(concreteClass);
+        var properties = concreteService.getProperties(concreteClass);
         $scope.fck = properties.fck;
         $scope.fcd = properties.fck / gammaC * $scope.alphaCC;
         $scope.n = properties.n;
@@ -82,7 +82,7 @@
         updateChart();
     }
     function updateChart() {
-        var chartValues = concreteProvider.getChartValues($scope.fck, gammaC, $scope.alphaCC);
+        var chartValues = concreteService.getChartValues($scope.fck, gammaC, $scope.alphaCC);
         $scope.concreteLabels = chartValues.strain;
         $scope.concreteData = [chartValues.designStress, chartValues.charStress];
     }
@@ -90,7 +90,7 @@
 
 });
 
-angular.module('rcBeam').service('concreteProvider', function () {
+angular.module('rcBeam').service('concreteService', function () {
     var self = this;
     this.getConcreteClasses = function () {
         return ["C12/15", "C16/20", "C20/25", "C25/30", "C30/37", "C35/45", "C40/50", "C45/55", "C50/60", "C55/67", "C60/75", "C70/85", "C80/95", "C90/105"]
