@@ -180,6 +180,7 @@
     <Content Include="Scripts\RcBeam\chartService.js" />
     <Content Include="Scripts\RcBeam\coefficientsCtrl.js" />
     <Content Include="Scripts\RcBeam\concreteCtrl.js" />
+    <Content Include="Scripts\RcBeam\loadsCtrl.js" />
     <Content Include="Scripts\RcBeam\steelCtrl.js" />
     <Content Include="Views\RCBeam\_CoefficientsModal.cshtml" />
     <Content Include="Views\RCBeam\_ConcreteModal.cshtml" />
