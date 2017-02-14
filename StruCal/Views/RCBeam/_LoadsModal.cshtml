@@ -1,4 +1,17 @@
-﻿<!-- Modal Loads-->
+﻿<style>
+    /*.table tbody>tr>td.vert-align{
+        vertical-align:central;
+        border:groove;
+        border-color:red;
+    }*/
+    .table tbody>tr.vert-align td{
+        vertical-align:central;
+        /*border:groove;
+        border-color:red;*/
+    }
+</style>
+
+<!-- Modal Loads-->
 <div class="modal fade" id="modalLoads" role="dialog">
     <div class="modal-dialog" style="max-height:75%;">
         <div class="modal-content" ng-controller="loadsCtrl">
@@ -21,29 +34,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="load in loadCases">
-                                <td class="col-sm-1">{{$index + 1}}</td>
+                            <tr class="vert-align" ng-repeat="load in loadCases">
+                                <td class="col-sm-1">
+                                <label class="control-label">{{$index + 1}}</label>
+                                </td>
                                 <td class="col-sm-2">
-                                    <p ng-show="!showForms">{{load.name}}</p>
+                                    <label class="control-label" ng-show="!showForms">{{load.name}}</label>
                                     <input type="text" class="form-control" ng-model="load.name" ng-show="showForms" />
                                 </td>
                                 <td class="col-sm-3">
-                                    <p ng-show="!showForms">{{load.value}}</p>
+                                    <label class="control-label" ng-show="!showForms">{{load.value}}</label>
                                     <input type="number" class="form-control" ng-model="load.value" ng-show="showForms" />
                                 </td>
                                 <td class="col-sm-2">
-                                    <a href="#" ng-click="showForms=false;save($index,load.name,load.value)" class="glyphicon glyphicon-save" ng-show="showForms">Save</a>
+                                    <a href="#" ng-click="showForms=false;save($index,load.name,load.value)" class="glyphicon glyphicon-ok btn btn-default" ng-show="showForms"> Save</a>
                                 </td>
                                 <td class="col-sm-1">
-                                    <a href="#" ng-click="showForms=true" class="glyphicon glyphicon-pencil"></a>
+                                    <a href="#" ng-click="showForms=true" class="glyphicon glyphicon-pencil btn btn-default"></a>
                                 </td>
                                 <td class="col-sm-1">
-                                    <a href="#" class="glyphicon glyphicon-remove"></a>
+                                    <a href="#" ng-click="remove($index)" ng-show="loadCases.length > 1" class="glyphicon glyphicon-remove btn btn-default"></a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <button class="btn btn-primary" ng-click="add()">Add</button>
+                    <hr />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

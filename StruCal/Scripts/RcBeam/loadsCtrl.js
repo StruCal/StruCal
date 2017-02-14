@@ -24,5 +24,7 @@
         });
     }
 
-
+    $scope.remove = function (index) {
+        $scope.loadCases.splice(index, 1);
+    }
 });
