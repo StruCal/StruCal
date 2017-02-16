@@ -1,20 +1,4 @@
-﻿function fillCanvas(xCoordinates, yCoordinates, canvasObject) {
-    //var canvasObject = $('#' + canvasParentId);
-    canvasObject.empty();
-
-    var canvasWidth = canvasObject.width();
-    var canvasHeight = canvasWidth * 0.5;
-    canvasObject.height(canvasHeight);
-
-    var drawing = SVG(canvasObject.attr('id')).size(canvasWidth, canvasHeight);
-
-    //drawVerticalLines(drawing, canvasWidth, canvasHeight);
-    //drawHorizontalLines(drawing, canvasWidth, canvasHeight);
-    drawBackgroundPattern(drawing, canvasWidth, canvasHeight);
-
-    drawSection(drawing, xCoordinates, yCoordinates, canvasObject);
-
-}
+﻿
 
 //drawing functions. Coordinates are provides as array
 function drawSection(drawing, xCoordinates, yCoordinates, canvasObject) {
@@ -76,38 +60,37 @@ function drawBackgroundPattern(drawing, width, height) {
     var rectangle = drawing.rect(correctedWidth, correctedHeight).fill(pattern);
     //bottom and right line
     //var bottomLine = drawing.rect(correctedWidth, correctedHeight).stroke({ width: 1, color: 'grey' }).fill('none').move(2,2);
+    function drawVerticalLines(drawing, width, height) {
+        var numberOfLines = 10;
+        var distance = width / numberOfLines;
 
-}
-function drawVerticalLines(drawing, width, height) {
-    var numberOfLines = 10;
-    var distance = width / numberOfLines;
+        for (i = 0; i <= numberOfLines; i++) {
+            var x1 = 0 + i * distance;
+            var x2 = x1;
+            var y1 = 0;
+            var y2 = height;
 
-    for (i = 0; i <= numberOfLines; i++) {
-        var x1 = 0 + i * distance;
-        var x2 = x1;
-        var y1 = 0;
-        var y2 = height;
-
-        //console.log(x1);
-        var input = convertCoordinatesToLineInput(x1, y1, x2, y2);
-        //console.log(input);
-        var line = drawing.line(input).stroke({ width: 1, color: 'Gray' });
+            //console.log(x1);
+            var input = convertCoordinatesToLineInput(x1, y1, x2, y2);
+            //console.log(input);
+            var line = drawing.line(input).stroke({ width: 1, color: 'Gray' });
+        }
     }
-}
-function drawHorizontalLines(drawing, width, height) {
-    var numberOfLines = 10;
-    var distance = height / numberOfLines;
+    function drawHorizontalLines(drawing, width, height) {
+        var numberOfLines = 10;
+        var distance = height / numberOfLines;
 
-    for (i = 0; i <= numberOfLines; i++) {
-        var x1 = 0;
-        var x2 = width;
-        var y1 = 0 + i * distance;
-        var y2 = 0 + i * distance;
+        for (i = 0; i <= numberOfLines; i++) {
+            var x1 = 0;
+            var x2 = width;
+            var y1 = 0 + i * distance;
+            var y2 = 0 + i * distance;
 
-        //console.log(x1);
-        var input = convertCoordinatesToLineInput(x1, y1, x2, y2);
-        //console.log(input);
-        var line = drawing.line(input).stroke({ width: 1, color: 'Gray' });
+            //console.log(x1);
+            var input = convertCoordinatesToLineInput(x1, y1, x2, y2);
+            //console.log(input);
+            var line = drawing.line(input).stroke({ width: 1, color: 'Gray' });
+        }
     }
 }
 
@@ -138,29 +121,23 @@ function transferXToCanvasSystem(pointX, centreX, scale, canvasWidth) {
     //console.log('poinX:' + pointX + ' centreX:' + centreX + ' scale:' + scale + ' canvasWidth:' + canvasWidth + ' x:' + x);
     return x;
 }
-
 function transferYToCanvasSystem(pointY, centreY, scale, canvasHeight) {
     var y = (-(pointY - centreY) * scale) + canvasHeight / 2;
     return y;
 }
-
 function getMaxValue(array) {
     return Math.max.apply(null, array);
 }
-
 function getMinValue(array) {
     return Math.min.apply(null, array);
 }
-
 function getSectionCentre(minCoordinate, maxCoordinate) {
     return ((maxCoordinate - minCoordinate) / 2) + minCoordinate;
 }
-
 function getSectionDimension(maxCoordinates, minCoordinates) {
     var dimension = maxCoordinates - minCoordinates;
     return dimension;
 }
-
 function getDrawingScale(canvasWidth, canvasHeight, sectionWidth, sectionHeight) {
     var factor = 2;
 
@@ -171,15 +148,3 @@ function getDrawingScale(canvasWidth, canvasHeight, sectionWidth, sectionHeight)
     return scale;
 }
 
-function splitCoordinates(coordinates) {
-    var splitedCoordinates = coordinates.split(";");
-    console.log("Splited coordinates: " + splitedCoordinates);
-
-    var result = new Array();
-    for (var i = 0; i < splitedCoordinates.length; i++) {
-        if (splitedCoordinates[i] != "")
-            result[i] = splitedCoordinates[i];
-    }
-
-    return result;
-}

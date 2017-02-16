@@ -1,4 +1,4 @@
-﻿angular.module('rcBeam').controller('concreteCtrl', function ($scope, $rootScope, concreteService) {
+﻿angular.module('rcBeam').controller('concreteCtrl', function ($scope, $rootScope, concreteService, chartService) {
     $scope.concretes = concreteService.getConcreteClasses();
     $scope.selectedConcrete = $scope.concretes[0];
     $scope.alphaCC = 1;
@@ -21,52 +21,9 @@
     });
 
     //chart
-    $scope.series = ['Design Stress', 'Characteristic stress'];
-    $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
-    $scope.options = {
-        scales: {
-            yAxes: [
-              {
-                  id: 'y-axis-1',
-                  type: 'linear',
-                  display: true,
-                  position: 'left'
-              }
-            ],
-            xAxes: [{
-                scaleLabel: {
-                    display: false,
-                    labelString: "t [Days]",
-                    fontSize: 15
-                },
-                display: true,
-                ticks: {
-                    maxRotation: 0,
-                    autoSkipPadding: 20,
-                }
-            }],
-        },
-        tooltips: {
-            enabled: true,
-        },
-        legend: {
-            display: true,
-            position: 'top'
-        },
-        elements:
-            {
-                point: {
-                    radius: 0,
-                    hitRadius: 0,
-                    hoverRadius: 10,
-                },
-
-            },
-        animation:
-            {
-                duration: 1000,
-            }
-    };
+    $scope.series = chartService.series;
+    $scope.datasetOverride = chartService.datasetOverride;
+    $scope.options = chartService.options;
 
     $scope.$on('gammaC', function (event, arg) {
         gammaC = arg;

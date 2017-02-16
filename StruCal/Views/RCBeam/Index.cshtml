@@ -23,7 +23,7 @@
                 Sections <span class="caret"></span>
                 </button>
                     <ul class="dropdown-menu">
-                        <li><a data-toggle="modal" href="#modalSections">Section 1</a></li>
+                        <li><a data-toggle="modal" href="#modalRectangularSection">Section 1</a></li>
                         <li><a data-toggle="modal" href="#modalSections2">Section 2</a></li>
                     </ul>
                     </div>
@@ -47,57 +47,10 @@
     @Html.Partial("_ConcreteModal")
     @Html.Partial("_SteelModal")
     @Html.Partial("_LoadsModal")
+    @Html.Partial("_RectangularSectionModal")
     
     
     
-    <!-- Modal Sections-->
-    <div class="modal fade" id="modalSections" role="dialog">
-        <div class="modal-dialog" style="max-height:75%;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Sections</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            @*Rectangular cross-section width*@
-                            <label for="RectangularCrossSectionWidth">Rectangular cross-section width:</label>
-                            <div class="form-inline">
-                                @{
-                                    string b = "b";
-                                    <label>\(@b = \)</label>
-
-                                }
-                                <input type="number" class="form-control" id="rectWidth" data-bind="value: RectWidth, valueUpdate: 'afterkeydown'">
-                                <label>[cm]</label>
-                            </div>
-
-                            @*Rectangular cross-section height*@
-                            <label for="RectangularCrossSectionHeight">Rectangular cross-section height:</label>
-                            <div class="form-inline">
-                                @{
-                                    string h = "h";
-                                    <label>\(@h = \)</label>
-
-                                }
-                                <input type="number" class="form-control" id="rectHeight" data-bind="value: RectHeight, valueUpdate: 'afterkeydown'">
-                                <label>[cm]</label>
-                            </div>
-                        </div>
-                        @*RECT DRAWING*@
-                        <div id="rectCrossSection" class="col-md-6"></div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Modal Sections2-->
     <div class="modal fade" id="modalSections2" role="dialog">
         <div class="modal-dialog" style="max-height:75%;">
@@ -116,7 +69,7 @@
                             <div class="form-inline">
                                 @{
                                     string b2 = "b";
-                                    <label>\(@b = \)</label>
+                                    <label>\(@b2 = \)</label>
 
                                 }
                                 <input type="number" class="form-control" id="rectWidth" data-bind="value: RectWidth, valueUpdate: 'afterkeydown'">
@@ -128,7 +81,7 @@
                             <div class="form-inline">
                                 @{
                                     string h2 = "h";
-                                    <label>\(@h = \)</label>
+                                    <label>\(@h2 = \)</label>
 
                                 }
                                 <input type="number" class="form-control" id="rectHeight" data-bind="value: RectHeight, valueUpdate: 'afterkeydown'">
@@ -186,3 +139,5 @@
 <script src="~/Scripts/RcBeam/steelCtrl.js"></script>
 <script src="~/Scripts/RcBeam/chartService.js"></script>
 <script src="~/Scripts/RcBeam/loadsCtrl.js"></script>
+<script src="~/Scripts/RcBeam/rectangularSectionCtrl.js"></script>
+<script src="~/Scripts/RcBeam/canvasDirective.js"></script>

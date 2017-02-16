@@ -1,0 +1,41 @@
+﻿<!-- Modal Sections-->
+<div class="modal fade" id="modalRectangularSection" role="dialog">
+    <div class="modal-dialog" style="max-height:75%;">
+        <div class="modal-content" ng-controller="rectangularSectionCtrl">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">Sections</h4>
+            </div>
+            <div class="modal-body">
+                @*Rectangular cross-section width*@
+                <div class="form-horizontal">
+                    <label class="control-label"> Width:</label>
+                    <div class="form-group">
+                        <label class="control-label col-md-1">\(b = \)</label>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control">
+                        </div>
+                        <label class="control-label col-md-1">[cm]</label>
+                    </div>
+
+                    @*Rectangular cross-section height*@
+                    <label class="control-label">Height:</label>
+                    <div class="form-group">
+                        <label class="control-label col-md-1">\(h = \)</label>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control">
+                        </div>
+                        <label class="control-label col-md-1">[cm]</label>
+                    </div>
+                </div>
+                <div id="rectangleDrawing">
+                </div>
+            </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+    </div>
+</div>

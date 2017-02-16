@@ -25,8 +25,37 @@ function createCustomDrawing() {
     }
 
     fillCanvas(x, y, canvasObject);
-}
 
+    function splitCoordinates(coordinates) {
+        var splitedCoordinates = coordinates.split(";");
+        //console.log("Splited coordinates: " + splitedCoordinates);
+
+        var result = new Array();
+        for (var i = 0; i < splitedCoordinates.length; i++) {
+            if (splitedCoordinates[i] != "")
+                result[i] = splitedCoordinates[i];
+        }
+
+        return result;
+    }
+}
+function fillCanvas(xCoordinates, yCoordinates, canvasObject) {
+    //var canvasObject = $('#' + canvasParentId);
+    canvasObject.empty();
+
+    var canvasWidth = canvasObject.width();
+    var canvasHeight = canvasWidth * 0.5;
+    canvasObject.height(canvasHeight);
+
+    var drawing = SVG(canvasObject.attr('id')).size(canvasWidth, canvasHeight);
+
+    //drawVerticalLines(drawing, canvasWidth, canvasHeight);
+    //drawHorizontalLines(drawing, canvasWidth, canvasHeight);
+    drawBackgroundPattern(drawing, canvasWidth, canvasHeight);
+
+    drawSection(drawing, xCoordinates, yCoordinates, canvasObject);
+
+}
 function createRectangularDrawing() {
     var canvasObject = $('#canvas');
 
