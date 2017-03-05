@@ -15,7 +15,7 @@ function drawSection(drawing, xCoordinates, yCoordinates, canvasObject) {
     var sectionCentreX = getSectionCentre(minX, maxX);
     var sectionCentreY = getSectionCentre(minY, maxY);
 
-    console.log('centers: ' + sectionCentreX + '   ' + sectionCentreY);
+    //console.log('centers: ' + sectionCentreX + '   ' + sectionCentreY);
 
     var canvasWidth = canvasObject.width();
     var canvasHeight = canvasObject.height();
@@ -92,6 +92,11 @@ function drawBackgroundPattern(drawing, width, height) {
             var line = drawing.line(input).stroke({ width: 1, color: 'Gray' });
         }
     }
+}
+
+function drawBars(drawing,bars)
+{
+
 }
 
 function convertCoordinatesToLineInput(x1, y1, x2, y2) {
