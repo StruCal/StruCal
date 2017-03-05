@@ -181,7 +181,8 @@
     <Content Include="Scripts\RcBeam\chartService.js" />
     <Content Include="Scripts\RcBeam\coefficientsCtrl.js" />
     <Content Include="Scripts\RcBeam\concreteCtrl.js" />
-    <Content Include="Scripts\RcBeam\Drawings.js" />
+    <Content Include="Scripts\RcBeam\Drawings\drawingHelpers.js" />
+    <Content Include="Scripts\RcBeam\Drawings\rcDrawing.js" />
     <Content Include="Scripts\RcBeam\loadsCtrl.js" />
     <Content Include="Scripts\RcBeam\rectangularSectionCtrl.js" />
     <Content Include="Scripts\RcBeam\steelCtrl.js" />

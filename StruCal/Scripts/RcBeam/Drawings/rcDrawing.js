@@ -7,7 +7,6 @@ class rcDrawing {
 
     //drawing functions. Coordinates are provides as array
     drawSection(xCoordinates, yCoordinates, canvasObject) {
-
         this.maxX = getMaxValue(xCoordinates);
         this.minX = getMinValue(xCoordinates);
         this.maxY = getMaxValue(yCoordinates);
@@ -25,15 +24,16 @@ class rcDrawing {
         this.canvasWidth = canvasObject.width();
         this.canvasHeight = canvasObject.height();
 
-        this.scale = getDrawingScale(this.canvasWidth, this.canvasHeight, this.sectionWidth, this.sectionHeight);
+        this.scale = this.getDrawingScale();
+        //console.log('scale: ' + this.scale);
         //convert coordinates to canvas
         var transferedX = [];
         var transferedY = [];
         for (var i = 0; i < xCoordinates.length; i++) {
-            transferedX[i] = transferXToCanvasSystem(xCoordinates[i], this.sectionCentreX, this.scale, this.canvasWidth);
-            transferedY[i] = transferYToCanvasSystem(yCoordinates[i], this.sectionCentreY, this.scale, this.canvasHeight);
+            transferedX[i] = this.transferXToCanvasSystem(xCoordinates[i]);
+            transferedY[i] = this.transferYToCanvasSystem(yCoordinates[i]);
 
-            //console.log(String(transferedX[i]) + " " + String(transferedY[i]));
+            console.log(String(transferedX[i]) + " " + String(transferedY[i]));
         }
 
         var chainCoordinates = transferCoordinatesToPlot(transferedX, transferedY);
@@ -102,70 +102,43 @@ class rcDrawing {
     drawBars(bars) {
         for (var i = 0; i < bars.length; i++) {
             var bar = bars[i];
-            var x = transferXToCanvasSystem(bar.x, this.sectionCentreX, this.scale, this.canvasWidth);
-            var y = transferYToCanvasSystem(bar.y, this.sectionCentreY, this.scale, this.canvasHeight);
+            var x = this.transferXToCanvasSystem(bar.x);
+            var y = this.transferYToCanvasSystem(bar.y);
             var d = bar.d * this.scale;
-            console.log('x ' + x + ' y ' + y + ' d ' + d);
+            //console.log('x ' + x + ' y ' + y + ' d ' + d);
             var circle = this.drawing.circle(d).fill({ color: '#248f24' }).stroke({ width: 1, color: '#196619' });
             circle.x(x).y(y);
         }
     }
 
-    
-}
 
-function convertCoordinatesToLineInput(x1, y1, x2, y2) {
-    var result = x1.toString() + ',' + y1.toString() + ' ' + x2.toString() + ',' + y2.toString();
-    return result;
-}
-//transfers arrays of x and y coordinates to the following string
-function transferCoordinatesToPlot(xCoordinates, yCoordinates) {
-    var coordinates = "";
-    for (i = 0; i < xCoordinates.length; i++) {
-        var x = xCoordinates[i].toFixed(2);
-        var y = yCoordinates[i].toFixed(2);
-        //console.log(xCoordinates[i].toFixed(2) + " " + yCoordinates[i].toFixed(2));
-        //console.log(x + " " + y);
-        //console.log("======");
-        var insert = x + "," + y;
-        coordinates = coordinates + insert + " ";
+    //private methods
+    transferXToCanvasSystem(pointX) {
+
+        var x = ((pointX - this.sectionCentreX) * this.scale) + this.canvasWidth / 2;
+        //console.log('poinX:' + pointX + ' centreX:' + this.sectionCentreX + ' scale:' + this.scale + ' canvasWidth:' + this.canvasWidth + ' x:' + x);
+        return x;
     }
-    console.log("plot: " + coordinates);
-    return coordinates;
+    transferYToCanvasSystem(pointY) {
+        var y = (-(pointY - this.sectionCentreY) * this.scale) + this.canvasHeight / 2;
+        return y;
+    }
+    getDrawingScale() {
+        var factor = 2;
+
+        var scale1 = this.canvasHeight / this.sectionHeight / factor;
+        var scale2 = this.canvasWidth / this.sectionWidth / factor;
+
+        var scale = Math.min(scale1, scale2);
+        return scale;
+    }
 }
 
-function transferXToCanvasSystem(pointX, centreX, scale, canvasWidth) {
 
-    var x = ((pointX - centreX) * scale) + canvasWidth / 2;
-    //console.log('poinX:' + pointX + ' centreX:' + centreX + ' scale:' + scale + ' canvasWidth:' + canvasWidth + ' x:' + x);
-    return x;
-}
-function transferYToCanvasSystem(pointY, centreY, scale, canvasHeight) {
-    var y = (-(pointY - centreY) * scale) + canvasHeight / 2;
-    return y;
-}
-function getMaxValue(array) {
-    return Math.max.apply(null, array);
-}
-function getMinValue(array) {
-    return Math.min.apply(null, array);
-}
-function getSectionCentre(minCoordinate, maxCoordinate) {
-    return ((maxCoordinate - minCoordinate) / 2) + minCoordinate;
-}
-function getSectionDimension(maxCoordinates, minCoordinates) {
-    var dimension = maxCoordinates - minCoordinates;
-    return dimension;
-}
-function getDrawingScale(canvasWidth, canvasHeight, sectionWidth, sectionHeight) {
-    var factor = 2;
 
-    var scale1 = canvasHeight / sectionHeight / factor;
-    var scale2 = canvasWidth / sectionWidth / factor;
 
-    var scale = Math.min(scale1, scale2);
-    return scale;
-}
+
+
 
 
 
