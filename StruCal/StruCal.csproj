@@ -179,6 +179,7 @@
     <Compile Include="Views\Shared\TemplateNames.cs" />
     <Content Include="Scripts\RcBeam\canvasDirective.js" />
     <Content Include="Scripts\RcBeam\chartService.js" />
+    <Content Include="Scripts\RcBeam\circularSectionCtrl.js" />
     <Content Include="Scripts\RcBeam\coefficientsCtrl.js" />
     <Content Include="Scripts\RcBeam\concreteCtrl.js" />
     <Content Include="Scripts\RcBeam\Drawings\drawingHelpers.js" />
@@ -192,6 +193,7 @@
     <Content Include="Views\RCBeam\_CustomSectionModal.cshtml" />
     <Content Include="Views\RCBeam\_LoadsModal.cshtml" />
     <Content Include="Views\RCBeam\_RectangularSectionModal.cshtml" />
+    <Content Include="Views\RCBeam\_CircularSectionModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
