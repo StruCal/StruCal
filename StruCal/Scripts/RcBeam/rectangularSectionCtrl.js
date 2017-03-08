@@ -91,6 +91,7 @@ class rectangleSectionDrawing
             var y = -height + cover + bottomBarDiameter / 2;
             var d = bottomBarDiameter;
             bars.push({ x, y, d });
+            //alert("height:" + height + " cover: " + cover + " d: " + bottomBarDiameter + " y: " + y);
         }
         //top bars
         for (var i = 1; i <= topBarCount; i++) {
@@ -98,6 +99,7 @@ class rectangleSectionDrawing
             var y = -cover - topBarDiameter / 2;
             var d = topBarDiameter;
             bars.push({ x, y, d });
+            //alert("width:" + width + " cover: " + cover + " d: " + bottomBarDiameter + " y: " + y);
         }
         return bars;
     }

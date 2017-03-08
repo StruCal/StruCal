@@ -33,7 +33,7 @@ class rcDrawing {
             transferedX[i] = this.transferXToCanvasSystem(xCoordinates[i]);
             transferedY[i] = this.transferYToCanvasSystem(yCoordinates[i]);
 
-            console.log(String(transferedX[i]) + " " + String(transferedY[i]));
+            //console.log(String(transferedX[i]) + " " + String(transferedY[i]));
         }
 
         var chainCoordinates = transferCoordinatesToPlot(transferedX, transferedY);

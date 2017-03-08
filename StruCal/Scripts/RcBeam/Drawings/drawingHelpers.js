@@ -14,7 +14,7 @@ function transferCoordinatesToPlot(xCoordinates, yCoordinates) {
         var insert = x + "," + y;
         coordinates = coordinates + insert + " ";
     }
-    console.log("plot: " + coordinates);
+    //console.log("plot: " + coordinates);
     return coordinates;
 }
 
