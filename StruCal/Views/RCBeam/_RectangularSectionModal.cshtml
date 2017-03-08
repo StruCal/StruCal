@@ -1,6 +1,6 @@
 ﻿<!-- Modal Sections-->
 <div class="modal fade" id="modalRectangularSection" role="dialog">
-    <div class="modal-dialog" style="max-height:75%;">
+    <div class="modal-dialog modal-lg" style="max-height:75%;">
         <div class="modal-content" ng-controller="rectangularSectionCtrl">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">
@@ -15,7 +15,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-1">\(b = \)</label>
                         <div class="col-md-4">
-                            <input type="number" class="form-control">
+                            <input type="number" class="form-control" min="0" ng-model="width">
                         </div>
                         <label class="control-label col-md-1">[mm]</label>
                     </div>
@@ -25,7 +25,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-1">\(h = \)</label>
                         <div class="col-md-4">
-                            <input type="number" class="form-control">
+                            <input type="number" class="form-control" min="0" ng-model="height">
                         </div>
                         <label class="control-label col-md-1">[mm]</label>
                     </div>
@@ -34,24 +34,40 @@
                     <div class="form-group">
                         <label class="control-label col-md-1">\(c = \)</label>
                         <div class="col-md-4">
-                            <input type="number" class="form-control">
+                            <input type="number" class="form-control" min="0" ng-model="cover">
                         </div>
                         <label class="control-label col-md-1">[mm]</label>
                     </div>
 
-                    <label class="control-label">Bottom bars:</label>
+                    <label class="control-label">Diameter of bottom bars:</label>
                     <div class="form-group">
-                        <label class="control-label col-md-1">\(c = \)</label>
+                        <label class="control-label col-md-1">\(\phi_b = \)</label>
                         <div class="col-md-4">
-                            <input type="number" class="form-control">
+                            <input type="number" class="form-control" min="0" ng-model="bottomBarDiameter">
+                        </div>
+                        <label class="control-label col-md-1">[mm<sup>2</sup></label>
+                    </div>
+                    <label class="control-label">Number of bottom bars:</label>
+                    <div class="form-group">
+                        <label class="control-label col-md-1">\(n_b = \)</label>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control" min="0" ng-model="bottomBarCount">
                         </div>
                         <label class="control-label col-md-1">[-]</label>
                     </div>
-                    <label class="control-label">Top bars:</label>
+                    <label class="control-label">Diameter of top bars:</label>
                     <div class="form-group">
-                        <label class="control-label col-md-1">\(c = \)</label>
+                        <label class="control-label col-md-1">\(\phi_t = \)</label>
                         <div class="col-md-4">
-                            <input type="number" class="form-control">
+                            <input type="number" class="form-control" min="0" ng-model="topBarDiameter">
+                        </div>
+                        <label class="control-label col-md-1">[mm]</label>
+                    </div>
+                    <label class="control-label">Number of top bars:</label>
+                    <div class="form-group">
+                        <label class="control-label col-md-1">\(n_t = \)</label>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control" min="0" ng-model="topBarCount">
                         </div>
                         <label class="control-label col-md-1">[-]</label>
                     </div>
