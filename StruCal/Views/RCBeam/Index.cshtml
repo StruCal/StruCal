@@ -25,7 +25,7 @@
                     <ul class="dropdown-menu">
                         <li><a data-toggle="modal" href="#modalRectangularSection">Rectangular</a></li>
                         <li><a data-toggle="modal" href="#modalCircularSection">Circular</a></li>
-                        <li><a data-toggle="modal" href="#modalSections2">Custom</a></li>
+                        <li><a data-toggle="modal" href="#modalCustomSection">Custom</a></li>
                     </ul>
                     </div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLoads">Loads</button>
@@ -50,7 +50,7 @@
     @Html.Partial("_LoadsModal")
     @Html.Partial("_RectangularSectionModal")
     @Html.Partial("_CircularSectionModal")
-    
+    @Html.Partial("_CustomSectionModal")
     
     <!-- Modal Sections2-->
     <div class="modal fade" id="modalSections2" role="dialog">
@@ -145,3 +145,4 @@
 <script src="~/Scripts/RcBeam/Drawings/drawingHelpers.js"></script>
 <script src="~/Scripts/RcBeam/Drawings/rcDrawing.js"></script>
 <script src="~/Scripts/RcBeam/circularSectionCtrl.js"></script>
+<script src="~/Scripts/RcBeam/customSectionCtrl.js"></script>

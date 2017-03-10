@@ -39,7 +39,7 @@ namespace StruCal.ViewModels
 
         [Required(ErrorMessage = "Coordinates are empty.")]
         [Display(Name = "Coordinates:")]
-        [RegularExpression(RegexPatterns.CustomSectionValidationPattern,ErrorMessage ="Provided input for X Coordinates is invalid.")]
+        [RegularExpression(RegexPatterns.CustomSectionValidationPattern,ErrorMessage ="Provided input for coordinates is invalid.")]
         public string Coordinates { get; set; }
 
 

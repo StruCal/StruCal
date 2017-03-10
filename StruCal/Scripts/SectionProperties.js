@@ -26,18 +26,7 @@ function createCustomDrawing() {
 
     fillCanvas(x, y, canvasObject);
 
-    function splitCoordinates(coordinates) {
-        var splitedCoordinates = coordinates.split(";");
-        //console.log("Splited coordinates: " + splitedCoordinates);
-
-        var result = new Array();
-        for (var i = 0; i < splitedCoordinates.length; i++) {
-            if (splitedCoordinates[i] != "")
-                result[i] = splitedCoordinates[i];
-        }
-
-        return result;
-    }
+    
 }
 function fillCanvas(xCoordinates, yCoordinates, canvasObject) {
     //var canvasObject = $('#' + canvasParentId);
@@ -203,4 +192,16 @@ function createISectionDrawing() {
 function getInputValue(id)
 {
     return $(id).val() == "" ? $(id).attr("placeholder") : $(id).val();
+}
+function splitCoordinates(coordinates) {
+    var splitedCoordinates = coordinates.split(";");
+    //console.log("Splited coordinates: " + splitedCoordinates);
+
+    var result = new Array();
+    for (var i = 0; i < splitedCoordinates.length; i++) {
+        if (splitedCoordinates[i] != "")
+            result[i] = splitedCoordinates[i];
+    }
+
+    return result;
 }

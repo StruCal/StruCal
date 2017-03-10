@@ -105,8 +105,8 @@ class rcDrawing {
             var x = (this.transferXToCanvasSystem(bar.x));
             var y = this.transferYToCanvasSystem(bar.y);
             var d = bar.d * this.scale;
-            console.log('bars');
-            console.log('x ' + x + ' y ' + y + ' d ' + d);
+            //console.log('bars');
+            //console.log('x ' + x + ' y ' + y + ' d ' + d);
             var circle = this.drawing.circle(d).fill({ color: '#248f24' }).stroke({ width: 1, color: '#196619' });
             circle.cx(x).cy(y);
         }

@@ -182,6 +182,7 @@
     <Content Include="Scripts\RcBeam\circularSectionCtrl.js" />
     <Content Include="Scripts\RcBeam\coefficientsCtrl.js" />
     <Content Include="Scripts\RcBeam\concreteCtrl.js" />
+    <Content Include="Scripts\RcBeam\customSectionCtrl.js" />
     <Content Include="Scripts\RcBeam\Drawings\drawingHelpers.js" />
     <Content Include="Scripts\RcBeam\Drawings\rcDrawing.js" />
     <Content Include="Scripts\RcBeam\loadsCtrl.js" />
