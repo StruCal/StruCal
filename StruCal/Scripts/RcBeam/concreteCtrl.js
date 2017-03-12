@@ -6,7 +6,15 @@
     var gammaC = 1.5;
 
     $scope.save = function () {
-        $rootScope.$broadcast('fcd', $scope.fcd);
+        let concrete = {
+            grade: $scope.selectedConcrete,
+            fck: $scope.fck,
+            fcd: $scope.fcd,
+            n: $scope.n,
+            ec2: $scope.ec2,
+            ecu2: $scope.ecu2,
+        };
+        $rootScope.$broadcast('concrete', concrete);
         $('#modalConcrete').modal('toggle');
     }
     $scope.$watch('selectedConcrete', function () {

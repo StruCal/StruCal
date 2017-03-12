@@ -1,0 +1,11 @@
+﻿<div ng-controller="leftPanelCtrl">
+<div class="form-horizontal">
+    <label class="control-label">Load case:</label>
+    <select class="form-control" ng-model="selectedLoadCase" ng-options="loadCase.name for loadCase in loadCases">
+        @*<option ng-repeat="(key,value) in loadCases" value="{{value.name}}">{{value.name}}</option>*@
+    </select>
+    <label class="control-label">Axial force: {{selectedLoadCase.value}} [kN]</label>
+    <label class="control-label">Concrete: {{concrete}}</label>
+    <label class="control-label">Steel: {{steel}}</label>
+   </div> 
+</div>

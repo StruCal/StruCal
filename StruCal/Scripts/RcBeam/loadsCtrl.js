@@ -10,7 +10,7 @@
         value: 2000,
     }];
 
-    $scope.save = function(index,name,value)
+    $scope.apply = function(index,name,value)
     {
         $scope.loadCases[index] = {
             name : name,
@@ -27,4 +27,10 @@
     $scope.remove = function (index) {
         $scope.loadCases.splice(index, 1);
     }
+
+    $scope.save = function () {
+            $rootScope.$broadcast('loads', $scope.loadCases);
+            $('#modalLoads').modal('toggle');
+        }
+
 });

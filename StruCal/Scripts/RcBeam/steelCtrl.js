@@ -7,7 +7,15 @@
     var gammaS = 1.15;
 
     $scope.save = function () {
-        $rootScope.$broadcast('fyd', $scope.fyd);
+        let steel = {
+            grade: $scope.selectedSteel,
+            E: $scope.E,
+            fyk: $scope.fyk,
+            k: $scope.k,
+            euk: $scope.euk,
+            eud:$scope.eud,
+        }
+        $rootScope.$broadcast('steel', steel);
         $('#modalSteel').modal('toggle');
     }
     $scope.$watch('selectedSteel', () => updateProperties());

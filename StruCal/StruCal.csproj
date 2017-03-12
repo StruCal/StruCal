@@ -183,8 +183,12 @@
     <Content Include="Scripts\RcBeam\coefficientsCtrl.js" />
     <Content Include="Scripts\RcBeam\concreteCtrl.js" />
     <Content Include="Scripts\RcBeam\customSectionCtrl.js" />
+    <Content Include="Scripts\RcBeam\Drawings\circularSectionDrawing.js" />
+    <Content Include="Scripts\RcBeam\Drawings\customSectionDrawing.js" />
     <Content Include="Scripts\RcBeam\Drawings\drawingHelpers.js" />
     <Content Include="Scripts\RcBeam\Drawings\rcDrawing.js" />
+    <Content Include="Scripts\RcBeam\Drawings\rectangleSectionDrawing.js" />
+    <Content Include="Scripts\RcBeam\leftPanelCtrl.js" />
     <Content Include="Scripts\RcBeam\loadsCtrl.js" />
     <Content Include="Scripts\RcBeam\rectangularSectionCtrl.js" />
     <Content Include="Scripts\RcBeam\steelCtrl.js" />
@@ -195,6 +199,7 @@
     <Content Include="Views\RCBeam\_LoadsModal.cshtml" />
     <Content Include="Views\RCBeam\_RectangularSectionModal.cshtml" />
     <Content Include="Views\RCBeam\_CircularSectionModal.cshtml" />
+    <Content Include="Views\RCBeam\_LeftPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

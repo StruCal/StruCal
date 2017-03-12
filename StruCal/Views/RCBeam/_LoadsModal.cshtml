@@ -1,20 +1,13 @@
 ﻿<style>
-    /*.table tbody>tr>td.vert-align{
-        vertical-align:central;
-        border:groove;
-        border-color:red;
-    }*/
     .table tbody>tr.vert-align td{
         vertical-align:central;
-        /*border:groove;
-        border-color:red;*/
     }
 </style>
 
 <!-- Modal Loads-->
-<div class="modal fade" id="modalLoads" role="dialog">
+<div class="modal fade" id="modalLoads" role="dialog" ng-controller="loadsCtrl">
     <div class="modal-dialog" style="max-height:75%;">
-        <div class="modal-content" ng-controller="loadsCtrl">
+        <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
@@ -28,7 +21,7 @@
                             <tr>
                                 <th class="text-left" >#</th>
                                 <th class="text-left">Load Case</th>
-                                <th class="text-left">Axial Force [kNm]</th>
+                                <th class="text-left">Axial Force [kN]</th>
                                 <th class="text-left"></th>
                        
                             </tr>
@@ -47,7 +40,7 @@
                                     <input type="number" class="form-control" ng-model="load.value" ng-show="showForms" />
                                 </td>
                                 <td class="col-sm-2">
-                                    <a href="#" ng-click="showForms=false;save($index,load.name,load.value)" class="glyphicon glyphicon-ok btn btn-default" ng-show="showForms"> Save</a>
+                                    <a href="#" ng-click="showForms=false;apply($index,load.name,load.value)" class="glyphicon glyphicon-ok btn btn-default" ng-show="showForms"> Save</a>
                                 </td>
                                 <td class="col-sm-1">
                                     <a href="#" ng-click="showForms=true" class="glyphicon glyphicon-pencil btn btn-default"></a>
@@ -59,11 +52,10 @@
                         </tbody>
                     </table>
                     <button class="btn btn-primary" ng-click="add()">Add</button>
-                    <hr />
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-click="save()">Save changes</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>

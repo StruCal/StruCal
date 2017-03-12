@@ -11,30 +11,62 @@
     <h2>Reinforced concrete members calculator</h2>
     <br />
 
-    <div class="row" ng-controller="mainCtrl">
-        <div class="col-xs-12 col-lg-12 text-left">
-            <!-- Trigger the modal with a button -->
+
+    <div class="panel panel-default">
+        <!-- Trigger the modal with a button -->
+        <div class="panel-body">
             <div class="form-inline">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCoefficients">Coefficients</button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalConcrete">Concrete</button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSteel">Steel</button>
                 <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Sections <span class="caret"></span>
-                </button>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sections <span class="caret"></span>
+                    </button>
                     <ul class="dropdown-menu">
                         <li><a data-toggle="modal" href="#modalRectangularSection">Rectangular</a></li>
                         <li><a data-toggle="modal" href="#modalCircularSection">Circular</a></li>
                         <li><a data-toggle="modal" href="#modalCustomSection">Custom</a></li>
                     </ul>
-                    </div>
+                </div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLoads">Loads</button>
             </div>
             <br />
+            <div>
+                <button class="btn btn-success btn-lg"><span class="glyphicon glyphicon-cog"></span> Calculate</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">@*left panel*@
+        <div class="col-md-2">
             <div class="panel-group">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Results</h3>
+                        <h3 class="panel-title">Input</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.Partial("_LeftPanel")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Section</h3>
+                    </div>
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Detailed results</h3>
                     </div>
                     <div class="panel-body">
 
@@ -43,7 +75,6 @@
             </div>
         </div>
     </div>
-
     @Html.Partial("_CoefficientsModal")
     @Html.Partial("_ConcreteModal")
     @Html.Partial("_SteelModal")
@@ -51,57 +82,7 @@
     @Html.Partial("_RectangularSectionModal")
     @Html.Partial("_CircularSectionModal")
     @Html.Partial("_CustomSectionModal")
-    
-    <!-- Modal Sections2-->
-    <div class="modal fade" id="modalSections2" role="dialog">
-        <div class="modal-dialog" style="max-height:75%;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Sections</h4>
-                </div>
-                <div class="modal-body">
-                    @*<div class="row">
-                        <div class="col-md-6">*@
-                            @*Rectangular cross-section width*@
-                            <label for="RectangularCrossSectionWidth">Rectangular cross-section width2:</label>
-                            <div class="form-inline">
-                                @{
-                                    string b2 = "b";
-                                    <label>\(@b2 = \)</label>
 
-                                }
-                                <input type="number" class="form-control" id="rectWidth" data-bind="value: RectWidth, valueUpdate: 'afterkeydown'">
-                                <label>[cm]</label>
-                            </div>
-
-                            @*Rectangular cross-section height*@
-                            <label for="RectangularCrossSectionHeight">Rectangular cross-section height:</label>
-                            <div class="form-inline">
-                                @{
-                                    string h2 = "h";
-                                    <label>\(@h2 = \)</label>
-
-                                }
-                                <input type="number" class="form-control" id="rectHeight" data-bind="value: RectHeight, valueUpdate: 'afterkeydown'">
-                                <label>[cm]</label>
-                            </div>
-                        </div>
-                        @*RECT DRAWING*@
-                        <div id="rectCrossSection" class="col-md-6"></div>
-                    @*</div>
-                </div>*@
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    
 </div>
 
 
@@ -133,7 +114,7 @@
 
     });
 
-    
+
 </script>
 <script src="~/Scripts/RcBeam/coefficientsCtrl.js"></script>
 <script src="~/Scripts/RcBeam/concreteCtrl.js"></script>
@@ -146,3 +127,7 @@
 <script src="~/Scripts/RcBeam/Drawings/rcDrawing.js"></script>
 <script src="~/Scripts/RcBeam/circularSectionCtrl.js"></script>
 <script src="~/Scripts/RcBeam/customSectionCtrl.js"></script>
+<script src="~/Scripts/RcBeam/Drawings/rectangleSectionDrawing.js"></script>
+<script src="~/Scripts/RcBeam/Drawings/customSectionDrawing.js"></script>
+<script src="~/Scripts/RcBeam/Drawings/circularSectionDrawing.js"></script>
+<script src="~/Scripts/RcBeam/leftPanelCtrl.js"></script>
