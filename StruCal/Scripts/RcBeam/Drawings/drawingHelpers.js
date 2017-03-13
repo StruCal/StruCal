@@ -8,9 +8,6 @@ function transferCoordinatesToPlot(xCoordinates, yCoordinates) {
     for (i = 0; i < xCoordinates.length; i++) {
         var x = xCoordinates[i].toFixed(2);
         var y = yCoordinates[i].toFixed(2);
-        //console.log(xCoordinates[i].toFixed(2) + " " + yCoordinates[i].toFixed(2));
-        //console.log(x + " " + y);
-        //console.log("======");
         var insert = x + "," + y;
         coordinates = coordinates + insert + " ";
     }
