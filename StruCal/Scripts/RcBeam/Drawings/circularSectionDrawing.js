@@ -9,8 +9,8 @@
         var canvasHeight = canvasWidth * 0.5;
         this.canvasObject.height(canvasHeight);
 
-        var xCoordinates = this.getXCoordinates(diameter);
-        var yCoordinates = this.getYCoordinates(diameter);
+        var coordinates = this.getCoordinates(diameter);
+
         var bars = this.getBarsCoordinates(diameter, barDiameter, barCount, cover);
 
         var drawing = SVG(this.canvasObject.attr('id')).size(canvasWidth, canvasHeight);
@@ -18,37 +18,24 @@
         var drawingCreator = new rcDrawing(drawing);
         drawingCreator.drawBackgroundPattern(canvasWidth, canvasHeight)
 
+        drawingCreator.drawSection(coordinates, this.canvasObject);
 
-
-        drawingCreator.drawSection(xCoordinates, yCoordinates, this.canvasObject);
-
-        //var bars = new Array();
-        //bars.push({ x: 2, y: 2, d: 1 });
-        //bars.push({ x: 7, y: 2, d: 2 });
-        //console.log(bars);
         drawingCreator.drawBars(bars)
     }
 
-    getXCoordinates(diameter) {
-        var xCoordinates = new Array();
+    getCoordinates(diameter) {
+        var coordinates = new Array();
 
         for (var i = 0; i < 360; i++) {
             var alpha = (i - 90) * Math.PI / 180;
             var x = diameter / 2 * Math.sin(alpha);
-            xCoordinates.push(x);
+            var y = diameter / 2 * Math.cos(alpha);
+            coordinates.push({ x, y });
         }
 
-        return xCoordinates;
+        return coordinates;
     }
-    getYCoordinates(diameter) {
-        var yCoordinates = new Array();
-        for (var i = 0; i < 360; i++) {
-            var alpha = (i - 90) * Math.PI / 180;
-            var y = diameter / 2 * Math.cos(alpha);
-            yCoordinates.push(y);
-        }
-        return yCoordinates;
-    }
+
     getBarsCoordinates(diameter, barDiameter, barCount, cover) {
         var bars = new Array();
 

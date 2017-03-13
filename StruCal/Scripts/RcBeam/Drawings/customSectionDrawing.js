@@ -9,45 +9,30 @@
         var canvasHeight = canvasWidth * 0.5;
         this.canvasObject.height(canvasHeight);
 
-        var xCoordinates = this.getXCoordinates(sectionCoordinates);
-        var yCoordinates = this.getYCoordinates(sectionCoordinates);
+        var coordinates = this.getCoordinates(sectionCoordinates);
         var bars = this.getBarsCoordinates(barCoordinates);
         //console.log(xCoordinates);
         var drawing = SVG(this.canvasObject.attr('id')).size(canvasWidth, canvasHeight);
 
         var drawingCreator = new rcDrawing(drawing);
         drawingCreator.drawBackgroundPattern(canvasWidth, canvasHeight)
-        drawingCreator.drawSection(xCoordinates, yCoordinates, this.canvasObject);
+        drawingCreator.drawSection(coordinates, this.canvasObject);
         drawingCreator.drawBars(bars)
     }
 
-    getXCoordinates(sectionCoordinates) {
-        var xCoordinates = new Array();
+    getCoordinates(sectionCoordinates) {
+        var coordinates = new Array();
 
         var splitedCoordinates = sectionCoordinates.split(' ');
 
         for (var i = 0; i < splitedCoordinates.length; i++) {
-
             let tempCoord = splitedCoordinates[i].split(';');
-            //console.log(tempCoord);
-            xCoordinates.push(Number(tempCoord[0]));
+            coordinates.push({ x: tempCoord[0], y: tempCoord[1] });
         }
 
-        return xCoordinates;
+        return coordinates;
     }
-    getYCoordinates(sectionCoordinates) {
-        var yCoordinates = new Array();
-        var splitedCoordinates = sectionCoordinates.split(' ');
 
-        for (var i = 0; i < splitedCoordinates.length; i++) {
-
-            let tempCoord = splitedCoordinates[i].split(';');
-            //console.log(tempCoord);
-            yCoordinates.push(Number(tempCoord[1]));
-        }
-
-        return yCoordinates;
-    }
     getBarsCoordinates(barCoordinates) {
         var bars = new Array();
 

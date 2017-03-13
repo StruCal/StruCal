@@ -9,8 +9,8 @@
         var canvasHeight = canvasWidth * 0.5;
         this.canvasObject.height(canvasHeight);
 
-        var xCoordinates = this.getXCoordinates(width);
-        var yCoordinates = this.getYCoordinates(height);
+        var coordinates = this.getCoordinates(width, height);
+
         var bars = this.getBarsCoordinates(width, height, topBarDiameter, topBarCount, bottomBarDiameter, bottomBarCount, cover);
 
         var drawing = SVG(this.canvasObject.attr('id')).size(canvasWidth, canvasHeight);
@@ -18,38 +18,24 @@
         var drawingCreator = new rcDrawing(drawing);
         drawingCreator.drawBackgroundPattern(canvasWidth, canvasHeight)
 
+        drawingCreator.drawSection(coordinates, this.canvasObject);
 
-
-        drawingCreator.drawSection(xCoordinates, yCoordinates, this.canvasObject);
-
-        //var bars = new Array();
-        //bars.push({ x: 2, y: 2, d: 1 });
-        //bars.push({ x: 7, y: 2, d: 2 });
-        //console.log(bars);
         drawingCreator.drawBars(bars)
     }
 
-    getXCoordinates(width) {
-        var xCoordinates = new Array();
-        xCoordinates.push(0);
-        xCoordinates.push(0.5 * width);
-        xCoordinates.push(0.5 * width);
-        xCoordinates.push(-0.5 * width);
-        xCoordinates.push(-0.5 * width);
-        xCoordinates.push(0);
+    getCoordinates(width,height){
+        var coordinates = new Array();
 
-        return xCoordinates;
+        coordinates.push({x:0,y:0});
+        coordinates.push({x:0.5 * width,y:0});
+        coordinates.push({x:0.5 * width,y:-height});
+        coordinates.push({x:-0.5 * width,y:-height});
+        coordinates.push({x:-0.5 * width,y:0});
+        coordinates.push({x:0,y:0});
+
+        return coordinates;
     }
-    getYCoordinates(height) {
-        var yCoordinates = new Array();
-        yCoordinates.push(0);
-        yCoordinates.push(0);
-        yCoordinates.push(-height);
-        yCoordinates.push(-height);
-        yCoordinates.push(0);
-        yCoordinates.push(0);
-        return yCoordinates;
-    }
+
     getBarsCoordinates(width, height, topBarDiameter, topBarCount, bottomBarDiameter, bottomBarCount, cover) {
         var bars = new Array();
 

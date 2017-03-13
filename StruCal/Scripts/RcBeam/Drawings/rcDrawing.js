@@ -6,38 +6,33 @@ class rcDrawing {
 
 
     //drawing functions. Coordinates are provides as array
-    drawSection(xCoordinates, yCoordinates, canvasObject) {
-        this.maxX = getMaxValue(xCoordinates);
-        this.minX = getMinValue(xCoordinates);
-        this.maxY = getMaxValue(yCoordinates);
-        this.minY = getMinValue(yCoordinates);
+    drawSection(coordinates, canvasObject) {
+
+        var x = coordinates.map(function (a) { return a.x });
+        var y = coordinates.map(function (a) { return a.y });
+
+        this.maxX = getMaxValue(x);
+        this.minX = getMinValue(x);
+        this.maxY = getMaxValue(y);
+        this.minY = getMinValue(y);
         this.sectionWidth = getSectionDimension(this.maxX, this.minX);
         this.sectionHeight = getSectionDimension(this.maxY, this.minY);
 
-        //var sectionCentreX = ((maxX - minX) / 2)+minX;
-        //var sectionCentreY = ((maxY - minY) / 2)+minY;
         this.sectionCentreX = getSectionCentre(this.minX, this.maxX);
         this.sectionCentreY = getSectionCentre(this.minY, this.maxY);
-
-        //console.log('centers: ' + sectionCentreX + '   ' + sectionCentreY);
 
         this.canvasWidth = canvasObject.width();
         this.canvasHeight = canvasObject.height();
 
         this.scale = this.getDrawingScale();
-        //console.log('scale: ' + this.scale);
-        //convert coordinates to canvas
         var transferedX = [];
         var transferedY = [];
-        for (var i = 0; i < xCoordinates.length; i++) {
-            transferedX[i] = this.transferXToCanvasSystem(xCoordinates[i]);
-            transferedY[i] = this.transferYToCanvasSystem(yCoordinates[i]);
-
-            //console.log(String(transferedX[i]) + " " + String(transferedY[i]));
+        for (var i = 0; i < coordinates.length; i++) {
+            transferedX[i] = this.transferXToCanvasSystem(coordinates[i].x);
+            transferedY[i] = this.transferYToCanvasSystem(coordinates[i].y);
         }
-
         var chainCoordinates = transferCoordinatesToPlot(transferedX, transferedY);
-        //console.log('chaincoordinates:' + chainCoordinates);
+
         var polygon = this.drawing.polygon(chainCoordinates).fill({ color: '#3276b1', opacity: 0.9 }).stroke({ width: 3, color: '#054072' });
     }
 
