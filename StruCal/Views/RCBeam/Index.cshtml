@@ -14,6 +14,9 @@
 
     <div class="panel panel-default">
         <!-- Trigger the modal with a button -->
+        <div class="panel-heading">
+            <h3 class="panel-title">Control panel</h3>
+        </div>
         <div class="panel-body">
             <div class="form-inline">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCoefficients">Coefficients</button>
@@ -32,13 +35,13 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLoads">Loads</button>
             </div>
             <br />
-            <div>
-                <button class="btn btn-success btn-lg"><span class="glyphicon glyphicon-cog"></span> Calculate</button>
+            <div ng-controller="controlPanelCtrl">
+                <button class="btn btn-success btn-lg" ng-click="calculate()"><span class="glyphicon glyphicon-cog"></span> Calculate</button>
             </div>
         </div>
     </div>
     <div class="row">@*left panel*@
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="panel-group">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -57,12 +60,12 @@
                         <h3 class="panel-title">Section</h3>
                     </div>
                     <div class="panel-body">
-
+                        @Html.Partial("_DrawingPanel")
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="panel-group">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -131,3 +134,9 @@
 <script src="~/Scripts/RcBeam/Drawings/customSectionDrawing.js"></script>
 <script src="~/Scripts/RcBeam/Drawings/circularSectionDrawing.js"></script>
 <script src="~/Scripts/RcBeam/leftPanelCtrl.js"></script>
+<script src="~/Scripts/RcBeam/drawingPanelCtrl.js"></script>
+<script src="~/Scripts/RcBeam/controlPanelCtrl.js"></script>
+<script src="~/Scripts/RcBeam/Materials/concreteService.js"></script>
+<script src="~/Scripts/RcBeam/Materials/steelService.js"></script>
+<script src="~/Scripts/RcBeam/Helper/multipliers.js"></script>
+<script src="~/Scripts/RcBeam/Helper/numberFormatter.js"></script>

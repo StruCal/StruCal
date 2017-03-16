@@ -9,18 +9,18 @@
         var canvasHeight = canvasWidth * 0.5;
         this.canvasObject.height(canvasHeight);
 
-        var coordinates = this.getCoordinates(diameter);
+        this.coordinates = this.getCoordinates(diameter);
 
-        var bars = this.getBarsCoordinates(diameter, barDiameter, barCount, cover);
+        this.bars = this.getBarsCoordinates(diameter, barDiameter, barCount, cover);
 
         var drawing = SVG(this.canvasObject.attr('id')).size(canvasWidth, canvasHeight);
 
         var drawingCreator = new rcDrawing(drawing);
         drawingCreator.drawBackgroundPattern(canvasWidth, canvasHeight)
 
-        drawingCreator.drawSection(coordinates, this.canvasObject);
+        drawingCreator.drawSection(this.coordinates, this.canvasObject);
 
-        drawingCreator.drawBars(bars)
+        drawingCreator.drawBars(this.bars)
     }
 
     getCoordinates(diameter) {

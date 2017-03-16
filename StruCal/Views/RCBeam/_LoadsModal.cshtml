@@ -21,7 +21,7 @@
                             <tr>
                                 <th class="text-left" >#</th>
                                 <th class="text-left">Load Case</th>
-                                <th class="text-left">Axial Force [kN]</th>
+                                <th class="text-left">Axial Force [N]</th>
                                 <th class="text-left"></th>
                        
                             </tr>
@@ -36,11 +36,11 @@
                                     <input type="text" class="form-control" ng-model="load.name" ng-show="showForms" />
                                 </td>
                                 <td class="col-sm-3">
-                                    <label class="control-label" ng-show="!showForms">{{load.value}}</label>
-                                    <input type="number" class="form-control" ng-model="load.value" ng-show="showForms" />
+                                    <label class="control-label" ng-show="!showForms">{{load.normalForce | numberFormatter}}</label>
+                                    <input type="number" class="form-control" ng-model="load.normalForce" ng-show="showForms" />
                                 </td>
                                 <td class="col-sm-2">
-                                    <a href="#" ng-click="showForms=false;apply($index,load.name,load.value)" class="glyphicon glyphicon-ok btn btn-default" ng-show="showForms"> Save</a>
+                                    <a href="#" ng-click="showForms=false;apply($index,load.name,load.normalForce)" class="glyphicon glyphicon-ok btn btn-default" ng-show="showForms"> Save</a>
                                 </td>
                                 <td class="col-sm-1">
                                     <a href="#" ng-click="showForms=true" class="glyphicon glyphicon-pencil btn btn-default"></a>
@@ -51,7 +51,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <button class="btn btn-primary" ng-click="add()">Add</button>
+                    <button class="btn btn-primary" ng-click="add()" ng-disabled="loadCases.length >4">Add</button>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" ng-click="save()">Save changes</button>

@@ -160,6 +160,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="BindingModels\RcBeamInput.cs" />
     <Compile Include="Controllers\ConcretePropertiesController.cs" />
     <None Include="Controllers\ConcreteCoverController.cs" />
     <Compile Include="Controllers\CoverController.cs" />
@@ -182,14 +183,20 @@
     <Content Include="Scripts\RcBeam\circularSectionCtrl.js" />
     <Content Include="Scripts\RcBeam\coefficientsCtrl.js" />
     <Content Include="Scripts\RcBeam\concreteCtrl.js" />
+    <Content Include="Scripts\RcBeam\controlPanelCtrl.js" />
     <Content Include="Scripts\RcBeam\customSectionCtrl.js" />
     <Content Include="Scripts\RcBeam\Drawings\circularSectionDrawing.js" />
     <Content Include="Scripts\RcBeam\Drawings\customSectionDrawing.js" />
     <Content Include="Scripts\RcBeam\Drawings\drawingHelpers.js" />
+    <Content Include="Scripts\RcBeam\drawingPanelCtrl.js" />
     <Content Include="Scripts\RcBeam\Drawings\rcDrawing.js" />
     <Content Include="Scripts\RcBeam\Drawings\rectangleSectionDrawing.js" />
+    <Content Include="Scripts\RcBeam\Helper\multipliers.js" />
+    <Content Include="Scripts\RcBeam\Helper\numberFormatter.js" />
     <Content Include="Scripts\RcBeam\leftPanelCtrl.js" />
     <Content Include="Scripts\RcBeam\loadsCtrl.js" />
+    <Content Include="Scripts\RcBeam\Materials\concreteService.js" />
+    <Content Include="Scripts\RcBeam\Materials\steelService.js" />
     <Content Include="Scripts\RcBeam\rectangularSectionCtrl.js" />
     <Content Include="Scripts\RcBeam\steelCtrl.js" />
     <Content Include="Views\RCBeam\_CoefficientsModal.cshtml" />
@@ -200,6 +207,7 @@
     <Content Include="Views\RCBeam\_RectangularSectionModal.cshtml" />
     <Content Include="Views\RCBeam\_CircularSectionModal.cshtml" />
     <Content Include="Views\RCBeam\_LeftPanel.cshtml" />
+    <Content Include="Views\RCBeam\_DrawingPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

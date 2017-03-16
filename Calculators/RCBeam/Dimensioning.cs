@@ -6,7 +6,7 @@ using Common.Geometry;
 
 namespace Calculators.RCBeam
 {
-    public static class CapacityCalculator
+    public static class RcBeamCalculator
     {
         public static IEnumerable<CalculationResults> GetSectionCapacity(Concrete concrete, Steel steel, IList<PointD> sectionCoordinates, IList<Bar> bars, IList<LoadCase> loadCases /*IProgress<ProgressArgument> progressIndicatior*/)
         {
@@ -98,7 +98,7 @@ namespace Calculators.RCBeam
             {
                 double x = bar.X * Math.Cos(angle * Math.PI / 180) - bar.Y * Math.Sin(angle * Math.PI / 180);
                 double y = bar.X * Math.Sin(angle * Math.PI / 180) + bar.Y * Math.Cos(angle * Math.PI / 180);
-                var newBar = new Bar() { X = x, Y = y, As = bar.As };
+                var newBar = new Bar() { X = x, Y = y, D = bar.D };
                 newBars.Add(newBar);
             }
             return newBars;

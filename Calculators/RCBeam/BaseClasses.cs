@@ -19,18 +19,19 @@ namespace Calculators.RCBeam
         [XmlElement]
         public double Acc { get; set; }
         [XmlElement]
-        public double GammaM { get; set; }
+        public double GammaC { get; set; }
         [XmlElement]
         public double N { get; set; }
         [XmlElement]
         public double Ec2 { get; set; }
         [XmlElement]
         public double Ecu2 { get; set; }
+        [XmlIgnore]
         public double Fcd
         {
             get
             {
-                return Acc * Fck / GammaM;
+                return Acc * Fck / GammaC;
             }
         }
     }
@@ -49,7 +50,9 @@ namespace Calculators.RCBeam
         [XmlElement]
         public double Euk { get; set; }
         [XmlElement]
-        public double EukToEud { get; set; }
+        public double EudToEuk { get; set; }
+
+        [XmlIgnore]
         public double Fyd
         {
             get
@@ -57,11 +60,13 @@ namespace Calculators.RCBeam
                 return Fyk / GammaS;
             }
         }
+
+        [XmlIgnore]
         public double Eud
         {
             get
             {
-                return Euk * EukToEud;
+                return Euk * EudToEuk;
             }
         }
     }
@@ -69,7 +74,14 @@ namespace Calculators.RCBeam
     {
         public double X { get; set; }
         public double Y { get; set; }
-        public double As { get; set; }
+        public double D { get; set; }
+        public double As
+        {
+            get
+            {
+                return Math.PI * this.D * this.D / 4;
+            }
+        }
         public bool Equals(Bar other)
         {
             if (Object.ReferenceEquals(other, null)) return false;
@@ -98,15 +110,15 @@ namespace Calculators.RCBeam
     }
     public class LoadCase : IEquatable<LoadCase>
     {
-        private static int ID;
+        private static int id;
 
         public string Name { get; set; }
         public double NormalForce { get; set; }
         public int Id { get; private set; }
         public LoadCase()
         {
-            ID++;
-            this.Id = ID;
+            id++;
+            this.Id = id;
             this.Name = string.Empty;
             this.NormalForce = 0d;
         }

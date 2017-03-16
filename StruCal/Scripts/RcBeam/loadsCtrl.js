@@ -3,24 +3,24 @@
 
     $scope.loadCases = [{
         name: "load1",
-        value: 1000,
+        normalForce: 1000000,
     },
     {
         name: "load2",
-        value: 2000,
+        normalForce: 2000000,
     }];
 
     $scope.apply = function(index,name,value)
     {
         $scope.loadCases[index] = {
             name : name,
-            value:value
+            normalForce:value
         }
     }
     $scope.add = function () {
         $scope.loadCases.push({
             name: "load",
-            value: 0
+            normalForce: 0
         });
     }
 
@@ -29,6 +29,7 @@
     }
 
     $scope.save = function () {
+
             $rootScope.$broadcast('loads', $scope.loadCases);
             $('#modalLoads').modal('toggle');
         }

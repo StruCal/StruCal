@@ -3,8 +3,6 @@ class rcDrawing {
     constructor(drawing) {
         this.drawing = drawing;
     }
-
-
     //drawing functions. Coordinates are provides as array
     drawSection(coordinates, canvasObject) {
 

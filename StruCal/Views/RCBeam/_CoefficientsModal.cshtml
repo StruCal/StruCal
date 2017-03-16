@@ -9,35 +9,29 @@
                 <h4 class="modal-title" id="myModalLabel">Coefficients</h4>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-xs-12 col-lg-12 text-left">
-                        <div class="panel-group">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">Partial safety factors</h5>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="form-group" data-toggle="tooltip" title="Specify additive safety element (PN-EN 1992-1-1 4.4.1.2 (6)).">
-                                        <label for="PartialFactorForConcrete">Partial factor for concrete:</label>
-                                        <div class="form-inline">
-                                            <label>\(\gamma_C = \)</label>
-                                            <input type="number" class="form-control" required min="1" ng-model="gammaC" id="PartialFactorForConcrete" >
-                                            <label>[-]</label>
-                                        </div>
+                <div class="container-fluid">
+                    <div class="row">
 
-                                        <label for="PartialFactorForConcrete">Partial factor for steel:</label>
-                                        <div class="form-inline">
-                                            <label>\(\gamma_S = \)</label>
-                                            <input type="number" ng-model="gammaS" required min="1" class="form-control" id="PartialFactorForConcrete">
-                                            <label>[-]</label>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="form-group">
+                            <label for="PartialFactorForConcrete">Partial factor for concrete:</label>
+                            <div class="form-inline">
+                                <label>\(\gamma_C = \)</label>
+                                <input type="number" class="form-control" required min="1" ng-model="gammaC" id="PartialFactorForConcrete">
+                                <label>[-]</label>
+                            </div>
+
+                            <label for="PartialFactorForConcrete">Partial factor for steel:</label>
+                            <div class="form-inline">
+                                <label>\(\gamma_S = \)</label>
+                                <input type="number" ng-model="gammaS" required min="1" class="form-control" id="PartialFactorForConcrete">
+                                <label>[-]</label>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" ng-click="save()">Save changes</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -48,7 +42,7 @@
 
 <script>
     //var coefficientsModalApp = angular.module('coefficientsModalApp', []);
-    
-    
+
+
 
 </script>

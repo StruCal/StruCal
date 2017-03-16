@@ -6,12 +6,17 @@
     $scope.$watchGroup(['sectionCoordinates', 'barCoordinates'], () =>updateDrawing());
     $('#modalCustomSection').on('shown.bs.modal', () =>updateDrawing());
     
+    var drawing;
     function updateDrawing() {
         var canvasObject = $('#customDrawing');
-        var drawing = new customSectionDrawing(canvasObject);
+        drawing = new customSectionDrawing(canvasObject);
         drawing.fillCanvas($scope.sectionCoordinates, $scope.barCoordinates);
     }
-
+    $scope.save = function () {
+        $('#modalCustomSection').modal('toggle');
+        $rootScope.$broadcast('coordinates', drawing.coordinates);
+        $rootScope.$broadcast('bars', drawing.bars)
+    }
 });
 
 
