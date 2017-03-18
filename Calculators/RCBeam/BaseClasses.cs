@@ -102,9 +102,9 @@ namespace Calculators.RCBeam
         }
         public override int GetHashCode()
         {
-            int hashX = X.GetHashCode();
-            int hashY = Y.GetHashCode();
-            int hashAs = As.GetHashCode();
+            var hashX = X.GetHashCode();
+            var hashY = Y.GetHashCode();
+            var hashAs = As.GetHashCode();
             return hashX ^ hashY ^ hashAs;
         }
     }
@@ -127,42 +127,49 @@ namespace Calculators.RCBeam
             if (other == null)
                 return false;
 
-            if (this.Name == other.Name
+            return this.Name == other.Name
                 && this.NormalForce.IsApproximatelyEqualTo(other.NormalForce)
-                && this.Id == other.Id)
-                return true;
-            else
-                return false;
+                && this.Id == other.Id ? true : false;
         }
 
         public override int GetHashCode()
         {
-            int hashName = Name.GetHashCode();
-            int hashNormalForce = NormalForce.GetHashCode();
+            var hashName = Name.GetHashCode();
+            var hashNormalForce = NormalForce.GetHashCode();
             return hashName ^ hashNormalForce;
         }
     }
-    public class CalculationResults
+    public class LoadCaseResult
     {
         public IEnumerable<Reinforcement> Bars { get; set; } //reinforcement
         public IList<PointD> CompressionZone { get; set; } //coordinates of compression zone
-        public double Cz { get; set; }//position of centre of gravity
         public double D { get; set; } //efective depth of section
         public double Ec { get; set; }  //max strain in concrete
         public double Es { get; set; }  //max strain in steel
         public double ForceConcrete { get; set; } //force in compression zone
-        public double H { get; set; }//height of section
         public LoadCase LoadCase { get; set; } //load case
         public double Mrd { get; set; } //section capacity
         public double MrdConcrete { get; set; } //moment due to compression zone
         public double X { get; set; }   //depth of compression zone
     }
+
+    public class CalculationResult
+    {
+        public IEnumerable<LoadCaseResult> LoadCaseResults { get; set; }
+        public double MaxTensionForce { get; set; }
+        public double MaxCompressionForce { get; set; }
+        public double H { get; set; }//section height
+        public double Cz { get; set; }//position of centre of gravity
+    }
+
     public class Reinforcement
     {
-        public double E { get; set; }
+        public double Epsilon { get; set; }
+        public double Sigma { get; set; }
         public Bar Bar { get; set; }
         public double D { get; set; }
-        public double My { get; set; }
+        public double Moment { get; set; }
+        public double Force { get; set; }
         public bool IsCompressed { get; set; }
     }
     public class Section : IIntegrable
@@ -182,7 +189,7 @@ namespace Calculators.RCBeam
             Cz = SectionProperties.Cz(Coordinates, MaxY);
             IntegrationPointY = MinY;
         }
-        private IList<PointD> checkIfCoordinatesAreClockwise(IList<PointD> coordinates)
+        private static IList<PointD> checkIfCoordinatesAreClockwise(IList<PointD> coordinates)
         {
             double iw;
             var result = coordinates;
@@ -204,7 +211,7 @@ namespace Calculators.RCBeam
             }
             return result;
         }
-        private double crossProduct(PointD p0, PointD p1, PointD p2)
+        private static double crossProduct(PointD p0, PointD p1, PointD p2)
         {
             var vector1 = new double[2];
             var vector2 = new double[2];

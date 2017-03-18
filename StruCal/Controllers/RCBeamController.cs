@@ -26,8 +26,7 @@ namespace StruCal.Controllers
         public IHttpActionResult RcCalculations(RcBeamInput input)
         {
             var result = RcBeamCalculator.GetSectionCapacity(input.Concrete, input.Steel, input.SectionCoordinates, input.Bars, input.LoadCases);
-            var s = input;
-            return Ok("dziala");
+            return Ok(result);
         }
     }
     

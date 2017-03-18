@@ -37,6 +37,7 @@
             <br />
             <div ng-controller="controlPanelCtrl">
                 <button class="btn btn-success btn-lg" ng-click="calculate()"><span class="glyphicon glyphicon-cog"></span> Calculate</button>
+                <pre>{{test | json}}</pre>
             </div>
         </div>
     </div>
@@ -72,7 +73,7 @@
                         <h3 class="panel-title">Detailed results</h3>
                     </div>
                     <div class="panel-body">
-
+                        @Html.Partial("_ResultPanel")
                     </div>
                 </div>
             </div>
@@ -140,3 +141,4 @@
 <script src="~/Scripts/RcBeam/Materials/steelService.js"></script>
 <script src="~/Scripts/RcBeam/Helper/multipliers.js"></script>
 <script src="~/Scripts/RcBeam/Helper/numberFormatter.js"></script>
+<script src="~/Scripts/RcBeam/resultPanelCtrl.js"></script>

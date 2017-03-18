@@ -14,7 +14,8 @@
             loadCases: loadCases
         };
         $http.post("/api/RCBeamApi", RcBeamInput).then(function (response) {
-
+            $rootScope.$broadcast('results', response.data);
+            $scope.test = response;
         });
     }
 

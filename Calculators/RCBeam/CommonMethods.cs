@@ -10,7 +10,6 @@ namespace Calculators.RCBeam
     {
         public static double Cz(IList<PointD> coordinates)
         {
-            double z = 0; 
             double A = 0; 
             double S = 0; 
             double x1, x2, y1, y2; 

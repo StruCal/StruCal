@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Calculators.RCBeam
 {
-    public class DetailedResult
+    /*public class DetailedResult
     {
         public LoadCase LoadCase { get; set; }
         public StringBuilder Text { get; set; }
 
-        public static DetailedResult PrepareDetailedResults(CalculationResults calculationResult, Steel steel, Concrete concrete)
+        public static DetailedResult PrepareDetailedResults(LoadCaseResult calculationResult, Steel steel, Concrete concrete)
         {
             //symbole lacinskie
 
@@ -132,12 +132,12 @@ namespace Calculators.RCBeam
             foreach (var bar in reinforcement)
             {
                 var multiplier = bar.IsCompressed ? 1 : -1;
-                var strain = bar.E;
+                var strain = bar.Epsilon;
                 var barArea = bar.Bar.As;
                 var stress = multiplier * StressFunctions.SteelStressDesign(strain, steel);
                 strain = strain * multiplier;
                 var force = stress * barArea;
-                var moment = multiplier * bar.My;
+                var moment = multiplier * bar.Moment;
                 sumForce = sumForce + force;
                 sumMoment = sumMoment + moment;
 
@@ -147,5 +147,5 @@ namespace Calculators.RCBeam
             }
             return result;
         }
-    }
+    }*/
 }

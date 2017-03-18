@@ -21,7 +21,7 @@
                         <div class="col-md-4">
                             <input type="number" class="form-control" ng-model="fyk" required min="1">
                         </div>
-                        <label class="control-label col-md-1">[MPa]</label>
+                        <label class="control-label col-md-1">[N/mm<sup>2</sup>]</label>
                     </div>
 
                     <label class="control-label">Design strength of steel:</label>
@@ -30,7 +30,7 @@
                         <div class="col-md-4">
                             <span class="form-control" readonly>{{fyd | number:2}}</span>
                         </div>
-                        <label class="control-label col-md-1">[MPa]</label>
+                        <label class="control-label col-md-1">[N/mm<sup>2</sup>]</label>
                     </div>
 
                     <label>Characteristic strain at maximum force:</label>
@@ -75,11 +75,11 @@
                         <div class="col-md-4">
                             <input type="number" class="form-control" ng-model="E">
                         </div>
-                        <label class="control-label col-md-1">[GPa]</label>
+                        <label class="control-label col-md-1">[kN/mm<sup>2</sup>]</label>
                     </div>
 
                     <div>
-                        <p class="text-center">\(\sigma_{s}(\epsilon) [{\small MPa}]\)</p>
+                        <p class="text-center">\(\sigma_{s}(\epsilon) [{\small N/{mm^2}}]\)</p>
                         <canvas id="chartSteel" class="chart chart-line" chart-data="steelData"
                                 chart-labels="steelLabels" 
                                 chart-series="series" chart-options="options"

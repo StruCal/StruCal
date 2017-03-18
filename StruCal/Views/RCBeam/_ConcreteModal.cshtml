@@ -23,7 +23,7 @@
                         <div class="col-md-4">
                             <input type="number" class="form-control" ng-model="fck" required min="1">
                         </div>
-                        <label class="control-label col-md-1">[MPa]</label>
+                        <label class="control-label col-md-1">[N/mm<sup>2</sup>]</label>
                     </div>
 
                     @*Design Compressive Cylinder Strength Of Concrete Input*@
@@ -33,7 +33,7 @@
                         <div class="col-md-4">
                             <span class="form-control" readonly>{{fcd | number:2}}</span>
                         </div>
-                        <label class="control-label col-md-1">[MPa]</label>
+                        <label class="control-label col-md-1">[N/mm<sup>2</sup>]</label>
                     </div>
 
                     @*Compressive strain in the concrete at the peak stress*@
@@ -57,7 +57,7 @@
                     </div>
 
                     <div>
-                        <p class="text-center">\(\sigma_{c}(\epsilon) [{\small MPa}]\)</p>
+                        <p class="text-center">\(\sigma_{c}(\epsilon) [{\small N/{mm^2}}]\)</p>
                         <canvas id="chartConcrete" class="chart chart-line" chart-data="concreteData"
                                 chart-labels="concreteLabels" chart-series="series" chart-options="options"
                                 chart-dataset-override="datasetOverride"></canvas>
