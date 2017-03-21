@@ -41,7 +41,8 @@
             </div>
         </div>
     </div>
-    <div class="row">@*left panel*@
+    <div class="row">
+        @*left panel*@
         <div class="col-md-3">
             <div class="panel-group">
                 <div class="panel panel-default">
@@ -49,7 +50,7 @@
                         <h3 class="panel-title">Input</h3>
                     </div>
                     <div class="panel-body">
-                        @Html.Partial("_LeftPanel")
+                        @Html.Partial("_InputPanel")
                     </div>
                 </div>
             </div>
@@ -70,7 +71,7 @@
             <div class="panel-group">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Detailed results</h3>
+                        <h3 class="panel-title">Results</h3>
                     </div>
                     <div class="panel-body">
                         @Html.Partial("_ResultPanel")
@@ -79,13 +80,28 @@
             </div>
         </div>
     </div>
-    @Html.Partial("_CoefficientsModal")
-    @Html.Partial("_ConcreteModal")
-    @Html.Partial("_SteelModal")
-    @Html.Partial("_LoadsModal")
-    @Html.Partial("_RectangularSectionModal")
-    @Html.Partial("_CircularSectionModal")
-    @Html.Partial("_CustomSectionModal")
+    <div class="row">
+        <div class="col-md-9 col-md-offset-3">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Detailed Results</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.Partial("_DetailedResultPanel")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("_CoefficientsModal")
+@Html.Partial("_ConcreteModal")
+@Html.Partial("_SteelModal")
+@Html.Partial("_LoadsModal")
+@Html.Partial("_RectangularSectionModal")
+@Html.Partial("_CircularSectionModal")
+@Html.Partial("_CustomSectionModal")
 
 </div>
 
@@ -134,7 +150,7 @@
 <script src="~/Scripts/RcBeam/Drawings/rectangleSectionDrawing.js"></script>
 <script src="~/Scripts/RcBeam/Drawings/customSectionDrawing.js"></script>
 <script src="~/Scripts/RcBeam/Drawings/circularSectionDrawing.js"></script>
-<script src="~/Scripts/RcBeam/leftPanelCtrl.js"></script>
+<script src="~/Scripts/RcBeam/inputPanelCtrl.js"></script>
 <script src="~/Scripts/RcBeam/drawingPanelCtrl.js"></script>
 <script src="~/Scripts/RcBeam/controlPanelCtrl.js"></script>
 <script src="~/Scripts/RcBeam/Materials/concreteService.js"></script>
@@ -142,3 +158,4 @@
 <script src="~/Scripts/RcBeam/Helper/multipliers.js"></script>
 <script src="~/Scripts/RcBeam/Helper/numberFormatter.js"></script>
 <script src="~/Scripts/RcBeam/resultPanelCtrl.js"></script>
+<script src="~/Scripts/RcBeam/detailedResultPanel.js"></script>

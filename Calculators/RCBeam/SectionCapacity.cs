@@ -154,6 +154,8 @@ namespace Calculators.RCBeam
             result.Ec = this.strainCalculations.StrainInConcrete(result.X, 0);
             //result.H = section.H;
             //result.Cz = section.Cz;
+            result.ForceReinforcement = this.reinforcement.Sum(e => e.Force);
+            result.MomentReinforcement = this.reinforcement.Sum(e => e.Moment);
             return result;
         }
         private void createReinforcement(IList<Bar> bars)

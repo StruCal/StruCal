@@ -1,4 +1,4 @@
-﻿angular.module('rcBeam').controller('leftPanelCtrl', function ($scope, $rootScope) {
+﻿angular.module('rcBeam').controller('inputPanelCtrl', function ($scope, $rootScope) {
     //$scope.concrete = "C12/15";
     //$scope.steel = "500A";
 
@@ -14,7 +14,9 @@
         $scope.selectedLoadCase = $scope.loadCases[0];
         //}
     });
-
+    $scope.changeLoad = function () {
+        $rootScope.$broadcast('currentLoadCaseName', $scope.selectedLoadCase.name);
+    };
     (function init() {
         var concrete = {
             grade: "C12/15",
@@ -37,16 +39,17 @@
         var loadCases = [
             {
                 name: "load1",
-                normalForce: 1000000,
+                normalForce: 100000,
             },
             {
                 name: "load2",
-                normalForce: 2000000,
+                normalForce: 200000,
             }
         ];
         $rootScope.$broadcast('concrete', concrete);
         $rootScope.$broadcast('steel', steel);
         $rootScope.$broadcast('loads', loadCases);
+        $rootScope.$broadcast('currentLoadCaseName', loadCases[0].name);
     })();
 
 });

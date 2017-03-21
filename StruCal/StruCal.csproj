@@ -185,6 +185,7 @@
     <Content Include="Scripts\RcBeam\concreteCtrl.js" />
     <Content Include="Scripts\RcBeam\controlPanelCtrl.js" />
     <Content Include="Scripts\RcBeam\customSectionCtrl.js" />
+    <Content Include="Scripts\RcBeam\detailedResultPanel.js" />
     <Content Include="Scripts\RcBeam\Drawings\circularSectionDrawing.js" />
     <Content Include="Scripts\RcBeam\Drawings\customSectionDrawing.js" />
     <Content Include="Scripts\RcBeam\Drawings\drawingHelpers.js" />
@@ -193,7 +194,7 @@
     <Content Include="Scripts\RcBeam\Drawings\rectangleSectionDrawing.js" />
     <Content Include="Scripts\RcBeam\Helper\multipliers.js" />
     <Content Include="Scripts\RcBeam\Helper\numberFormatter.js" />
-    <Content Include="Scripts\RcBeam\leftPanelCtrl.js" />
+    <Content Include="Scripts\RcBeam\inputPanelCtrl.js" />
     <Content Include="Scripts\RcBeam\loadsCtrl.js" />
     <Content Include="Scripts\RcBeam\Materials\concreteService.js" />
     <Content Include="Scripts\RcBeam\Materials\steelService.js" />
@@ -207,9 +208,10 @@
     <Content Include="Views\RCBeam\_LoadsModal.cshtml" />
     <Content Include="Views\RCBeam\_RectangularSectionModal.cshtml" />
     <Content Include="Views\RCBeam\_CircularSectionModal.cshtml" />
-    <Content Include="Views\RCBeam\_LeftPanel.cshtml" />
+    <Content Include="Views\RCBeam\_InputPanel.cshtml" />
     <Content Include="Views\RCBeam\_DrawingPanel.cshtml" />
     <Content Include="Views\RCBeam\_ResultPanel.cshtml" />
+    <Content Include="Views\RCBeam\_DetailedResultPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

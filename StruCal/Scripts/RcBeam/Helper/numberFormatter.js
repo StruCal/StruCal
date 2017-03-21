@@ -1,6 +1,8 @@
 ﻿angular.module('rcBeam').filter('numberFormatter', function () {
     return function (inputNumber) {
-        var number = inputNumber.toString();
+        if (inputNumber == "" || inputNumber == null)
+            return inputNumber;
+        var number = inputNumber.toFixed(2);
         var separator = " "//space 
 
         var decimalPart;

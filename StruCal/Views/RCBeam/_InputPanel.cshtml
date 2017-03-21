@@ -1,0 +1,32 @@
+﻿<div ng-controller="inputPanelCtrl">
+
+    <label class="control-label">Load case:</label>
+    <select class="form-control" ng-model="selectedLoadCase" ng-change="changeLoad()" ng-options="loadCase.name for loadCase in loadCases">
+        @*<option ng-repeat="(key,value) in loadCases" value="{{value.name}}">{{value.name}}</option>*@
+    </select>
+    <br />
+    <div class="row">
+        <div class="col-sm-6">
+            <label class="control-label">Axial force:</label>
+        </div>
+        <div class="col-sm-6">
+            <label class="control-label">{{selectedLoadCase.normalForce | numberFormatter}} [N]</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <label class="control-label">Concrete:</label>
+        </div>
+        <div class="col-sm-6">
+            <label class="control-label">{{concreteGrade}}</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <label class="control-label">Steel:</label>
+        </div>
+        <div class="col-sm-6">
+            <label class="control-label">{{steelGrade}}</label>
+        </div>
+    </div>
+</div>

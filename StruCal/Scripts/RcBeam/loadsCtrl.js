@@ -3,11 +3,11 @@
 
     $scope.loadCases = [{
         name: "load1",
-        normalForce: 1000000,
+        normalForce: 100000,
     },
     {
         name: "load2",
-        normalForce: 2000000,
+        normalForce: 200000,
     }];
 
     $scope.apply = function(index,name,value)

@@ -29,6 +29,8 @@ namespace Calculators.RCBeam
             result.LoadCaseResults = loadCaseResults;
             result.MaxTensionForce = AxialCapacity.TensionCapacity(bars, steel);
             result.MaxCompressionForce = AxialCapacity.CompressionCapacity(sectionCoordinates, concrete);
+            result.Concrete = concrete;
+            result.Steel = steel;
 
             return result;
         }

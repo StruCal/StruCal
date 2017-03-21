@@ -151,6 +151,8 @@ namespace Calculators.RCBeam
         public double Mrd { get; set; } //section capacity
         public double MrdConcrete { get; set; } //moment due to compression zone
         public double X { get; set; }   //depth of compression zone
+        public double ForceReinforcement { get; set; }
+        public double MomentReinforcement { get; set; }
     }
 
     public class CalculationResult
@@ -160,6 +162,8 @@ namespace Calculators.RCBeam
         public double MaxCompressionForce { get; set; }
         public double H { get; set; }//section height
         public double Cz { get; set; }//position of centre of gravity
+        public Concrete Concrete { get; set; }
+        public Steel Steel { get; set; }
     }
 
     public class Reinforcement
