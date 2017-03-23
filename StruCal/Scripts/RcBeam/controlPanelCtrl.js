@@ -4,6 +4,8 @@
     var loadCases;
     var coordinates;
     var bars;
+    $scope.dirty = true;
+    $scope.message = "Results are NOT up to date."
 
     $scope.calculate = function () {
         var RcBeamInput = {
@@ -13,11 +15,27 @@
             Bars: bars,
             loadCases: loadCases
         };
-        $http.post("/api/RCBeamApi", RcBeamInput).then(function (response) {
-            $rootScope.$broadcast('results', response.data);
-            $scope.test = response;
+        $http.post("/api/RCBeamApi", RcBeamInput)
+        //    .then(function (response) {
+        //    $rootScope.$broadcast('results', response.data);
+        //    $scope.test = response;
+        //});
+            .then(
+            function (response) {
+                $rootScope.$broadcast('results', response.data);
+                $scope.test = response.data;
+                $scope.valid = true;
+                $scope.dirty = false;
+                $scope.error = false;
+                $scope.message = "Results are up to date"
+            },
+        function (response) {
+            $scope.valid = false;
+            $scope.dirty = false;
+            $scope.error = true;
+            $scope.message = "The error has occured. Please try again."
         });
-    }
+    };
 
     $scope.$on('concrete', function (event, arg) {
         concrete = arg;
@@ -34,6 +52,11 @@
     $scope.$on('bars', function (event, arg) {
         bars = arg;
     });
+    $scope.$on('dirty', function (event, arg) {
+        $scope.dirty = true;
+        $scope.valid = false;
+        $scope.error = false;
+        $scope.message = "Results are NOT up to date."
+    });
 
-    
 });

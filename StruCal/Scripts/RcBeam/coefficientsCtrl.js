@@ -5,6 +5,7 @@
     $scope.save = function () {
         $rootScope.$broadcast('gammaS', $scope.gammaS);
         $rootScope.$broadcast('gammaC', $scope.gammaC);
+        $rootScope.$broadcast('dirty', true);
         $('#modalCoefficients').modal('toggle');
     };
 });

@@ -1,6 +1,14 @@
 ﻿angular.module('rcBeam').controller('resultPanelCtrl', function ($scope) {
     $scope.compressionForce = "";
     $scope.tensionForce = "";
+    $scope.currentLoadCaseName = "load1";
+
+    $scope.highlight = function(loadCaseIndex)
+    {
+        let currentValue = $scope.loadCaseResults.find(e=>e.LoadCase.Name == $scope.currentLoadCaseName);
+        let index = $scope.loadCaseResults.indexOf(currentValue)
+        return index == loadCaseIndex;
+    }
 
     $scope.$on('currentLoadCaseName', function (event, arg) {
         $scope.currentLoadCaseName = arg;

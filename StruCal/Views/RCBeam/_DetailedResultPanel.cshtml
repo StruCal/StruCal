@@ -1,136 +1,173 @@
 ﻿<div ng-controller="detailedResultPanelCtrl">
-    
-    <div class="row">
-        <h3 class="col-md-6">Section:</h3>
+    <div ng-hide="currentLoadCase.HasSolution">
+        <h3><span class="label label-danger">No solution</span> </h3>
     </div>
-    <div class="row">
-        <p class="col-md-6">Depth of the section:</p>
-        <p class="col-md-6">H = {{H | numberFormatter}} [mm]</p>
-    </div>
-    <div class="row">
-        <p class="col-md-6">Centre of gravity from bottom fibre</p>
-        <p class="col-md-6">C<sub>z</sub> = {{Cz | numberFormatter}} [mm]</p>
-    </div>
-    <br />
-    <div class="row">
-        <h3 class="col-md-6">Concrete properties</h3>
-    </div>
-    <div class="row">
-        <p class="col-md-6">Grade:</p>
-        <p class="col-md-6">{{concreteGrade}}</p>
-    </div>
-    <div class="row">
-        <p class="col-md-6">Design strength:</p>
-        <p class="col-md-6">f<sub>cd</sub> = {{Fcd | numberFormatter}} [N/mm<sup>2</sup>]</p>
-    </div>
-    <br />
-    <div class="row">
-        <h3 class="col-md-6">Steel properties</h3>
-    </div>
-    <div class="row">
-        <p class="col-md-6">Grade:</p>
-        <p class="col-md-6">{{steelGrade}}</p>
-    </div>
-    <div class="row">
-        <p class="col-md-6">Yield stress:</p>
-        <p class="col-md-6">f<sub>yd</sub> = {{Fyd | numberFormatter}} [N/mm<sup>2</sup>]</p>
-    </div>
-    <div class="row">
-        <p class="col-md-6">Ultimate strain:</p>
-        <p class="col-md-6">&epsilon;<sub>ud</sub> = {{Eud*100 | numberFormatter}} [%]</p>
-    </div>
-    <br />
-    <div class="row">
-        <h3 class="col-md-6">External loads</h3>
-    </div>
-    <div class="row">
-        <p class="col-md-6">Axial force:</p>
-        <p class="col-md-6">N<sub>Ed</sub> = {{currentLoadCase.LoadCase.NormalForce | numberFormatter}} [N]</p>
-    </div>
-    <br />
-    <div class="row">
-        <h3 class="col-md-6">Results</h3>
-    </div>
-    <div class="row">
-        <p class="col-md-6">Section capacity:</p>
-        <p class="col-md-6">M<sub>Rd</sub> = {{currentLoadCase.Mrd | numberFormatter}} [Nmm]</p>
-    </div>
-    <div class="row">
-        <p class="col-md-6">Depth of compression zone:</p>
-        <p class="col-md-6">X = {{currentLoadCase.X | numberFormatter}} [mm]</p>
-    </div>
-    <div class="row">
-        <p class="col-md-6">Resultant force of compression zone:</p>
-        <p class="col-md-6">F<sub>Concrete</sub> = {{currentLoadCase.ForceConcrete | numberFormatter}} [N]</p>
-    </div>
-    <div class="row">
-        <p class="col-md-6">Resultant moment of compression zone:</p>
-        <p class="col-md-6">M<sub>Concrete</sub> = {{currentLoadCase.MrdConcrete | numberFormatter}} [Nmm]</p>
-    </div>
-
-
-    <h3>Detailed results for reinforcement</h3>
-    <div class="row">
-        <div class="col-md-8">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="text-left">#</th>
-                        <th class="text-left">A<sub>s</sub> [mm<sup>2</sup>]</th>
-                        <th class="text-left">&epsilon; [%]</th>
-                        <th class="text-left">&sigma; [N/mm<sup>2</sup>]</th>
-                        <th class="text-left">F [N]</th>
-                        <th class="text-left">M [Nmm]</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="vert-align" ng-repeat="bar in currentLoadCase.Bars">
-                        <td>
-                            {{$index +1}}
-                        </td>
-                        <td>
-                            {{bar.Bar.As |numberFormatter}}
-                        </td>
-                        <td>
-                            {{bar.Epsilon * 100 | numberFormatter}}
-                        </td>
-                        <td>
-                            {{bar.Sigma | numberFormatter}}
-                        </td>
-                        <td>
-                            {{bar.Force | numberFormatter}}
-                        </td>
-                        <td>
-                            {{bar.Moment | numberFormatter}}
-                        </td>
-
-                    </tr>
-                </tbody>
-            </table>
+    <div ng-hide="!currentLoadCase.HasSolution">
+        <div class="row">
+            <h3 class="col-md-5">Capacity:</h3>
+            <h3 class="col-md-5"><span class="label label-success">{{currentLoadCase.Mrd | numberFormatter}} [Nmm]</span></h3>
         </div>
-    </div>
+        <hr />
+        <div class="row">
+            <h3 class="col-md-5">Section:</h3>
+        </div>
+        <div class="row">
+            <p class="col-md-5">Depth of the section:</p>
+            <p class="col-md-1">H</p>
+            <p class="col-md-3">= {{H | numberFormatter}}</p>
+            <p class="col-md-1">[mm]</p>
+        </div>
+        <div class="row">
+            <p class="col-md-5">Centre of gravity from bottom fibre</p>
+            <p class="col-md-1">C<sub>z</sub> </p>
+            <p class="col-md-3">= {{Cz | numberFormatter}}</p>
+            <p class="col-md-1">[mm]</p>
+        </div>
+        <br />
+        <div class="row">
+            <h3 class="col-md-5">Concrete properties</h3>
+        </div>
+        <div class="row">
+            <p class="col-md-5">Grade:</p>
+            <p class="col-md-5">{{concreteGrade}}</p>
+        </div>
+        <div class="row">
+            <p class="col-md-5">Design strength:</p>
+            <p class="col-md-1">f<sub>cd</sub> </p>
+            <p class="col-md-3">= {{Fcd | numberFormatter}} </p>
+            <p class="col-md-1">[N/mm<sup>2</sup>]</p>
+        </div>
+        <br />
+        <div class="row">
+            <h3 class="col-md-5">Steel properties</h3>
+        </div>
+        <div class="row">
+            <p class="col-md-5">Grade:</p>
+            <p class="col-md-5">{{steelGrade}}</p>
+        </div>
+        <div class="row">
+            <p class="col-md-5">Yield stress:</p>
+            <p class="col-md-1">f<sub>yd</sub></p>
+            <p class="col-md-3">= {{Fyd | numberFormatter}}</p>
+            <p class="col-md-1">[N/mm<sup>2</sup>]</p>
+        </div>
+        <div class="row">
+            <p class="col-md-5">Ultimate strain:</p>
+            <p class="col-md-1">&epsilon;<sub>ud</sub></p>
+            <p class="col-md-3">= {{Eud*100 | numberFormatter}}</p>
+            <p class="col-md-1">[%]</p>
+        </div>
+        <br />
+        <div class="row">
+            <h3 class="col-md-5">External loads</h3>
+        </div>
+        <div class="row">
+            <p class="col-md-5">Axial force:</p>
+            <p class="col-md-1">N<sub>Ed</sub></p>
+            <p class="col-md-3">= {{currentLoadCase.LoadCase.NormalForce | numberFormatter}}</p>
+            <p class="col-md-1">[N]</p>
+        </div>
+        <br />
+        <div class="row">
+            <h3 class="col-md-5">Results</h3>
+        </div>
+        <div class="row">
+            <p class="col-md-5">Section capacity:</p>
+            <p class="col-md-1">M<sub>Rd</sub> </p>
+            <p class="col-md-3">= {{currentLoadCase.Mrd | numberFormatter}}</p>
+            <p class="col-md-1">[Nmm]</p>
+        </div>
+        <div class="row">
+            <p class="col-md-5">Depth of compression zone:</p>
+            <p class="col-md-1">X </p>
+            <p class="col-md-3">= {{currentLoadCase.X | numberFormatter}}</p>
+            <p class="col-md-1">[mm]</p>
+        </div>
+        <div class="row">
+            <p class="col-md-5">Resultant force of compression zone:</p>
+            <p class="col-md-1">F<sub>Concrete</sub> </p>
+            <p class="col-md-3">= {{currentLoadCase.ForceConcrete | numberFormatter}}</p>
+            <p class="col-md-1">[N]</p>
+        </div>
+        <div class="row">
+            <p class="col-md-5">Resultant moment of compression zone:</p>
+            <p class="col-md-1">M<sub>Concrete</sub></p>
+            <p class="col-md-3">= {{currentLoadCase.MrdConcrete | numberFormatter}}</p>
+            <p class="col-md-1">[Nmm]</p>
+        </div>
 
-    <div class="row">
-        <p class="col-md-6">Sum of forces in reinforcement:</p>
-        <p class="col-md-6">&Sigma;F = {{currentLoadCase.ForceReinforcement | numberFormatter}} [N]</p>
-    </div>
-    <div class="row">
-        <p class="col-md-6">Sum of moments in reinforcement:</p>
-        <p class="col-md-6">&Sigma;M = {{currentLoadCase.MomentReinforcement | numberFormatter}} [Nmm]</p>
-    </div>
-    <br />
-    <div class="row">
-        <h3 class="col-md-6">Equilibrium in section:</h3>
-    </div>
-    <div class="row">
-        <p class="col-md-12">F<sub>Concrete</sub> + &Sigma;F - N<sub>Ned</sub>
-        = {{currentLoadCase.ForceConcrete | numberFormatter}} + {{currentLoadCase.ForceReinforcement | numberFormatter}} - {{currentLoadCase.LoadCase.NormalForce | numberFormatter}} = 0.00 [N]</p>
-    </div>
-    <div class="row">
-        <p class="col-md-12">Moment about the bottom fibre (capacity):</p>
-    </div>
-    <div class="row">
-        <p class="col-md-12">M<sub>Concrete</sub> + &Sigma;M - N<sub>Ed</sub> &sdot; C<sub>z</sub>; = 
-        {{currentLoadCase.MrdConcrete | numberFormatter}} + {{currentLoadCase.MomentReinforcement | numberFormatter}} - {{currentLoadCase.LoadCase.NormalForce |numberFormatter}} &sdot; {{Cz | numberFormatter}} = <b>{{currentLoadCase.Mrd | numberFormatter}} [Nmm]</b></p>
+
+        <h3>Detailed results for reinforcement</h3>
+        <div class="row">
+            <div class="col-md-8">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-left">#</th>
+                            <th class="text-left">A<sub>s</sub> [mm<sup>2</sup>]</th>
+                            <th class="text-left">&epsilon; [%]</th>
+                            <th class="text-left">&sigma; [N/mm<sup>2</sup>]</th>
+                            <th class="text-left">F [N]</th>
+                            <th class="text-left">M [Nmm]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="vert-align" ng-repeat="bar in currentLoadCase.Bars">
+                            <td>
+                                {{$index +1}}
+                            </td>
+                            <td>
+                                {{bar.Bar.As |numberFormatter}}
+                            </td>
+                            <td>
+                                {{bar.Epsilon * 100 | numberFormatter}}
+                            </td>
+                            <td>
+                                {{bar.Sigma | numberFormatter}}
+                            </td>
+                            <td>
+                                {{bar.Force | numberFormatter}}
+                            </td>
+                            <td>
+                                {{bar.Moment | numberFormatter}}
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <p class="col-md-5">Sum of forces in reinforcement:</p>
+            <p class="col-md-1">&Sigma;F</p>
+            <p class="col-md-3">= {{currentLoadCase.ForceReinforcement | numberFormatter}} [N]</p>
+            <p class="col-md-1">[N]</p>
+        </div>
+        <div class="row">
+            <p class="col-md-5">Sum of moments in reinforcement:</p>
+            <p class="col-md-1">&Sigma;M</p>
+            <p class="col-md-3">= {{currentLoadCase.MomentReinforcement | numberFormatter}}</p>
+            <p class="col-md-1">[Nmm]</p>
+        </div>
+        <br />
+        <div class="row">
+            <h3 class="col-md-5">Equilibrium in section:</h3>
+        </div>
+        <div class="row">
+            <p class="col-md-12">
+                F<sub>Concrete</sub> + &Sigma;F - N<sub>Ned</sub>
+                = {{currentLoadCase.ForceConcrete | numberFormatter}} + {{currentLoadCase.ForceReinforcement | numberFormatter}} - {{currentLoadCase.LoadCase.NormalForce | numberFormatter}} = 0.00 [N]
+            </p>
+        </div>
+        <div class="row">
+            <p class="col-md-12">Moment about the bottom fibre (capacity):</p>
+        </div>
+        <div class="row">
+            <p class="col-md-12">
+                M<sub>Concrete</sub> + &Sigma;M - N<sub>Ed</sub> &sdot; C<sub>z</sub>; =
+                {{currentLoadCase.MrdConcrete | numberFormatter}} + {{currentLoadCase.MomentReinforcement | numberFormatter}} - {{currentLoadCase.LoadCase.NormalForce |numberFormatter}} &sdot; {{Cz | numberFormatter}} = <span class="bg-success">{{currentLoadCase.Mrd | numberFormatter}} [Nmm]</span>
+            </p>
+        </div>
     </div>
 </div>

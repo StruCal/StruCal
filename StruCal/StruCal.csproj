@@ -212,6 +212,7 @@
     <Content Include="Views\RCBeam\_DrawingPanel.cshtml" />
     <Content Include="Views\RCBeam\_ResultPanel.cshtml" />
     <Content Include="Views\RCBeam\_DetailedResultPanel.cshtml" />
+    <Content Include="Views\RCBeam\_ControlPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

@@ -143,8 +143,10 @@ namespace Calculators.RCBeam
             result.X = this.solveEqulibriumEquation();
             if (double.IsNaN(result.X))
             {
+                result.HasSolution = false;
                 return result;
             }
+            result.HasSolution = true;
             var forces = this.compressionZoneCalculations.Calculate(result.X, this.section);
             result.MrdConcrete = forces.Moment;
             result.ForceConcrete = forces.NormalForce;
@@ -173,9 +175,11 @@ namespace Calculators.RCBeam
             Reinforcement barsTemp;
             for (int i = 0; i <= this.reinforcement.Count - 1; i++)
             {
+                
                 barsTemp = this.reinforcement[i];
-
-                barsTemp.Sigma =  StressFunctions.SteelStressDesign(barsTemp.Epsilon, this.steel);
+                var multiplier = barsTemp.IsCompressed ? 1 : -1;
+                barsTemp.Sigma =  StressFunctions.SteelStressDesign(barsTemp.Epsilon, this.steel)*multiplier;
+                barsTemp.Epsilon = barsTemp.Epsilon * multiplier;
                 barsTemp.Force = barsTemp.Bar.As * barsTemp.Sigma;
                 barsTemp.Moment = barsTemp.Force * (reinforcement[i].Bar.Y - this.section.MinY);
                 if (this.reinforcement[i].Bar.Y > yOsi)

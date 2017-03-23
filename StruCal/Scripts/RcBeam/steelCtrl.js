@@ -17,6 +17,7 @@
             eudToEuk : $scope.eudToEuk,
         }
         $rootScope.$broadcast('steel', steel);
+        $rootScope.$broadcast('dirty', true);
         $('#modalSteel').modal('toggle');
     }
     $scope.$watch('selectedSteel', () => updateProperties());

@@ -2,17 +2,20 @@
     return function (inputNumber) {
         if (inputNumber == "" || inputNumber == null)
             return inputNumber;
-        var number = inputNumber.toFixed(2);
+
         var separator = " "//space 
 
         var decimalPart;
         var naturalPart;
-        var dotPosition = number.indexOf('.');
+        var number;
+        var dotPosition = inputNumber.toString().indexOf('.');
         if (dotPosition != -1) {
+            number = inputNumber.toFixed(2);
             decimalPart = number.substr(dotPosition);
             naturalPart = number.substr(0, dotPosition);
         }
         else {
+            number= inputNumber.toFixed(0);
             decimalPart = "";
             naturalPart = number;
         }

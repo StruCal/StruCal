@@ -2,7 +2,7 @@
     var results;
     var loadCaseResults;
     var currentLoadCase;
-    var currentLoadCaseName;
+    var currentLoadCaseName = 'load1';
 
     $scope.$on('currentLoadCaseName', function (event, arg) {
         currentLoadCaseName = arg;
@@ -24,7 +24,7 @@
     });
 
     function updateLoadCase() {
-        $scope.currentLoadCase = loadCaseResults.filter(e=>e.LoadCase.Name == currentLoadCaseName)[0];
+        $scope.currentLoadCase = loadCaseResults.find(e=>e.LoadCase.Name == currentLoadCaseName);
         //$scope.normalForce = currentLoadCase.LoadCase.NormalForce;
     };
 });

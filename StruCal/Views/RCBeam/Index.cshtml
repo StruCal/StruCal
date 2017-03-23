@@ -3,6 +3,33 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    /*.equal {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        flex: 1 1 auto;
+    }*/
+    /*.equal-panel {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.equal-panel > div[class*='col-'] {
+  flex:1 1 auto;
+  display: flex;
+}
+.equal-panel .panel {
+  flex:1 0 100%;
+}*/
+
+</style>
+
 <h2>RCBeam</h2>
 
 
@@ -35,16 +62,15 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLoads">Loads</button>
             </div>
             <br />
-            <div ng-controller="controlPanelCtrl">
-                <button class="btn btn-success btn-lg" ng-click="calculate()"><span class="glyphicon glyphicon-cog"></span> Calculate</button>
-                <pre>{{test | json}}</pre>
+            <div>
+                @Html.Partial("_ControlPanel")
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row equal-panel">
         @*left panel*@
-        <div class="col-md-3">
-            <div class="panel-group">
+        <div class="col-md-3" >
+            @*<div class="panel-group">*@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Input</h3>
@@ -53,10 +79,10 @@
                         @Html.Partial("_InputPanel")
                     </div>
                 </div>
-            </div>
+            @*</div>*@
         </div>
         <div class="col-md-4">
-            <div class="panel-group">
+            @*<div class="panel-group">*@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Section</h3>
@@ -65,10 +91,10 @@
                         @Html.Partial("_DrawingPanel")
                     </div>
                 </div>
-            </div>
+            @*</div>*@
         </div>
         <div class="col-md-5">
-            <div class="panel-group">
+            @*<div class="panel-group">*@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Results</h3>
@@ -77,7 +103,7 @@
                         @Html.Partial("_ResultPanel")
                     </div>
                 </div>
-            </div>
+            @*</div>*@
         </div>
     </div>
     <div class="row">
@@ -94,7 +120,7 @@
             </div>
         </div>
     </div>
-</div>
+
 @Html.Partial("_CoefficientsModal")
 @Html.Partial("_ConcreteModal")
 @Html.Partial("_SteelModal")

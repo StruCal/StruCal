@@ -10,11 +10,10 @@
         normalForce: 200000,
     }];
 
-    $scope.apply = function(index,name,value)
-    {
+    $scope.apply = function (index, name, value) {
         $scope.loadCases[index] = {
-            name : name,
-            normalForce:value
+            name: name,
+            normalForce: value
         }
     }
     $scope.add = function () {
@@ -30,8 +29,9 @@
 
     $scope.save = function () {
 
-            $rootScope.$broadcast('loads', $scope.loadCases);
-            $('#modalLoads').modal('toggle');
-        }
+        $rootScope.$broadcast('loads', $scope.loadCases);
+        $rootScope.$broadcast('dirty', true);
+        $('#modalLoads').modal('toggle');
+    }
 
 });

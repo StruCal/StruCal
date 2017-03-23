@@ -16,6 +16,7 @@
             ecu2: $scope.ecu2,
         };
         $rootScope.$broadcast('concrete', concrete);
+        $rootScope.$broadcast('dirty', true);
         $('#modalConcrete').modal('toggle');
     }
     $scope.$watch('selectedConcrete', function () {

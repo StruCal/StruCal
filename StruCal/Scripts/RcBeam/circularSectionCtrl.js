@@ -17,7 +17,8 @@
     $scope.save = function () {
         $('#modalCircularSection').modal('toggle');
         $rootScope.$broadcast('coordinates', drawing.coordinates);
-        $rootScope.$broadcast('bars', drawing.bars)
+        $rootScope.$broadcast('bars', drawing.bars);
+        $rootScope.$broadcast('dirty', true);
     }
 });
 

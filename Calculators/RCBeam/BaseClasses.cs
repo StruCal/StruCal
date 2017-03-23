@@ -153,6 +153,7 @@ namespace Calculators.RCBeam
         public double X { get; set; }   //depth of compression zone
         public double ForceReinforcement { get; set; }
         public double MomentReinforcement { get; set; }
+        public bool HasSolution { get; set; }
     }
 
     public class CalculationResult
