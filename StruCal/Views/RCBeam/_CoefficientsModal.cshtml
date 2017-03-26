@@ -4,8 +4,9 @@
     .ng-valid{
         border-color:greenyellow;
         border-style:double;
+        border-width:thin;
     }
-    .ng-valid{
+    .ng-invalid{
         border-color:crimson;
         border-style:groove;
     }
@@ -24,19 +25,21 @@
                 <div class="container-fluid">
                     <div class="row">
 
-                        <div class="form-group">
-                            <label for="PartialFactorForConcrete">Partial factor for concrete:</label>
-                            <div class="form-inline">
-                                <label>\(\gamma_C = \)</label>
-                                <input type="number" class="form-control" required min="1" ng-model="gammaC" id="PartialFactorForConcrete">
-                                <label>[-]</label>
-                            </div>
+                        <div ng-form="CoefficientsForm">
+                            <div class="form-group">
+                                <label for="PartialFactorForConcrete">Partial factor for concrete:</label>
+                                <div class="form-inline">
+                                    <label>\(\gamma_C = \)</label>
+                                    <input type="number" class="form-control" required min="1" ng-model="gammaC" id="PartialFactorForConcrete">
+                                    <label>[-]</label>
+                                </div>
 
-                            <label for="PartialFactorForConcrete">Partial factor for steel:</label>
-                            <div class="form-inline">
-                                <label>\(\gamma_S = \)</label>
-                                <input type="number" ng-model="gammaS" required min="1" class="form-control" id="PartialFactorForConcrete">
-                                <label>[-]</label>
+                                <label for="PartialFactorForConcrete">Partial factor for steel:</label>
+                                <div class="form-inline">
+                                    <label>\(\gamma_S = \)</label>
+                                    <input type="number" ng-model="gammaS" required min="1" class="form-control" id="PartialFactorForConcrete">
+                                    <label>[-]</label>
+                                </div>
                             </div>
                         </div>
                     </div>
