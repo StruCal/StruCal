@@ -1,17 +1,4 @@
 ﻿<!-- Modal Coefficients-->
-
-<style>
-    .ng-valid{
-        border-color:greenyellow;
-        border-style:double;
-        border-width:thin;
-    }
-    .ng-invalid{
-        border-color:crimson;
-        border-style:groove;
-    }
-</style>
-
 <div class="modal fade" id="modalCoefficients" role="dialog" ng-controller="coefficientsCtrl">
     <div class="modal-dialog" style="max-height:75%;">
         <div class="modal-content">
@@ -24,7 +11,6 @@
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row">
-
                         <div ng-form="CoefficientsForm">
                             <div class="form-group">
                                 <label for="PartialFactorForConcrete">Partial factor for concrete:</label>
@@ -45,19 +31,11 @@
                     </div>
                 </div>
             </div>
-
-
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" ng-click="save()">Save changes</button>
+                <button type="button" class="btn btn-primary" ng-disabled="CoefficientsForm.$invalid" ng-click="save()">Save changes</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    //var coefficientsModalApp = angular.module('coefficientsModalApp', []);
-
-
-
-</script>

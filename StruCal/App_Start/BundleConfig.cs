@@ -29,7 +29,8 @@ namespace StruCal
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css"
+                      ));
 
             bundles.Add(new ScriptBundle("~/bundles/svg").Include(
                 "~/Scripts/svg.js"
@@ -42,7 +43,8 @@ namespace StruCal
 
             bundles.Add(new StyleBundle("~/Content/custom").Include(
                 "~/Content/jquery-ui.css",
-                "~/Content/custom.css"));
+                "~/Content/custom.css",
+                "~/Content/angular.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/sectionProperties").Include(
                 "~/Scripts/sectionProperties.js"));

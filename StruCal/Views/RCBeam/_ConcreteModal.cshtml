@@ -9,85 +9,87 @@
                 <h4 class="modal-title">Concrete Properties</h4>
             </div>
             <div class="modal-body">
-                <div class="form-horizontal">
-                    @*Concrete Class Select*@
-                    <label class="control-label">Concrete class</label>
-                    <select class="form-control" ng-model="selectedConcrete">
-                        <option ng-repeat="concrete in concretes" value="{{concrete}}">{{concrete}}</option>
-                    </select>
+                <div ng-form="ConcreteForm">
+                    <div class="form-horizontal">
+                        @*Concrete Class Select*@
+                        <label class="control-label">Concrete class</label>
+                        <select class="form-control" ng-model="selectedConcrete">
+                            <option ng-repeat="concrete in concretes" value="{{concrete}}">{{concrete}}</option>
+                        </select>
 
-                    @*Characteristic Compressive Cylinder Strength Of Concrete Input*@
-                    <label class="control-label">Characteristic compressive cylinder strength of concrete at 28 days:</label>
-                    <div class="form-group">
-                        <label class="control-label col-md-1">\(f_{ck} = \)</label>
-                        <div class="col-md-4">
-                            <input type="number" class="form-control" ng-model="fck" required min="1">
+                        @*Characteristic Compressive Cylinder Strength Of Concrete Input*@
+                        <label class="control-label">Characteristic compressive cylinder strength of concrete at 28 days:</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-1">\(f_{ck} = \)</label>
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" ng-model="fck" required min="1">
+                            </div>
+                            <label class="control-label col-md-1">[N/mm<sup>2</sup>]</label>
                         </div>
-                        <label class="control-label col-md-1">[N/mm<sup>2</sup>]</label>
-                    </div>
 
-                    @*Design Compressive Cylinder Strength Of Concrete Input*@
-                    <label class="control-label">Design compressive cylinder strength of concrete at 28 days:</label>
-                    <div class="form-group">
-                        <label class="control-label col-md-1">\(f_{cd} = \)</label>
-                        <div class="col-md-4">
-                            <span class="form-control" readonly>{{fcd | number:2}}</span>
+                        @*Design Compressive Cylinder Strength Of Concrete Input*@
+                        <label class="control-label">Design compressive cylinder strength of concrete at 28 days:</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-1">\(f_{cd} = \)</label>
+                            <div class="col-md-4">
+                                <span class="form-control" readonly>{{fcd | number:2}}</span>
+                            </div>
+                            <label class="control-label col-md-1">[N/mm<sup>2</sup>]</label>
                         </div>
-                        <label class="control-label col-md-1">[N/mm<sup>2</sup>]</label>
-                    </div>
 
-                    @*Compressive strain in the concrete at the peak stress*@
-                    <label>Compressive strain in the concrete at the peak stress:</label>
-                    <div class="form-group">
-                        <label class="control-label col-md-1">\(\epsilon_{c2} = \)</label>
-                        <div class="col-md-4">
-                            <input type="number" class="form-control" ng-model="ec2" readonly>
+                        @*Compressive strain in the concrete at the peak stress*@
+                        <label>Compressive strain in the concrete at the peak stress:</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-1">\(\epsilon_{c2} = \)</label>
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" ng-model="ec2" readonly>
+                            </div>
+                            <label class="control-label col-md-1">[-]</label>
                         </div>
-                        <label class="control-label col-md-1">[-]</label>
-                    </div>
 
-                    @*Ultimate compressive strain in the concrete*@
-                    <label class="control-label">Ultimate compressive strain in the concrete:</label>
-                    <div class="form-group">
-                        <label class="control-label col-md-1">\(\epsilon_{cu2} = \)</label>
-                        <div class="col-md-4">
-                            <input type="number" class="form-control" ng-model="ecu2" readonly>
+                        @*Ultimate compressive strain in the concrete*@
+                        <label class="control-label">Ultimate compressive strain in the concrete:</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-1">\(\epsilon_{cu2} = \)</label>
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" ng-model="ecu2" readonly>
+                            </div>
+                            <label class="control-label col-md-1">[-]</label>
                         </div>
-                        <label class="control-label col-md-1">[-]</label>
-                    </div>
 
-                    <div>
-                        <p class="text-center">\(\sigma_{c}(\epsilon) [{\small N/{mm^2}}]\)</p>
-                        <canvas id="chartConcrete" class="chart chart-line" chart-data="concreteData"
-                                chart-labels="concreteLabels" chart-series="series" chart-options="options"
-                                chart-dataset-override="datasetOverride"></canvas>
-                    </div>
-                    @*Coefficient taking into account of long term effects on the compressive strength and of unfavourable effects resulting from the way load is applied*@
-                    <label class="control-label">Coefficient:</label>
-
-                    <div class="form-group">
-                        <label class="control-label col-md-1">\(\alpha_{cc} = \)</label>
-                        <div class="col-md-4">
-                            <input type="number" class="form-control" ng-model="alphaCC" required min="0">
+                        <div>
+                            <p class="text-center">\(\sigma_{c}(\epsilon) [{\small N/{mm^2}}]\)</p>
+                            <canvas id="chartConcrete" class="chart chart-line" chart-data="concreteData"
+                                    chart-labels="concreteLabels" chart-series="series" chart-options="options"
+                                    chart-dataset-override="datasetOverride"></canvas>
                         </div>
-                        <label class="control-label col-md-1">[-]</label>
-                    </div>
+                        @*Coefficient taking into account of long term effects on the compressive strength and of unfavourable effects resulting from the way load is applied*@
+                        <label class="control-label">Coefficient:</label>
 
-                    @*Exponent*@
-                    <label class="control-label">Exponent:</label>
-                    <div class="form-group">
-                        <label class="control-label col-md-1">\(n = \)</label>
-                        <div class="col-md-4">
-                            <input type="number" class="form-control" ng-model="n" readonly>
+                        <div class="form-group">
+                            <label class="control-label col-md-1">\(\alpha_{cc} = \)</label>
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" ng-model="alphaCC" required min="0">
+                            </div>
+                            <label class="control-label col-md-1">[-]</label>
                         </div>
-                        <label class="control-label col-md-1">[-]</label>
-                    </div>
 
+                        @*Exponent*@
+                        <label class="control-label">Exponent:</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-1">\(n = \)</label>
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" ng-model="n" readonly>
+                            </div>
+                            <label class="control-label col-md-1">[-]</label>
+                        </div>
+
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" ng-click="save()">Save changes</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-disabled="ConcreteForm.$invalid" ng-click="save()">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

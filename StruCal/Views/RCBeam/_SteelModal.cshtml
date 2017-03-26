@@ -9,88 +9,90 @@
                 <h4 class="modal-title">Steel Properties</h4>
             </div>
             <div class="modal-body">
-                <div class="form-horizontal">
-                    <label class="control-label">Steel class</label>
-                    <select class="form-control" ng-model="selectedSteel">
-                        <option ng-repeat="(key,value) in steels" value="{{value.grade}}">{{value.grade}}</option>
-                    </select>
+                <div ng-form="SteelForm">
+                    <div class="form-horizontal">
+                        <label class="control-label">Steel class</label>
+                        <select class="form-control" ng-model="selectedSteel">
+                            <option ng-repeat="(key,value) in steels" value="{{value.grade}}">{{value.grade}}</option>
+                        </select>
 
-                    <label class="control-label">Characteristic strength of steel:</label>
-                    <div class="form-group">
-                        <label class="control-label col-md-1">\(f_{yk} = \)</label>
-                        <div class="col-md-4">
-                            <input type="number" class="form-control" ng-model="fyk" required min="1">
+                        <label class="control-label">Characteristic strength of steel:</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-1">\(f_{yk} = \)</label>
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" ng-model="fyk" required min="1">
+                            </div>
+                            <label class="control-label col-md-1">[N/mm<sup>2</sup>]</label>
                         </div>
-                        <label class="control-label col-md-1">[N/mm<sup>2</sup>]</label>
-                    </div>
 
-                    <label class="control-label">Design strength of steel:</label>
-                    <div class="form-group">
-                        <label class="control-label col-md-1">\(f_{cd} = \)</label>
-                        <div class="col-md-4">
-                            <span class="form-control" readonly>{{fyd | number:2}}</span>
+                        <label class="control-label">Design strength of steel:</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-1">\(f_{cd} = \)</label>
+                            <div class="col-md-4">
+                                <span class="form-control" readonly>{{fyd | number:2}}</span>
+                            </div>
+                            <label class="control-label col-md-1">[N/mm<sup>2</sup>]</label>
                         </div>
-                        <label class="control-label col-md-1">[N/mm<sup>2</sup>]</label>
-                    </div>
 
-                    <label>Characteristic strain at maximum force:</label>
-                    <div class="form-group">
-                        <label class="control-label col-md-1">\(\epsilon_{uk} = \)</label>
-                        <div class="col-md-4">
-                            <input type="number" class="form-control" ng-model="euk">
+                        <label>Characteristic strain at maximum force:</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-1">\(\epsilon_{uk} = \)</label>
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" ng-model="euk" required min="0.001">
+                            </div>
+                            <label class="control-label col-md-1">[-]</label>
                         </div>
-                        <label class="control-label col-md-1">[-]</label>
-                    </div>
 
-                    <label>Force:</label>
-                    <div class="form-group">
-                        <label class="control-label col-md-1">\(\frac {\epsilon_{ud}}{\epsilon_{uk}} = \)</label>
-                        <div class="col-md-4">
-                            <input type="number" class="form-control" ng-model="eudToEuk">
+                        <label>Force:</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-1">\(\frac {\epsilon_{ud}}{\epsilon_{uk}} = \)</label>
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" ng-model="eudToEuk" required min="0.001">
+                            </div>
+                            <label class="control-label col-md-1">[-]</label>
                         </div>
-                        <label class="control-label col-md-1">[-]</label>
-                    </div>
 
-                    <label>Design strain at maximum force:</label>
-                    <div class="form-group">
-                        <label class="control-label col-md-1">\(\epsilon_{ud} = \)</label>
-                        <div class="col-md-4">
-                            <span class="form-control" readonly>{{eud | number:3}}</span>
+                        <label>Design strain at maximum force:</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-1">\(\epsilon_{ud} = \)</label>
+                            <div class="col-md-4">
+                                <span class="form-control" readonly>{{eud | number:3}}</span>
+                            </div>
+                            <label class="control-label col-md-1">[-]</label>
                         </div>
-                        <label class="control-label col-md-1">[-]</label>
-                    </div>
 
-                    <label class="control-label">Factor:</label>
-                    <div class="form-group">
-                        <label class="control-label col-md-1">\(k = \)</label>
-                        <div class="col-md-4">
-                            <input type="number" class="form-control" ng-model="k">
+                        <label class="control-label">Factor:</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-1">\(k = \)</label>
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" ng-model="k" required min="1">
+                            </div>
+                            <label class="control-label col-md-1">[-]</label>
                         </div>
-                        <label class="control-label col-md-1">[-]</label>
-                    </div>
 
-                    <label class="control-label">Modulus of elasticity:</label>
-                    <div class="form-group">
-                        <label class="control-label col-md-1">\(E = \)</label>
-                        <div class="col-md-4">
-                            <input type="number" class="form-control" ng-model="E">
+                        <label class="control-label">Modulus of elasticity:</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-1">\(E = \)</label>
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" ng-model="E" required min="1">
+                            </div>
+                            <label class="control-label col-md-1">[kN/mm<sup>2</sup>]</label>
                         </div>
-                        <label class="control-label col-md-1">[kN/mm<sup>2</sup>]</label>
-                    </div>
 
-                    <div>
-                        <p class="text-center">\(\sigma_{s}(\epsilon) [{\small N/{mm^2}}]\)</p>
-                        <canvas id="chartSteel" class="chart chart-line" chart-data="steelData"
-                                chart-labels="steelLabels" 
-                                chart-series="series" chart-options="options"
-                                chart-dataset-override="datasetOverride"></canvas>
+                        <div>
+                            <p class="text-center">\(\sigma_{s}(\epsilon) [{\small N/{mm^2}}]\)</p>
+                            <canvas id="chartSteel" class="chart chart-line" chart-data="steelData"
+                                    chart-labels="steelLabels"
+                                    chart-series="series" chart-options="options"
+                                    chart-dataset-override="datasetOverride"></canvas>
+                        </div>
+
                     </div>
-                    
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" ng-click="save()">Save changes</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-disabled="SteelForm.$invalid" ng-click="save()">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

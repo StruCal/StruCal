@@ -178,6 +178,7 @@
     <Compile Include="ViewModels\ConcreteCoverViewModel.cs" />
     <Compile Include="ViewModels\SectionPropertiesViewModels.cs" />
     <Compile Include="Views\Shared\TemplateNames.cs" />
+    <Content Include="Content\angular.css" />
     <Content Include="Scripts\RcBeam\canvasDirective.js" />
     <Content Include="Scripts\RcBeam\chartService.js" />
     <Content Include="Scripts\RcBeam\circularSectionCtrl.js" />

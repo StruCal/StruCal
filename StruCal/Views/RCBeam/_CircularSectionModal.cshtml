@@ -11,55 +11,57 @@
             <div class="modal-body">
                 @*Rectangular cross-section width*@
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6 form-horizontal">
-                            <label class="control-label"> Diameter:</label>
-                            <div class="form-group">
-                                <label class="control-label col-md-1">\(d = \)</label>
-                                <div class="col-md-6">
-                                    <input type="number" class="form-control" min="1" ng-model="diameter">
+                    <div ng-form="CircularSectionForm">
+                        <div class="row">
+                            <div class="col-md-6 form-horizontal">
+                                <label class="control-label"> Diameter:</label>
+                                <div class="form-group">
+                                    <label class="control-label col-md-1">\(d = \)</label>
+                                    <div class="col-md-6 col-md-offset-1">
+                                        <input type="number" class="form-control" min="1" required ng-model="diameter">
+                                    </div>
+                                    <label class="control-label col-md-1">[mm]</label>
                                 </div>
-                                <label class="control-label col-md-1">[mm]</label>
+                            </div>
+                            <div class="col-md-6 form-horizontal">
+                                <label class="control-label">Cover:</label>
+                                <div class="form-group">
+                                    <label class="control-label col-md-1">\(c = \)</label>
+                                    <div class="col-md-6 col-md-offset-1">
+                                        <input type="number" class="form-control" min="1" required ng-model="cover">
+                                    </div>
+                                    <label class="control-label col-md-1">[mm]</label>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6 form-horizontal">
-                            <label class="control-label">Cover:</label>
-                            <div class="form-group">
-                                <label class="control-label col-md-1">\(c = \)</label>
-                                <div class="col-md-6">
-                                    <input type="number" class="form-control" min="1" ng-model="cover">
+                        <div class="row">
+                            <div class="col-md-6 form-horizontal">
+                                <label class="control-label">Diameter of bars:</label>
+                                <div class="form-group">
+                                    <label class="control-label col-md-1">\(\phi_b = \)</label>
+                                    <div class="col-md-6 col-md-offset-1">
+                                        <input type="number" class="form-control" min="1" required ng-model="barDiameter">
+                                    </div>
+                                    <label class="control-label col-md-1">[mm]</label>
                                 </div>
-                                <label class="control-label col-md-1">[mm]</label>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 form-horizontal">
-                            <label class="control-label">Diameter of bars:</label>
-                            <div class="form-group">
-                                <label class="control-label col-md-1">\(\phi_b = \)</label>
-                                <div class="col-md-6">
-                                    <input type="number" class="form-control" min="1" ng-model="barDiameter">
-                                </div>
-                                <label class="control-label col-md-1">[mm]</label>
-                            </div>
-                        </div>
 
-                        <div class="col-md-6 form-horizontal">
-                            <label class="control-label">Number of bars:</label>
-                            <div class="form-group">
-                                <label class="control-label col-md-1">\(n_b = \)</label>
-                                <div class="col-md-6">
-                                    <input type="number" class="form-control" min="0" ng-model="barCount">
+                            <div class="col-md-6 form-horizontal">
+                                <label class="control-label">Number of bars:</label>
+                                <div class="form-group">
+                                    <label class="control-label col-md-1">\(n_b = \)</label>
+                                    <div class="col-md-6 col-md-offset-1">
+                                        <input type="number" class="form-control" min="0" required ng-model="barCount">
+                                    </div>
+                                    <label class="control-label col-md-1">[-]</label>
                                 </div>
-                                <label class="control-label col-md-1">[-]</label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div id="circleDrawing"></div>
                 <div class="modal-footer">
-                    <button type="button" id="testButton" class="btn btn-primary" ng-click="save()">Save changes</button>
+                    <button type="button" class="btn btn-primary" ng-disabled="CircularSectionForm.$invalid" ng-click="save()">Save changes</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>

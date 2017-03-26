@@ -11,34 +11,36 @@
             <div class="modal-body">
                 @*Rectangular cross-section width*@
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-10 form-horizontal">
-                            <label class="control-label"> Section coordinates:</label>
-                            <div class="form-group">
-                                @*<label class="control-label col-md-2">\(x,y   = \)</label>*@
-                                <div class="col-md-10">
-                                    <input class="form-control" ng-model="sectionCoordinates">
+                    <div ng-form="CustomSectionForm">
+                        <div class="row">
+                            <div class="col-md-10 form-horizontal">
+                                <label class="control-label"> Section coordinates:</label>
+                                <div class="form-group">
+                                    @*<label class="control-label col-md-2">\(x,y   = \)</label>*@
+                                    <div class="col-md-10">
+                                        <input class="form-control" ng-model="sectionCoordinates">
+                                    </div>
+                                    @*<label class="control-label col-md-1">[mm]</label>*@
                                 </div>
-                                @*<label class="control-label col-md-1">[mm]</label>*@
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-10 form-horizontal">
-                            <label class="control-label">Reinforcement coordinates:</label>
-                            <div class="form-group">
-                                @*<label class="control-label col-md-2">\(x,y,d = \)</label>*@
-                                <div class="col-md-10">
-                                    <input class="form-control" ng-model="barCoordinates">
+                        <div class="row">
+                            <div class="col-md-10 form-horizontal">
+                                <label class="control-label">Reinforcement coordinates:</label>
+                                <div class="form-group">
+                                    @*<label class="control-label col-md-2">\(x,y,d = \)</label>*@
+                                    <div class="col-md-10">
+                                        <input class="form-control" ng-model="barCoordinates">
+                                    </div>
+                                    @*<label class="control-label col-md-1">[mm]</label>*@
                                 </div>
-                                @*<label class="control-label col-md-1">[mm]</label>*@
                             </div>
                         </div>
                     </div>
                 </div>
                 <div id="customDrawing"></div>
                 <div class="modal-footer">
-                    <button type="button" id="testButton" class="btn btn-primary" ng-click="save()">Save changes</button>
+                    <button type="button" class="btn btn-primary" ng-disabled="CustomSectionForm.$invalid" ng-click="save()">Save changes</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
