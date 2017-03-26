@@ -3,42 +3,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    /*.equal {
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        flex: 1 1 auto;
-    }*/
-    /*.equal-panel {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-}
-
-.equal-panel > div[class*='col-'] {
-  flex:1 1 auto;
-  display: flex;
-}
-.equal-panel .panel {
-  flex:1 0 100%;
-}*/
-
-</style>
-
 <h2>RCBeam</h2>
-
 
 <div class="container-fluid" ng-app="rcBeam">
 
     <h2>Reinforced concrete members calculator</h2>
     <br />
-
-
     <div class="panel panel-default">
         <!-- Trigger the modal with a button -->
         <div class="panel-heading">
@@ -152,16 +122,7 @@
 
 
 
-<script>
-
-    var rcBeam = angular.module('rcBeam', ['chart.js']);
-
-    rcBeam.controller('mainCtrl', function ($scope) {
-
-    });
-
-
-</script>
+<script src="~/Scripts/RcBeam/rcBeamModule.js"></script>
 <script src="~/Scripts/RcBeam/coefficientsCtrl.js"></script>
 <script src="~/Scripts/RcBeam/concreteCtrl.js"></script>
 <script src="~/Scripts/RcBeam/steelCtrl.js"></script>
@@ -185,3 +146,16 @@
 <script src="~/Scripts/RcBeam/Helper/numberFormatter.js"></script>
 <script src="~/Scripts/RcBeam/resultPanelCtrl.js"></script>
 <script src="~/Scripts/RcBeam/detailedResultPanel.js"></script>
+<script src="~/Scripts/RcBeam/Services/chartService.js"></script>
+<script src="~/Scripts/RcBeam/ModalControllers/circularSectionCtrl.js"></script>
+<script src="~/Scripts/RcBeam/ModalControllers/coefficientsCtrl.js"></script>
+<script src="~/Scripts/RcBeam/ModalControllers/concreteCtrl.js"></script>
+<script src="~/Scripts/RcBeam/ModalControllers/customSectionCtrl.js"></script>
+<script src="~/Scripts/RcBeam/ModalControllers/loadsCtrl.js"></script>
+<script src="~/Scripts/RcBeam/ModalControllers/rectangularSectionCtrl.js"></script>
+<script src="~/Scripts/RcBeam/ModalControllers/steelCtrl.js"></script>
+<script src="~/Scripts/RcBeam/MainPageControllers/controlPanelCtrl.js"></script>
+<script src="~/Scripts/RcBeam/MainPageControllers/detailedResultPanel.js"></script>
+<script src="~/Scripts/RcBeam/MainPageControllers/drawingPanelCtrl.js"></script>
+<script src="~/Scripts/RcBeam/MainPageControllers/inputPanelCtrl.js"></script>
+<script src="~/Scripts/RcBeam/MainPageControllers/resultPanelCtrl.js"></script>
