@@ -24,7 +24,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="vert-align" ng-repeat="load in loadCases">
+                                <tr class="vert-align" ng-repeat="load in loadCases" ng-form="RowForm">
                                    
                                     <td class="col-sm-1">
                                         <label class="control-label">{{$index + 1}}</label>
@@ -38,7 +38,7 @@
                                         <input type="number" class="form-control" ng-model="load.normalForce" required ng-show="showForms" />
                                     </td>
                                     <td class="col-sm-2">
-                                        <a href="#" ng-click="showForms=false;apply($index,load.name,load.normalForce)" class="glyphicon glyphicon-ok btn btn-default" ng-show="showForms"> Save</a>
+                                        <a href="#" ng-click="showForms=false;apply($index,load.name,load.normalForce)" ng-disabled="RowForm.$invalid" class="glyphicon glyphicon-ok btn btn-default" ng-show="showForms"> Save</a>
                                     </td>
                                     <td class="col-sm-1">
                                         <a href="#" ng-click="showForms=true" class="glyphicon glyphicon-pencil btn btn-default"></a>

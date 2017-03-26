@@ -14,11 +14,12 @@
                     <div ng-form="CustomSectionForm">
                         <div class="row">
                             <div class="col-md-10 form-horizontal">
-                                <label class="control-label"> Section coordinates:</label>
+                                <label class="control-label"> Section coordinates (x<sub>1</sub>;y<sub>1</sub> x<sub>2</sub>;y<sub>2</sub>):</label>
                                 <div class="form-group">
                                     @*<label class="control-label col-md-2">\(x,y   = \)</label>*@
                                     <div class="col-md-10">
-                                        <input class="form-control" ng-model="sectionCoordinates">
+                                        <input class="form-control" required pattern="^(((-?)(0|[1-9][0-9]*)(\.[0-9]+)?);((-?)(0|[1-9][0-9]*)(\.[0-9]+)?)\s)*(((-?)(0|[1-9][0-9]*)(\.[0-9]+)?);((-?)(0|[1-9][0-9]*)(\.[0-9]+)?))$" 
+                                               ng-model="sectionCoordinates">
                                     </div>
                                     @*<label class="control-label col-md-1">[mm]</label>*@
                                 </div>
@@ -26,11 +27,12 @@
                         </div>
                         <div class="row">
                             <div class="col-md-10 form-horizontal">
-                                <label class="control-label">Reinforcement coordinates:</label>
+                                <label class="control-label">Reinforcement coordinates (x<sub>1</sub>;y<sub>1</sub>;&phi;<sub>1</sub> x<sub>2</sub>;y<sub>2</sub>;&phi;<sub>2</sub>):</label>
                                 <div class="form-group">
                                     @*<label class="control-label col-md-2">\(x,y,d = \)</label>*@
                                     <div class="col-md-10">
-                                        <input class="form-control" ng-model="barCoordinates">
+                                        <input class="form-control" required pattern="^(((-?)(0|[1-9][0-9]*)(\.[0-9]+)?);((-?)(0|[1-9][0-9]*)(\.[0-9]+)?);((0|[1-9][0-9]*)(\.[0-9]+)?)\s)*(((-?)(0|[1-9][0-9]*)(\.[0-9]+)?);((-?)(0|[1-9][0-9]*)(\.[0-9]+)?);((0|[1-9][0-9]*)(\.[0-9]+)?))$"
+                                               ng-model="barCoordinates">
                                     </div>
                                     @*<label class="control-label col-md-1">[mm]</label>*@
                                 </div>

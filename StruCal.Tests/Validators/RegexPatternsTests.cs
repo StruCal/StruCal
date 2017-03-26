@@ -71,5 +71,37 @@ namespace StruCal.Tests.Validators
             var result = regex.Match(inputData);
             Assert.IsTrue(result.Success);
         }
+
+
+
+        [TestCase("10;20;-30")]
+        [TestCase("00;20 30;20.5;00.5 -20;18.2;0")]
+        [TestCase("10;20 30.;20 -;8")]
+        [TestCase("i10;20 30;20;-20")]
+        [TestCase("10;20;-10 30;20;10")]
+        [TestCase("10;20;; 30;")]
+        [TestCase("10;20;10 20;5..0")]
+        [TestCase("10,5; 20,8 ;30")]
+        [TestCase("+10;20 30.2.3;")]
+        public void RegexPatternTests_BarCoordinatesValidationPattern_ValidationShowErrors(string inputData)
+        {
+            var regex = new Regex(RegexPatterns.BarCoordinatesValidationPattern);
+
+            var result = regex.Match(inputData);
+            Assert.IsFalse(result.Success);
+        }
+
+        [TestCase("10;20;10 30;40;30 50;60;20.5")]
+        [TestCase("-10;20;18 -30;-50;20 -80;100.2;18")]
+        [TestCase("1.1;2.2;20 -5.02;-4.02;10")]
+        [TestCase("0.0;2;10.5 -30;-0.02;20")]
+        [TestCase("4;2.2;20 5;10;50 15;-0.002;20.05")]
+        public void RegexPatternTests_BarCoordinatesValidationPattern_ValidationPassed(string inputData)
+        {
+            var regex = new Regex(RegexPatterns.BarCoordinatesValidationPattern);
+
+            var result = regex.Match(inputData);
+            Assert.IsTrue(result.Success);
+        }
     }
 }
