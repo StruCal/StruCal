@@ -33,7 +33,7 @@
             $scope.valid = false;
             $scope.dirty = false;
             $scope.error = true;
-            $scope.message = "The error has occured. Please try again."
+            $scope.message = "An error has occured. Please try again."
         });
     };
 
