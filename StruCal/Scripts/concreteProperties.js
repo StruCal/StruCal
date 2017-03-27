@@ -1,5 +1,6 @@
 ﻿var charts = angular.module('charts', ['chart.js']);
-charts.controller('chartCtrl', function ($scope, concreteFunctions) {
+
+charts.controller('chartCtrl', ['$scope','concreteFunctions',function ($scope, concreteFunctions) {
     $scope.series = ['fcm', ];
 
     $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
@@ -66,10 +67,10 @@ charts.controller('chartCtrl', function ($scope, concreteFunctions) {
         $scope.fctmLabels = fctmValues.x;
         $scope.fctmData = [fctmValues.y];
     });
-});
+}]);
 
 var application = angular.module('concretePropertiesApp', ['charts']);
-application.controller("mainCtrl", function ($scope, $rootScope, concreteFactory, concreteProperties, nameConverter) {
+application.controller("mainCtrl",['$scope','$rootScope','concreteFactory','concreteProperties','nameConverter', function ($scope, $rootScope, concreteFactory, concreteProperties, nameConverter) {
 
     $scope.convert = nameConverter.convertName;
 
@@ -102,7 +103,7 @@ application.controller("mainCtrl", function ($scope, $rootScope, concreteFactory
 
         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     }
-});
+}]);
 
 application.factory('concreteFactory', function () {
     return {

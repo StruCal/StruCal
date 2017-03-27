@@ -43,8 +43,7 @@ namespace StruCal
 
             bundles.Add(new StyleBundle("~/Content/custom").Include(
                 "~/Content/jquery-ui.css",
-                "~/Content/custom.css",
-                "~/Content/angular.css"));
+                "~/Content/custom.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/sectionProperties").Include(
                 "~/Scripts/sectionProperties.js"));
@@ -55,13 +54,40 @@ namespace StruCal
             bundles.Add(new ScriptBundle("~/bundles/concreteCover").Include(
                 "~/Scripts/cover.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/rcBeam").Include(
-                "~/Scripts/rcBeam.js"));
 
             bundles.Add(new StyleBundle("~/Content/PanelTabs").Include(
                 "~/Content/PanelTabs.css"));
 
-            
+            bundles.Add(new StyleBundle("~/Content/angular").Include(
+                "~/Content/angular.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/rcBeam").Include(
+                "~/Scripts/RcBeam/rcBeamApp.js",
+                "~/Scripts/RcBeam/Drawings/circularSectionDrawing.js",
+                "~/Scripts/RcBeam/Drawings/customSectionDrawing.js",
+                "~/Scripts/RcBeam/Drawings/drawingHelpers.js",
+                "~/Scripts/RcBeam/Drawings/rcDrawing.js",
+                "~/Scripts/RcBeam/Drawings/rectangleSectionDrawing.js",
+                "~/Scripts/RcBeam/Helper/multipliers.js",
+                "~/Scripts/RcBeam/Helper/numberFormatter.js",
+                "~/Scripts/RcBeam/MainPageControllers/controlPanelCtrl.js",
+                "~/Scripts/RcBeam/MainPageControllers/detailedResultPanel.js",
+                "~/Scripts/RcBeam/MainPageControllers/drawingPanelCtrl.js",
+                "~/Scripts/RcBeam/MainPageControllers/inputPanelCtrl.js",
+                "~/Scripts/RcBeam/MainPageControllers/resultPanelCtrl.js",
+                "~/Scripts/RcBeam/Materials/concreteService.js",
+                "~/Scripts/RcBeam/Materials/steelService.js",
+                "~/Scripts/RcBeam/ModalControllers/circularSectionCtrl.js",
+                "~/Scripts/RcBeam/ModalControllers/coefficientsCtrl.js",
+                "~/Scripts/RcBeam/ModalControllers/concreteCtrl.js",
+                "~/Scripts/RcBeam/ModalControllers/customSectionCtrl.js",
+                "~/Scripts/RcBeam/ModalControllers/loadsCtrl.js",
+                "~/Scripts/RcBeam/ModalControllers/rectangularSectionCtrl.js",
+                "~/Scripts/RcBeam/ModalControllers/steelCtrl.js",
+                "~/Scripts/RcBeam/Services/chartService.js"
+                ));
+
+            BundleTable.EnableOptimizations = true;
         }
     }
 }
