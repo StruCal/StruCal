@@ -1,4 +1,4 @@
-﻿angular.module('rcBeam').controller('drawingPanelCtrl', function ($scope, $rootScope) {
+﻿angular.module('rcBeam').controller('drawingPanelCtrl',['$scope','$rootScope', function ($scope, $rootScope) {
 
     var coordinates;
     var bars;
@@ -42,7 +42,7 @@
         $rootScope.$broadcast('bars', bars);
         updateDrawing();
     })();
-});
+}]);
 
 class drawingPanel {
     constructor(canvasObject) {

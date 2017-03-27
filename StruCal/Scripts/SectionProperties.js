@@ -75,7 +75,7 @@ function createCircularDrawing() {
     var xString = "";
     var yString = "";
 
-    for (i = 0; i <= 360; i=i+10) {
+    for (var i = 0; i <= 360; i=i+10) {
         var alfa = (i - 90) * Math.PI / 180;
         var x = (radious * Math.sin(alfa)).toFixed(2);  
         var y = (radious * Math.cos(alfa)).toFixed(2);

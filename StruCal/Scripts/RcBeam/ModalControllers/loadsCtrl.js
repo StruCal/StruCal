@@ -1,4 +1,4 @@
-﻿angular.module('rcBeam').controller('loadsCtrl', function ($scope, $rootScope) {
+﻿angular.module('rcBeam').controller('loadsCtrl',['$scope','$rootScope', function ($scope, $rootScope) {
     $scope.loadCases = new Array();
 
     $scope.loadCases = [{
@@ -34,4 +34,4 @@
         $('#modalLoads').modal('toggle');
     }
 
-});
+}]);

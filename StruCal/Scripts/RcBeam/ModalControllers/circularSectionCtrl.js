@@ -1,4 +1,4 @@
-﻿angular.module('rcBeam').controller('circularSectionCtrl', function ($scope, $rootScope) {
+﻿angular.module('rcBeam').controller('circularSectionCtrl',['$scope','$rootScope', function ($scope, $rootScope) {
     $scope.diameter = 500;
     $scope.cover = 20;
     $scope.barDiameter = 20;
@@ -20,7 +20,7 @@
         $rootScope.$broadcast('bars', drawing.bars);
         $rootScope.$broadcast('dirty', true);
     }
-});
+}]);
 
 
 

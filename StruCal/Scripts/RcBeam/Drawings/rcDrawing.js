@@ -62,7 +62,7 @@ class rcDrawing {
             var numberOfLines = 10;
             var distance = width / numberOfLines;
 
-            for (i = 0; i <= numberOfLines; i++) {
+            for (var i = 0; i <= numberOfLines; i++) {
                 var x1 = 0 + i * distance;
                 var x2 = x1;
                 var y1 = 0;
@@ -78,7 +78,7 @@ class rcDrawing {
             var numberOfLines = 10;
             var distance = height / numberOfLines;
 
-            for (i = 0; i <= numberOfLines; i++) {
+            for (var i = 0; i <= numberOfLines; i++) {
                 var x1 = 0;
                 var x2 = width;
                 var y1 = 0 + i * distance;

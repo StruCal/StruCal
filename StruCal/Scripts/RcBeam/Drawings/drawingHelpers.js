@@ -5,7 +5,7 @@
 //transfers arrays of x and y coordinates to the following string
 function transferCoordinatesToPlot(xCoordinates, yCoordinates) {
     var coordinates = "";
-    for (i = 0; i < xCoordinates.length; i++) {
+    for (var i = 0; i < xCoordinates.length; i++) {
         var x = xCoordinates[i].toFixed(2);
         var y = yCoordinates[i].toFixed(2);
         var insert = x + "," + y;

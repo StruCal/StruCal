@@ -1,4 +1,4 @@
-﻿angular.module('rcBeam').controller('controlPanelCtrl', function ($scope, $rootScope, $http) {
+﻿angular.module('rcBeam').controller('controlPanelCtrl', ['$scope','$rootScope','$http',function ($scope, $rootScope, $http) {
     var concrete;
     var steel;
     var loadCases;
@@ -59,4 +59,4 @@
         $scope.message = "Results are NOT up to date."
     });
 
-});
+}]);

@@ -1,4 +1,4 @@
-﻿angular.module('rcBeam').controller('resultPanelCtrl', function ($scope) {
+﻿angular.module('rcBeam').controller('resultPanelCtrl',['$scope', function ($scope) {
     $scope.compressionForce = "";
     $scope.tensionForce = "";
     $scope.currentLoadCaseName = "load1";
@@ -19,4 +19,4 @@
         $scope.compressionForce = arg.MaxCompressionForce;
     });
 
-});
+}]);

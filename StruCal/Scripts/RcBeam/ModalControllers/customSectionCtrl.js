@@ -1,4 +1,4 @@
-﻿angular.module('rcBeam').controller('customSectionCtrl', function ($scope, $rootScope) {
+﻿angular.module('rcBeam').controller('customSectionCtrl',['$scope','$rootScope', function ($scope, $rootScope) {
     $scope.sectionCoordinates= "0;0 200;0 200;200 0;200"
     $scope.barCoordinates = "100;50;10";
 
@@ -18,7 +18,7 @@
         $rootScope.$broadcast('bars', drawing.bars);
         $rootScope.$broadcast('dirty', true);
     }
-});
+}]);
 
 
 

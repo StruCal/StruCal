@@ -1,4 +1,4 @@
-﻿angular.module('rcBeam').controller('steelCtrl', function ($scope, $rootScope, steelService,chartService) {
+﻿angular.module('rcBeam').controller('steelCtrl',['$scope','$rootScope','steelService','chartService', function ($scope, $rootScope, steelService,chartService) {
     $scope.steels = steelService.getSteelClasses();
     $scope.selectedSteel = $scope.steels[0].grade;
     $scope.eudToEuk = 0.9;
@@ -55,5 +55,5 @@
         $scope.steelData = [chartValues.designStress, chartValues.charStress];
          
     }
-});
+}]);
 

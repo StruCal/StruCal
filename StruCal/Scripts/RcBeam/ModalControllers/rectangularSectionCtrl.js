@@ -1,4 +1,4 @@
-﻿angular.module('rcBeam').controller('rectangularSectionCtrl', function ($scope, $rootScope) {
+﻿angular.module('rcBeam').controller('rectangularSectionCtrl',['$scope','$rootScope', function ($scope, $rootScope) {
     $scope.width = 500;
     $scope.height = 200;
     $scope.cover = 20;
@@ -28,4 +28,4 @@
         $rootScope.$broadcast('bars', drawing.bars);
         $rootScope.$broadcast('dirty', true);
     }
-});
+}]);

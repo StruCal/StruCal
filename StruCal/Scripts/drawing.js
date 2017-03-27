@@ -24,7 +24,7 @@ function drawSection(drawing, xCoordinates, yCoordinates, canvasObject) {
     //convert coordinates to canvas
     var transferedX = [];
     var transferedY = [];
-    for (i = 0; i < xCoordinates.length; i++) {
+    for (var i = 0; i < xCoordinates.length; i++) {
         transferedX[i] = transferXToCanvasSystem(xCoordinates[i], sectionCentreX, scale, canvasWidth);
         transferedY[i] = transferYToCanvasSystem(yCoordinates[i], sectionCentreY, scale, canvasHeight);
 
@@ -64,7 +64,7 @@ function drawBackgroundPattern(drawing, width, height) {
         var numberOfLines = 10;
         var distance = width / numberOfLines;
 
-        for (i = 0; i <= numberOfLines; i++) {
+        for (var i = 0; i <= numberOfLines; i++) {
             var x1 = 0 + i * distance;
             var x2 = x1;
             var y1 = 0;
@@ -80,7 +80,7 @@ function drawBackgroundPattern(drawing, width, height) {
         var numberOfLines = 10;
         var distance = height / numberOfLines;
 
-        for (i = 0; i <= numberOfLines; i++) {
+        for (var i = 0; i <= numberOfLines; i++) {
             var x1 = 0;
             var x2 = width;
             var y1 = 0 + i * distance;
@@ -107,7 +107,7 @@ function convertCoordinatesToLineInput(x1, y1, x2, y2) {
 //transfers arrays of x and y coordinates to the following string
 function transferCoordinatesToPlot(xCoordinates, yCoordinates) {
     var coordinates = "";
-    for (i = 0; i < xCoordinates.length; i++) {
+    for (var i = 0; i < xCoordinates.length; i++) {
         var x = xCoordinates[i].toFixed(2);
         var y = yCoordinates[i].toFixed(2);
         //console.log(xCoordinates[i].toFixed(2) + " " + yCoordinates[i].toFixed(2));
