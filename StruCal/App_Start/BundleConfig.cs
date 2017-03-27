@@ -60,6 +60,8 @@ namespace StruCal
 
             bundles.Add(new StyleBundle("~/Content/PanelTabs").Include(
                 "~/Content/PanelTabs.css"));
+
+            
         }
     }
 }

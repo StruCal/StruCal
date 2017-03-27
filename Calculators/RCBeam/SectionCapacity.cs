@@ -182,14 +182,14 @@ namespace Calculators.RCBeam
                 barsTemp.Epsilon = barsTemp.Epsilon * multiplier;
                 barsTemp.Force = barsTemp.Bar.As * barsTemp.Sigma;
                 barsTemp.Moment = barsTemp.Force * (reinforcement[i].Bar.Y - this.section.MinY);
-                if (this.reinforcement[i].Bar.Y > yOsi)
-                {
+                //if (this.reinforcement[i].Bar.Y > yOsi)
+                //{
                     Mrd = Mrd + barsTemp.Moment ;
-                }
-                else
-                {
-                    Mrd = Mrd - barsTemp.Moment;
-                }
+                //}
+                //else
+                //{
+                //    Mrd = Mrd - barsTemp.Moment;
+                //}
                 this.reinforcement[i] = barsTemp;
             }
             return Mrd;
