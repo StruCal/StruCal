@@ -428,18 +428,31 @@ div.ui-tooltip {
 
 
 .equal-panel {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
 }
 
-.equal-panel > div[class*='col-'] {
-  flex:1 1 auto;
-  display: flex;
-}
-.equal-panel .panel {
-  flex:1 0 100%;
+	.equal-panel > div[class*='col-'] {
+		flex: 1 1 auto;
+		display: flex;
+	}
+
+	.equal-panel .panel {
+		flex: 1 0 100%;
+	}
+
+.progress {
+	height: 60px;
+	position: relative;
+	background-color: transparent;
+	border-color: blue;
+	border-width: thin;
 }
 
+	.progress > svg {
+		height: 100%;
+		display: block;
+	}

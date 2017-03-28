@@ -8,6 +8,13 @@
     $scope.message = "Results are NOT up to date."
 
     $scope.calculate = function () {
+
+        $scope.message = "Processing..."
+        $scope.progress = true;
+        $scope.dirty = false;
+        startProgress();
+
+
         var RcBeamInput = {
             Concrete: concrete,
             Steel: steel,
@@ -16,23 +23,21 @@
             loadCases: loadCases
         };
         $http.post("/api/RCBeamApi", RcBeamInput)
-        //    .then(function (response) {
-        //    $rootScope.$broadcast('results', response.data);
-        //    $scope.test = response;
-        //});
-            .then(
-            function (response) {
+        .then(
+        function (response) {
                 $rootScope.$broadcast('results', response.data);
                 $scope.test = response.data;
                 $scope.valid = true;
                 $scope.dirty = false;
                 $scope.error = false;
+                $scope.progress = false;
                 $scope.message = "Results are up to date"
             },
         function (response) {
             $scope.valid = false;
             $scope.dirty = false;
             $scope.error = true;
+            $scope.progress = false;
             $scope.message = "An error has occured. Please try again."
         });
     };
