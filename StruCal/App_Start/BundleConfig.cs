@@ -54,7 +54,6 @@ namespace StruCal
             bundles.Add(new ScriptBundle("~/bundles/concreteCover").Include(
                 "~/Scripts/cover.js"));
 
-
             bundles.Add(new StyleBundle("~/Content/PanelTabs").Include(
                 "~/Content/PanelTabs.css"));
 
@@ -86,6 +85,13 @@ namespace StruCal
                 "~/Scripts/RcBeam/ModalControllers/steelCtrl.js",
                 "~/Scripts/RcBeam/Services/chartService.js"
                 ));
+
+            bundles.Add(new ScriptBundle("~/bundles/progress").Include(
+                "~/Scripts/progressBar.js",
+                "~/Scripts/RcBeam/progress.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/layoutScript").Include(
+                "~/Scripts/layoutScript.js"));
 
             BundleTable.EnableOptimizations = true;
         }

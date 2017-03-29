@@ -22,11 +22,6 @@
                     @Html.LabelFor(model => model.Coordinates, new { @class = "control-label" })
                     @Html.EditorFor(model => model.Coordinates, new { htmlAttributes = new { @class = "form-control"} })
                 </div>
-                @*<div class="form-group">
-                        @Html.LabelFor(model => model.YCoordinates, new { @class = "control-label" })
-                        @Html.EditorFor(model => model.YCoordinates, new { htmlAttributes = new { @class = "form-control", @placeholder = "10;20;20;10;" } })
-                    </div>*@
-
                 <div class="form-group">
                     <input id="runButton" type="submit" value="Run" class="btn btn-primary" />
                 </div>
@@ -42,7 +37,6 @@
 
 <script>
     $(document).ready(function () {
-
         createCustomDrawing();
         $("#inputForms input").change(createCustomDrawing);
         $("#inputForms input").keyup(createCustomDrawing);

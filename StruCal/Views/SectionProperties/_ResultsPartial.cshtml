@@ -2,7 +2,7 @@
 @model StruCal.ViewModels.ISectionPropertiesViewModel
 
 
-<div class="row" id="results">
+<div class="row equal-panel" id="results">
 
     @if (ViewBag.ShowResults)
     {
@@ -21,7 +21,6 @@
 
 <script>
     $(window).load(function () {
-        //$("html,body").scrollTop(10000);
         location.href = "#results"
     });
 </script>

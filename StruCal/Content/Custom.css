@@ -456,3 +456,6 @@ div.ui-tooltip {
 		height: 100%;
 		display: block;
 	}
+	table.centre td, th {
+        text-align: center;
+    }
