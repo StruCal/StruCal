@@ -46,26 +46,7 @@
 </div>
 
 <script>
-
     $(document).ready(function () {
-
-        //set default values for input
-        if ($("#WebThickness").val() == 0) {
-            $("#WebThickness").val("");
-        }
-        if ($("#Height").val() == 0) {
-            $("#Height").val("");
-        }
-        if ($("#FlangeWidth").val() == 0) {
-            $("#FlangeWidth").val("");
-        }
-        if ($("#FlangeThickness").val() == 0) {
-            $("#FlangeThickness").val("");
-        }
-
-        createTSectionDrawing();
-        $("#inputForms input").change(createTSectionDrawing);
-        $("#inputForms input").keyup(createTSectionDrawing);
-        $(window).resize(createTSectionDrawing);
+        getTSection();
     });
 </script>

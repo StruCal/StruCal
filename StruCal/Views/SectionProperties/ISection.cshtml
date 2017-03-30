@@ -54,31 +54,7 @@
 </div>
 
 <script>
-
     $(document).ready(function () {
-
-        //set default values for input
-        if ($("#WebThickness").val() == 0) {
-            $("#WebThickness").val("");
-        }
-        if ($("#Height").val() == 0) {
-            $("#Height").val("");
-        }
-        if ($("#TopFlangeWidth").val() == 0) {
-            $("#TopFlangeWidth").val("");
-        }
-        if ($("#BottomFlangeWidth").val() == 0) {
-            $("#BottomFlangeWidth").val("");
-        }
-        if ($("#TopFlangeThickness").val() == 0) {
-            $("#TopFlangeThickness").val("");
-        }
-        if ($("#BottomFlangeThickness").val() == 0) {
-            $("#BottomFlangeThickness").val("");
-        }
-        createISectionDrawing();
-        $("#inputForms input").change(createISectionDrawing);
-        $("#inputForms input").keyup(createISectionDrawing);
-        $(window).resize(createISectionDrawing);
+        getISection();
     });
 </script>

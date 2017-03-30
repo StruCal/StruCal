@@ -25,7 +25,7 @@ namespace StruCal.Controllers
             {
                 Coordinates = "0;10 10;0 20;0 30;10"
             };
-
+            ViewBag.HasResult = false;
             return View(viewModel);
         }
 
@@ -34,6 +34,7 @@ namespace StruCal.Controllers
         public ActionResult CustomSection(CustomSectionViewModel viewModel)
         {
             var resultViewModel = this.performCalculations<CustomSectionViewModel>(viewModel);
+            ViewBag.HasResult = true;
             return View(resultViewModel);
         }
 
@@ -46,6 +47,7 @@ namespace StruCal.Controllers
                 Height = "10",
                 Width = "4"
             };
+            ViewBag.HasResult = false;
             return View(viewModel);
         }
 
@@ -54,6 +56,7 @@ namespace StruCal.Controllers
         public ActionResult RectangularSection(RectangularSectionViewModel viewModel)
         {
             var resultViewModel = this.performCalculations<RectangularSectionViewModel>(viewModel);
+            ViewBag.HasResult = true;
             return View(resultViewModel);
         }
 
@@ -65,6 +68,7 @@ namespace StruCal.Controllers
             {
                 Radious = "10"
             };
+            ViewBag.HasResult = false;
             return View(viewModel);
         }
 
@@ -73,6 +77,7 @@ namespace StruCal.Controllers
         public ActionResult CircularSection(CircularSectionViewModel viewModel)
         {
             var resultViewModel = this.performCalculations<CircularSectionViewModel>(viewModel);
+            ViewBag.HasResult = true;
             return View(resultViewModel);
         }
 
@@ -87,6 +92,7 @@ namespace StruCal.Controllers
                 FlangeWidth = "1",
                 Height = "2"
             };
+            ViewBag.HasResult = false;
             return View(viewModel);
         }
 
@@ -95,6 +101,7 @@ namespace StruCal.Controllers
         public ActionResult TSection(TSectionViewModel viewModel)
         {
             var resultViewModel = this.performCalculations<TSectionViewModel>(viewModel);
+            ViewBag.HasResult = true;
             return View(resultViewModel);
         }
 
@@ -111,6 +118,7 @@ namespace StruCal.Controllers
                 BottomFlangeThickness = "0.1",
                 BottomFlangeWidth = "0.5",
             };
+            ViewBag.HasResult = false;
             return View(viewModel);
         }
 
@@ -119,6 +127,7 @@ namespace StruCal.Controllers
         public ActionResult ISection(ISectionViewModel viewModel)
         {
             var resultViewModel = this.performCalculations<ISectionViewModel>(viewModel);
+            ViewBag.HasResult = true;
             return View(resultViewModel);
         }
 

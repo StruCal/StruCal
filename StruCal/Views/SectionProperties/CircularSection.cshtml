@@ -35,16 +35,8 @@
 </div>
 
 <script>
-
     $(document).ready(function () {
-
-        //set default values for input
-        if ($("#Radious").val() == 0) {
-            $("#Radious").val("");
-        }
-        createCircularDrawing();
-        $("#inputForms input").change(createCircularDrawing);
-        $("#inputForms input").keyup(createCircularDrawing);
-        $(window).resize(createCircularDrawing);
+        getCircularSection();
+        
     });
 </script>

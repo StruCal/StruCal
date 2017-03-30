@@ -205,3 +205,83 @@ function splitCoordinates(coordinates) {
 
     return result;
 }
+
+function getCircularSection() {
+    //set default values for input
+    if ($("#Radious").val() == 0) {
+        $("#Radious").val("");
+    }
+    createCircularDrawing();
+    $("#inputForms input").change(createCircularDrawing);
+    $("#inputForms input").keyup(createCircularDrawing);
+    $(window).resize(createCircularDrawing);
+}
+
+function getCustomSection() {
+    createCustomDrawing();
+    $("#inputForms input").change(createCustomDrawing);
+    $("#inputForms input").keyup(createCustomDrawing);
+    $(window).resize(createCustomDrawing);
+}
+
+function getISection() {
+    //set default values for input
+    if ($("#WebThickness").val() == 0) {
+        $("#WebThickness").val("");
+    }
+    if ($("#Height").val() == 0) {
+        $("#Height").val("");
+    }
+    if ($("#TopFlangeWidth").val() == 0) {
+        $("#TopFlangeWidth").val("");
+    }
+    if ($("#BottomFlangeWidth").val() == 0) {
+        $("#BottomFlangeWidth").val("");
+    }
+    if ($("#TopFlangeThickness").val() == 0) {
+        $("#TopFlangeThickness").val("");
+    }
+    if ($("#BottomFlangeThickness").val() == 0) {
+        $("#BottomFlangeThickness").val("");
+    }
+    createISectionDrawing();
+    $("#inputForms input").change(createISectionDrawing);
+    $("#inputForms input").keyup(createISectionDrawing);
+    $(window).resize(createISectionDrawing);
+}
+
+function getRectangularSection() {
+    //set default values for input
+    if ($("#Width").val() == 0) {
+        $("#Width").val("");
+    }
+    if ($("#Height").val() == 0) {
+        $("#Height").val("");
+    }
+
+    createRectangularDrawing();
+    $("#inputForms input").change(createRectangularDrawing);
+    $("#inputForms input").keyup(createRectangularDrawing);
+    $(window).resize(createRectangularDrawing);
+}
+
+function getTSection() {
+    //set default values for input
+    if ($("#WebThickness").val() == 0) {
+        $("#WebThickness").val("");
+    }
+    if ($("#Height").val() == 0) {
+        $("#Height").val("");
+    }
+    if ($("#FlangeWidth").val() == 0) {
+        $("#FlangeWidth").val("");
+    }
+    if ($("#FlangeThickness").val() == 0) {
+        $("#FlangeThickness").val("");
+    }
+
+    createTSectionDrawing();
+    $("#inputForms input").change(createTSectionDrawing);
+    $("#inputForms input").keyup(createTSectionDrawing);
+    $(window).resize(createTSectionDrawing);
+}

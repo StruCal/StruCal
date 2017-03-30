@@ -39,20 +39,7 @@ Please provide the width and the height of the rectangular section.
 </div>
 
 <script>
-   
     $(document).ready(function () {
-        
-        //set default values for input
-        if ($("#Width").val() == 0) {
-            $("#Width").val("");
-        }
-        if ($("#Height").val() == 0) {
-            $("#Height").val("");
-        }
-
-        createRectangularDrawing();
-        $("#inputForms input").change(createRectangularDrawing);
-        $("#inputForms input").keyup(createRectangularDrawing);
-        $(window).resize(createRectangularDrawing);
+        getRectangularSection();
     });
 </script>

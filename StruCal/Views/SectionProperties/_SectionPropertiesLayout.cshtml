@@ -29,7 +29,11 @@
             @RenderBody()
         </div>
     </div>
-    @Html.Partial("_ResultsPartial", Model)
+    @if (ViewBag.HasResult)
+    {
+        @Html.Partial("_ResultsPartial", Model)
+    }
+
 </div>
     @Scripts.Render("~/bundles/svg")
     @Scripts.Render("~/bundles/jquery")
