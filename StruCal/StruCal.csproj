@@ -316,9 +316,9 @@
     <Content Include="Views\SectionProperties\TSection.cshtml" />
     <Content Include="Views\SectionProperties\ISection.cshtml" />
     <Content Include="Views\SectionProperties\_ValidationPartial.cshtml" />
-    <Content Include="Views\ShearReinforcement\ShearReinforcement.cshtml" />
-    <Content Include="Views\ConcreteProperties\ConcreteProperties.cshtml" />
-    <Content Include="Views\Cover\Cover.cshtml" />
+    <Content Include="Views\ShearReinforcement\Index.cshtml" />
+    <Content Include="Views\ConcreteProperties\Index.cshtml" />
+    <Content Include="Views\Cover\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

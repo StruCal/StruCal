@@ -11,7 +11,7 @@ namespace StruCal.Controllers
     public class ShearReinforcementController : Controller
     {
         // GET: ShearReinforcement
-        public ActionResult ShearReinforcement()
+        public ActionResult Index()
         {
             return View();
         }

@@ -11,7 +11,7 @@ namespace StruCal.Controllers
     public class CoverController : Controller
     {
         // GET: Cover
-        public ActionResult Cover()
+        public ActionResult Index()
         {
             return View();
         }

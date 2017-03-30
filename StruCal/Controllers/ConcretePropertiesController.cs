@@ -10,7 +10,7 @@ namespace StruCal.Controllers
     {
         // GET: ConcreteProperties
         
-        public ActionResult ConcreteProperties()
+        public ActionResult Index()
         {
             return View();
         }
