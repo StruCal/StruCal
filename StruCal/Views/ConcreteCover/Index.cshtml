@@ -13,10 +13,13 @@
     @Html.AntiForgeryToken()
 
     <div class="container">
-
-        <h2>Concrete cover calculator</h2>
         <br />
-
+        <br />
+        <br />
+        <h2>Welcome to the Concrete Cover Calculator</h2>
+        <h4>
+            The calculator provides concrete cover for structural elements according to EN-1992-1.
+        </h4>
         <div class="row">
             <div class="col-xs-12 col-lg-6 text-left">
                 <div class="panel-group">
@@ -35,7 +38,7 @@
                                 @Html.LabelFor(model => model.ArrangementOfBarsSelectList, new { @class = "control-label" })
                                 @Html.DropDownListFor(x => x.SelectedArrangementOfBars,
                                 Model.ArrangementOfBarsSelectList,
-                                new { @class = "form-control"})
+                                new { @class = "form-control" })
                             </div>
 
                             <div class="form-group" data-toggle="tooltip" title="Select concrete class (PN-EN 1992-1-1 Table 3.1).">

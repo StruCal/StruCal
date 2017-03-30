@@ -207,3 +207,82 @@ function formatNumber(inputNumber) {
     }
     return result.trim() + decimalPart;
 }
+
+$(function () {
+    $("#ExposureClassSelectList").each(function () {
+        var i = 0;
+        var s = this;
+
+        for (i = 0; i < s.length; i++) {
+            s.options[i].title = DisplayExposureClassDescription(s.options[i].text);
+        }
+        if (s.selectedIndex > -1) {
+            s.onmousemove = function () { s.title = s.options[s.selectedIndex].title; };
+        }
+    });
+
+    function DisplayExposureClassDescription(selectedValue) {
+        var description;
+
+        switch (selectedValue) {
+            case "X0":
+                description = "No risk of corrosion or attack. For concrete without reinforcement or embedded metal. All exposures except where there is freeze/thaw, abrasion or chemical attack. Concrete inside buildings with very low air humidity."
+                break;
+            case "XC1":
+                description = "Corrosion induced by carbonation. Dry or permanently wet. Concrete inside buildings with low air humidity. Concrete permanently submerged in water.";
+                break;
+            case "XC2":
+                description = "Corrosion induced by carbonation. Wet, rarely dry. Concrete surfaces subject to long-term water contact. Many foundations.";
+                break;
+            case "XC3":
+                description = "Corrosion induced by carbonation. Moderate humidity. Concrete inside buildings with moderate or high air humidity. External concrete sheltered from rain.";
+                break;
+            case "XC4":
+                description = "Corrosion induced by carbonation. Cyclic wet and dry. Concrete surfaces subject to water contact, not within exposure class XC2.";
+                break;
+            case "XD1":
+                description = "Corrosion induced by chlorides. Moderate humidity. Concrete surfaces exposed to airborne chlorides.";
+                break;
+            case "XD2":
+                description = "Corrosion induced by chlorides. Wet, rarely dry. Swimming pools. Concrete components exposed to industrial waters containing chlorides.";
+                break;
+            case "XD3":
+                description = "Corrosion induced by chlorides. Cyclic wet and dry. Parts of bridges exposed to spray containing chlorides. Pavements. Car park slabs.";
+                break;
+            case "XS1":
+                description = "Corrosion induced by chlorides from sea water. Exposed to airborne salt but not in direct contact with sea water. Structures near to or on the coast.";
+                break;
+            case "XS2":
+                description = "Corrosion induced by chlorides from sea water. Permanently submerged. Parts of marine structures.";
+                break;
+            case "XS3":
+                description = "Corrosion induced by chlorides from sea water. Tidal, splash and spray zones. Parts of marine structures.";
+                break;
+            case "XF1":
+                description = "Freeze/Thaw attack. Moderate water saturation, without de-icing agent. Vertical concrete surfaces exposed to rain and freezing";
+                break;
+            case "XF2":
+                description = "Freeze/Thaw attack. Moderate water saturation, with de-icing agent. Vertical concrete surfaces of road structures exposed to freezing and airborne de-icing agents.";
+                break;
+            case "XF3":
+                description = "Freeze/Thaw attack. High water saturation, without de-icing agents. Horizontal concrete surfaces exposed to rain and freezing.";
+                break;
+            case "XF4":
+                description = "Freeze/Thaw attack. High water saturation with de-icing agents or sea water. Road and bridge decks exposed to de-icing agents. Concrete surfaces exposed to direct spray containing de-icing agents and freezing. Splash zone of marine structures exposed to freezing.";
+                break;
+            case "XA1":
+                description = "Chemical attack. Slightly aggressive chemical environment according to EN 206-1, Table 2. Natural soils and ground water.";
+                break;
+            case "XA2":
+                description = "Chemical attack. Moderately aggressive chemical environment according to EN 206-1, Table 2. Natural soils and ground water.";
+                break;
+            case "XA3":
+                description = "Chemical attack. Highly aggressive chemical environment according to EN 206-1, Table 2. Natural soils and ground water.";
+                break;
+            default:
+                description = "No description.";
+                break;
+        }
+        return description;
+    }
+});
