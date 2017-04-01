@@ -179,6 +179,8 @@
     <Compile Include="ViewModels\SectionPropertiesViewModels.cs" />
     <Compile Include="Views\Shared\TemplateNames.cs" />
     <Content Include="Content\angular.css" />
+    <Content Include="Content\cookieBar.css" />
+    <Content Include="Scripts\cookieBar.js" />
     <Content Include="Scripts\layoutScript.js" />
     <Content Include="Scripts\RcBeam\progress.js" />
     <Content Include="Scripts\progressBar.js" />
@@ -217,6 +219,7 @@
     <Content Include="Views\RCBeam\_ResultPanel.cshtml" />
     <Content Include="Views\RCBeam\_DetailedResultPanel.cshtml" />
     <Content Include="Views\RCBeam\_ControlPanel.cshtml" />
+    <Content Include="Views\Home\Cookie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

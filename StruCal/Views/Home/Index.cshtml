@@ -1,4 +1,7 @@
-﻿<div class="jumbotron text-center">
+﻿@Styles.Render("~/Content/cookieBar")
+<div id="cookieBar">
+</div>
+<div class="jumbotron text-center">
     <h1>simple<strong>design</strong></h1>
     <p>We specialise in civil engineering calculations.</p>
     <form class="form-inline">
@@ -222,3 +225,7 @@
         </a>
     <p>&copy; @DateTime.Now.Year simple<strong>design</strong>. All rights reserved.</p>
 </footer>
+@*<script type="text/javascript" src="//cdn.jsdelivr.net/cookie-bar/1/cookiebar-latest.min.js"></script>*@
+@*<script src="~/Scripts/cookieBar.js"></script>*@
+
+@Scripts.Render("~/bundles/cookieBar")

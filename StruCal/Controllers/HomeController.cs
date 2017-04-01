@@ -33,5 +33,10 @@ namespace StruCal.Controllers
 
             return View();
         }
+
+        public ActionResult Cookie()
+        {
+            return View();
+        }
     }
 }

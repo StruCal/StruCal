@@ -93,6 +93,11 @@ namespace StruCal
             bundles.Add(new ScriptBundle("~/bundles/layoutScript").Include(
                 "~/Scripts/layoutScript.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/cookieBar").Include(
+                "~/Scripts/cookieBar.js"));
+            bundles.Add(new StyleBundle("~/Content/cookieBar").Include(
+                "~/Content/cookieBar.css"));
+
             BundleTable.EnableOptimizations = true;
         }
     }
