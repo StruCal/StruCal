@@ -184,10 +184,10 @@ fea.controller('ModelController', function ($scope, $timeout, nodesService, elem
                 break;
             case 'Roller (vertical)':
                 var point1 = { x: node.x, y: node.y };
-                var point2 = { x: node.x - 7, y: node.y - 10 };
+                var point2 = { x: node.x + 7, y: node.y - 10 };
                 var point3 = { x: node.x + 7, y: node.y + 10 };
-                var point4 = { x: node.x - 10, y: node.y - 10 };
-                var point5 = { x: node.x + 10, y: node.y - 10 };
+                var point4 = { x: node.x + 10, y: node.y - 10 };
+                var point5 = { x: node.x + 10, y: node.y + 10 };
                 ctx.moveTo(point1.x, point1.y);
                 ctx.lineTo(point2.x, point2.y);
                 ctx.lineTo(point3.x, point3.y);
@@ -211,6 +211,30 @@ fea.controller('ModelController', function ($scope, $timeout, nodesService, elem
         }
         ctx.strokeStyle = "red";
         ctx.lineWidth = 1;
+        ctx.stroke();
+    };
+
+    function drawLoad(node, xMagnitude, yMagnitude) {
+        ctx.beginPath();
+
+        var scale = 10;
+
+        // draw Y arrow
+        var point1 = { x: node.x, y: node.y };
+        var point2 = { x: node.x, y: node.y + yMagnitude / scale };
+        var point3 = { x: node.x - 5, y: node.y + 5 };
+        var point4 = { x: node.x + 5, y: node.y + 5 };
+        ctx.moveTo(point1.x, point1.y);
+        ctx.lineTo(point2.x, point2.y);
+        ctx.moveTo(point1.x, point1.y);
+        ctx.lineTo(point3.x, point3.y);
+        ctx.moveTo(point1.x, point1.y);
+        ctx.lineTo(point4.x, point4.y);
+
+        // draw Y arrow
+
+        ctx.strokeStyle = "blue";
+        ctx.lineWidth = 2;
         ctx.stroke();
     };
 
@@ -254,6 +278,11 @@ fea.controller('ModelController', function ($scope, $timeout, nodesService, elem
         // draw Supports
         for (i = 0; i < supportsService.get().length; i++) {
             drawSupport(supportsService.get()[i].number, supportsService.get()[i].node, supportsService.get()[i].type);
+        };
+
+        // draw Loads
+        for (i = 0; i < loadsService.get().length; i++) {
+            drawLoad(loadsService.get()[i].node, loadsService.get()[i].xMagnitude, loadsService.get()[i].yMagnitude);
         };
     };
 
