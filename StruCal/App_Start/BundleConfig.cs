@@ -98,6 +98,9 @@ namespace StruCal
             bundles.Add(new StyleBundle("~/Content/cookieBar").Include(
                 "~/Content/cookieBar.css"));
 
+            bundles.Add(new ScriptBundle("~/bundles/FEA").Include(
+                "~/Scripts/FEA/FEAApp.js"));
+
             BundleTable.EnableOptimizations = true;
         }
     }

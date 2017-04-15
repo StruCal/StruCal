@@ -164,6 +164,7 @@
     <Compile Include="Controllers\ConcretePropertiesController.cs" />
     <None Include="Controllers\ConcreteCoverController.cs" />
     <Compile Include="Controllers\CoverController.cs" />
+    <Compile Include="Controllers\FEAController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RCBeamController.cs" />
     <Compile Include="Controllers\SectionPropertiesController.cs" />
@@ -181,6 +182,7 @@
     <Content Include="Content\angular.css" />
     <Content Include="Content\cookieBar.css" />
     <Content Include="Scripts\cookieBar.js" />
+    <Content Include="Scripts\FEA\FEAApp.js" />
     <Content Include="Scripts\layoutScript.js" />
     <Content Include="Scripts\RcBeam\progress.js" />
     <Content Include="Scripts\progressBar.js" />
@@ -220,6 +222,7 @@
     <Content Include="Views\RCBeam\_DetailedResultPanel.cshtml" />
     <Content Include="Views\RCBeam\_ControlPanel.cshtml" />
     <Content Include="Views\Home\Cookie.cshtml" />
+    <Content Include="Views\FEA\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
