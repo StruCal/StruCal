@@ -98,6 +98,8 @@ namespace StruCal
             bundles.Add(new StyleBundle("~/Content/cookieBar").Include(
                 "~/Content/cookieBar.css"));
 
+            bundles.Add(new ScriptBundle("~/bundles/home").Include(
+               "~/Scripts/home.js"));
             BundleTable.EnableOptimizations = true;
         }
     }

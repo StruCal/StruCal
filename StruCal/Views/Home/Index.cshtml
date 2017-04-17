@@ -97,31 +97,50 @@
     <h4>What we have created</h4>
     <div class="row text-center">
         <div class="col-sm-4">
-            <!--img src="paris.jpg" alt="Paris"-->
-            <a href="~/ConcreteCover" class="slideanim">
+            <a href="~/Cover/Index" class="slideanim">
                 <img class="img-small" src="~/img/CoverImg.svg" />
             </a>
-            <div><a href="~/Cover/Cover"><strong>Concrete Cover Calculator</strong></a></div>
-            <p>Calculate concrete cover based on EC2</p>
+            <div><a href="~/Cover/Index"><strong>Concrete Cover Calculator</strong></a></div>
+            <p>Calculates concrete cover based on EC2</p>
         </div>
         <div class="col-sm-4">
-            <!--img src="paris.jpg" alt="Paris"-->
             <a href="~/SectionProperties/CustomSection" class="slideanim">
                 <img class="img-small" src="~/img/SectionPropertiesImg.svg" />
             </a>
             <div><a href="~/SectionProperties/CustomSection"><strong>Section Properties Calculator</strong></a></div>
-            <p>Calculate section properties of any figures</p>
+            <p>Calculates section properties of any figures</p>
         </div>
         <div class="col-sm-4">
-            <!--img src="paris.jpg" alt="Paris"-->
-
                 <a href="~/ShearReinforcement/Index" class="slideanim">
                     <img class="img-small" src="~/img/ShearReinforcementImg.svg" />
                 </a>
-
-            <div><a href="~/Views/SectionProperties/Index.cshtml"><strong>Reinforced Concrete Beam Bending Calculator</strong></a></div>
-            <p>Calculate required reinforcement of bended RC beam</p>
+            <div><a href="~/Views/SectionProperties/Index"><strong>Shear Reinforcement Calculator</strong></a></div>
+            <p>Calculates required shear reinforcement of a concrete beam</p>
         </div>
+    </div>
+    <div class="row text-center"></div>
+    <div class="row text-center">
+        <div class="col-sm-4">
+            <a href="~/ConcreteProperties" class="slideanim">
+                <img class="img-small" src="~/img/ConcretePropertiesImg.svg" />
+            </a>
+            <div><a href="~/ConcreteProperties/Index"><strong>Concrete Properties Calculator</strong></a></div>
+            <p>Calculates concrete properties based on EC2</p>
+        </div>
+        <div class="col-sm-4">
+            <a href="~/RCBeam/Index" class="slideanim">
+                <img class="img-small" src="~/img/RCBeamImg.svg" />
+            </a>
+            <div><a href="~/RCBeam/Index"><strong>RC Beam Calculator</strong></a></div>
+            <p>Calculates reinforced concrete beam of any section and reinforcement</p>
+        </div>
+        @*<div class="col-sm-4">
+            <a href="~/ShearReinforcement/Index" class="slideanim">
+                <img class="img-small" src="~/img/ShearReinforcementImg.svg" />
+            </a>
+            <div><a href="~/Views/SectionProperties/Index.cshtml"><strong>Reinforced Concrete Beam Bending Calculator</strong></a></div>
+            <p>Calculates required reinforcement of bended RC beam</p>
+        </div>*@
     </div>
 </div>
 
@@ -228,4 +247,9 @@
 @*<script type="text/javascript" src="//cdn.jsdelivr.net/cookie-bar/1/cookiebar-latest.min.js"></script>*@
 @*<script src="~/Scripts/cookieBar.js"></script>*@
 
+<script>
+    
+</script>
+
 @Scripts.Render("~/bundles/cookieBar")
+@Scripts.Render("~/bundles/home")

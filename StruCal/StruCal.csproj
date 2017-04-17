@@ -180,7 +180,14 @@
     <Compile Include="Views\Shared\TemplateNames.cs" />
     <Content Include="Content\angular.css" />
     <Content Include="Content\cookieBar.css" />
+    <Content Include="img\ConcretePropertiesImg.svg">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="img\RCBeamImg.svg">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\cookieBar.js" />
+    <Content Include="Scripts\home.js" />
     <Content Include="Scripts\layoutScript.js" />
     <Content Include="Scripts\RcBeam\progress.js" />
     <Content Include="Scripts\progressBar.js" />

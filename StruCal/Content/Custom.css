@@ -150,7 +150,7 @@ header ul {
 .img-small {
 	height: 20%;
 	width: 20%;
-	image-rendering: optimizeSpeed;
+	image-rendering:optimizeQuality;
 }
 
 @media screen and (max-width: 768px) {

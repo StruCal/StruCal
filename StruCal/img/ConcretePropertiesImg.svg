@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<svg
+     viewBox ="0 0 600 600"
+     xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg">
+  <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+  <g>
+    <title>Layer 1</title>
+    <text fill="#000000" stroke="#000000" stroke-width="0" x="278" y="241" id="svg_1" font-size="24" font-family="Serif" text-anchor="middle" xml:space="preserve">s</text>
+    <path stroke="#020202" id="svg_7" d="m538.7044,138.44512c0,46.02373 -109.35448,83.33335 -244.25007,83.33335m244.25007,-83.33335l0,0c0,46.02373 -109.35448,83.33335 -244.25007,83.33335c-134.89554,0 -244.24998,-37.30954 -244.24998,-83.33335m0,0l0,0c0,-46.02368 109.35445,-83.33333 244.24998,-83.33333c134.89559,0 244.25007,37.30964 244.25007,83.33333l0,333.33353c0,46.02368 -109.35448,83.3332 -244.25007,83.3332c-134.89554,0 -244.24998,-37.30951 -244.24998,-83.3332l0,-333.33353z" stroke-width="10" fill="#ffffff"/>
+    <text font-weight="bold" stroke="#020202" transform="matrix(3.898363098844159,0,0,5.8108404617580804,-671.5535818717809,-1640.5052646286715) " xml:space="preserve" text-anchor="middle" font-family="Monospace" font-size="24" id="svg_2" y="350.96754" x="251.62142" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" fill="#000000">C12/15</text>
+  </g>
+</svg>
