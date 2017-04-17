@@ -1,0 +1,250 @@
+﻿@{
+    ViewBag.Title = "FEA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="//code.angularjs.org/1.1.3/angular.js"></script>
+<script src="~/Scripts/FEA/FEAApp.js"></script>
+
+<div class="container-fluid" ng-app="fea" ng-controller="ModelController">
+    <h2>Welcome to the Finite Element Analysis.</h2>
+    <h4>
+        The calculator helps to solve engineering problems using finite element method.
+    </h4>
+
+    <div class="row">
+        <div class="col-xs-6 col-lg-6 text-left">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Wizard</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-inline">
+                        <ul class="nav nav-pills">
+                            <li class="active"><a data-toggle="pill" href="#Nodes">Nodes</a></li>
+                            <li><a data-toggle="pill" href="#Elements">Elements</a></li>
+                            <li><a data-toggle="pill" href="#Supports">Supports</a></li>
+                            <li><a data-toggle="pill" href="#Loads">Loads</a></li>
+                            <li><a href="#Solve">Solve</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <!--NODES-->
+                        <div id="Nodes" class="tab-pane fade in active">
+                            <div>
+                                <br>
+                                <div class="form-group">
+                                    <label for="nodeNumber">Number: {{nodeNumber + 1}}</label>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-inline">
+                                        <label for="xNodeCoord">X = </label>
+                                        <input type="number" class="form-control" id="xNodeCoord" ng-model="xNodeCoord">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-inline">
+                                        <label for="yNodeCoord">Y = </label>
+                                        <input type="number" class="form-control" id="yNodeCoord" ng-model="yNodeCoord">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-primary" ng-click="addNodeButtonClick()">
+                                        Add node
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!--ELEMENTS-->
+                        <div id="Elements" class="tab-pane fade">
+                            <div>
+                                <br>
+                                <div class="form-group">
+                                    <label>Number: {{elementNumber + 1}}</label>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-inline">
+                                        <label for="firstNodeNumber">Node A: </label>
+                                        <input type="number" class="form-control" id="firstNodeNumber" ng-model="firstNodeNumber">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-inline">
+                                        <label for="secondNodeNumber">Node B: </label>
+                                        <input type="number" class="form-control" id="secondNodeNumber" ng-model="secondNodeNumber">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-primary" ng-click="addElementButtonClick()">
+                                        Add element
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!--SUPPORTS-->
+                        <div id="Supports" class="tab-pane fade">
+                            <div>
+                                <br>
+                                <div class="form-group">
+                                    <label>Number: {{supportNumber + 1}}</label>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-inline">
+                                        <label for="supportNodeNumber">Node: </label>
+                                        <input type="number" class="form-control" id="supportNodeNumber" ng-model="supportNodeNumber">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-inline">
+                                        <label for="selectSupportType">Select support type:</label>
+                                        <select class="form-control" id="selectSupportType" ng-model="selectedSupportType" ng-options="x for x in supportTypes"></select>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-primary" ng-click="addSupportButtonClick()">
+                                        Add support
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!--LOADS-->
+                        <div id="Loads" class="tab-pane fade">
+                            <div>
+                                <br>
+                                <div class="form-group">
+                                    <div class="form-inline">
+                                        <label for="loadNodeNumber">Node: </label>
+                                        <input type="number" class="form-control" id="loadNodeNumber" ng-model="loadNodeNumber">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-inline">
+                                        <label for="loadXMagnitude">Magnitude in x direction: </label>
+                                        <input type="number" class="form-control" id="loadXMagnitude" ng-model="loadXMagnitude">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-inline">
+                                        <label for="loadYMagnitude">Magnitude in y direction: </label>
+                                        <input type="number" class="form-control" id="loadYMagnitude" ng-model="loadYMagnitude">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-primary" ng-click="addLoadButtonClick()">
+                                        Add load
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-lg-6 text-left">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Results</h3>
+                </div>
+                <div class="panel-body">
+                    <canvas drawing width="500" height="300" id="canvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-lg-6 text-left">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Input data</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="list" ng-controller="ListController">
+                        <div class="form-group">
+                            <h3>Nodes</h3>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Number</th>
+                                        <th>X</th>
+                                        <th>Y</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="node in nodesList">
+                                        <td>{{node.number}}</td>
+                                        <td>{{node.x}}</td>
+                                        <td>{{node.y}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <h3>Elements</h3>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Number</th>
+                                        <th>Node A</th>
+                                        <th>Node B</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="element in elementsList">
+                                        <td>{{element.number}}</td>
+                                        <td>{{element.node1.number}}</td>
+                                        <td>{{element.node2.number}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <h3>Supports</h3>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Number</th>
+                                        <th>Node</th>
+                                        <th>Type</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="support in supportsList">
+                                        <td>{{support.number}}</td>
+                                        <td>{{support.node.number}}</td>
+                                        <td>{{support.type}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <h3>Loads</h3>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Node</th>
+                                        <th>X magnitude</th>
+                                        <th>Y Magnitude</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="load in loadsList">
+                                        <td>{{load.node.number}}</td>
+                                        <td>{{load.xMagnitude}}</td>
+                                        <td>{{load.yMagnitude}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -100,6 +100,9 @@ namespace StruCal
 
             bundles.Add(new ScriptBundle("~/bundles/home").Include(
                "~/Scripts/home.js"));
+            bundles.Add(new ScriptBundle("~/bundles/FEA").Include(
+                "~/Scripts/FEA/FEAApp.js"));
+
             BundleTable.EnableOptimizations = true;
         }
     }
