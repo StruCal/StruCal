@@ -190,6 +190,7 @@
     <Content Include="Scripts\cookieBar.js" />
     <Content Include="Scripts\home.js" />
     <Content Include="Scripts\FEA\FEAApp.js" />
+    <Content Include="Scripts\FEA\FEASolver.js" />
     <Content Include="Scripts\layoutScript.js" />
     <Content Include="Scripts\RcBeam\progress.js" />
     <Content Include="Scripts\progressBar.js" />
