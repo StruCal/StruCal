@@ -166,6 +166,7 @@
     <Compile Include="Controllers\CoverController.cs" />
     <Compile Include="Controllers\FEAController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MembraneController.cs" />
     <Compile Include="Controllers\RCBeamController.cs" />
     <Compile Include="Controllers\SectionPropertiesController.cs" />
     <Compile Include="Controllers\ShearReinforcementController.cs" />
@@ -231,6 +232,7 @@
     <Content Include="Views\RCBeam\_ControlPanel.cshtml" />
     <Content Include="Views\Home\Cookie.cshtml" />
     <Content Include="Views\FEA\Index.cshtml" />
+    <Content Include="Views\Membrane\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
