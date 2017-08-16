@@ -1,5 +1,5 @@
-﻿using Common.DTO;
-using Common.Point;
+﻿using Common.Geometry;
+using FEMCommon.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

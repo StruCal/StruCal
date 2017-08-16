@@ -1,4 +1,4 @@
-﻿using Common.DTO;
+﻿using FEMCommon.DTO;
 using FEM2D.Nodes;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;

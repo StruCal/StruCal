@@ -1,11 +1,11 @@
-﻿using Common.Point;
-using CuttingEdge.Conditions;
+﻿using CuttingEdge.Conditions;
 using FEM2D.Restraints;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Geometry;
 
 namespace FEM2D.Nodes
 {

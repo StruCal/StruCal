@@ -1,5 +1,4 @@
-﻿using Common.DTO;
-using Common.Point;
+﻿using FEMCommon.DTO;
 using FEM2D.Elements;
 using FEM2D.Loads;
 using FEM2D.Nodes;
@@ -9,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Geometry;
 
 namespace FEM2D.Structures
 {
