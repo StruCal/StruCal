@@ -86,6 +86,28 @@ namespace StruCal
                 "~/Scripts/RcBeam/Services/chartService.js"
                 ));
 
+            bundles.Add(new ScriptBundle("~/bundles/Membrane").Include(
+                "~/Scripts/Membrane/lib/three.js",
+                "~/Scripts/Membrane/lib/OrbitControls.js",
+                "~/Scripts/Membrane/lib/rainbowvis.js",
+                "~/Scripts/Membrane/lib/TrackballControls.js",
+                "~/Scripts/Membrane/src/drawingUtils/nodeTransformation.js",
+                "~/Scripts/Membrane/src/drawingUtils/pointLoadProvider.js",
+                "~/Scripts/Membrane/src/drawingUtils/scaleCalculator.js",
+                "~/Scripts/Membrane/src/drawingUtils/supportProvider.js",
+                "~/Scripts/Membrane/src/API.js",
+                "~/Scripts/Membrane/src/colorProvider.js",
+                "~/Scripts/Membrane/src/drawingCreator.js",
+                "~/Scripts/Membrane/src/inputCreator.js",
+                "~/Scripts/Membrane/src/outputCreator.js",
+                "~/Scripts/Membrane/src/pointLoadCreator.js",
+                "~/Scripts/Membrane/src/resultProvider.js",
+                "~/Scripts/Membrane/src/supportCreator.js",
+                "~/Scripts/Membrane/src/textCreator.js",
+                "~/Scripts/Membrane/utils/Number.js",
+                "~/Scripts/Membrane/index.js"
+                ));
+
             bundles.Add(new ScriptBundle("~/bundles/progress").Include(
                 "~/Scripts/progressBar.js",
                 "~/Scripts/RcBeam/progress.js"));
@@ -102,8 +124,9 @@ namespace StruCal
                "~/Scripts/home.js"));
             bundles.Add(new ScriptBundle("~/bundles/FEA").Include(
                 "~/Scripts/FEA/FEAApp.js"));
-
+#if !DEBUG
             BundleTable.EnableOptimizations = true;
+#endif
         }
     }
 }

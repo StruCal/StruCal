@@ -7,8 +7,8 @@ function textCreator(scene, camera, canvas, transformationFunction, result, cont
 
     var width = canvas.clientWidth;
     var height = canvas.clientHeight;
-    var top = canvas.offsetTop;
-    var left = canvas.offsetLeft;
+    var top = 0;//canvas.offsetTop;
+    var left = 0;//canvas.offsetLeft;
 
     var minX = left + boxLeftMargin;
     var maxX = width + left - boxRightMargin;
