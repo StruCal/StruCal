@@ -181,7 +181,9 @@
     <Compile Include="ViewModels\SectionPropertiesViewModels.cs" />
     <Compile Include="Views\Shared\TemplateNames.cs" />
     <Content Include="Content\angular.css" />
+    <Content Include="Content\checkBoxes.css" />
     <Content Include="Content\cookieBar.css" />
+    <Content Include="Content\Membrane.css" />
     <Content Include="img\ConcretePropertiesImg.svg">
       <SubType>Designer</SubType>
     </Content>
@@ -252,6 +254,10 @@
     <Content Include="Views\Home\Cookie.cshtml" />
     <Content Include="Views\FEA\Index.cshtml" />
     <Content Include="Views\Membrane\Index.cshtml" />
+    <Content Include="Views\Membrane\_ControlPanel.cshtml" />
+    <Content Include="Views\Membrane\_membraneGeometry.cshtml" />
+    <Content Include="Views\Membrane\_membraneMaterial.cshtml" />
+    <Content Include="Views\Membrane\_membraneSettings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

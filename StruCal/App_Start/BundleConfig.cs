@@ -44,6 +44,9 @@ namespace StruCal
             bundles.Add(new StyleBundle("~/Content/custom").Include(
                 "~/Content/jquery-ui.css",
                 "~/Content/custom.css"));
+            bundles.Add(new StyleBundle("~/Content/checkBoxes").Include(
+                "~/Content/checkBoxes.css"
+            ));
 
             bundles.Add(new ScriptBundle("~/bundles/sectionProperties").Include(
                 "~/Scripts/sectionProperties.js"));
@@ -85,6 +88,9 @@ namespace StruCal
                 "~/Scripts/RcBeam/ModalControllers/steelCtrl.js",
                 "~/Scripts/RcBeam/Services/chartService.js"
                 ));
+
+            bundles.Add(new StyleBundle("~/Content/Membrane").Include(
+                "~/Content/Membrane.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/Membrane").Include(
                 "~/Scripts/Membrane/lib/three.js",

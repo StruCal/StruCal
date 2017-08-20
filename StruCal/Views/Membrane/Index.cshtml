@@ -2,26 +2,27 @@
 @{
     ViewBag.Title = "Index";
 }
+@Styles.Render("~/Content/angular")
+@Styles.Render("~/Content/Membrane")
+<link href="~/Content/PanelTabs.css" rel="stylesheet" />
+
 <style>
-    .canvas {
-        position: relative;
-        /*top: 0px;
-        left: 0px;*/
-        /*width: 500px;
-        height: 500px;*/
-        /*background-color: yellow;
-        border-width: 10px;
-        border-style: solid;
-        border-color: blue;*/
-    }
+    .test {
+            /*position: relative;*/
+            /* top: 100px;
+            left: 200px; */
+            /* width: 500px;
+            height: 250px; */
+             /*background-color: yellow;*/
+            border-width: 1px;
+            border-style: solid;
+            border-color: blue; 
+        }
 </style>
-<h2>Membrane</h2>
-
-
-<div class="container-fluid" ng-app="rcBeam">
+<div class="container-fluid">
     <h2>Welcome to the Concrete Elements Calculator</h2>
     <h4>
-        The calculator checks section capacity of structural elements according to EN-1992-1.
+        Membrane elements calculator.
     </h4>
     <div class="panel panel-default">
         <!-- Trigger the modal with a button -->
@@ -29,41 +30,37 @@
             <h3 class="panel-title">Control panel</h3>
         </div>
         <div class="panel-body">
-            <div class="form-inline">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCoefficients">Coefficients</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalConcrete">Concrete</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSteel">Steel</button>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Sections <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a data-toggle="modal" href="#modalRectangularSection">Rectangular</a></li>
-                        <li><a data-toggle="modal" href="#modalCircularSection">Circular</a></li>
-                        <li><a data-toggle="modal" href="#modalCustomSection">Custom</a></li>
-                    </ul>
-                </div>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLoads">Loads</button>
-            </div>
-            <br />
             <div>
-                @*@Html.Partial("_ControlPanel")*@
+                @Html.Partial("_ControlPanel")
             </div>
         </div>
     </div>
     <div class="row equal-panel">
-
         <div class="col-md-6">
-
-            <div class="panel panel-default">
+            <div class="panel with-nav-tabs panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Input</h3>
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#membraneGeometry">Geometry</a> </li> 
+                        <li><a data-toggle="tab" href="#membraneMaterial">Material</a> </li>
+                        <li><a data-toggle="tab" href="#membraneSettings">Settings</a> </li>
+                    </ul>
                 </div>
-                <div class="panel-body">
-                    @*@Html.Partial("_InputPanel")*@
+                <div class="tab-content">
+                    <div id="membraneGeometry" class="tab-pane panel-body fade in active">
+                        @Html.Partial("_membraneGeometry")
+                        <span class="test">
+                            test
+                        </span>
+                    </div>
+                    <div id="membraneMaterial" class="tab-pane panel-body fade">
+                        @Html.Partial("_membraneMaterial")
+                    </div>
+                    <div id="membraneSettings" class="tab-pane panel-body fade">
+                        @Html.Partial("_membraneSettings")    
+                    </div>
                 </div>
+                
             </div>
-
         </div>
         <div class="col-md-6">
             <div class="panel panel-default">
@@ -71,12 +68,11 @@
                     <h3 class="panel-title">Section</h3>
                 </div>
                 <div class="panel-body">
-                    <div id="membraneCanvas" class="canvas">
+                    <div id="membraneCanvas" class="canvasMembrane">
 
                     </div>
                 </div>
             </div>
-
         </div>
 
     </div>
