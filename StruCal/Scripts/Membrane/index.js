@@ -1,4 +1,11 @@
-﻿$('document').ready(function () {
+﻿var membraneApp = angular.module('membraneFEM', []);
+
+membraneApp.controller('mainCtrl', function ($scope) {
+   
+});
+
+$('document').ready(function () {
+    
     var canvas = document.getElementById("membraneCanvas");
 
     canvas.setAttribute("style", "height:" + (canvas.offsetWidth / 2).toFixed(0) + "px");

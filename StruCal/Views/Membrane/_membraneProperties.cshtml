@@ -1,0 +1,25 @@
+﻿<div ng-controller="propertiesCtrl">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="col-md-4 control-label">Modulus of elasticity:</label>
+            <div class="col-md-3">
+                <input ng-model="E" type="number" class="form-control" required min="1" />
+            </div>
+            <label class="col-md-1 control-label">[GPa]</label>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Poisson's ratio:</label>
+            <div class="col-md-3">
+                <input ng-model="v" type="number" class="form-control" required min="0.1" max="1" />
+            </div>
+            <label class="col-md-1 control-label">[-]</label>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Thickness:</label>
+            <div class="col-md-3">
+                <input ng-model="t" type="number" class="form-control" required  min="1"  />
+            </div>
+            <label class="col-md-1 control-label">[mm]</label>
+        </div>
+    </div>
+</div>

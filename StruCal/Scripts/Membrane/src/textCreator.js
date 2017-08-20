@@ -5,6 +5,9 @@ function textCreator(scene, camera, canvas, transformationFunction, result, cont
     var boxRightMargin = 50;
     var boxLeftMargin = 10;
 
+    var textHeight = 10;
+    var textWidth = 10;
+
     var width = canvas.clientWidth;
     var height = canvas.clientHeight;
     var top = 0;//canvas.offsetTop;
@@ -87,13 +90,16 @@ function textCreator(scene, camera, canvas, transformationFunction, result, cont
 
         text.id = id;
         text.style.position = 'absolute';
+        //text.style.borderColor = 'blue';
+        //text.style.borderStyle = 'solid';
+        //text.style.borderWidth = '1px';
         //text.style.width = 100;
         //text.style.height = 100;
         //text.style.background = "blue";
         text.style.cursor = 'default';
         text.innerHTML = result.getCenterValue(triangle).toFixed(2);
-        text.style.top = point.y + 'px';
-        text.style.left = point.x + 'px';
+        text.style.top = point.y-textHeight + 'px';
+        text.style.left = point.x-textWidth + 'px';
 
     }
 

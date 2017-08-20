@@ -195,6 +195,8 @@
     <Content Include="Scripts\FEA\FEAApp.js" />
     <Content Include="Scripts\FEA\FEASolver.js" />
     <Content Include="Scripts\layoutScript.js" />
+    <Content Include="Scripts\Membrane\Controllers\geometryCtrl.js" />
+    <Content Include="Scripts\Membrane\Controllers\propertiesCtrl.js" />
     <Content Include="Scripts\Membrane\index.js" />
     <Content Include="Scripts\Membrane\lib\OrbitControls.js" />
     <Content Include="Scripts\Membrane\lib\rainbowvis.js" />
@@ -256,7 +258,7 @@
     <Content Include="Views\Membrane\Index.cshtml" />
     <Content Include="Views\Membrane\_ControlPanel.cshtml" />
     <Content Include="Views\Membrane\_membraneGeometry.cshtml" />
-    <Content Include="Views\Membrane\_membraneMaterial.cshtml" />
+    <Content Include="Views\Membrane\_membraneProperties.cshtml" />
     <Content Include="Views\Membrane\_membraneSettings.cshtml" />
   </ItemGroup>
   <ItemGroup>

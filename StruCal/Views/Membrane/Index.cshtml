@@ -6,20 +6,8 @@
 @Styles.Render("~/Content/Membrane")
 <link href="~/Content/PanelTabs.css" rel="stylesheet" />
 
-<style>
-    .test {
-            /*position: relative;*/
-            /* top: 100px;
-            left: 200px; */
-            /* width: 500px;
-            height: 250px; */
-             /*background-color: yellow;*/
-            border-width: 1px;
-            border-style: solid;
-            border-color: blue; 
-        }
-</style>
-<div class="container-fluid">
+
+<div class="container-fluid" ng-app="membraneFEM" ng-controller="mainCtrl">
     <h2>Welcome to the Concrete Elements Calculator</h2>
     <h4>
         Membrane elements calculator.
@@ -41,19 +29,16 @@
                 <div class="panel-heading">
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#membraneGeometry">Geometry</a> </li> 
-                        <li><a data-toggle="tab" href="#membraneMaterial">Material</a> </li>
+                        <li><a data-toggle="tab" href="#membraneProperties">Properties</a> </li>
                         <li><a data-toggle="tab" href="#membraneSettings">Settings</a> </li>
                     </ul>
                 </div>
                 <div class="tab-content">
                     <div id="membraneGeometry" class="tab-pane panel-body fade in active">
                         @Html.Partial("_membraneGeometry")
-                        <span class="test">
-                            test
-                        </span>
                     </div>
-                    <div id="membraneMaterial" class="tab-pane panel-body fade">
-                        @Html.Partial("_membraneMaterial")
+                    <div id="membraneProperties" class="tab-pane panel-body fade">
+                        @Html.Partial("_membraneProperties")
                     </div>
                     <div id="membraneSettings" class="tab-pane panel-body fade">
                         @Html.Partial("_membraneSettings")    
@@ -87,10 +72,11 @@
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/Membrane")
 
-@Scripts.Render("~/bundles/progress")
 
 @Styles.Render("~/Content/angular")
 
+<script src="~/Scripts/Membrane/Controllers/geometryCtrl.js"></script>
+<script src="~/Scripts/Membrane/Controllers/propertiesCtrl.js"></script>
 
 
 
