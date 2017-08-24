@@ -197,6 +197,7 @@
     <Content Include="Scripts\layoutScript.js" />
     <Content Include="Scripts\Membrane\Controllers\geometryCtrl.js" />
     <Content Include="Scripts\Membrane\Controllers\propertiesCtrl.js" />
+    <Content Include="Scripts\Membrane\Controllers\settingsCtrl.js" />
     <Content Include="Scripts\Membrane\index.js" />
     <Content Include="Scripts\Membrane\lib\OrbitControls.js" />
     <Content Include="Scripts\Membrane\lib\rainbowvis.js" />
