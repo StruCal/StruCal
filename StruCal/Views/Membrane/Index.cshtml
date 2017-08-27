@@ -23,7 +23,7 @@
         </div>
         <div class="panel-body">
             <div>
-                @Html.Partial("_ControlPanel")
+                @Html.Partial("_controlPanel")
             </div>
         </div>
     </div>
@@ -34,7 +34,7 @@
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#membraneGeometry">Geometry</a> </li> 
                         <li><a data-toggle="tab" href="#membraneProperties">Properties</a> </li>
-                        <li><a data-toggle="tab" href="#membraneSettings">Settings</a> </li>
+                        <li><a data-toggle="tab" href="#membraneCalculations">Calculations</a> </li>
                     </ul>
                 </div>
                 <div class="tab-content">
@@ -44,8 +44,8 @@
                     <div id="membraneProperties" class="tab-pane panel-body fade">
                         @Html.Partial("_membraneProperties")
                     </div>
-                    <div id="membraneSettings" class="tab-pane panel-body fade">
-                        @Html.Partial("_membraneSettings")    
+                    <div id="membraneCalculations" class="tab-pane panel-body fade">
+                        @Html.Partial("_membraneCalculations")    
                     </div>
                 </div>
                 
@@ -75,13 +75,14 @@
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/Membrane")
-
+@Scripts.Render("~/bundles/progress")
 
 @Styles.Render("~/Content/angular")
 
 <script src="~/Scripts/Membrane/Controllers/geometryCtrl.js"></script>
 <script src="~/Scripts/Membrane/Controllers/propertiesCtrl.js"></script>
-<script src="~/Scripts/Membrane/Controllers/settingsCtrl.js"></script>
+<script src="~/Scripts/Membrane/Controllers/calculationsCtrl.js"></script>
+<script src="~/Scripts/Membrane/Controllers/controlPanelCtrl.js"></script>
 
 
 

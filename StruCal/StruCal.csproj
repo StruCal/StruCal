@@ -195,9 +195,10 @@
     <Content Include="Scripts\FEA\FEAApp.js" />
     <Content Include="Scripts\FEA\FEASolver.js" />
     <Content Include="Scripts\layoutScript.js" />
+    <Content Include="Scripts\Membrane\Controllers\controlPanelCtrl.js" />
     <Content Include="Scripts\Membrane\Controllers\geometryCtrl.js" />
     <Content Include="Scripts\Membrane\Controllers\propertiesCtrl.js" />
-    <Content Include="Scripts\Membrane\Controllers\settingsCtrl.js" />
+    <Content Include="Scripts\Membrane\Controllers\calculationsCtrl.js" />
     <Content Include="Scripts\Membrane\index.js" />
     <Content Include="Scripts\Membrane\lib\OrbitControls.js" />
     <Content Include="Scripts\Membrane\lib\rainbowvis.js" />
@@ -217,7 +218,7 @@
     <Content Include="Scripts\Membrane\src\supportCreator.js" />
     <Content Include="Scripts\Membrane\src\textCreator.js" />
     <Content Include="Scripts\Membrane\utils\Number.js" />
-    <Content Include="Scripts\RcBeam\progress.js" />
+    <Content Include="Scripts\progress.js" />
     <Content Include="Scripts\progressBar.js" />
     <Content Include="Scripts\RcBeam\rcBeamApp.js" />
     <Content Include="Scripts\RcBeam\Services\chartService.js" />
@@ -257,10 +258,10 @@
     <Content Include="Views\Home\Cookie.cshtml" />
     <Content Include="Views\FEA\Index.cshtml" />
     <Content Include="Views\Membrane\Index.cshtml" />
-    <Content Include="Views\Membrane\_ControlPanel.cshtml" />
+    <Content Include="Views\Membrane\_controlPanel.cshtml" />
     <Content Include="Views\Membrane\_membraneGeometry.cshtml" />
     <Content Include="Views\Membrane\_membraneProperties.cshtml" />
-    <Content Include="Views\Membrane\_membraneSettings.cshtml" />
+    <Content Include="Views\Membrane\_membraneCalculations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

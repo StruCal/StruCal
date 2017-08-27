@@ -116,7 +116,7 @@ namespace StruCal
 
             bundles.Add(new ScriptBundle("~/bundles/progress").Include(
                 "~/Scripts/progressBar.js",
-                "~/Scripts/RcBeam/progress.js"));
+                "~/Scripts/progress.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/layoutScript").Include(
                 "~/Scripts/layoutScript.js"));

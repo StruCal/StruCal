@@ -6,26 +6,23 @@ membraneApp.controller('mainCtrl', function ($scope) {
 
 $('document').ready(function () {
     
-    var canvas = document.getElementById("membraneCanvas");
+    //var canvas = document.getElementById("membraneCanvas");
 
-    canvas.setAttribute("style", "height:" + (canvas.offsetWidth / 2).toFixed(0) + "px");
-    var membraneOutput = getMembraneOutput();
+    //canvas.setAttribute("style", "height:" + (canvas.offsetWidth / 2).toFixed(0) + "px");
+    //var membraneOutput = getMembraneOutput();
 
-    var drawing = new drawingCreator(canvas);
+    //var drawing = new drawingCreator(canvas);
 
-    drawing.setMembraneOutput(membraneOutput).setSxx().updateOutput();
+    //drawing.setMembraneOutput(membraneOutput).setSxx().updateOutput();
 
-    //drawing.setMembraneInput(membraneOutput.InputData).updateInput();
+    ////drawing.setMembraneInput(membraneOutput.InputData).updateInput();
 
-    function animate() {
-        requestAnimationFrame(animate);
-        drawing.renderer.render(drawing.scene, drawing.camera);
-        drawing.controls.update();
+    //function animate() {
+    //    requestAnimationFrame(animate);
+    //    drawing.renderer.render(drawing.scene, drawing.camera);
+    //    drawing.controls.update();
 
-        drawing.updateText();
-        //var textPosition = getTextPosition(0, 0, 0, camera, window.innerWidth, window.innerHeight);
-        //console.log(textPosition);
-        //createText(textPosition.x, textPosition.y);
-    }
-    animate();
+    //    drawing.updateText();
+    //}
+    //animate();
 });
