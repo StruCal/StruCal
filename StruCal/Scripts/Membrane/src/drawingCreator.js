@@ -61,8 +61,8 @@ function drawingCreator(canvas) {
     this.updateInput = function() {
 
         input.updateInput();
-        support.updateSupports();
-        pointLoad.updatePointLoad();
+        support.update();
+        pointLoad.update();
 
         updatePosition.call(this);
     }
@@ -73,14 +73,32 @@ function drawingCreator(canvas) {
         transformationFunction.setMembraneOutput(membraneOutput);
         text.setMembraneOutput(membraneOutput);
 
-        support.updateSupports();
-        pointLoad.updatePointLoad();
+        support.update();
+        pointLoad.update();
 
         updatePosition.call(this);
     }
 
     this.updateText = function() {
         text.updateText();
+    }
+
+    this.drawSupports = function (show) {
+        if (show) {
+            support.update();
+        } else {
+            support.remove();
+        }
+        return this;
+    }
+
+    this.drawPointLoads = function (show) {
+        if (show) {
+            pointLoad.update();
+        } else {
+            pointLoad.remove();
+        }
+        return this;
     }
 
     this.setSxx = function() {

@@ -1,15 +1,25 @@
 function supportCreator(scene, nodeTransformation, scaleCalculator) {
 
-    var supportProv = new supportProvider(scene);
+    var supportProv = new supportProvider();
     var membraneInput;
     var transformationFunction = nodeTransformation;
 
-    this.setMembraneInput = function(membraneInputData) {
+    var supports = new Array();
+
+    this.setMembraneInput = function (membraneInputData) {
         membraneInput = membraneInputData;
         return this;
     }
 
-    this.updateSupports = function() {
+    this.remove = function () {
+        for (var i = 0; i < supports.length; i++) {
+            var support = supports[i];
+            scene.remove(support);
+        }
+    }
+
+    this.update = function () {
+
         var vertices = membraneInput.Vertices;
         var scale = scaleCalculator.getSupportScale();
         supportProv.setScale(scale);
@@ -21,11 +31,16 @@ function supportCreator(scene, nodeTransformation, scaleCalculator) {
             var y = coords.y;
 
             if (vertex.SupportX) {
-                supportProv.support0deg(x, y);
+                var supportX = supportProv.support0deg(x, y);
+                scene.add(supportX);
+                supports.push(supportX);
             }
             if (vertex.SupportY) {
-                supportProv.support90deg(x, y);
+                var supportY = supportProv.support90deg(x, y);
+                scene.add(supportY);
+                supports.push(supportY);
             }
+
         }
     }
 

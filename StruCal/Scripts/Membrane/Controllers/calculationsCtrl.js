@@ -1,7 +1,6 @@
-﻿angular.module('membraneFEM').controller('calculationsCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+﻿angular.module('membraneFEM').controller('calculationsCtrl', ['$scope', '$rootScope','drawingService', function ($scope, $rootScope,drawingService) {
     
-    var canvas;
-    var drawing;
+    drawingService.initialize();
 
     $scope.forces = true;
     $scope.supports = true;
@@ -49,30 +48,37 @@
         $scope[value] = !($scope[value]);
     }
     
+    $scope.$watch('supports', function () {
+        drawingService.drawSupports($scope.supports);
+    });
+    $scope.$watch('forces', function () {
+        drawingService.drawPointLoads($scope.forces);
+    });
+
     function update() {
 
     }
 
     (function init() {
-        canvas = document.getElementById("membraneCanvas");
+        //canvas = document.getElementById("membraneCanvas");
 
-        canvas.setAttribute("style", "height:" + (canvas.offsetWidth / 2).toFixed(0) + "px");
-        var membraneOutput = getMembraneOutput();
+        //canvas.setAttribute("style", "height:" + (canvas.offsetWidth / 2).toFixed(0) + "px");
+        //var membraneOutput = getMembraneOutput();
 
-        drawing = new drawingCreator(canvas);
+        //drawing = new drawingCreator(canvas);
 
-        drawing.setMembraneOutput(membraneOutput).setSxx().updateOutput();
+        //drawing.setMembraneOutput(membraneOutput).setSxx().updateOutput();
 
-        //drawing.setMembraneInput(membraneOutput.InputData).updateInput();
+        ////drawing.setMembraneInput(membraneOutput.InputData).updateInput();
 
-        function animate() {
-            requestAnimationFrame(animate);
-            drawing.renderer.render(drawing.scene, drawing.camera);
-            drawing.controls.update();
+        //function animate() {
+        //    requestAnimationFrame(animate);
+        //    drawing.renderer.render(drawing.scene, drawing.camera);
+        //    drawing.controls.update();
 
-            drawing.updateText();
-        }
-        animate();
+        //    drawing.updateText();
+        //}
+        //animate();
     })();
 
 }]);

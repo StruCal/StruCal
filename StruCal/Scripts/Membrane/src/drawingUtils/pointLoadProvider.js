@@ -1,4 +1,4 @@
-function pointLoadProvider(scene) {
+function pointLoadProvider() {
     var material = new THREE.MeshPhongMaterial({ color: 0x9370DB });
     var self = this;
     var scale = 1;
@@ -45,27 +45,28 @@ function pointLoadProvider(scene) {
 
     this.pointLoad0deg = function(x, y, lengthScale) {
         var pointLoad = pointLoadTemplate(x, y, lengthScale);
-        scene.add(pointLoad);
+        return pointLoad;
+        //scene.add(pointLoad);
     }
 
     this.pointLoad90deg = function(x, y, lengthScale) {
         var pointLoad = pointLoadTemplate(y, -x, lengthScale); //due to problem with rotaton of THREE.Group
         pointLoad.rotateZ(Math.PI / 2);
-
-        scene.add(pointLoad);
+        return pointLoad;
+        //scene.add(pointLoad);
     }
 
     this.pointLoad180deg = function(x, y, lengthScale) {
         var pointLoad = pointLoadTemplate(-x, -y, lengthScale);
         pointLoad.rotateZ(Math.PI);
-
-        scene.add(pointLoad);
+        return pointLoad;
+        //scene.add(pointLoad);
     }
     this.pointLoad270deg = function(x, y, lengthScale) {
         var pointLoad = pointLoadTemplate(-y, x, lengthScale);
         pointLoad.rotateZ(-Math.PI / 2);
-
-        scene.add(pointLoad);
+        return pointLoad;
+        //scene.add(pointLoad);
     }
 
     this.setScale = function(value) {

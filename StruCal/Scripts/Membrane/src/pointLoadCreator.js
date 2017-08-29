@@ -1,15 +1,23 @@
 function pointLoadCreator(scene, nodeTransformation, scaleCalculator) {
 
-    var pointLoadProv = new pointLoadProvider(scene);
+    var pointLoadProv = new pointLoadProvider();
     var membraneInput;
     var transformationFunction = nodeTransformation;
+    var pointLoads = new Array();
 
     this.setMembraneInput = function(membraneInputData) {
         membraneInput = membraneInputData;
         return this;
     }
 
-    this.updatePointLoad = function() {
+    this.remove = function () {
+        for (var i = 0; i < pointLoads.length; i++) {
+            var load = pointLoads[i];
+            scene.remove(load);
+        }
+    }
+
+    this.update = function() {
         var vertices = membraneInput.Vertices;
         var scale = scaleCalculator.getPointLoadScale();
         pointLoadProv.setScale(scale);
@@ -22,15 +30,21 @@ function pointLoadCreator(scene, nodeTransformation, scaleCalculator) {
             var lengthScaleX = scaleCalculator.getPointLoadLengthScale(vertex.LoadX);
             var lengthScaleY = scaleCalculator.getPointLoadLengthScale(vertex.LoadY);
             if (vertex.LoadX > 0) {
-                pointLoadProv.pointLoad90deg(x, y, lengthScaleX);
+                var pointLoadX = pointLoadProv.pointLoad90deg(x, y, lengthScaleX);
             } else if (vertex.LoadX < 0) {
-                pointLoadProv.pointLoad270deg(x, y, lengthScaleX);
+                var pointLoadX = pointLoadProv.pointLoad270deg(x, y, lengthScaleX);
             }
+            scene.add(pointLoadX);
+            pointLoads.push(pointLoadX);
+
+
             if (vertex.LoadY > 0) {
-                pointLoadProv.pointLoad0deg(x, y, lengthScaleY);
+                var pointLoadY = pointLoadProv.pointLoad0deg(x, y, lengthScaleY);
             } else if (vertex.LoadY < 0) {
-                pointLoadProv.pointLoad180deg(x, y, lengthScaleY);
+                var pointLoadY = pointLoadProv.pointLoad180deg(x, y, lengthScaleY);
             }
+            scene.add(pointLoadY);
+            pointLoads.push(pointLoadY);
         }
     }
 }
