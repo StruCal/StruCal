@@ -58,7 +58,7 @@
         drawingService.drawText($scope.text);
     });
     $scope.$watch('displacement', function () {
-        drawingService.drawDisplacement($scope.displacement);
+        drawingService.drawDisplacement($scope.displacement,$scope.supports,$scope.forces);
     });
 
     function update() {

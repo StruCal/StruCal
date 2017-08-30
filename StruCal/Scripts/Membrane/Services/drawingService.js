@@ -37,8 +37,8 @@
         text = value;
         drawing.drawText(value);
     }
-    this.drawDisplacement = function (value) {
-        drawing.drawDisplacement(value);
+    this.drawDisplacement = function (drawDisplacement,drawSupports,drawPointLoads) {
+        drawing.drawDisplacement(drawDisplacement, drawSupports, drawPointLoads);
     }
 
 }]);

@@ -34,7 +34,7 @@ function drawingCreator(canvas) {
     directionalLight2.position.set(100, 100, 100);
     this.scene.add(directionalLight2);
 
-    this.setMembraneOutput = function(membraneOutputData) {
+    this.setMembraneOutput = function (membraneOutputData) {
         membraneOutput = membraneOutputData;
         membraneInput = membraneOutputData.InputData;
 
@@ -49,7 +49,7 @@ function drawingCreator(canvas) {
         return this;
     }
 
-    this.setMembraneInput = function(membraneInputData) {
+    this.setMembraneInput = function (membraneInputData) {
         membraneInput = membraneInputData;
         input.setMembraneInput(membraneInput);
         support.setMembraneInput(membraneInput);
@@ -58,7 +58,7 @@ function drawingCreator(canvas) {
         return this;
     }
 
-    this.updateInput = function() {
+    this.updateInput = function () {
 
         input.updateInput();
         support.update();
@@ -67,7 +67,7 @@ function drawingCreator(canvas) {
         updatePosition.call(this);
     }
 
-    this.updateOutput = function() {
+    this.updateOutput = function () {
 
         output.setMembraneOutput(membraneOutput).update();
         transformationFunction.setMembraneOutput(membraneOutput);
@@ -79,7 +79,7 @@ function drawingCreator(canvas) {
         updatePosition.call(this);
     }
 
-    this.updateText = function() {
+    this.updateText = function () {
         text.update();
     }
     this.removeText = function () {
@@ -113,30 +113,35 @@ function drawingCreator(canvas) {
         return this;
     }
 
-    this.drawDisplacement = function (show) {
-        transformationFunction.drawDisplacement = show;
-        output.remove();
-        support.remove();
-        pointLoad.remove();
-
+    this.drawDisplacement = function (drawDisplacement, drawSupports, drawPointLoads) {
+        transformationFunction.drawDisplacement = drawDisplacement;
+            output.remove();
             output.update();
+        
+        if (drawSupports) {
+            support.remove();
             support.update();
+        }
+        if (drawPointLoads) {
+            pointLoad.remove();
             pointLoad.update();
+        }
+
     }
 
-    this.setSxx = function() {
+    this.setSxx = function () {
         result.setSxx();
         color.setSxx();
         return this;
     }
 
-    this.setSyy = function() {
+    this.setSyy = function () {
         result.setSyy();
         color.setSyy();
         return this;
     }
 
-    this.setTxy = function() {
+    this.setTxy = function () {
         result.setTxy();
         color.setTxy();
         return this;
