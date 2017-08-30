@@ -34,17 +34,21 @@ function pointLoadCreator(scene, nodeTransformation, scaleCalculator) {
             } else if (vertex.LoadX < 0) {
                 var pointLoadX = pointLoadProv.pointLoad270deg(x, y, lengthScaleX);
             }
-            scene.add(pointLoadX);
-            pointLoads.push(pointLoadX);
-
+            if (pointLoadX) {
+                scene.add(pointLoadX);
+                pointLoads.push(pointLoadX);
+            }
 
             if (vertex.LoadY > 0) {
                 var pointLoadY = pointLoadProv.pointLoad0deg(x, y, lengthScaleY);
             } else if (vertex.LoadY < 0) {
                 var pointLoadY = pointLoadProv.pointLoad180deg(x, y, lengthScaleY);
             }
-            scene.add(pointLoadY);
-            pointLoads.push(pointLoadY);
+
+            if (pointLoadY) {
+                scene.add(pointLoadY);
+                pointLoads.push(pointLoadY);
+            }
         }
     }
 }

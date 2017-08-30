@@ -57,6 +57,9 @@
     $scope.$watch('text', function () {
         drawingService.drawText($scope.text);
     });
+    $scope.$watch('displacement', function () {
+        drawingService.drawDisplacement($scope.displacement);
+    });
 
     function update() {
 

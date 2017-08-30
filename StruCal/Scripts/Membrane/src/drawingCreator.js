@@ -69,7 +69,7 @@ function drawingCreator(canvas) {
 
     this.updateOutput = function() {
 
-        output.setMembraneOutput(membraneOutput).updateOutput();
+        output.setMembraneOutput(membraneOutput).update();
         transformationFunction.setMembraneOutput(membraneOutput);
         text.setMembraneOutput(membraneOutput);
 
@@ -111,6 +111,17 @@ function drawingCreator(canvas) {
             text.remove();
         }
         return this;
+    }
+
+    this.drawDisplacement = function (show) {
+        transformationFunction.drawDisplacement = show;
+        output.remove();
+        support.remove();
+        pointLoad.remove();
+
+            output.update();
+            support.update();
+            pointLoad.update();
     }
 
     this.setSxx = function() {

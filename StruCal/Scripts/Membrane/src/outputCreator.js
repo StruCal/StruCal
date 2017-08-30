@@ -1,4 +1,4 @@
-function outputCreator(scene, nodeTransformation, resultProvider, colorProvider) {
+function outputCreator(scene, transformationFunction, resultProvider, colorProvider) {
 
     var membraneOutput;
     var materialTriangle = new THREE.MeshBasicMaterial({
@@ -6,10 +6,12 @@ function outputCreator(scene, nodeTransformation, resultProvider, colorProvider)
         side: THREE.DoubleSide
     });
 
+
     var materialLine = new THREE.LineBasicMaterial({ color: 0x808080 });
-    var meshGeometry = new THREE.Geometry();
-    var lineGeometry = new THREE.Geometry();
-    var transformationFunction = nodeTransformation;
+    var meshGeometry;
+    var lineGeometry;
+    var meshes = new Array();
+    var lines = new Array();
 
     this.drawMesh = true;
 
@@ -18,16 +20,32 @@ function outputCreator(scene, nodeTransformation, resultProvider, colorProvider)
         return this;
     }
 
-    this.updateOutput = function() {
+    this.remove = function () {
+        for (var i = 0; i < meshes.length; i++) {
+            var mesh = meshes[i];
+            scene.remove(mesh);
+        }
+
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i];
+            scene.remove(line);
+        }
+    }
+
+    this.update = function() {
+
+       meshGeometry = new THREE.Geometry();
+       lineGeometry = new THREE.Geometry();
 
         createNodes.call(this);
         createGeometry.call(this);
 
         var mesh = new THREE.Mesh(meshGeometry, materialTriangle);
         scene.add(mesh);
-        var lines = new THREE.LineSegments(lineGeometry, materialLine);
-        scene.add(lines);
-
+        meshes.push(mesh);
+        var line = new THREE.LineSegments(lineGeometry, materialLine);
+        scene.add(line);
+        lines.push(line);
     }
 
     function createNodes() {
