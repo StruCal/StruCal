@@ -4,8 +4,8 @@
 
     $scope.forces = true;
     $scope.supports = true;
-    $scope.text = false;
-    $scope.displacement = false;
+    $scope.text = true;
+    $scope.displacement = true;
     $scope.sxx = true;
     $scope.syy = false;
     $scope.txy = false;
@@ -53,6 +53,9 @@
     });
     $scope.$watch('forces', function () {
         drawingService.drawPointLoads($scope.forces);
+    });
+    $scope.$watch('text', function () {
+        drawingService.drawText($scope.text);
     });
 
     function update() {

@@ -20,12 +20,18 @@ function textCreator(scene, camera, canvas, transformationFunction, result, cont
 
     var translation;
 
-    this.updateText = function() {
+    this.update = function() {
         var triangles = membraneOutput.Triangles;
         translation = scaleCalculator.getCentreTranslation();
         for (var i = 0; i < triangles.length; i++) {
             var triangle = triangles[i];
             createText(triangle);
+        }
+    }
+    this.remove = function () {
+        var elements = document.querySelectorAll('[id^="triangle"');
+        for (var i = 0; i < elements.length; i++) {
+            canvas.removeChild(elements[i]);
         }
     }
 

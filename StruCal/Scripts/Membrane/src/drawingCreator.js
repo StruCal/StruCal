@@ -80,7 +80,10 @@ function drawingCreator(canvas) {
     }
 
     this.updateText = function() {
-        text.updateText();
+        text.update();
+    }
+    this.removeText = function () {
+
     }
 
     this.drawSupports = function (show) {
@@ -97,6 +100,15 @@ function drawingCreator(canvas) {
             pointLoad.update();
         } else {
             pointLoad.remove();
+        }
+        return this;
+    }
+
+    this.drawText = function (show) {
+        if (show) {
+            text.update();
+        } else {
+            text.remove();
         }
         return this;
     }

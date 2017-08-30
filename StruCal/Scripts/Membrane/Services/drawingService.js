@@ -1,6 +1,7 @@
 ﻿angular.module('membraneFEM').service('drawingService', ['canvasFactory', function (canvasFactory) {
 
     var self = this;
+    var text;
     var canvas = canvasFactory.getCanvas();
     var drawing;
     this.initialize = function () {
@@ -21,8 +22,10 @@
             requestAnimationFrame(animate);
             drawing.renderer.render(drawing.scene, drawing.camera);
             drawing.controls.update();
-
-            drawing.updateText();
+            
+            if (text) {
+                drawing.updateText();
+            }
         }
     this.drawSupports = function (value) {
         drawing.drawSupports(value);
@@ -30,6 +33,9 @@
     this.drawPointLoads = function (value) {
         drawing.drawPointLoads(value);
     }
-
+    this.drawText = function (value) {
+        text = value;
+        drawing.drawText(value);
+    }
 
 }]);
