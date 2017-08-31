@@ -132,18 +132,24 @@ function drawingCreator(canvas) {
     this.setSxx = function () {
         result.setSxx();
         color.setSxx();
+        output.remove();
+        output.update();
         return this;
     }
 
     this.setSyy = function () {
         result.setSyy();
         color.setSyy();
+        output.remove();
+        output.update();
         return this;
     }
 
     this.setTxy = function () {
         result.setTxy();
         color.setTxy();
+        output.remove();
+        output.update();
         return this;
     }
 

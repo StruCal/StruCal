@@ -96,12 +96,7 @@ function textCreator(scene, camera, canvas, transformationFunction, result, cont
 
         text.id = id;
         text.style.position = 'absolute';
-        //text.style.borderColor = 'blue';
-        //text.style.borderStyle = 'solid';
-        //text.style.borderWidth = '1px';
-        //text.style.width = 100;
-        //text.style.height = 100;
-        //text.style.background = "blue";
+        text.style.color = 'black';
         text.style.cursor = 'default';
         text.innerHTML = result.getCenterValue(triangle).toFixed(2);
         text.style.top = point.y-textHeight + 'px';

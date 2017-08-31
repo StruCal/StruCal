@@ -6,7 +6,7 @@
     var drawing;
     this.initialize = function () {
 
-        canvas.setAttribute("style", "height:" + (canvas.offsetWidth / 2).toFixed(0) + "px");
+        
         var membraneOutput = getMembraneOutput();
 
         drawing = new drawingCreator(canvas);
@@ -39,6 +39,15 @@
     }
     this.drawDisplacement = function (drawDisplacement,drawSupports,drawPointLoads) {
         drawing.drawDisplacement(drawDisplacement, drawSupports, drawPointLoads);
+    }
+    this.setSxx=function(){
+        drawing.setSxx();
+    }
+    this.setSyy=function(){
+        drawing.setSyy();
+    }
+    this.setTxy=function(){
+        drawing.setTxy();
     }
 
 }]);

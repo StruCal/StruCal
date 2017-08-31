@@ -27,21 +27,25 @@
                 $scope.sxx = true;
                 $scope.syy = false;
                 $scope.txy = false;
+                drawingService.setSxx();
                 break;
             case 'syy':
                 $scope.sxx = false;
                 $scope.syy = true;
                 $scope.txy = false;
+                drawingService.setSyy();
                 break;
             case 'txy':
                 $scope.sxx = false;
                 $scope.syy = false;
                 $scope.txy = true;
+                drawingService.setTxy();
                 break;
             default:
                 $scope.sxx = true;
                 $scope.syy = false;
                 $scope.txy = false;
+                drawingService.setSxx();
         }
     }
     $scope.setSettings = function (value) {
