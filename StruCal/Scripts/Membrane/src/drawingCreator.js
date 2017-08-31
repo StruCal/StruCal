@@ -8,13 +8,13 @@ function drawingCreator(canvas) {
 
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(0xFFFFFF);
-    this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+    this.camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize(width, height);
     canvas.appendChild(this.renderer.domElement);
 
     this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
-    this.camera.position.z = 50;
+    this.camera.position.z = 100;
 
 
 
@@ -55,6 +55,9 @@ function drawingCreator(canvas) {
         support.setMembraneInput(membraneInput);
         pointLoad.setMembraneInput(membraneInput);
         scaleCalc.setMembraneInput(membraneInput);
+
+        this.camera.position.z = scaleCalc.getCameraZ();
+
         return this;
     }
 

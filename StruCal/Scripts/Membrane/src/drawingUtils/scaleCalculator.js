@@ -31,12 +31,12 @@ function scaleCalculator(width, height) {
 
     this.getSupportScale = function() {
 
-        var factor = 0.002;
+        var factor = 0.001;
         return maxDimension * factor;
     }
 
     this.getPointLoadScale = function() {
-        var factor = 0.002;
+        var factor = 0.001;
         return maxDimension * factor;
     }
 
@@ -72,5 +72,12 @@ function scaleCalculator(width, height) {
         maxLoad = Math.max.apply(Math, loads);
     }
 
+    this.getCameraZ = function () {
+        var factor = 2;
 
+        var sectionWidth = maxX - minX;
+        var sectionHeight = maxY - minY;
+        var positionZ = Math.max(sectionWidth, sectionHeight);
+        return positionZ * factor;
+    }
 }
