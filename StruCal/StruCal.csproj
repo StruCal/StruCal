@@ -190,6 +190,7 @@
     <Content Include="img\RCBeamImg.svg">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Scripts\AngularShared\angularShared.js" />
     <Content Include="Scripts\cookieBar.js" />
     <Content Include="Scripts\home.js" />
     <Content Include="Scripts\FEA\FEAApp.js" />
@@ -237,7 +238,7 @@
     <Content Include="Scripts\RcBeam\Drawings\rcDrawing.js" />
     <Content Include="Scripts\RcBeam\Drawings\rectangleSectionDrawing.js" />
     <Content Include="Scripts\RcBeam\Helper\multipliers.js" />
-    <Content Include="Scripts\RcBeam\Helper\numberFormatter.js" />
+    <Content Include="Scripts\AngularShared\numberFormatter.js" />
     <Content Include="Scripts\RcBeam\MainPageControllers\inputPanelCtrl.js" />
     <Content Include="Scripts\RcBeam\ModalControllers\loadsCtrl.js" />
     <Content Include="Scripts\RcBeam\Materials\concreteService.js" />

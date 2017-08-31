@@ -62,8 +62,13 @@ namespace StruCal
 
             bundles.Add(new StyleBundle("~/Content/angular").Include(
                 "~/Content/angular.css"));
+            bundles.Add(new ScriptBundle("~/bundles/angularShared").Include(
+                "~/Scripts/AngularShared/angularShared.js",
+                "~/Scripts/AngularShared/numberFormatter.js"
+                ));
 
             bundles.Add(new ScriptBundle("~/bundles/rcBeam").Include(
+                
                 "~/Scripts/RcBeam/rcBeamApp.js",
                 "~/Scripts/RcBeam/Drawings/circularSectionDrawing.js",
                 "~/Scripts/RcBeam/Drawings/customSectionDrawing.js",
@@ -71,7 +76,6 @@ namespace StruCal
                 "~/Scripts/RcBeam/Drawings/rcDrawing.js",
                 "~/Scripts/RcBeam/Drawings/rectangleSectionDrawing.js",
                 "~/Scripts/RcBeam/Helper/multipliers.js",
-                "~/Scripts/RcBeam/Helper/numberFormatter.js",
                 "~/Scripts/RcBeam/MainPageControllers/controlPanelCtrl.js",
                 "~/Scripts/RcBeam/MainPageControllers/detailedResultPanel.js",
                 "~/Scripts/RcBeam/MainPageControllers/drawingPanelCtrl.js",

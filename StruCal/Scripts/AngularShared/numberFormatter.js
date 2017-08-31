@@ -1,4 +1,4 @@
-﻿angular.module('rcBeam').filter('numberFormatter', function () {
+﻿angular.module('angularShared').filter('numberFormatter', function () {
     return function (inputNumber) {
         if (inputNumber == "" || inputNumber == null)
             return inputNumber;
@@ -15,7 +15,7 @@
             naturalPart = number.substr(0, dotPosition);
         }
         else {
-            number= inputNumber.toFixed(0);
+            number = inputNumber.toFixed(0);
             decimalPart = "";
             naturalPart = number;
         }
