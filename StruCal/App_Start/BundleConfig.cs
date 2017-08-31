@@ -68,7 +68,6 @@ namespace StruCal
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/rcBeam").Include(
-                
                 "~/Scripts/RcBeam/rcBeamApp.js",
                 "~/Scripts/RcBeam/Drawings/circularSectionDrawing.js",
                 "~/Scripts/RcBeam/Drawings/customSectionDrawing.js",
