@@ -4,6 +4,8 @@ function textCreator(scene, camera, canvas, transformationFunction, result, cont
 
     var boxRightMargin = 50;
     var boxLeftMargin = 10;
+    var boxBottomMargin = 10;
+    var boxTopMargin = 10;
 
     var textHeight = 10;
     var textWidth = 10;
@@ -15,8 +17,8 @@ function textCreator(scene, camera, canvas, transformationFunction, result, cont
 
     var minX = left + boxLeftMargin;
     var maxX = width + left - boxRightMargin;
-    var minY = top;
-    var maxY = top + height;
+    var minY = top + boxBottomMargin
+    var maxY = top + height - boxTopMargin
 
     var translation;
 

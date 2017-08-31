@@ -15,103 +15,102 @@
                         </div>
                     </div>
                    
-                    <div ng-show="showDetails">
-                        <br />
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-horizontal">
-                                    <div class="form-group">
-                                        <label class="col-md-5 control-label text-right">X [mm]: </label>
-                                        <div class="col-md-7">
-                                            <label class="control-label" ng-show="!showForms">{{vertex.x | numberFormatter}}</label>
-                                            <input type="number" class="form-control" ng-model="vertex.x" required ng-show="showForms" />
+                    <div ng-show="showDetails" class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label text-right">X [mm]: </label>
+                                            <div class="col-md-7">
+                                                <label class="control-label" ng-show="!showForms">{{vertex.x | numberFormatter}}</label>
+                                                <input type="number" class="form-control" ng-model="vertex.x" required ng-show="showForms" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-horizontal">
-                                    <div class="form-group">
-                                        <label class="col-md-5 control-label text-right">Y [mm]: </label>
-                                        <div class="col-md-7">
-                                            <label class="control-label" ng-show="!showForms">{{vertex.y | numberFormatter}}</label>
-                                            <input type="number" class="form-control" ng-model="vertex.y" required ng-show="showForms" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-horizontal">
-                                    <div class="form-group">
-                                        <label class="col-md-5 control-label text-right">Support X: </label>
-                                        <div class="col-md-7">
-                                            <div class="btn-group" data-toggle="buttons">
-                                                <label class="btn btn-default btn-sm active">
-                                                    <input type="checkbox" autocomplete="off" ng-model="vertex.supportX" ng-disabled="!showForms">
-                                                    <span class="glyphicon glyphicon-ok chbox"></span>
-                                                </label>
+                                <div class="col-md-6">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label text-right">Y [mm]: </label>
+                                            <div class="col-md-7">
+                                                <label class="control-label" ng-show="!showForms">{{vertex.y | numberFormatter}}</label>
+                                                <input type="number" class="form-control" ng-model="vertex.y" required ng-show="showForms" />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-horizontal">
-                                    <div class="form-group">
-                                        <label class="col-md-5 control-label text-right">Support Y: </label>
-                                        <div class="col-md-7">
-                                            <div class="btn-group" data-toggle="buttons">
-                                                <label class="btn btn-default btn-sm active">
-                                                    <input type="checkbox" autocomplete="off" ng-model="vertex.supportY">
-                                                    <span class="glyphicon glyphicon-ok chbox" ng-model="vertex.supportY" ng-disabled="!showForms"></span>
-                                                </label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label text-right">Support X: </label>
+                                            <div class="col-md-7">
+                                                <div class="btn-group" data-toggle="buttons">
+                                                    <label class="btn btn-default btn-sm" ng-click="setSupportX(showForms,vertex)">
+                                                        <span class="glyphicon glyphicon-ok" ng-class="{'chbox-checked':vertex.supportX,'chbox-unchecked':!vertex.supportX}"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label text-right">Support Y: </label>
+                                            <div class="col-md-7">
+                                                <div class="btn-group" data-toggle="buttons">
+                                                    <label class="btn btn-default btn-sm" ng-click="setSupportY(showForms,vertex)">
+                                                        <span class="glyphicon glyphicon-ok" ng-class="{'chbox-checked':vertex.supportY,'chbox-unchecked':!vertex.supportY}"></span>
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-horizontal">
-                                    <div class="form-group">
-                                        <label class="col-md-5 control-label text-right">Load X [kN]: </label>
-                                        <div class="col-md-7">
-                                            <label class="control-label" ng-show="!showForms">{{vertex.loadX | numberFormatter}}</label>
-                                            <input type="text" class="form-control" ng-model="vertex.loadX" required ng-show="showForms" />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label text-right">Load X [kN]: </label>
+                                            <div class="col-md-7">
+                                                <label class="control-label" ng-show="!showForms">{{vertex.loadX | numberFormatter}}</label>
+                                                <input type="text" class="form-control" ng-model="vertex.loadX" required ng-show="showForms" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label text-right">Load Y [kN]: </label>
+                                            <div class="col-md-7">
+                                                <label class="control-label" ng-show="!showForms">{{vertex.loadY | numberFormatter}}</label>
+                                                <input type="number" class="form-control" ng-model="vertex.loadY" required ng-show="showForms" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-horizontal">
-                                    <div class="form-group">
-                                        <label class="col-md-5 control-label text-right">Load Y [kN]: </label>
-                                        <div class="col-md-7">
-                                            <label class="control-label" ng-show="!showForms">{{vertex.loadY | numberFormatter}}</label>
-                                            <input type="number" class="form-control" ng-model="vertex.loadY" required ng-show="showForms" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                @*<div class="form-inline">
-                                    <div class="form-group">*@
-                                        <button ng-click="showForms=true" ng-show="!showForms" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
-                                        <button ng-click="showForms=false" ng-show="showForms" class="btn btn-success"><span class="glyphicon glyphicon-save"></span> Save</button>
-                                        <button ng-click="remove($index)" ng-show="vertices.length > 0" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Remove</button>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @*<div class="form-inline">
+                    <div class="form-group">*@
+                                    <button ng-click="showForms=true" ng-show="!showForms" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+                                    <button ng-click="showForms=false" ng-show="showForms" class="btn btn-success"><span class="glyphicon glyphicon-save"></span> Save</button>
+                                    <button ng-click="remove($index)" ng-show="vertices.length > 0" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Remove</button>
                                     @*</div>
-                                </div>*@
+                    </div>*@
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary" ng-click="add()" ng-disabled="vertices.length >4"><span class="glyphicon glyphicon-plus"></span> Add</button>
+            <button class="btn btn-primary" ng-click="add()"><span class="glyphicon glyphicon-plus"></span> Add</button>
         </div>
     </div>
 
