@@ -1,45 +1,48 @@
 ﻿angular.module('membraneFEM').controller('geometryCtrl', ['$scope', '$rootScope','drawingService', function ($scope, $rootScope, drawingService) {
+    var edges;
+    var inputData;
     $scope.vertices = new Array();
 
+
     $scope.vertices = [{
-        x: 0,
-        y: 2000,
-        supportX: false,
-        supportY: false,
-        loadX: 500,
-        loadY:1000,
+        X: 0,
+        Y: 2000,
+        SupportX: false,
+        SupportY: false,
+        LoadX: 500,
+        LoadY: 1000,
     },
     {
-        x: 500,
-        y: 0,
-        supportX: true,
-        supportY: true,
-        loadX: 0,
-        loadY: 0,
+        X: 500,
+        Y: 0,
+        SupportX: true,
+        SupportY: true,
+        LoadX: 0,
+        LoadY: 0,
     },
     {
-        x: 1500,
-        y: 0,
-        supportX: true,
-        supportY: true,
-        loadX: 0,
-        loadY: 0,
+        X: 1500,
+        Y: 0,
+        SupportX: true,
+        SupportY: true,
+        LoadX: 0,
+        LoadY: 0,
     },
     {
-        x: 2000,
-        y: 2000,
-        supportX: false,
-        supportY: false,
-        loadX: -500,
-        loadY: 1000,
+        X: 2000,
+        Y: 2000,
+        SupportX: false,
+        SupportY: false,
+        LoadX: -500,
+        LoadY: 1000,
     },
     {
-        x: 1000,
-        y: 2000,
-        supportX: false,
-        supportY: false,
-        loadX: 0,
-        loadY: -2000,
+        X: 1000,
+        Y: 2000,
+        SupportX: false,
+        SupportY: false,
+        LoadX: 0,
+        LoadY: -2000,
     }
     ];
 
@@ -60,13 +63,56 @@
 
     $scope.setSupportX=function(showForms,vertex){
         if (showForms){
-            vertex.supportX = !vertex.supportX;
+            vertex.SupportX = !vertex.SupportX;
         }
     }
     $scope.setSupportY = function (showForms, vertex) {
         if (showForms) {
-            vertex.supportY = !vertex.supportY;
+            vertex.SupportY = !vertex.SupportY;
         }
     }
 
+    $scope.$watch('vertices', function () {
+        createEdges();
+        numerateVertices();
+        createInput();
+        updateDrawing();
+        sendInput();
+    },true);
+
+    function createEdges() {
+        edges = new Array();
+
+        for (var i = 0; i < $scope.vertices.length-1; i++) {
+            var vertexStart = $scope.vertices[i];
+            var vertexEnd = $scope.vertices[i+1];
+            edges.push({
+                Number: i + 1,
+                Start: vertexStart,
+                End: vertexEnd,
+            });
+        }
+        edges.push({
+            Number: $scope.vertices.length,
+            Start: $scope.vertices[0],
+            End: $scope.vertices[$scope.vertices.length - 1],
+        });
+    }
+    function numerateVertices() {
+        for (var i = 0; i < $scope.vertices.length; i++) {
+            $scope.vertices[i].Number = i + 1;
+        }
+    }
+    function createInput() {
+        inputData = {
+            Vertices: $scope.vertices,
+            Edges: edges,
+        };
+    }
+    function sendInput() {
+        $rootScope.$broadcast('inputData', inputData);
+    }
+    function updateDrawing() {
+        drawingService.setInput(inputData);
+    }
 }]);

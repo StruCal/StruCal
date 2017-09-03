@@ -31,12 +31,18 @@ function scaleCalculator(width, height) {
 
     this.getSupportScale = function() {
 
-        var factor = 0.001;
+        var x = maxX - minX;
+        var y = maxY - minY;
+        var maxDimension = Math.max(x, y);
+        var factor = 0.02;
         return maxDimension * factor;
     }
 
-    this.getPointLoadScale = function() {
-        var factor = 0.001;
+    this.getPointLoadScale = function () {
+        var x = maxX - minX;
+        var y = maxY - minY;
+        var maxDimension = Math.max(x, y);
+        var factor = 0.02;
         return maxDimension * factor;
     }
 

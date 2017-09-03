@@ -8,14 +8,13 @@ function drawingCreator(canvas) {
 
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(0xFFFFFF);
-    this.camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+    this.camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100000);
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize(width, height);
     canvas.appendChild(this.renderer.domElement);
 
     this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
     this.camera.position.z = 100;
-
 
 
     var result = new resultProvider();
@@ -31,7 +30,7 @@ function drawingCreator(canvas) {
     var directionalLight1 = new THREE.DirectionalLight(0xffffff, 1);
     this.scene.add(directionalLight1);
     var directionalLight2 = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight2.position.set(100, 100, 100);
+    directionalLight2.position.set(1000, 1000, 1000);
     this.scene.add(directionalLight2);
 
     this.setMembraneOutput = function (membraneOutputData) {
@@ -62,7 +61,7 @@ function drawingCreator(canvas) {
     }
 
     this.updateInput = function () {
-
+        clean.call(this);
         input.updateInput();
         support.update();
         pointLoad.update();
@@ -71,7 +70,7 @@ function drawingCreator(canvas) {
     }
 
     this.updateOutput = function () {
-
+        clean.call(this);
         output.setMembraneOutput(membraneOutput).update();
         transformationFunction.setMembraneOutput(membraneOutput);
         text.setMembraneOutput(membraneOutput);
@@ -85,10 +84,7 @@ function drawingCreator(canvas) {
     this.updateText = function () {
         text.update();
     }
-    this.removeText = function () {
-
-    }
-
+    
     this.drawSupports = function (show) {
         if (show) {
             support.update();
@@ -156,6 +152,16 @@ function drawingCreator(canvas) {
         return this;
     }
 
+    function clean() {
+        support.remove();
+        text.remove();
+        pointLoad.remove();
+        output.remove();
+        input.remove();
+        this.scene.position.x = 0;
+        this.scene.position.y = 0;
+        this.scene.position.z = 0;
+    }
 
     function updatePosition() {
         var translation = scaleCalc.getCentreTranslation();

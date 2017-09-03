@@ -1,6 +1,5 @@
 ﻿angular.module('membraneFEM').controller('calculationsCtrl', ['$scope', '$rootScope','drawingService', function ($scope, $rootScope,drawingService) {
     
-    drawingService.initialize();
 
     $scope.forces = true;
     $scope.supports = true;
@@ -59,36 +58,16 @@
         drawingService.drawPointLoads($scope.forces);
     });
     $scope.$watch('text', function () {
-        drawingService.drawText($scope.text);
+        if (drawingService.drawOutput)
+            drawingService.drawText($scope.text);
     });
     $scope.$watch('displacement', function () {
-        drawingService.drawDisplacement($scope.displacement,$scope.supports,$scope.forces);
+        if (drawingService.drawOutput)
+            drawingService.drawDisplacement($scope.displacement,$scope.supports,$scope.forces);
     });
 
-    function update() {
+    
 
-    }
-
-    (function init() {
-        //canvas = document.getElementById("membraneCanvas");
-
-        //canvas.setAttribute("style", "height:" + (canvas.offsetWidth / 2).toFixed(0) + "px");
-        //var membraneOutput = getMembraneOutput();
-
-        //drawing = new drawingCreator(canvas);
-
-        //drawing.setMembraneOutput(membraneOutput).setSxx().updateOutput();
-
-        ////drawing.setMembraneInput(membraneOutput.InputData).updateInput();
-
-        //function animate() {
-        //    requestAnimationFrame(animate);
-        //    drawing.renderer.render(drawing.scene, drawing.camera);
-        //    drawing.controls.update();
-
-        //    drawing.updateText();
-        //}
-        //animate();
-    })();
+    
 
 }]);

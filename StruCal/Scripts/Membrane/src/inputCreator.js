@@ -1,9 +1,9 @@
 function inputCreator(scene) {
 
-    var material = new THREE.MeshBasicMaterial({ color: 0xFF0000 });
+    var material = new THREE.MeshBasicMaterial({ color: 0x3276B1 });
 
-    var meshGeometry = new THREE.Geometry();
-
+    var meshGeometry= new THREE.Geometry();
+    var mesh;
     this.membraneInput;
 
     this.setMembraneInput = function(membraneInputData) {
@@ -15,9 +15,13 @@ function inputCreator(scene) {
 
         createGeometry.call(this);
 
-        var mesh = new THREE.Mesh(meshGeometry, material);
+        mesh = new THREE.Mesh(meshGeometry, material);
         scene.add(mesh);
         return this;
+    }
+
+    this.remove = function () {
+        scene.remove(mesh);
     }
 
     function createGeometry() {

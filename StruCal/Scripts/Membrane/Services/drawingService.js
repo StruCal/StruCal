@@ -1,29 +1,28 @@
 ﻿angular.module('membraneFEM').service('drawingService', ['canvasFactory', function (canvasFactory) {
 
     var self = this;
+   
     var text;
     var canvas = canvasFactory.getCanvas();
     var drawing;
-    this.initialize = function () {
 
-        
+    this.drawOutput =false;
+    (function init() {
         var membraneOutput = getMembraneOutput();
 
         drawing = new drawingCreator(canvas);
 
-        drawing.setMembraneOutput(membraneOutput).setSxx().updateOutput();
+        //drawing.setMembraneOutput(membraneOutput).setSxx().updateOutput();
 
         //drawing.setMembraneInput(membraneOutput.InputData).updateInput();
-
-        
         animate();
-    }
+    })();
     function animate() {
             requestAnimationFrame(animate);
             drawing.renderer.render(drawing.scene, drawing.camera);
             drawing.controls.update();
             
-            if (text) {
+            if (text && self.drawOutput) {
                 drawing.updateText();
             }
         }
@@ -48,6 +47,11 @@
     }
     this.setTxy=function(){
         drawing.setTxy();
+    }
+
+    this.setInput = function (inputData) {
+        self.drawOutput = false;
+        drawing.setMembraneInput(inputData).updateInput();
     }
 
 }]);

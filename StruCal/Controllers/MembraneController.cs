@@ -1,4 +1,6 @@
-﻿using FEMCommon.DTO;
+﻿using FEM2D.Structures;
+using FEMCommon.DTO;
+using Output.OutputCreator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +23,16 @@ namespace StruCal.Controllers
     {
         [System.Web.Http.AllowAnonymous]
         [System.Web.Http.HttpPost]
-        public IHttpActionResult RcCalculations(MembraneInputData input)
+        public IHttpActionResult RcCalculations(MembraneInputData membraneData)
         {
-            
-            return Ok();
+            var membrane = new Membrane();
+            membrane.Solve(membraneData);
+
+            var result = membrane.Results;
+
+            var outputCrator = new OutputCreator(result, membraneData);
+            var output = outputCrator.CreateOutput();
+            return Ok(output);
         }
     }
 }
