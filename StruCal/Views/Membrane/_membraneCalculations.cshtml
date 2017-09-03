@@ -3,14 +3,15 @@
         <div class="col-md-4">
             <button class="btn btn-lg" ng-class="{'btn-success':valid,'btn-warning':dirty,'btn-danger':error,'btn-info':progress}" ng-click="calculate()"><span class="glyphicon glyphicon-cog"></span> Calculate</button>
         </div>
+        
+    </div>
+    <br />
+    <div class="row">
         <div class="col-md-2" ng-hide="!progress">
             <div id="progress" class="progress">
             </div>
         </div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-md-12">
+        <div ng-class="{'col-md-10':progress,'col-md-12':!progress}">
             <div class="alert" ng-class="{'alert-success':valid,'alert-warning':dirty,'alert-danger':error,'alert-info':progress}" role="alert">
                 {{message}}
             </div>

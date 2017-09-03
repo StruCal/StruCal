@@ -42,6 +42,8 @@ function drawingCreator(canvas) {
         color.setMembraneOutput(membraneOutput);
         output.setMembraneOutput(membraneOutput);
         scaleCalc.setMembraneOutput(membraneOutput);
+        transformationFunction.setMembraneOutput(membraneOutput);
+        text.setMembraneOutput(membraneOutput);
 
         this.setMembraneInput(membraneInput);
 
@@ -71,13 +73,10 @@ function drawingCreator(canvas) {
 
     this.updateOutput = function () {
         clean.call(this);
-        output.setMembraneOutput(membraneOutput).update();
-        transformationFunction.setMembraneOutput(membraneOutput);
-        text.setMembraneOutput(membraneOutput);
-
+        
         support.update();
         pointLoad.update();
-
+        output.update();
         updatePosition.call(this);
     }
 

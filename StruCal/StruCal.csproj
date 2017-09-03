@@ -207,6 +207,7 @@
     <Content Include="Scripts\Membrane\lib\TrackballControls.js" />
     <Content Include="Scripts\Membrane\Services\canvasFactory.js" />
     <Content Include="Scripts\Membrane\Services\drawingService.js" />
+    <Content Include="Scripts\Membrane\Services\inputDataFactory.js" />
     <Content Include="Scripts\Membrane\src\API.js" />
     <Content Include="Scripts\Membrane\src\colorProvider.js" />
     <Content Include="Scripts\Membrane\src\drawingCreator.js" />

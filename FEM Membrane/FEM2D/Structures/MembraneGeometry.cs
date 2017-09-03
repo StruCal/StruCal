@@ -47,19 +47,21 @@ namespace FEM2D.Structures
             var vertices = triangles.Select(e => new[] { e.Vertex1, e.Vertex2, e.Vertex3 })
                 .SelectMany(e => e).Distinct();
 
-            this.Nodes = vertices.Select(vertex => new Node(vertex)).ToList();
+            this.Nodes = vertices.Select((vertex,index)=> new Node(vertex,index+1)).ToList();
             this.vertexNodeMap = this.Nodes.ToDictionary(e => e.Coordinates, f => f);
         }
 
         private void CreateTriangleElements()
         {
             var triangleElements = new List<TriangleElement>();
+            var number = 1;
             foreach (var triangle in this.triangles)
             {
                 var node1 = this.vertexNodeMap[triangle.Vertex1];
                 var node2 = this.vertexNodeMap[triangle.Vertex2];
                 var node3 = this.vertexNodeMap[triangle.Vertex3];
-                var triangleElement = new TriangleElement(node1, node2, node3, this.membraneData.Properties);
+                var triangleElement = new TriangleElement(node1, node2, node3, this.membraneData.Properties,number);
+                number++;
                 triangleElements.Add(triangleElement);
             }
             this.Elements = triangleElements;

@@ -9,6 +9,10 @@
     $scope.$watch('t', send);
 
     function send() {
-
+        $rootScope.$broadcast('properties', {
+            ModulusOfElasticity: $scope.E * 1000000000,//Pa
+            PoissonsRation: $scope.v,
+            Thickness: $scope.t,
+        });
     }
 }]);

@@ -1,50 +1,9 @@
-﻿angular.module('membraneFEM').controller('geometryCtrl', ['$scope', '$rootScope','drawingService', function ($scope, $rootScope, drawingService) {
+﻿angular.module('membraneFEM').controller('geometryCtrl', ['$scope', '$rootScope','drawingService','inputDataFactory', function ($scope, $rootScope, drawingService,inputDataFactory) {
     var edges;
     var inputData;
-    $scope.vertices = new Array();
 
 
-    $scope.vertices = [{
-        X: 0,
-        Y: 2000,
-        SupportX: false,
-        SupportY: false,
-        LoadX: 500,
-        LoadY: 1000,
-    },
-    {
-        X: 500,
-        Y: 0,
-        SupportX: true,
-        SupportY: true,
-        LoadX: 0,
-        LoadY: 0,
-    },
-    {
-        X: 1500,
-        Y: 0,
-        SupportX: true,
-        SupportY: true,
-        LoadX: 0,
-        LoadY: 0,
-    },
-    {
-        X: 2000,
-        Y: 2000,
-        SupportX: false,
-        SupportY: false,
-        LoadX: -500,
-        LoadY: 1000,
-    },
-    {
-        X: 1000,
-        Y: 2000,
-        SupportX: false,
-        SupportY: false,
-        LoadX: 0,
-        LoadY: -2000,
-    }
-    ];
+    $scope.vertices = inputDataFactory.getInputData();
 
     $scope.add = function () {
         $scope.vertices.push({
@@ -74,8 +33,9 @@
 
     $scope.$watch('vertices', function () {
         createEdges();
-        numerateVertices();
+        
         createInput();
+        numerateVerticesAndMultiplyLoad();
         updateDrawing();
         sendInput();
     },true);
@@ -94,23 +54,26 @@
         }
         edges.push({
             Number: $scope.vertices.length,
-            Start: $scope.vertices[0],
-            End: $scope.vertices[$scope.vertices.length - 1],
+            Start: $scope.vertices[$scope.vertices.length - 1],
+            End: $scope.vertices[0],
         });
     }
-    function numerateVertices() {
+    function numerateVerticesAndMultiplyLoad() {
         for (var i = 0; i < $scope.vertices.length; i++) {
-            $scope.vertices[i].Number = i + 1;
+            inputData.Vertices[i].Number = i + 1;
+            inputData.Vertices[i].LoadX *= 1000;
+            inputData.Vertices[i].LoadY *= 1000;
         }
     }
     function createInput() {
         inputData = {
-            Vertices: $scope.vertices,
+            Vertices: angular.copy($scope.vertices),
             Edges: edges,
         };
     }
     function sendInput() {
-        $rootScope.$broadcast('inputData', inputData);
+        $rootScope.$broadcast('vertices', inputData.Vertices);
+        $rootScope.$broadcast('edges', inputData.Edges);
     }
     function updateDrawing() {
         drawingService.setInput(inputData);

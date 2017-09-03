@@ -2,9 +2,8 @@ function nodeTransformation(scaleCalculator) {
     var self = this;
     var membraneOutput;
 
-    var displacement = true;
+    //var displacement = true;
     this.displacementScale = 1;
-
 
     this.drawDisplacement = false;
 

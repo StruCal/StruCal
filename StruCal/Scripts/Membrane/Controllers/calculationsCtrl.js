@@ -1,5 +1,6 @@
-﻿angular.module('membraneFEM').controller('calculationsCtrl', ['$scope', '$rootScope','drawingService', function ($scope, $rootScope,drawingService) {
-    
+﻿angular.module('membraneFEM').controller('calculationsCtrl', ['$scope', '$rootScope', 'drawingService', '$http', function ($scope, $rootScope, drawingService, $http) {
+    var inputData = {};
+    var outputData = {};
 
     $scope.forces = true;
     $scope.supports = true;
@@ -18,6 +19,29 @@
         $scope.progress = true;
         $scope.dirty = false;
         startProgress();
+
+
+        $http.post("/api/MembraneApi", inputData)
+        .then(
+        function (response) {
+            outputData = angular.copy(response.data);
+            drawingService.setOutput(outputData);
+            drawDisplacement();
+            $scope.test = response.data;
+            $scope.valid = true;
+            $scope.dirty = false;
+            $scope.error = false;
+            $scope.progress = false;
+            $scope.message = "Results are up to date"
+        },
+        function (response) {
+            $scope.valid = false;
+            $scope.dirty = false;
+            $scope.error = true;
+            $scope.progress = false;
+            $scope.message = "An error has occured. Please try again."
+        });
+
     };
 
     $scope.setResult = function (value) {
@@ -50,7 +74,7 @@
     $scope.setSettings = function (value) {
         $scope[value] = !($scope[value]);
     }
-    
+
     $scope.$watch('supports', function () {
         drawingService.drawSupports($scope.supports);
     });
@@ -62,12 +86,22 @@
             drawingService.drawText($scope.text);
     });
     $scope.$watch('displacement', function () {
-        if (drawingService.drawOutput)
-            drawingService.drawDisplacement($scope.displacement,$scope.supports,$scope.forces);
+        drawDisplacement();
+    });
+    $scope.$on('properties', function (event, arg) {
+        inputData.Properties = arg;
+    });
+    $scope.$on('vertices', function (event, arg) {
+        inputData.Vertices = arg;
+    });
+    $scope.$on('edges', function (event, arg) {
+        inputData.Edges = arg;
     });
 
-    
 
-    
+    function drawDisplacement() {
+        if (drawingService.drawOutput)
+            drawingService.drawDisplacement($scope.displacement, $scope.supports, $scope.forces);
+    }
 
 }]);

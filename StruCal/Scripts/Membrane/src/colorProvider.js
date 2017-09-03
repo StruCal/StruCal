@@ -1,7 +1,7 @@
 function colorProvider() {
 
     var membraneOutputData;
-
+    var resultType = RESULT_TYPE.Sxx;
 
     var range = 100;
     var minColor = '00FF00';
@@ -18,6 +18,9 @@ function colorProvider() {
 
     this.setMembraneOutput = function(membraneOutput) {
         membraneOutputData = membraneOutput;
+
+        setResultType.call(this);
+
         return this;
     }
 
@@ -48,6 +51,7 @@ function colorProvider() {
         percentile005 = membraneOutputData.SxxPercentile005;
         percentile095 = membraneOutputData.SxxPercentile095;
 
+        resultType = RESULT_TYPE.Sxx;
         return this;
     }
     this.setSyy = function() {
@@ -56,6 +60,8 @@ function colorProvider() {
 
         percentile005 = membraneOutputData.SyyPercentile005;
         percentile095 = membraneOutputData.SyyPercentile095;
+
+        resultType = RESULT_TYPE.Syy;
         return this;
     }
     this.setTxy = function() {
@@ -64,9 +70,23 @@ function colorProvider() {
 
         percentile005 = membraneOutputData.TxyPercentile005;
         percentile095 = membraneOutputData.TxyPercentile095;
+
+        resultType = RESULT_TYPE.Txy;
         return this;
     }
 
-
+    function setResultType() {
+        switch (resultType) {
+            case RESULT_TYPE.Sxx:
+                this.setSxx();
+                break;
+            case RESULT_TYPE.Syy:
+                this.setSyy();
+                break;
+            case RESULT_TYPE.Txy:
+                this.setTxy();
+                break;
+        }
+    }
 
 }

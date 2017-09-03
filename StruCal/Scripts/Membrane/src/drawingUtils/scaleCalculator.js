@@ -31,24 +31,19 @@ function scaleCalculator(width, height) {
 
     this.getSupportScale = function() {
 
-        var x = maxX - minX;
-        var y = maxY - minY;
-        var maxDimension = Math.max(x, y);
         var factor = 0.02;
         return maxDimension * factor;
     }
 
     this.getPointLoadScale = function () {
-        var x = maxX - minX;
-        var y = maxY - minY;
-        var maxDimension = Math.max(x, y);
+        
         var factor = 0.02;
         return maxDimension * factor;
     }
 
     this.getDisplacementScale = function() {
         var max = Math.max(membraneOutput.MaxUx, membraneOutput.MaxUy);
-        var disp = 5;
+        var disp = 0.1*maxDimension;
         var scale = disp / max;
         return scale;
     }
@@ -66,6 +61,10 @@ function scaleCalculator(width, height) {
         minX = Math.min.apply(Math, xs);
         maxY = Math.max.apply(Math, ys);
         minY = Math.min.apply(Math, ys);
+
+        var dx = maxX - minX;
+        var dy = maxY - minY;
+        maxDimension = Math.max(dx, dy);
 
         centreX = minX + (maxX - minX) / 2;
         centreY = minY + (maxY - minY) / 2;

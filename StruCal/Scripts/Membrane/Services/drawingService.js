@@ -2,7 +2,7 @@
 
     var self = this;
    
-    var text;
+    var text = true;
     var canvas = canvasFactory.getCanvas();
     var drawing;
 
@@ -12,9 +12,6 @@
 
         drawing = new drawingCreator(canvas);
 
-        //drawing.setMembraneOutput(membraneOutput).setSxx().updateOutput();
-
-        //drawing.setMembraneInput(membraneOutput.InputData).updateInput();
         animate();
     })();
     function animate() {
@@ -52,6 +49,11 @@
     this.setInput = function (inputData) {
         self.drawOutput = false;
         drawing.setMembraneInput(inputData).updateInput();
+    }
+
+    this.setOutput = function (outputData) {
+        self.drawOutput = true;
+        drawing.setMembraneOutput(outputData).updateOutput();
     }
 
 }]);
