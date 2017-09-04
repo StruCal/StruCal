@@ -2,22 +2,26 @@
     var edges;
     var inputData;
 
-
+    $scope.currentEdited = -1;
     $scope.vertices = inputDataFactory.getInputData();
+    $scope.verticesInput = angular.copy($scope.vertices);
 
     $scope.add = function () {
-        $scope.vertices.push({
+        var newVertex = {
             x: 2000,
             y: 3000,
             supportX: true,
             supportY: false,
             loadX: 1000,
             loadY: -500,
-        });
+        }
+        $scope.vertices.push(newVertex);
+        $scope.verticesInput.push(angular.copy(newVertex));
     }
 
     $scope.remove = function (index) {
         $scope.vertices.splice(index, 1);
+        $scope.verticesInput.splice(index, 1);
     }
 
     $scope.setSupportX=function(showForms,vertex){
@@ -30,15 +34,15 @@
             vertex.SupportY = !vertex.SupportY;
         }
     }
-
-    $scope.$watch('vertices', function () {
-        createEdges();
-        
-        createInput();
-        numerateVerticesAndMultiplyLoad();
-        updateDrawing();
-        sendInput();
-    },true);
+    
+    //$scope.$watch('vertices', function () {
+    //    createEdges();
+    //    
+    //    createInput();
+    //    numerateVerticesAndMultiplyLoad();
+    //    updateDrawing();
+    //    sendInput();
+    //},true);
 
     function createEdges() {
         edges = new Array();
@@ -78,4 +82,13 @@
     function updateDrawing() {
         drawingService.setInput(inputData);
     }
+
+    (function init() {
+        createEdges();
+        
+        createInput();
+        numerateVerticesAndMultiplyLoad();
+        updateDrawing();
+        sendInput();
+    })();
 }]);

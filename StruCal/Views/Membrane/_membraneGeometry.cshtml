@@ -7,14 +7,14 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <label class="col-md-2 control-label">Vertex: {{$index + 1}}</label>
+                            <label class="col-md-3 control-label">Vertex: {{$index + 1}}</label>
                             <label class="col-md-3 control-label" ng-show="!showDetails">X: {{vertex.X | numberFormatter}} [mm]</label>
                             <label class="col-md-3 control-label" ng-show="!showDetails">Y: {{vertex.Y | numberFormatter}} [mm]</label>
-                            <button ng-click="showDetails=true" ng-show="!showDetails" class="col-md-1 col-md-offset-3 btn btn-default"><span class="glyphicon glyphicon-chevron-down"></span></button>
-                            <button ng-click="showDetails=false" ng-show="showDetails" class="col-md-1 col-md-offset-9 btn btn-default"><span class="glyphicon glyphicon-chevron-up"></span></button>
+                            <button ng-click="showDetails=true;$parent.currentEdited = $index" ng-show="!showDetails" ng-disabled="($parent.edit || $parent.currentEdited !== $index) && $parent.currentEdited !== -1" class="col-md-1 col-md-offset-2 btn btn-default"><span class="glyphicon glyphicon-chevron-down"></span></button>
+                            <button ng-click="showDetails=false;$parent.currentEdited = -1" ng-show="showDetails" ng-disabled="($parent.edit || $parent.currentEdited !== $index) && $parent.currentEdited !== -1" class="col-md-1 col-md-offset-8 btn btn-default"><span class="glyphicon glyphicon-chevron-up"></span></button>
                         </div>
                     </div>
-                   
+      <br />
                     <div ng-show="showDetails" class="row">
                         <div class="col-md-12">
                             <div class="row">
@@ -48,8 +48,8 @@
                                             <label class="col-md-5 control-label text-right">Support X: </label>
                                             <div class="col-md-7">
                                                 <div class="btn-group" data-toggle="buttons">
-                                                    <label class="btn btn-default btn-sm" ng-click="setSupportX(showForms,vertex)">
-                                                        <span class="glyphicon glyphicon-ok" ng-class="{'chbox-checked':vertex.SupportX,'chbox-unchecked':!vertex.SupportX}"></span>
+                                                    <label ng-class="{'btn btn-default btn-sm':showForms}" ng-click="setSupportX(showForms,vertex)">
+                                                        <span class="glyphicon glyphicon-ok" ng-class="{'chbox-checked':vertex.SupportX,'chbox-unchecked':!vertex.SupportX,'extraTopPadding':!showForms}"></span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -62,8 +62,8 @@
                                             <label class="col-md-5 control-label text-right">Support Y: </label>
                                             <div class="col-md-7">
                                                 <div class="btn-group" data-toggle="buttons">
-                                                    <label class="btn btn-default btn-sm" ng-click="setSupportY(showForms,vertex)">
-                                                        <span class="glyphicon glyphicon-ok" ng-class="{'chbox-checked':vertex.SupportY,'chbox-unchecked':!vertex.SupportY}"></span>
+                                                    <label ng-class="{'btn btn-default btn-sm':showForms}"  ng-click="setSupportY(showForms,vertex)">
+                                                        <span class="glyphicon glyphicon-ok" ng-class="{'chbox-checked':vertex.SupportY,'chbox-unchecked':!vertex.SupportY,'extraTopPadding':!showForms}"></span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -97,9 +97,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button ng-click="showForms=true" ng-show="!showForms" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
-                                    <button ng-click="showForms=false" ng-show="showForms" class="btn btn-success"><span class="glyphicon glyphicon-save"></span> Save</button>
-                                    <button ng-click="remove($index)" ng-show="vertices.length > 0" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Remove</button>
+                                    <button ng-click="showForms=true; $parent.edit=true" ng-show="!showForms" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+                                    <button ng-click="showForms=false; $parent.edit=false" ng-show="showForms" class="btn btn-success"><span class="glyphicon glyphicon-floppy-saved"></span> Save</button>
+                                    <button ng-click="remove($index)" ng-show="!showForms" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Remove</button>
+                                    <button ng-click="$parent.edit=false" ng-show="showForms" class="btn btn-warning"><span class="glyphicon glyphicon-floppy-remove"></span> Cancel</button>
                                 </div>
                             </div>
                         </div>
