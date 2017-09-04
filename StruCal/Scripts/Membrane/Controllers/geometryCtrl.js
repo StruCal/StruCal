@@ -6,14 +6,33 @@
     $scope.vertices = inputDataFactory.getInputData();
     $scope.verticesInput = angular.copy($scope.vertices);
 
+    $scope.save = function (index) {
+
+        $scope.vertices[index].X = $scope.verticesInput[index].X;
+        $scope.vertices[index].Y = $scope.verticesInput[index].Y;
+        $scope.vertices[index].LoadX = $scope.verticesInput[index].LoadX;
+        $scope.vertices[index].LoadY = $scope.verticesInput[index].LoadY;
+        $scope.vertices[index].SupportX = $scope.verticesInput[index].SupportX;
+        $scope.vertices[index].SupportY = $scope.verticesInput[index].SupportY;
+
+    };
+    $scope.cancel = function (index) {
+        $scope.verticesInput[index].X = $scope.vertices[index].X;
+        $scope.verticesInput[index].Y = $scope.vertices[index].Y;
+        $scope.verticesInput[index].LoadX = $scope.vertices[index].LoadX;
+        $scope.verticesInput[index].LoadY = $scope.vertices[index].LoadY;
+        $scope.verticesInput[index].SupportX = $scope.vertices[index].SupportX;
+        $scope.verticesInput[index].SupportY = $scope.vertices[index].SupportY;
+    };
+
     $scope.add = function () {
         var newVertex = {
-            x: 2000,
-            y: 3000,
-            supportX: true,
-            supportY: false,
-            loadX: 1000,
-            loadY: -500,
+            X: 2000,
+            Y: 3000,
+            SupportX: true,
+            SupportY: false,
+            LoadX: 1000,
+            LoadY: -500,
         }
         $scope.vertices.push(newVertex);
         $scope.verticesInput.push(angular.copy(newVertex));
