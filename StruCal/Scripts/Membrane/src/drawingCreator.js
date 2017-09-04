@@ -111,6 +111,10 @@ function drawingCreator(canvas) {
         return this;
     }
 
+    this.disableDrawDisplacement = function () {
+        transformationFunction.drawDisplacement = false;
+    }
+
     this.drawDisplacement = function (drawDisplacement, drawSupports, drawPointLoads) {
         transformationFunction.drawDisplacement = drawDisplacement;
             output.remove();

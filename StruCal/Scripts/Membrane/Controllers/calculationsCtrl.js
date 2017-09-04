@@ -25,8 +25,7 @@
         .then(
         function (response) {
             outputData = angular.copy(response.data);
-            drawingService.setOutput(outputData);
-            drawDisplacement();
+            updateDrawing(outputData);
             $scope.test = response.data;
             $scope.valid = true;
             $scope.dirty = false;
@@ -86,7 +85,9 @@
             drawingService.drawText($scope.text);
     });
     $scope.$watch('displacement', function () {
-        drawDisplacement();
+        if (drawingService.drawOutput) {
+            drawingService.drawDisplacement($scope.displacement, $scope.supports, $scope.forces);
+        }
     });
     $scope.$on('properties', function (event, arg) {
         inputData.Properties = arg;
@@ -99,8 +100,11 @@
     });
 
 
-    function drawDisplacement() {
-        if (drawingService.drawOutput)
+    function updateDrawing() {
+            drawingService.setOutput(outputData);
+            drawingService.drawSupports($scope.supports);
+            drawingService.drawPointLoads($scope.forces);
+            drawingService.drawText($scope.text);
             drawingService.drawDisplacement($scope.displacement, $scope.supports, $scope.forces);
     }
 

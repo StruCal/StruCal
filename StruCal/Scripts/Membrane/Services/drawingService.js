@@ -48,6 +48,7 @@
 
     this.setInput = function (inputData) {
         self.drawOutput = false;
+        drawing.disableDrawDisplacement();
         drawing.setMembraneInput(inputData).updateInput();
     }
 
