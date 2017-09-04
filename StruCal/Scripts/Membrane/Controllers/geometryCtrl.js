@@ -1,7 +1,7 @@
 ﻿angular.module('membraneFEM').controller('geometryCtrl', ['$scope', '$rootScope','drawingService','inputDataFactory', function ($scope, $rootScope, drawingService,inputDataFactory) {
     var edges;
     var inputData;
-
+    //ADD NG-INVALID
     $scope.currentEdited = -1;
     $scope.vertices = inputDataFactory.getInputData();
     $scope.verticesInput = angular.copy($scope.vertices);
@@ -14,6 +14,12 @@
         $scope.vertices[index].LoadY = $scope.verticesInput[index].LoadY;
         $scope.vertices[index].SupportX = $scope.verticesInput[index].SupportX;
         $scope.vertices[index].SupportY = $scope.verticesInput[index].SupportY;
+
+        createEdges();
+        createInput();
+        numerateVerticesAndMultiplyLoad();
+        updateDrawing();
+        sendInput();
 
     };
     $scope.cancel = function (index) {
