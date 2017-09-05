@@ -4,6 +4,7 @@ using Output.OutputCreator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -30,9 +31,17 @@ namespace StruCal.Controllers
 
             var result = membrane.Results;
 
-            var outputCrator = new OutputCreator(result, membraneData);
-            var output = outputCrator.CreateOutput();
-            return Ok(output);
+            var outputCreator = new OutputCreator(result, membraneData);
+            
+            if (outputCreator.HasError)
+            {
+                throw new HttpResponseException(System.Net.HttpStatusCode.InternalServerError);
+            }
+            else
+            {
+                outputCreator.CreateOutput();
+                return Ok(outputCreator.Output);
+            }
         }
     }
 }

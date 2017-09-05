@@ -1,8 +1,11 @@
 ﻿angular.module('membraneFEM').controller('calculationsCtrl', ['$scope', '$rootScope', 'drawingService', '$http', 'inputDataFactory','inputDataCalculator', function ($scope, $rootScope, drawingService, $http,inputDataFactory,inputDataCalculator) {
+    var inputData;
+    var outputData;
+
     (function init() {
         var vertices = inputDataFactory.getVertices();
-        var inputData = inputDataCalculator.getInputData(vertices);
-        var outputData = {};
+        inputData = inputDataCalculator.getInputData(vertices);
+        outputData = {};
 
         $scope.forces = true;
         $scope.supports = true;

@@ -21,13 +21,22 @@ namespace Output.OutputCreator
         private IList<NodeOutput> nodes;
         private IList<TriangleOutput> triangles;
 
+        public MembraneOutputData Output { get; private set; }
+        public bool HasError { get; private set; }
+
         public OutputCreator(ResultProvider results, MembraneInputData inputData = null)
         {
+            if (results.NodeResults.Any(e => double.IsNaN(e.UX) || double.IsNaN(e.UY))) 
+            {
+                this.HasError = true;
+                return;
+            }
+
             this.results = results;
             this.inputData = inputData;
         }
 
-        public MembraneOutputData CreateOutput()
+        public void CreateOutput()
         {
             this.CreateNodeOutput();
             this.CreateTriangleOutput();
@@ -63,7 +72,7 @@ namespace Output.OutputCreator
                 InputData = this.inputData,
             };
 
-            return membraneOutput;
+            this.Output = membraneOutput;
         }
 
         private void CreateNodeOutput()
