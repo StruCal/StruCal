@@ -131,6 +131,12 @@ function drawingCreator(canvas) {
 
     }
 
+    this.drawSmoothing = function (value) {
+        result.smoothing = value;
+        output.remove();
+        output.update();
+    }
+
     this.setSxx = function () {
         result.setSxx();
         color.setSxx();

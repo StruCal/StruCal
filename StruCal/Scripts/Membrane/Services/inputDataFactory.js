@@ -4,7 +4,7 @@
         Y: 2000,
         SupportX: false,
         SupportY: false,
-        LoadX: -5000,
+        LoadX: -2000,
         LoadY: 1000,
     },
     {
@@ -40,8 +40,9 @@
         LoadY: 0,
     }
     ];
+
     return {
-        getInputData: function () {
+        getVertices: function () {
             return inputData;
         }
     }

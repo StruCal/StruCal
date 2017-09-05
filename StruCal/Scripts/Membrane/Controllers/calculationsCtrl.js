@@ -1,11 +1,13 @@
-﻿angular.module('membraneFEM').controller('calculationsCtrl', ['$scope', '$rootScope', 'drawingService', '$http', function ($scope, $rootScope, drawingService, $http) {
-    var inputData = {};
+﻿angular.module('membraneFEM').controller('calculationsCtrl', ['$scope', '$rootScope', 'drawingService', '$http', 'inputDataFactory','inputDataCalculator', function ($scope, $rootScope, drawingService, $http,inputDataFactory,inputDataCalculator) {
+    var vertices = inputDataFactory.getVertices();
+    var inputData = inputDataCalculator.getInputData(vertices);
     var outputData = {};
 
     $scope.forces = true;
     $scope.supports = true;
     $scope.text = true;
     $scope.displacement = true;
+    $scope.smoothing = true;
     $scope.sxx = true;
     $scope.syy = false;
     $scope.txy = false;
@@ -17,6 +19,8 @@
     $scope.calculate = function () {
         $scope.message = "Processing..."
         $scope.progress = true;
+        $scope.error = false;
+        $scope.valid = false;
         $scope.dirty = false;
         startProgress();
 
@@ -89,13 +93,19 @@
             drawingService.drawDisplacement($scope.displacement, $scope.supports, $scope.forces);
         }
     });
-    $scope.$on('properties', function (event, arg) {
+    $scope.$watch('smoothing',function(){
+        if (drawingService.drawOutput) {
+            drawingService.drawSmoothing($scope.smoothing);
+        }
+    });
+
+    $scope.$on('propertiesMsg', function (event, arg) {
         inputData.Properties = arg;
     });
-    $scope.$on('vertices', function (event, arg) {
+    $scope.$on('verticesMsg', function (event, arg) {
         inputData.Vertices = arg;
     });
-    $scope.$on('edges', function (event, arg) {
+    $scope.$on('edgesMsg', function (event, arg) {
         inputData.Edges = arg;
     });
 
@@ -105,6 +115,7 @@
             drawingService.drawSupports($scope.supports);
             drawingService.drawPointLoads($scope.forces);
             drawingService.drawText($scope.text);
+            drawingService.drawSmoothing($scope.smoothing);
             drawingService.drawDisplacement($scope.displacement, $scope.supports, $scope.forces);
     }
 

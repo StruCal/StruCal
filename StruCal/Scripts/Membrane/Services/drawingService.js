@@ -36,6 +36,10 @@
     this.drawDisplacement = function (drawDisplacement,drawSupports,drawPointLoads) {
         drawing.drawDisplacement(drawDisplacement, drawSupports, drawPointLoads);
     }
+    this.drawSmoothing = function (value) {
+        drawing.drawSmoothing(value);
+    }
+
     this.setSxx=function(){
         drawing.setSxx();
     }
