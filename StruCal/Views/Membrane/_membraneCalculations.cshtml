@@ -1,7 +1,7 @@
 ﻿<div ng-controller="calculationsCtrl">
     <div class="row">
         <div class="col-md-4">
-            <button class="btn btn-lg" ng-class="{'btn-success':valid,'btn-warning':dirty,'btn-danger':error,'btn-info':progress}" ng-click="calculate()"><span class="glyphicon glyphicon-cog"></span> Calculate</button>
+            <button class="btn btn-lg" ng-class="{'btn-success':valid,'btn-warning':dirty,'btn-danger':error,'btn-info':progress}" ng-click="calculate()" ng-disabled="progress"><span class="glyphicon glyphicon-cog"></span> Calculate</button>
         </div>
 
     </div>
@@ -26,7 +26,7 @@
                     <label class="col-md-8 control-label">Sxx: </label>
                     <div class="col-md-4">
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-success btn-sm" ng-click="setResult('sxx')">
+                            <label class="btn btn-sm" ng-click="setResult('sxx')" ng-class="{'btn-success':valid,'btn-warning':dirty,'btn-danger':error,'btn-info':progress}">
                                 <span class="glyphicon glyphicon-asterisk" ng-class="{'chbox-checked':sxx,'chbox-unchecked':!sxx}"></span>
                             </label>
                         </div>
@@ -36,7 +36,7 @@
                     <label class="col-md-8 control-label">Syy: </label>
                     <div class="col-md-4">
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-success btn-sm" ng-click="setResult('syy')">
+                            <label class="btn btn-sm" ng-click="setResult('syy')" ng-class="{'btn-success':valid,'btn-warning':dirty,'btn-danger':error,'btn-info':progress}">
                                 <span class="glyphicon glyphicon-asterisk" ng-class="{'chbox-checked':syy,'chbox-unchecked':!syy}"></span>
                             </label>
                         </div>
@@ -46,7 +46,7 @@
                     <label class="col-md-8 control-label">Txy: </label>
                     <div class="col-md-4">
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-success btn-sm" ng-click="setResult('txy')">
+                            <label class="btn btn-sm" ng-click="setResult('txy')" ng-class="{'btn-success':valid,'btn-warning':dirty,'btn-danger':error,'btn-info':progress}">
                                 <span class="glyphicon glyphicon-asterisk" ng-class="{'chbox-checked':txy,'chbox-unchecked':!txy}"></span>
                             </label>
                         </div>
@@ -61,7 +61,7 @@
                     <label class="col-md-8 control-label">Forces: </label>
                     <div class="col-md-4">
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-success btn-sm" ng-click="setSettings('forces')">
+                            <label class="btn btn-sm" ng-click="setSettings('forces')" ng-class="{'btn-success':valid,'btn-warning':dirty,'btn-danger':error,'btn-info':progress}">
                                 <span class="glyphicon glyphicon-ok" ng-class="{'chbox-checked':forces,'chbox-unchecked':!forces}"></span>
                             </label>
                         </div>
@@ -72,7 +72,7 @@
                     <label class="col-md-8 control-label">Supports: </label>
                     <div class="col-md-4">
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-success btn-sm" ng-click="setSettings('supports')">
+                            <label class="btn btn-sm" ng-click="setSettings('supports')" ng-class="{'btn-success':valid,'btn-warning':dirty,'btn-danger':error,'btn-info':progress}">
                                 <span class="glyphicon glyphicon-ok" ng-class="{'chbox-checked':supports,'chbox-unchecked':!supports}"></span>
                             </label>
                         </div>
@@ -82,7 +82,7 @@
                     <label class="col-md-8 control-label">Text: </label>
                     <div class="col-md-4">
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-success btn-sm" ng-click="setSettings('text')">
+                            <label class="btn btn-sm" ng-click="setSettings('text')" ng-class="{'btn-success':valid,'btn-warning':dirty,'btn-danger':error,'btn-info':progress}">
                                 <span class="glyphicon glyphicon-ok" ng-class="{'chbox-checked':text,'chbox-unchecked':!text}"></span>
                             </label>
                         </div>
@@ -92,7 +92,7 @@
                     <label class="col-md-8 control-label">Displacement: </label>
                     <div class="col-md-4">
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-success btn-sm" ng-click="setSettings('displacement')">
+                            <label class="btn btn-sm" ng-click="setSettings('displacement')" ng-class="{'btn-success':valid,'btn-warning':dirty,'btn-danger':error,'btn-info':progress}">
                                 <span class="glyphicon glyphicon-ok" ng-class="{'chbox-checked':displacement,'chbox-unchecked':!displacement}"></span>
                             </label>
                         </div>
@@ -102,7 +102,7 @@
                     <label class="col-md-8 control-label">Smoothing: </label>
                     <div class="col-md-4">
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-success btn-sm" ng-click="setSettings('smoothing')">
+                            <label class="btn btn-sm" ng-click="setSettings('smoothing')" ng-class="{'btn-success':valid,'btn-warning':dirty,'btn-danger':error,'btn-info':progress}">
                                 <span class="glyphicon glyphicon-ok" ng-class="{'chbox-checked':smoothing,'chbox-unchecked':!smoothing}"></span>
                             </label>
                         </div>
