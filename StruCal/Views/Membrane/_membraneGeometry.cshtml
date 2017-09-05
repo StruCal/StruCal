@@ -98,7 +98,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <button ng-click="showForms=true; $parent.edit=true" ng-show="!showForms" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
-                                    <button ng-click="save($index);showForms=false; $parent.edit=false" ng-show="showForms" class="btn btn-success"><span class="glyphicon glyphicon-floppy-saved"></span> Save</button>
+                                    <button ng-click="save($index);showForms=false; $parent.edit=false" ng-show="showForms" ng-disabled="rowForm.$invalid" class="btn btn-success"><span class="glyphicon glyphicon-floppy-saved"></span> Save</button>
                                     <button ng-click="remove($index);$parent.currentEdited=-1" ng-show="!showForms" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Remove</button>
                                     <button ng-click="cancel($index);showForms=false;$parent.edit=false" ng-show="showForms" class="btn btn-warning"><span class="glyphicon glyphicon-floppy-remove"></span> Cancel</button>
                                 </div>
