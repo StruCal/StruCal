@@ -1,20 +1,22 @@
 ﻿angular.module('membraneFEM').controller('calculationsCtrl', ['$scope', '$rootScope', 'drawingService', '$http', 'inputDataFactory','inputDataCalculator', function ($scope, $rootScope, drawingService, $http,inputDataFactory,inputDataCalculator) {
-    var vertices = inputDataFactory.getVertices();
-    var inputData = inputDataCalculator.getInputData(vertices);
-    var outputData = {};
+    (function init() {
+        var vertices = inputDataFactory.getVertices();
+        var inputData = inputDataCalculator.getInputData(vertices);
+        var outputData = {};
 
-    $scope.forces = true;
-    $scope.supports = true;
-    $scope.text = true;
-    $scope.displacement = true;
-    $scope.smoothing = true;
-    $scope.sxx = true;
-    $scope.syy = false;
-    $scope.txy = false;
+        $scope.forces = true;
+        $scope.supports = true;
+        $scope.text = true;
+        $scope.displacement = true;
+        $scope.smoothing = true;
+        $scope.sxx = true;
+        $scope.syy = false;
+        $scope.txy = false;
 
+        setDirty();
+    })();
 
-    $scope.dirty = true;
-    $scope.message = "Results are NOT up to date."
+    
 
     $scope.calculate = function () {
         $scope.message = "Processing..."
@@ -101,14 +103,22 @@
 
     $scope.$on('propertiesMsg', function (event, arg) {
         inputData.Properties = arg;
+        setDirty();
     });
     $scope.$on('verticesMsg', function (event, arg) {
         inputData.Vertices = arg;
+        setDirty();
     });
     $scope.$on('edgesMsg', function (event, arg) {
         inputData.Edges = arg;
+        setDirty();
     });
 
+
+    function setDirty() {
+        $scope.dirty = true;
+        $scope.message = "Results are NOT up to date."
+    }
 
     function updateDrawing() {
             drawingService.setOutput(outputData);
