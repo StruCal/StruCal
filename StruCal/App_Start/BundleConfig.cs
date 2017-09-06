@@ -95,6 +95,9 @@ namespace StruCal
             bundles.Add(new StyleBundle("~/Content/Membrane").Include(
                 "~/Content/Membrane.css"));
 
+            bundles.Add(new StyleBundle("~/Content/PanelTabs").Include(
+                "~/Content/PanelTabs.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/Membrane").Include(
                 "~/Scripts/Membrane/lib/three.js",
                 "~/Scripts/Membrane/lib/OrbitControls.js",
@@ -114,7 +117,15 @@ namespace StruCal
                 "~/Scripts/Membrane/src/supportCreator.js",
                 "~/Scripts/Membrane/src/textCreator.js",
                 "~/Scripts/Membrane/utils/Number.js",
-                "~/Scripts/Membrane/index.js"
+                "~/Scripts/Membrane/index.js",
+                "~/Scripts/Membrane/Services/inputDataCalculator.js",
+                "~/Scripts/Membrane/Services/inputDataFactory.js",
+                "~/Scripts/Membrane/Services/canvasFactory.js",
+                "~/Scripts/Membrane/Services/drawingService.js",
+                "~/Scripts/Membrane/Controllers/calculationsCtrl.js",
+                "~/Scripts/Membrane/Controllers/geometryCtrl.js",
+                "~/Scripts/Membrane/Controllers/propertiesCtrl.js",
+                "~/Scripts/Membrane/Controllers/controlPanelCtrl.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/progress").Include(
