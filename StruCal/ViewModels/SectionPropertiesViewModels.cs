@@ -8,6 +8,7 @@ using Common.Extensions;
 using System.Text;
 using Common.Geometry;
 using StruCal.Validators;
+using System.Globalization;
 
 namespace StruCal.ViewModels
 {
@@ -129,7 +130,7 @@ namespace StruCal.ViewModels
         {
             var result = string.Empty;
 
-            var radious = double.Parse(this.Radious);
+            var radious = double.Parse(this.Radious.ToDot(),CultureInfo.InvariantCulture);
             for (int i = 0; i <= 360; i++)
             {
                 var alfa = (i - 90) * Math.PI / 180;
@@ -169,8 +170,8 @@ namespace StruCal.ViewModels
 
         public string GetXCoordinates()
         {
-            var flangeWidth = double.Parse(this.FlangeWidth);
-            var webThickness = double.Parse(this.WebThickness); 
+            var flangeWidth = double.Parse(this.FlangeWidth.ToDot(),CultureInfo.InvariantCulture);
+            var webThickness = double.Parse(this.WebThickness.ToDot(),CultureInfo.InvariantCulture); 
 
             var x = new List<double>();
             x.Add(0);
@@ -189,8 +190,8 @@ namespace StruCal.ViewModels
 
         public string GetYCoordinates()
         {
-            var height = double.Parse(this.Height);
-            var flangeThickness = double.Parse(this.FlangeThickness);
+            var height = double.Parse(this.Height.ToDot(),CultureInfo.InvariantCulture);
+            var flangeThickness = double.Parse(this.FlangeThickness.ToDot(),CultureInfo.InvariantCulture);
 
             var y = new List<double>();
             y.Add(height);
@@ -247,9 +248,9 @@ namespace StruCal.ViewModels
 
         public string GetXCoordinates()
         {
-            var topFlangeWidth = double.Parse(this.TopFlangeWidth);
-            var webThickness = double.Parse(this.WebThickness);
-            var bottomFlangeWidth = double.Parse(this.BottomFlangeWidth);
+            var topFlangeWidth = double.Parse(this.TopFlangeWidth.ToDot(),CultureInfo.InvariantCulture);
+            var webThickness = double.Parse(this.WebThickness.ToDot(),CultureInfo.InvariantCulture);
+            var bottomFlangeWidth = double.Parse(this.BottomFlangeWidth.ToDot(),CultureInfo.InvariantCulture);
             
             var x = new List<double>();
             x.Add(-topFlangeWidth/2);//upper left corner
@@ -272,9 +273,9 @@ namespace StruCal.ViewModels
 
         public string GetYCoordinates()
         {
-            var height = double.Parse(this.Height);
-            var bottomFlangeThickness = double.Parse(this.BottomFlangeThickness);
-            var topFlangeThickness = double.Parse(this.TopFlangeThickness);
+            var height = double.Parse(this.Height.ToDot(),CultureInfo.InvariantCulture);
+            var bottomFlangeThickness = double.Parse(this.BottomFlangeThickness.ToDot(),CultureInfo.InvariantCulture);
+            var topFlangeThickness = double.Parse(this.TopFlangeThickness.ToDot(),CultureInfo.InvariantCulture);
 
             var y = new List<double>();
             y.Add(height);
@@ -373,7 +374,7 @@ namespace StruCal.ViewModels
                 var sectionResult = new SectionPropertyViewData
                 {
                     Name = item.Property.ToString(),
-                    Value = item.Value.ToString("F"),
+                    Value = item.Value.ToString("F").ToDot(),
                     Description = sectionPropertyDescriptions[property]
                 };
 

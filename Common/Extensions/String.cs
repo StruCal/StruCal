@@ -12,5 +12,10 @@ namespace Common.Extensions
         {
             return initialValue.Round().ToString("F");
         }
+
+        public static string ToDot(this string value)
+        {
+            return value.Replace(',', '.');
+        }
     }
 }
