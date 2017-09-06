@@ -363,8 +363,8 @@ namespace Calculators.SectionProperties
 
             for (int i = 0; i < x.Length; i++)
             {
-                var xTemp = double.Parse(x[i].Trim(), CultureInfo.InvariantCulture);
-                var yTemp = double.Parse(y[i].Trim(), CultureInfo.InvariantCulture);
+                var xTemp = double.Parse(x[i].Trim());
+                var yTemp = double.Parse(y[i].Trim());
 
                 var point = new PointD(xTemp, yTemp);
 
