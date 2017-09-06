@@ -196,7 +196,6 @@
     <Content Include="Scripts\FEA\FEAApp.js" />
     <Content Include="Scripts\FEA\FEASolver.js" />
     <Content Include="Scripts\layoutScript.js" />
-    <Content Include="Scripts\Membrane\Controllers\controlPanelCtrl.js" />
     <Content Include="Scripts\Membrane\Controllers\geometryCtrl.js" />
     <Content Include="Scripts\Membrane\Controllers\propertiesCtrl.js" />
     <Content Include="Scripts\Membrane\Controllers\calculationsCtrl.js" />
@@ -263,7 +262,6 @@
     <Content Include="Views\Home\Cookie.cshtml" />
     <Content Include="Views\FEA\Index.cshtml" />
     <Content Include="Views\Membrane\Index.cshtml" />
-    <Content Include="Views\Membrane\_controlPanel.cshtml" />
     <Content Include="Views\Membrane\_membraneGeometry.cshtml" />
     <Content Include="Views\Membrane\_membraneProperties.cshtml" />
     <Content Include="Views\Membrane\_membraneCalculations.cshtml" />
