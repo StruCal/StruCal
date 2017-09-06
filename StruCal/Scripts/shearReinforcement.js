@@ -46,7 +46,7 @@ $(document).ready(function () {
         var count = localStorage.getItem(inputName + "count");
         count = count == null ? 1 : count;
 
-        area = Math.round(count * Math.PI * diameter * diameter / 4 * 100) / 100;
+        var area = Math.round(count * Math.PI * diameter * diameter / 4 * 100) / 100;
 
 
         $('.popover #areaValue').text(area);
@@ -77,7 +77,7 @@ $(document).ready(function () {
     })
     .on('click', '#applyReinforcement', function () { //apply button on popover
         var $context = $(this).data('context'); //button which triggered the popover
-        //var area = $('.popover #areaValue').text();
+        var area = $('.popover #areaValue').text();
         var diameter = $('.popover #diameterInput').val();
         var count = $('.popover #countInput').val();
 
