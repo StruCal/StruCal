@@ -187,6 +187,7 @@
     <Content Include="img\ConcretePropertiesImg.svg">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="img\MembraneImg.svg" />
     <Content Include="img\RCBeamImg.svg">
       <SubType>Designer</SubType>
     </Content>

@@ -25,7 +25,7 @@ function drawingCreator(canvas) {
     var output = new outputCreator(this.scene, transformationFunction, result, color);
     var support = new supportCreator(this.scene, transformationFunction, scaleCalc);
     var pointLoad = new pointLoadCreator(this.scene, transformationFunction, scaleCalc);
-    var input = new inputCreator(this.scene);
+    var input = new inputCreator(this.scene,scaleCalc);
 
     var directionalLight1 = new THREE.DirectionalLight(0xffffff, 1);
     this.scene.add(directionalLight1);

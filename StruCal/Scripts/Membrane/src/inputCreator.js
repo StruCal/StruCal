@@ -1,9 +1,10 @@
-function inputCreator(scene) {
+function inputCreator(scene,scaleCalc) {
 
     var material = new THREE.MeshBasicMaterial({ color: 0x3276B1 });
+    var pointMaterial = new THREE.MeshPhongMaterial({ color: 0x3276B1 });
 
-    var meshGeometry= new THREE.Geometry();
     var mesh;
+    var points = [];
     this.membraneInput;
 
     this.setMembraneInput = function(membraneInputData) {
@@ -14,15 +15,22 @@ function inputCreator(scene) {
     this.updateInput = function() {
 
         createGeometry.call(this);
+        createPoints.call(this);
 
-        mesh = new THREE.Mesh(meshGeometry, material);
         scene.add(mesh);
+        points.forEach(function (point) {
+            scene.add(point);
+        });
         return this;
     }
 
     this.remove = function () {
         scene.remove(mesh);
+        points.forEach(function (point) {
+            scene.remove(point);
+        });
     }
+
 
     function createGeometry() {
         var nodes = this.membraneInput.Vertices;
@@ -46,5 +54,22 @@ function inputCreator(scene) {
         };
 
         meshGeometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+        mesh = new THREE.Mesh(meshGeometry, material);
+    }
+
+    function createPoints() {
+        points = [];
+        var pointScale = scaleCalc.getInputPointScale();
+        var nodes = this.membraneInput.Vertices;
+        for (var i = 0; i < nodes.length; i++) {
+            var node = nodes[i];
+            var geometry = new THREE.SphereGeometry(1);
+
+            geometry.scale(pointScale, pointScale, pointScale);
+            var point = new THREE.Mesh(geometry, pointMaterial);
+            point.translateX(node.X);
+            point.translateY(node.Y);
+            points.push(point);
+        }
     }
 }

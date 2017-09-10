@@ -54,6 +54,20 @@ function scaleCalculator(width, height) {
         return scale;
     }
 
+    this.getCameraZ = function () {
+        var factor = 2;
+
+        var sectionWidth = maxX - minX;
+        var sectionHeight = maxY - minY;
+        var positionZ = Math.max(sectionWidth, sectionHeight);
+        return positionZ * factor;
+    }
+
+    this.getInputPointScale = function () {
+        var factor = 0.01;
+        return maxDimension * factor;
+    }
+
     function calculateExtremes() {
         var xs = membraneInput.Vertices.map(function(v) { return v.X; });
         var ys = membraneInput.Vertices.map(function(v) { return v.Y; });
@@ -77,12 +91,5 @@ function scaleCalculator(width, height) {
         maxLoad = Math.max.apply(Math, loads);
     }
 
-    this.getCameraZ = function () {
-        var factor = 2;
-
-        var sectionWidth = maxX - minX;
-        var sectionHeight = maxY - minY;
-        var positionZ = Math.max(sectionWidth, sectionHeight);
-        return positionZ * factor;
-    }
+    
 }
