@@ -98,11 +98,15 @@ namespace StruCal
             bundles.Add(new StyleBundle("~/Content/PanelTabs").Include(
                 "~/Content/PanelTabs.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/Membrane").Include(
+            bundles.Add(new ScriptBundle("~/bundles/ThreeJS").Include(
                 "~/Scripts/Membrane/lib/three.js",
                 "~/Scripts/Membrane/lib/OrbitControls.js",
                 "~/Scripts/Membrane/lib/rainbowvis.js",
-                "~/Scripts/Membrane/lib/TrackballControls.js",
+                "~/Scripts/Membrane/lib/TrackballControls.js"
+                ));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/Membrane").Include(
                 "~/Scripts/Membrane/src/drawingUtils/nodeTransformation.js",
                 "~/Scripts/Membrane/src/drawingUtils/pointLoadProvider.js",
                 "~/Scripts/Membrane/src/drawingUtils/scaleCalculator.js",
