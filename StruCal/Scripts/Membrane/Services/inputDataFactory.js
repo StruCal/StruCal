@@ -5,7 +5,7 @@
         SupportX: false,
         SupportY: false,
         LoadX: -2000,
-        LoadY: 1000,
+        LoadY: -1000,
     },
     {
         X: 500,

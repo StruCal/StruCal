@@ -35,7 +35,7 @@
             SupportX: true,
             SupportY: false,
             LoadX: 1000,
-            LoadY: 500,
+            LoadY: -500,
         }
         $scope.vertices.push(newVertex);
         $scope.verticesInput.push(angular.copy(newVertex));
