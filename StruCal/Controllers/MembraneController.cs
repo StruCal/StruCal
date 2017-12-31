@@ -1,5 +1,5 @@
-﻿using FEM2D.Structures;
-using FEMCommon.DTO;
+﻿using Common.DTO;
+using FEM2D.Structures;
 using Output.OutputCreator;
 using System;
 using System.Collections.Generic;
@@ -26,8 +26,9 @@ namespace StruCal.Controllers
         [System.Web.Http.HttpPost]
         public IHttpActionResult RcCalculations(MembraneInputData membraneData)
         {
-            var membrane = new Membrane();
-            membrane.Solve(membraneData);
+            var membrane = new Structure();
+            membrane.AddMembraneGeometry(membraneData);
+            membrane.Solve();
 
             var result = membrane.Results;
 

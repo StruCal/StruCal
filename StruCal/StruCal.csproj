@@ -50,6 +50,28 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CuttingEdge.Conditions, Version=1.2.0.11174, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\CuttingEdge.Conditions.1.2.0.0\lib\NET35\CuttingEdge.Conditions.dll</HintPath>
+    </Reference>
+    <Reference Include="FEM2D, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\FEM2D.dll</HintPath>
+    </Reference>
+    <Reference Include="FEMCommon, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\FEMCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="FEMOutput, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\FEMOutput.dll</HintPath>
+    </Reference>
+    <Reference Include="FEMTriangulation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\FEMTriangulation.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=3.20.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.3.20.0\lib\net40\MathNet.Numerics.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
     </Reference>
@@ -148,6 +170,10 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Triangle, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\Triangle.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
@@ -385,18 +411,6 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{c394e565-ed2a-434b-95f5-7b2b924eb9ac}</Project>
       <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FEM Membrane\Common\FEM2DCommon.csproj">
-      <Project>{6fe8c918-f00a-4e16-89aa-a2ae2eaad556}</Project>
-      <Name>FEM2DCommon</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FEM Membrane\FEM2D\FEM2D.csproj">
-      <Project>{2743b6ed-2f44-4e77-b4fe-0d68d3c58280}</Project>
-      <Name>FEM2D</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FEM Membrane\Output\FEM2DOutput.csproj">
-      <Project>{599fbf44-d588-4a46-a73f-b8fca5373707}</Project>
-      <Name>FEM2DOutput</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

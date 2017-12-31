@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StruCal", "StruCal\StruCal.csproj", "{124CE20A-03FC-4FAE-ADA7-B77E8BC6DAD0}"
 EndProject
@@ -12,16 +12,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{C394E565-ED2A-434B-95F5-7B2B924EB9AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorsTests", "CalculatorsTests\CalculatorsTests.csproj", "{89DA60B4-E244-458F-B6FF-CBBA57DB8584}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FEM Membrane", "FEM Membrane", "{523E6A2B-8CA3-451B-B811-01544E6F8286}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FEM2DCommon", "FEM Membrane\Common\FEM2DCommon.csproj", "{6FE8C918-F00A-4E16-89AA-A2AE2EAAD556}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FEM2D", "FEM Membrane\FEM2D\FEM2D.csproj", "{2743B6ED-2F44-4E77-B4FE-0D68D3C58280}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FEM2DOutput", "FEM Membrane\Output\FEM2DOutput.csproj", "{599FBF44-D588-4A46-A73F-B8FCA5373707}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FEM2DTriangulation", "FEM Membrane\Triangulation\FEM2DTriangulation.csproj", "{19986DDB-F154-4C40-8F9C-09EF37D6FE9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,30 +39,11 @@ Global
 		{89DA60B4-E244-458F-B6FF-CBBA57DB8584}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89DA60B4-E244-458F-B6FF-CBBA57DB8584}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89DA60B4-E244-458F-B6FF-CBBA57DB8584}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6FE8C918-F00A-4E16-89AA-A2AE2EAAD556}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6FE8C918-F00A-4E16-89AA-A2AE2EAAD556}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6FE8C918-F00A-4E16-89AA-A2AE2EAAD556}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6FE8C918-F00A-4E16-89AA-A2AE2EAAD556}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2743B6ED-2F44-4E77-B4FE-0D68D3C58280}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2743B6ED-2F44-4E77-B4FE-0D68D3C58280}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2743B6ED-2F44-4E77-B4FE-0D68D3C58280}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2743B6ED-2F44-4E77-B4FE-0D68D3C58280}.Release|Any CPU.Build.0 = Release|Any CPU
-		{599FBF44-D588-4A46-A73F-B8FCA5373707}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{599FBF44-D588-4A46-A73F-B8FCA5373707}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{599FBF44-D588-4A46-A73F-B8FCA5373707}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{599FBF44-D588-4A46-A73F-B8FCA5373707}.Release|Any CPU.Build.0 = Release|Any CPU
-		{19986DDB-F154-4C40-8F9C-09EF37D6FE9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{19986DDB-F154-4C40-8F9C-09EF37D6FE9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{19986DDB-F154-4C40-8F9C-09EF37D6FE9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{19986DDB-F154-4C40-8F9C-09EF37D6FE9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{6FE8C918-F00A-4E16-89AA-A2AE2EAAD556} = {523E6A2B-8CA3-451B-B811-01544E6F8286}
-		{2743B6ED-2F44-4E77-B4FE-0D68D3C58280} = {523E6A2B-8CA3-451B-B811-01544E6F8286}
-		{599FBF44-D588-4A46-A73F-B8FCA5373707} = {523E6A2B-8CA3-451B-B811-01544E6F8286}
-		{19986DDB-F154-4C40-8F9C-09EF37D6FE9E} = {523E6A2B-8CA3-451B-B811-01544E6F8286}
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8B9942B5-8D11-4123-949E-80150FEEBB58}
 	EndGlobalSection
 EndGlobal
