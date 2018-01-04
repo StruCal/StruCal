@@ -7,11 +7,11 @@ export class CanvasHelper{
 private _width :number;
 private _height:number;
 
-    constructor(canvas : ElementRef){
-        canvas.nativeElement.setAttribute("style", "height:" + (canvas.nativeElement.offsetWidth / widthHeightRatio).toFixed(0) + "px");
+    constructor(canvas : HTMLElement){
+        canvas.setAttribute("style", "height:" + (canvas.offsetWidth / widthHeightRatio).toFixed(0) + "px");
 
-        this._width = canvas.nativeElement.clientWidth;
-        this._height = canvas.nativeElement.clientHeight;
+        this._width = canvas.clientWidth;
+        this._height = canvas.clientHeight;
     }
 
     get widthHeightRatio() : number{
