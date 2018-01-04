@@ -1,7 +1,7 @@
 import { CanvasHelper } from "../canvasHelper/canvasHelper";
 import * as THREE from 'three';
 const OrbitControls = require('three-orbit-controls')(THREE);
-
+const TrackballControls = require('three-trackballcontrols');
 const canvasId = "canvas3d";
 
 export class Model3dCreator {
@@ -38,7 +38,8 @@ export class Model3dCreator {
 
         this.camera = new THREE.PerspectiveCamera(75, this.canvasHelper.widthHeightRatio, 0.1, 1000);
         this.camera.position.z = 5;
-        const controls = new OrbitControls(this.camera, renderer.domElement);
+        //const controls = new OrbitControls(this.camera, renderer.domElement);
+        const controls = new TrackballControls(this.camera);
 
 
         let counter = 0;
