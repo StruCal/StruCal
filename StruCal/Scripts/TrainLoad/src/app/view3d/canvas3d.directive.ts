@@ -2,21 +2,25 @@ import { Directive, ElementRef } from '@angular/core';
 import { CanvasHelper } from '../canvasHelper/canvasHelper'
 
 import * as THREE from 'three';
+import { View3dService } from './view3d.service';
 const OrbitControls = require('three-orbit-controls')(THREE);
 
 @Directive({
   selector: '[canvas3d]'
 })
 export class Canvas3dDirective {
-
+  private view3dService: View3dService;
   private canvasHelper: CanvasHelper;
   private scene: any;
   private camera: any;
-  constructor(canvas: ElementRef) {
+  constructor(canvas: ElementRef, view3dService: View3dService) {
 
+    this.view3dService = view3dService;
     this.canvasHelper = new CanvasHelper(canvas);
 
     this.scene = new THREE.Scene();
+    //this.scene = view3dService.getScene();
+    this.view3dService.ApplyScene(this.scene);
 
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(this.canvasHelper.width, this.canvasHelper.height);
@@ -41,7 +45,7 @@ export class Canvas3dDirective {
 
 
     let counter = 0;
-    const animate = function () {
+    const animate = () => {
 
       requestAnimationFrame(animate);
       if (counter === 4) {
@@ -57,9 +61,5 @@ export class Canvas3dDirective {
     animate();
 
   }
-
-private setAnimation(){
-  
-}
 
 }
