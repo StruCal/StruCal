@@ -36,10 +36,10 @@ export class Model3dCreator {
         var cube = new THREE.Mesh(geometry, material);
         this.scene.add(cube);
 
-        this.camera = new THREE.PerspectiveCamera(75, this.canvasHelper.widthHeightRatio, 0.1, 1000);
+        this.camera = new THREE.PerspectiveCamera(45, this.canvasHelper.widthHeightRatio, 0.1, 1000);
         this.camera.position.z = 5;
-        //const controls = new OrbitControls(this.camera, renderer.domElement);
-        const controls = new TrackballControls(this.camera);
+        const controls = new OrbitControls(this.camera, renderer.domElement);
+        //const controls = new TrackballControls(this.camera);
 
 
         let counter = 0;
