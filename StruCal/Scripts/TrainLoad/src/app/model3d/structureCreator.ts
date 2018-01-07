@@ -20,8 +20,8 @@ export class StructureCreator {
     }
 
     public Draw(structure: Structure) {
-        if (structure === undefined || this.scene === undefined)
-            return;
+        if (structure === undefined || this.scene === undefined) {
+            return; }
         this.structure = structure;
 
         this.drawSection();

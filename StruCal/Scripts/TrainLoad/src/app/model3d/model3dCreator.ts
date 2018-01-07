@@ -17,7 +17,7 @@ export class Model3dCreator {
         this.canvasHelper = new CanvasHelper(canvas);
 
         this.scene = new THREE.Scene();
-        //this.scene.background = new THREE.Color(0xFFFFFF);
+        this.scene.background = new THREE.Color(0xFFFFFF);
 
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize(this.canvasHelper.width, this.canvasHelper.height);
@@ -28,15 +28,12 @@ export class Model3dCreator {
         const controls = new OrbitControls(this.camera, renderer.domElement);
         // const controls = new TrackballControls(this.camera);
 
-        // const directionalLight1 = new THREE.DirectionalLight(0xffffff, 1);
-        // this.scene.add(directionalLight1);
+        const directionalLight1 = new THREE.DirectionalLight(0xffffff, 1);
+        this.scene.add(directionalLight1);
 
-        // const lightHelper = new THREE.DirectionalLightHelper( directionalLight1, 5 );
-        // this.scene.add( lightHelper );
-
-        // const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1);
-        // directionalLight2.position.set(1000, 1000, 1000);
-        // this.scene.add(directionalLight2);
+        const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight2.position.set(1000, 1000, 1000);
+        this.scene.add(directionalLight2);
 
         const light = new THREE.AmbientLight( 0x404040 ); // soft white light
         this.scene.add( light );
