@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { View3dService } from './view3d.service';
-import { Model3dCreator } from '../model3d/model3dCreator';
+import { ThreeJsCreator } from '../model3d/threeJsCreator';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { Model3dCreator } from '../model3d/model3dCreator';
   styleUrls: ['./view3d.component.css']
 })
 export class View3DComponent implements OnInit {
-  private model3dCreator: Model3dCreator;
+  private threeJsCreator: ThreeJsCreator;
   private view3dService: View3dService;
 
   constructor(view3dService: View3dService) {
@@ -17,9 +17,9 @@ export class View3DComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.model3dCreator = new Model3dCreator();
-    this.model3dCreator.Create();
-    this.view3dService.InjectModelCreator(this.model3dCreator);
+    this.threeJsCreator = new ThreeJsCreator();
+    this.threeJsCreator.Create();
+    this.view3dService.InjectModelCreator(this.threeJsCreator);
   }
 
 }

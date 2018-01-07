@@ -4,7 +4,7 @@ const OrbitControls = require('three-orbit-controls')(THREE);
 const TrackballControls = require('three-trackballcontrols');
 const canvasId = 'canvas3d';
 
-export class Model3dCreator {
+export class ThreeJsCreator {
     private canvasHelper: CanvasHelper;
     private scene: any;
     private camera: any;

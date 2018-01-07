@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { StructureCreator } from '../model3d/structureCreator';
 import * as THREE from 'three';
 import { mockedStructure } from '../mocks/mockedStructure';
-import { Model3dCreator } from '../model3d/model3dCreator';
+import { ThreeJsCreator } from '../model3d/threeJsCreator';
 import { ResultInterpolation } from '../resultData/resultInterpolation';
 import { mockedResultData } from '../mocks/mockedResultData';
 
@@ -11,7 +11,7 @@ import { mockedResultData } from '../mocks/mockedResultData';
 @Injectable()
 export class View3dService {
 
-  private model3dCreator: Model3dCreator;
+  private threeJsCreator: ThreeJsCreator;
   private structureCreator: StructureCreator;
   private displacementCalculator: ResultInterpolation;
   currentTime = 0;
@@ -21,10 +21,10 @@ export class View3dService {
     this.displacementCalculator.setTime(0);
   }
 
-  public InjectModelCreator(model3dCreator: Model3dCreator): void {
-    this.model3dCreator = model3dCreator;
-    this.model3dCreator.TickAnimation = () => this.tick();
-    this.structureCreator = new StructureCreator(this.model3dCreator.GetScene());
+  public InjectModelCreator(threeJsCreator: ThreeJsCreator): void {
+    this.threeJsCreator = threeJsCreator;
+    this.threeJsCreator.TickAnimation = () => this.tick();
+    this.structureCreator = new StructureCreator(this.threeJsCreator.GetScene());
     this.structureCreator.Draw(mockedStructure);
   }
 
