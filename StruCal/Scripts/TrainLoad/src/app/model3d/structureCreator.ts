@@ -1,10 +1,11 @@
-import { Structure } from "../structure/structure";
+import { Structure } from '../structure/structure';
 import * as THREE from 'three';
-import { material } from "./material";
+import { material } from './material';
+import { ResultInterpolation } from '../resultData/resultInterpolation';
 
 const extrudeSettings = {
-    steps: 2,
-    amount: 16,
+    steps: 20,
+    amount: 40,
     bevelEnabled: false,
     bevelThickness: 1,
     bevelSize: 1,
@@ -12,16 +13,17 @@ const extrudeSettings = {
 };
 
 export class StructureCreator {
-    scene: any;
-    structure: Structure;
-    constructor(scene: any) {
 
+    private scene: any;
+    private structure: Structure;
+    constructor(scene: any) {
         this.scene = scene;
     }
 
     public Draw(structure: Structure) {
         if (structure === undefined || this.scene === undefined) {
-            return; }
+            return;
+        }
         this.structure = structure;
 
         this.drawSection();

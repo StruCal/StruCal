@@ -8,8 +8,10 @@ export class Model3dCreator {
     private canvasHelper: CanvasHelper;
     private scene: any;
     private camera: any;
-    constructor() {
 
+    public TickAnimation = () => { };
+
+    constructor() {
     }
 
     public Create(): void {
@@ -40,12 +42,12 @@ export class Model3dCreator {
 
         const sphereAxis = new THREE.AxisHelper(20);
         this.scene.add(sphereAxis);
-
         let counter = 0;
         const animate = () => {
 
             requestAnimationFrame(animate);
-            if (counter === 4) {
+            if (counter === 10) {
+                this.TickAnimation();
                 counter = 0;
             }
             counter++;
@@ -59,4 +61,5 @@ export class Model3dCreator {
     public GetScene(): any {
         return this.scene;
     }
+
 }
