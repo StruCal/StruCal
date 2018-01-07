@@ -1,6 +1,6 @@
-import { Structure } from "../structure/structure";
-import { Point } from "../common/point";
-import { Perimeter } from "../structure/perimeter";
+import { Structure } from '../structure/structure';
+import { Point } from '../common/point';
+import { Perimeter } from '../structure/perimeter';
 
 
 
@@ -9,7 +9,7 @@ export const mockedStructure: Structure = {
         Perimeters: [
             {
                 Coordinates: [
-                    //bottom flange
+                    // bottom flange
                     {
                         X: -0.5, Y: 0,
                     },
@@ -26,7 +26,7 @@ export const mockedStructure: Structure = {
             },
             {
                 Coordinates: [
-                    //web
+                    // web
                     {
                         X: -0.05, Y: 0.1,
                     },
@@ -43,7 +43,7 @@ export const mockedStructure: Structure = {
             },
             {
                 Coordinates: [
-                    //top flange
+                    // top flange
                     {
                         X: -0.5, Y: 0.9,
                     },
@@ -60,7 +60,7 @@ export const mockedStructure: Structure = {
             },
         ],
     },
-    Spans: [10, 10],
+    Spans: [20, 20],
     Additionals: [
         {
             Perimeter: {
@@ -75,3 +75,5 @@ export const mockedStructure: Structure = {
         }
     ]
 }
+
+
