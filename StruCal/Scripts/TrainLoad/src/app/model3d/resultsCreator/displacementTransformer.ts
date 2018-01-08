@@ -13,11 +13,12 @@ export class DisplacementTransformer {
         const meshes = this.scene.children.filter(e => e.type === 'Mesh');
 
         meshes.forEach(mesh => {
+            mesh.geometry.verticesNeedUpdate = true;
             const vertices = mesh.geometry.vertices;
             vertices.forEach(vertex => {
                 const position = vertex.z;
                 const displacement = this.resultInterpolation.getDisplacement(position);
-                vertex.y += position;
+                vertex.y += displacement;
             });
 
         });

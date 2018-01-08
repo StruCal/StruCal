@@ -25,6 +25,6 @@ export class ResultInterpolation {
 
     public getDisplacement(position: number): number {
         const displacement = linear([position], this.positions, this.displacements);
-        return displacement[0] * 10000;
+        return displacement[0] * 100;
     }
 }

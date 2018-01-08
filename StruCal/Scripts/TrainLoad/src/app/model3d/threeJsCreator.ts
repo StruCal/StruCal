@@ -26,7 +26,8 @@ export class ThreeJsCreator {
         canvas.appendChild(renderer.domElement);
 
         this.camera = new THREE.PerspectiveCamera(45, this.canvasHelper.widthHeightRatio, 0.1, 1000);
-        this.camera.position.z = 10;
+        this.camera.position.z = 60;
+        this.camera.position.x = 30;
         const controls = new OrbitControls(this.camera, renderer.domElement);
         // const controls = new TrackballControls(this.camera);
 
@@ -46,7 +47,7 @@ export class ThreeJsCreator {
         const animate = () => {
 
             requestAnimationFrame(animate);
-            if (counter === 10) {
+            if (counter === 15) {
                 this.TickAnimation();
                 counter = 0;
             }
