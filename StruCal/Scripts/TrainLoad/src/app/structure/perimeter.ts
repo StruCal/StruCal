@@ -1,7 +1,7 @@
-import { Point } from "../common/point";
+import { Point } from '../common/point';
 
 
 
-export class Perimeter{
-    public Coordinates : Array<Point>;
+export class Perimeter {
+    public Coordinates: Array<Point>;
 }

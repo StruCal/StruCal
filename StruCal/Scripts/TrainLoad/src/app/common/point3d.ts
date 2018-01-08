@@ -1,6 +1,6 @@
-import { Point } from "./point";
+import { Point } from './point';
 
 
-export class Point3D extends Point{
-    public Z:number;
+export class Point3D extends Point {
+    public Z: number;
 }

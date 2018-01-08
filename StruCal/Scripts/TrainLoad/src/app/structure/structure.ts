@@ -1,9 +1,9 @@
-import { Section } from "./section";
-import { Additional } from "./additional";
+import { Section } from './section';
+import { Additional } from './additional';
+import { Point3D } from '../common/point3d';
+import { Bar } from './bar';
 
 
-export interface Structure{
-     Section : Section;
-     Spans: Array<number>;
-     Additionals? : Array<Additional>
+export class Structure {
+     Bars: Array<Bar>;
 }
