@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { StructureCreator } from '../model3d/structureCreator';
 import * as THREE from 'three';
+
 import { mockedStructure } from '../mocks/mockedStructure';
 import { ThreeJsCreator } from '../model3d/threeJsCreator';
 import { ResultInterpolation } from '../resultData/resultInterpolation';
 import { mockedResultData } from '../mocks/mockedResultData';
+import { StructureCreator } from '../model3d/structureCreator/structureCreator';
 
 
 
