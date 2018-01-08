@@ -3,9 +3,9 @@ import * as THREE from 'three';
 
 import { mockedStructure } from '../mocks/mockedStructure';
 import { ThreeJsCreator } from '../model3d/threeJsCreator';
-import { ResultInterpolation } from '../resultData/resultInterpolation';
 import { mockedResultData } from '../mocks/mockedResultData';
 import { StructureCreator } from '../model3d/structureCreator/structureCreator';
+import { ResultInterpolation } from '../model3d/resultsCreator/resultInterpolation';
 
 
 
