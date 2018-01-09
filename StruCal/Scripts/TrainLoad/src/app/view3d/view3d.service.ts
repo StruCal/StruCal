@@ -8,6 +8,7 @@ import { StructureCreator } from '../model3d/structureCreator/structureCreator';
 import { ResultInterpolation } from '../model3d/resultsCreator/resultInterpolation';
 import { DisplacementTransformer } from '../model3d/resultsCreator/displacementTransformer';
 import { StressTransformer } from '../model3d/resultsCreator/stressTransformer';
+import { StructureData } from '../model3d/structureCreator/structureData';
 
 
 
@@ -16,6 +17,7 @@ export class View3dService {
 
   private threeJsCreator: ThreeJsCreator;
   private structureCreator: StructureCreator;
+  private structureData: StructureData;
   private resultInterpolation: ResultInterpolation;
   private displacementTransformer: DisplacementTransformer;
   private stressTransformer: StressTransformer;
@@ -31,9 +33,10 @@ export class View3dService {
     this.threeJsCreator = threeJsCreator;
     this.threeJsCreator.TickAnimation = () => this.tick();
 
-    this.displacementTransformer = new DisplacementTransformer(this.threeJsCreator.GetScene(), this.resultInterpolation);
+    this.structureData = new StructureData();
+    this.displacementTransformer = new DisplacementTransformer(this.threeJsCreator.GetScene(), this.resultInterpolation, this.structureData);
     this.stressTransformer = new StressTransformer(this.threeJsCreator.GetScene(), this.resultInterpolation);
-    this.structureCreator = new StructureCreator(this.threeJsCreator.GetScene());
+    this.structureCreator = new StructureCreator(this.threeJsCreator.GetScene(), this.structureData);
     this.structureCreator.Draw(mockedStructure);
   }
 

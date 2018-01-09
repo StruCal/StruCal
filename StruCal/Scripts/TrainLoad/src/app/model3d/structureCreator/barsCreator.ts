@@ -4,10 +4,13 @@ import { Bar } from '../../structure/bar';
 import { getExtrudeSettings } from './extrudeSettings';
 import { material, color } from '../material';
 import { Section } from '../../structure/section';
+import { StructureData } from './structureData';
 
 export class BarsCreator extends BaseCreator {
-    constructor(scene: any) {
+    private structureData: StructureData;
+    constructor(scene: any, structureData: StructureData) {
         super(scene);
+        this.structureData = structureData;
     }
 
     public DrawBars(bars: Array<Bar>): void {
@@ -39,7 +42,9 @@ export class BarsCreator extends BaseCreator {
             });
 
             geometry.translate(bar.StartPoint.X, bar.StartPoint.Y, bar.StartPoint.Z);
+
             const mesh = new THREE.Mesh(geometry, material);
+            this.structureData.Add(geometry, mesh.uuid);
             this.scene.add(mesh);
         });
     }
