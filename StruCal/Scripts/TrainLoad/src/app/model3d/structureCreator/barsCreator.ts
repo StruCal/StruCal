@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { BaseCreator } from './baseCreator';
 import { Bar } from '../../structure/bar';
 import { getExtrudeSettings } from './extrudeSettings';
-import { material } from '../material';
+import { material, color } from '../material';
 import { Section } from '../../structure/section';
 
 export class BarsCreator extends BaseCreator {
@@ -30,7 +30,14 @@ export class BarsCreator extends BaseCreator {
                 shape.lineTo(point.X, point.Y);
             });
 
-            const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings );
+            const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+
+            geometry.faces.forEach(face => {
+                for (let i = 0; i < 3; i++) {
+                    face.vertexColors[i] = new THREE.Color(color);
+                }
+            });
+
             geometry.translate(bar.StartPoint.X, bar.StartPoint.Y, bar.StartPoint.Z);
             const mesh = new THREE.Mesh(geometry, material);
             this.scene.add(mesh);

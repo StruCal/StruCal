@@ -7,6 +7,7 @@ import { mockedResultData } from '../mocks/mockedResultData';
 import { StructureCreator } from '../model3d/structureCreator/structureCreator';
 import { ResultInterpolation } from '../model3d/resultsCreator/resultInterpolation';
 import { DisplacementTransformer } from '../model3d/resultsCreator/displacementTransformer';
+import { StressTransformer } from '../model3d/resultsCreator/stressTransformer';
 
 
 
@@ -17,10 +18,11 @@ export class View3dService {
   private structureCreator: StructureCreator;
   private resultInterpolation: ResultInterpolation;
   private displacementTransformer: DisplacementTransformer;
+  private stressTransformer: StressTransformer;
   currentTime = 0;
 
   constructor() {
-    this.resultInterpolation = new ResultInterpolation(mockedResultData);
+    this.resultInterpolation = new ResultInterpolation(mockedResultData, 10);
     this.resultInterpolation.setTime(0);
 
   }
@@ -30,7 +32,7 @@ export class View3dService {
     this.threeJsCreator.TickAnimation = () => this.tick();
 
     this.displacementTransformer = new DisplacementTransformer(this.threeJsCreator.GetScene(), this.resultInterpolation);
-
+    this.stressTransformer = new StressTransformer(this.threeJsCreator.GetScene(), this.resultInterpolation);
     this.structureCreator = new StructureCreator(this.threeJsCreator.GetScene());
     this.structureCreator.Draw(mockedStructure);
   }
@@ -41,6 +43,7 @@ export class View3dService {
     this.currentTime++;
     this.resultInterpolation.setTime(this.currentTime);
     this.displacementTransformer.ApplyDisplacement();
+    this.stressTransformer.ApplyStress();
     if (this.currentTime > 300) {
       this.currentTime = 0;
     }

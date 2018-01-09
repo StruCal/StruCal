@@ -6,8 +6,8 @@ import { Additional } from '../structure/additional';
 import { Bar } from '../structure/bar';
 
 const Guid = require('guid');
-
-const section: Section = {
+const section = new Section();
+const sectionProperties = {
     Perimeters: [
         {
             Coordinates: [
@@ -62,6 +62,7 @@ const section: Section = {
         },
     ],
 };
+Object.assign(section, sectionProperties);
 
 const additionals: Array<Additional> = [
     {

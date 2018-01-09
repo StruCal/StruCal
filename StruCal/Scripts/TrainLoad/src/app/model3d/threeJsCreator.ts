@@ -47,7 +47,7 @@ export class ThreeJsCreator {
         const animate = () => {
 
             requestAnimationFrame(animate);
-            if (counter === 15) {
+            if (counter === 5) {
                 this.TickAnimation();
                 counter = 0;
             }
