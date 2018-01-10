@@ -27,6 +27,7 @@
     "guid": "0.0.12",
     "rainbowvis.js": "^1.0.1",
     "rxjs": "^5.5.2",
+    "stats-js": "^1.0.0-alpha1",
     "three": "^0.89.0",
     "three-orbit-controls": "^82.1.0",
     "three-trackballcontrols": "0.0.7",

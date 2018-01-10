@@ -95,6 +95,94 @@ const sectionProperties = {
                 },
             ]
         },
+
+        // Section 2
+        {
+            Coordinates: [
+                // bottom flange
+                {
+                    X: 2, Y: 0,
+                },
+                {
+                    X: 2, Y: 0.1,
+                },
+                {
+                    X: 3, Y: 0.1,
+                },
+                {
+                    X: 3, Y: 0,
+                },
+            ]
+        },
+        // web
+        {
+            Coordinates: [
+
+                {
+                    X: 2.45, Y: 0.1,
+                },
+                {
+                    X: 2.45, Y: 1,
+                },
+                {
+                    X: 2.55, Y: 1,
+                },
+                {
+                    X: 2.55, Y: 0.1,
+                },
+            ]
+        },
+        {
+            Coordinates: [
+
+                {
+                    X: 2.45, Y: 1,
+                },
+                {
+                    X: 2.45, Y: 2,
+                },
+                {
+                    X: 2.55, Y: 2,
+                },
+                {
+                    X: 2.55, Y: 1,
+                },
+            ]
+        },
+        {
+            Coordinates: [
+
+                {
+                    X: 2.45, Y: 2,
+                },
+                {
+                    X: 2.45, Y: 3.9,
+                },
+                {
+                    X: 2.55, Y: 3.9,
+                },
+                {
+                    X: 2.55, Y: 2,
+                },
+            ]
+        },
+        {
+            Coordinates: [
+                // top flange
+                {
+                    X: 2, Y: 3.9,
+                },
+                {
+                    X: 2, Y: 4,
+                },
+                {
+                    X: 3, Y: 4,
+                },
+                {
+                    X: 3, Y: 3.9,
+                },
+            ]
+        },
     ],
 };
 Object.assign(section, sectionProperties);
