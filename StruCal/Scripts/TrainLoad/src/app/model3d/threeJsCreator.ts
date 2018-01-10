@@ -2,6 +2,7 @@ import { CanvasHelper } from '../canvasHelper/canvasHelper';
 import * as THREE from 'three';
 const OrbitControls = require('three-orbit-controls')(THREE);
 const TrackballControls = require('three-trackballcontrols');
+const Stats = require('stats-js');
 const canvasId = 'canvas3d';
 
 export class ThreeJsCreator {
@@ -43,6 +44,15 @@ export class ThreeJsCreator {
 
         const sphereAxis = new THREE.AxisHelper(20);
         this.scene.add(sphereAxis);
+
+
+        const panelBody = document.getElementById('panelBody');
+        const stats = new Stats();
+        stats.domElement.style.position = 'absolute';
+        stats.domElement.style.left = '0px';
+        stats.domElement.style.top = '0px';
+        panelBody.appendChild(stats.domElement);
+
         let counter = 0;
         const animate = () => {
 
@@ -54,6 +64,7 @@ export class ThreeJsCreator {
             counter++;
             controls.update();
             renderer.render(this.scene, this.camera);
+            stats.update();
         };
 
         animate();

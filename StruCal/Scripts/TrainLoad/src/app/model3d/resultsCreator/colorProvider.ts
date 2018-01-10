@@ -1,6 +1,6 @@
 const Rainbow = require('rainbowvis.js');
 
-const range = 100;
+const range = 10;
 const minColor = '66ff33'; // '00FF00';
 const middleColor = '66ccff'; // '00FFFF';
 const maxColor = 'FF0000';
