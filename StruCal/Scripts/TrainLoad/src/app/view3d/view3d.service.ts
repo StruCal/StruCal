@@ -24,8 +24,8 @@ export class View3dService {
   currentTime = 0;
 
   constructor() {
-    this.resultInterpolation = new ResultInterpolation(mockedResultData, 10);
-    this.resultInterpolation.setTime(0);
+    this.resultInterpolation = new ResultInterpolation(mockedResultData, 4);
+
 
   }
 
@@ -35,7 +35,7 @@ export class View3dService {
 
     this.structureData = new StructureData();
     this.displacementTransformer = new DisplacementTransformer(this.threeJsCreator.GetScene(), this.resultInterpolation, this.structureData);
-    this.stressTransformer = new StressTransformer(this.threeJsCreator.GetScene(), this.resultInterpolation);
+    this.stressTransformer = new StressTransformer(this.threeJsCreator.GetScene(), this.resultInterpolation, this.structureData);
     this.structureCreator = new StructureCreator(this.threeJsCreator.GetScene(), this.structureData);
     this.structureCreator.Draw(mockedStructure);
   }
@@ -47,7 +47,7 @@ export class View3dService {
     this.resultInterpolation.setTime(this.currentTime);
     this.displacementTransformer.ApplyDisplacement();
     this.stressTransformer.ApplyStress();
-    if (this.currentTime > 300) {
+    if (this.currentTime > 150) {
       this.currentTime = 0;
     }
   }

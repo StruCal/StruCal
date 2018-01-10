@@ -14,6 +14,9 @@ export class ResultInterpolation {
     private topStresses: Array<number>;
     private bottomStresses: Array<number>;
 
+    public maxStress: number;
+    public minStress: number;
+
     constructor(resultData: ResultData, sectionHeight: number) {
         this.resultData = resultData;
         this.sectionHeight = sectionHeight;
@@ -28,6 +31,8 @@ export class ResultInterpolation {
         this.topStresses = currentResult.PositionResults.map(e => e.TopStress);
         this.bottomStresses = currentResult.PositionResults.map(e => e.BottomStress);
 
+        this.maxStress = currentResult.MaxStress;
+        this.minStress = currentResult.MinStress;
     }
 
     public getDisplacement(position: number): number {
@@ -39,6 +44,7 @@ export class ResultInterpolation {
         const topStress = linear([position], this.positions, this.topStresses);
         const bottomStress = linear([position], this.positions, this.bottomStresses);
         const stress = linear([elevation], [0, this.sectionHeight], [...bottomStress, ...topStress]);
+
         return stress[0];
     }
 }

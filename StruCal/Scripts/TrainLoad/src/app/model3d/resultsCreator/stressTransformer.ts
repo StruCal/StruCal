@@ -1,28 +1,35 @@
 import { ResultInterpolation } from './resultInterpolation';
 import * as THREE from 'three';
 import { ColorProvider } from './colorProvider';
+import { StructureData } from '../structureCreator/structureData';
 
 export class StressTransformer {
-    scene: any;
+    private structureData: StructureData;
+    private scene: any;
     private resultInterpolation: ResultInterpolation;
     private colorProvider: ColorProvider;
 
-    constructor(scene: any, resultInterpolation: ResultInterpolation) {
+    constructor(scene: any, resultInterpolation: ResultInterpolation, structureData: StructureData) {
         this.scene = scene;
         this.resultInterpolation = resultInterpolation;
+        this.structureData = structureData;
         this.colorProvider = new ColorProvider(381609, -715532);
     }
 
     public ApplyStress(): void {
+        this.colorProvider = new ColorProvider(this.resultInterpolation.maxStress, this.resultInterpolation.minStress);
         const meshes = this.scene.children.filter(e => e.type === 'Mesh');
         meshes.forEach(mesh => {
             const faces = mesh.geometry.faces;
-            const vertices = mesh.geometry.vertices;
             mesh.geometry.colorsNeedUpdate = true;
-            faces.forEach(face => {
-                const vertex0 = vertices[face.a];
-                const vertex1 = vertices[face.b];
-                const vertex2 = vertices[face.c];
+
+            const baseGeometry = this.structureData.GetGeometry(mesh.uuid);
+            const baseVertices = baseGeometry.vertices;
+
+            faces.forEach((face, index) => {
+                const vertex0 = baseVertices[face.a];
+                const vertex1 = baseVertices[face.b];
+                const vertex2 = baseVertices[face.c];
 
                 const faceVertices = [vertex0, vertex1, vertex2];
 

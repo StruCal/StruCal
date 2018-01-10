@@ -38,7 +38,7 @@ export class ThreeJsCreator {
         directionalLight2.position.set(1000, 1000, 1000);
         this.scene.add(directionalLight2);
 
-        const light = new THREE.AmbientLight( 0x404040 ); // soft white light
+        const light = new THREE.AmbientLight( 0xffffff ); // soft white light
         this.scene.add( light );
 
         const sphereAxis = new THREE.AxisHelper(20);

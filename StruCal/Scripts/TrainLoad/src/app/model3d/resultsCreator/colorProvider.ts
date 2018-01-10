@@ -1,8 +1,8 @@
 const Rainbow = require('rainbowvis.js');
 
 const range = 100;
-const minColor = '00FF00';
-const middleColor = 'FFFF00';
+const minColor = '66ff33'; // '00FF00';
+const middleColor = '66ccff'; // '00FFFF';
 const maxColor = 'FF0000';
 
 export class ColorProvider {
@@ -11,6 +11,7 @@ export class ColorProvider {
     private rainbow: any;
     constructor(maxValue: number, minValue: number) {
         this.rainbow = new Rainbow();
+
         this.rainbow.setSpectrum(minColor, middleColor, maxColor);
         this.rainbow.setNumberRange(0, range);
 
@@ -31,7 +32,7 @@ export class ColorProvider {
             valueToCalculations = value;
         }
 
-        const colorIndex = Math.round((valueToCalculations / valueRange) * range);
+        const colorIndex = Math.round(((valueToCalculations - this.minValue) / valueRange) * range);
         const color = this.rainbow.colourAt(colorIndex);
         return '#' + color;
 

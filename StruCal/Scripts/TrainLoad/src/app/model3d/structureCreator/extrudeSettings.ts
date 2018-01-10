@@ -1,8 +1,8 @@
 
 export const getExtrudeSettings = length => {
     return {
-        steps: 20,
-        amount: 20,
+        steps: 10,
+        amount: length,
         bevelEnabled: false,
     };
 };
