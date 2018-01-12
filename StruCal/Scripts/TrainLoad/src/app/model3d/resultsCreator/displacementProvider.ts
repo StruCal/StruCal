@@ -2,7 +2,7 @@ import { ResultInterpolation } from './resultInterpolation';
 import { StructureData } from '../structureCreator/structureData';
 
 
-export class DisplacementTransformer {
+export class DisplacementProvider {
     private structureData: StructureData;
     private scene: any;
     private resultInterpolation: ResultInterpolation;

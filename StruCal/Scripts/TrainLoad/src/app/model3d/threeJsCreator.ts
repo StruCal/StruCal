@@ -7,7 +7,7 @@ const canvasId = 'canvas3d';
 
 export class ThreeJsCreator {
     private canvasHelper: CanvasHelper;
-    private scene: any;
+    private _scene: any;
     private camera: any;
 
     public TickAnimation = () => { };
@@ -19,8 +19,8 @@ export class ThreeJsCreator {
         const canvas = document.getElementById(canvasId);
         this.canvasHelper = new CanvasHelper(canvas);
 
-        this.scene = new THREE.Scene();
-        this.scene.background = new THREE.Color(0xFFFFFF);
+        this._scene = new THREE.Scene();
+        this._scene.background = new THREE.Color(0xFFFFFF);
 
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize(this.canvasHelper.width, this.canvasHelper.height);
@@ -33,17 +33,17 @@ export class ThreeJsCreator {
         // const controls = new TrackballControls(this.camera);
 
         const directionalLight1 = new THREE.DirectionalLight(0xffffff, 1);
-        this.scene.add(directionalLight1);
+        this._scene.add(directionalLight1);
 
         const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1);
         directionalLight2.position.set(1000, 1000, 1000);
-        this.scene.add(directionalLight2);
+        this._scene.add(directionalLight2);
 
         const light = new THREE.AmbientLight( 0xffffff ); // soft white light
-        this.scene.add( light );
+        this._scene.add( light );
 
         const sphereAxis = new THREE.AxisHelper(20);
-        this.scene.add(sphereAxis);
+        this._scene.add(sphereAxis);
 
 
         const panelBody = document.getElementById('panelBody');
@@ -63,15 +63,15 @@ export class ThreeJsCreator {
             }
             counter++;
             controls.update();
-            renderer.render(this.scene, this.camera);
+            renderer.render(this._scene, this.camera);
             stats.update();
         };
 
         animate();
     }
 
-    public GetScene(): any {
-        return this.scene;
+    public get scene(): any {
+        return this._scene;
     }
 
 }

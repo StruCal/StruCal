@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { ColorProvider } from './colorProvider';
 import { StructureData } from '../structureCreator/structureData';
 
-export class StressTransformer {
+export class StressProvider {
     private structureData: StructureData;
     private scene: any;
     private resultInterpolation: ResultInterpolation;

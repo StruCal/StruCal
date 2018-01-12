@@ -6,8 +6,8 @@ import { ThreeJsCreator } from '../model3d/threeJsCreator';
 import { mockedResultData } from '../mocks/mockedResultData';
 import { StructureCreator } from '../model3d/structureCreator/structureCreator';
 import { ResultInterpolation } from '../model3d/resultsCreator/resultInterpolation';
-import { DisplacementTransformer } from '../model3d/resultsCreator/displacementTransformer';
-import { StressTransformer } from '../model3d/resultsCreator/stressTransformer';
+import { DisplacementProvider } from '../model3d/resultsCreator/displacementProvider';
+import { StressProvider } from '../model3d/resultsCreator/stressProvider';
 import { StructureData } from '../model3d/structureCreator/structureData';
 
 
@@ -19,8 +19,8 @@ export class View3dService {
   private structureCreator: StructureCreator;
   private structureData: StructureData;
   private resultInterpolation: ResultInterpolation;
-  private displacementTransformer: DisplacementTransformer;
-  private stressTransformer: StressTransformer;
+  private displacementProvider: DisplacementProvider;
+  private stressProvider: StressProvider;
   currentTime = 0;
 
   constructor() {
@@ -34,9 +34,9 @@ export class View3dService {
     this.threeJsCreator.TickAnimation = () => this.tick();
 
     this.structureData = new StructureData();
-    this.displacementTransformer = new DisplacementTransformer(this.threeJsCreator.GetScene(), this.resultInterpolation, this.structureData);
-    this.stressTransformer = new StressTransformer(this.threeJsCreator.GetScene(), this.resultInterpolation, this.structureData);
-    this.structureCreator = new StructureCreator(this.threeJsCreator.GetScene(), this.structureData);
+    this.displacementProvider = new DisplacementProvider(this.threeJsCreator.scene, this.resultInterpolation, this.structureData);
+    this.stressProvider = new StressProvider(this.threeJsCreator.scene, this.resultInterpolation, this.structureData);
+    this.structureCreator = new StructureCreator(this.threeJsCreator.scene, this.structureData);
     this.structureCreator.Draw(mockedStructure);
   }
 
@@ -45,8 +45,8 @@ export class View3dService {
   private tick(): void {
     this.currentTime++;
     this.resultInterpolation.setTime(this.currentTime);
-    this.displacementTransformer.ApplyDisplacement();
-    this.stressTransformer.ApplyStress();
+    this.displacementProvider.ApplyDisplacement();
+    this.stressProvider.ApplyStress();
     if (this.currentTime > 150) {
       this.currentTime = 0;
     }
