@@ -4,6 +4,7 @@ import { Perimeter } from '../structure/perimeter';
 import { Section } from '../structure/section';
 import { Additional } from '../structure/additional';
 import { Bar } from '../structure/bar';
+import { VerticalSupportCreator } from '../structure/support';
 
 const Guid = require('guid');
 const section = new Section();
@@ -229,9 +230,11 @@ bar4.EndPoint = { X: 0, Y: 0, Z: 40 };
 bar4.Section = section;
 bar4.Additionals = additionals;
 
+const support = VerticalSupportCreator({ X: 0, Y: 0, Z: 0 });
 
 export const mockedStructureGeometry: StructureGeometry = {
     Bars: [bar1, bar2, bar3, bar4],
+    Supports: [support]
 };
 
 
