@@ -1,27 +1,27 @@
 import * as THREE from 'three';
 
-class BarData {
-    public Geometry: any;
-    public Id: string;
-}
+
 
 export class StructureData {
 
-    private barData: Array<BarData>;
+    private meshIdBarIdMap: Map<string, string>;
+    private meshIdGeometryMap: Map<string, any>;
 
     constructor() {
-        this.barData = [];
+        this.meshIdGeometryMap = new Map<string, string>();
+        this.meshIdBarIdMap = new Map<string, any>();
+
     }
 
-    public Add(geometry: any, id: string) {
-        const barData: BarData = {
-            Geometry: geometry.clone(),
-            Id: id
-        };
-        this.barData.push(barData);
+    public Add(geometry: any, meshId: string, barId: string) {
+
+
+        this.meshIdGeometryMap.set(meshId, geometry.clone());
+        this.meshIdBarIdMap.set(meshId, barId);
     }
-    public GetGeometry(uuid: string): any {
-        const barData = this.barData.find(e => e.Id === uuid);
-        return barData.Geometry;
+    public GetGeometry(meshId: string): any {
+
+        const geometry = this.meshIdGeometryMap.get(meshId);
+        return geometry;
     }
 }

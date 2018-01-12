@@ -202,28 +202,28 @@ const additionals: Array<Additional> = [
 ];
 
 const bar1 = new Bar();
-bar1.Id = Guid.raw();
+//bar1.Id = Guid.raw();
 bar1.StartPoint = { X: 0, Y: 0, Z: 0 };
 bar1.EndPoint = { X: 0, Y: 0, Z: 10 };
 bar1.Section = section;
 bar1.Additionals = additionals;
 
 const bar2 = new Bar();
-bar2.Id = Guid.raw();
+//bar2.Id = Guid.raw();
 bar2.StartPoint = { X: 0, Y: 0, Z: 10 };
 bar2.EndPoint = { X: 0, Y: 0, Z: 20 };
 bar2.Section = section;
 bar2.Additionals = additionals;
 
 const bar3 = new Bar();
-bar3.Id = Guid.raw();
+//bar3.Id = Guid.raw();
 bar3.StartPoint = { X: 0, Y: 0, Z: 20 };
 bar3.EndPoint = { X: 0, Y: 0, Z: 30 };
 bar3.Section = section;
 bar3.Additionals = additionals;
 
 const bar4 = new Bar();
-bar4.Id = Guid.raw();
+//bar4.Id = Guid.raw();
 bar4.StartPoint = { X: 0, Y: 0, Z: 30 };
 bar4.EndPoint = { X: 0, Y: 0, Z: 40 };
 bar4.Section = section;
