@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as THREE from 'three';
 
-import { mockedStructure } from '../mocks/mockedStructure';
+import { mockedStructureGeometry } from '../mocks/mockedStructureGeometry';
 import { ThreeJsCreator } from '../model3d/threeJsCreator';
 import { mockedResultData } from '../mocks/mockedResultData';
 import { StructureCreator } from '../model3d/structureCreator/structureCreator';
@@ -9,7 +9,7 @@ import { ResultInterpolation } from '../model3d/resultsCreator/resultInterpolati
 import { DisplacementProvider } from '../model3d/resultsCreator/displacementProvider';
 import { StressProvider } from '../model3d/resultsCreator/stressProvider';
 import { StructureData } from '../model3d/structureCreator/structureData';
-import { Structure } from '../structure/structure';
+import { StructureGeometry } from '../structure/structureGeometry';
 import { ResultCreator } from '../model3d/resultsCreator/resultCreator';
 import { ResultData } from '../resultData/resultData';
 
@@ -34,13 +34,13 @@ export class View3dService {
     this.resultCreator = new ResultCreator(this.threeJsCreator.scene);
 
     this.threeJsCreator.TickAnimation = () => this.tick();
-    this.DrawStructure(mockedStructure);
+    this.DrawStructure(mockedStructureGeometry);
     this.DrawResults(mockedResultData);
   }
 
 
-  public DrawStructure(structure: Structure) {
-    this.structureCreator.Draw(structure);
+  public DrawStructure(structureGeometry: StructureGeometry) {
+    this.structureCreator.Draw(structureGeometry);
   }
 
   public DrawResults(results: ResultData) {

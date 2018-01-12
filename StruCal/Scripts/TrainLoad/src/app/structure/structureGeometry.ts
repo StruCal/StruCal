@@ -4,6 +4,6 @@ import { Point3D } from '../common/point3d';
 import { Bar } from './bar';
 
 
-export class Structure {
+export class StructureGeometry {
      Bars: Array<Bar>;
 }

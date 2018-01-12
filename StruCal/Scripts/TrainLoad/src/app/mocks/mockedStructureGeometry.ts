@@ -1,4 +1,4 @@
-import { Structure } from '../structure/structure';
+import { StructureGeometry } from '../structure/structureGeometry';
 import { Point } from '../common/point';
 import { Perimeter } from '../structure/perimeter';
 import { Section } from '../structure/section';
@@ -230,7 +230,7 @@ bar4.Section = section;
 bar4.Additionals = additionals;
 
 
-export const mockedStructure: Structure = {
+export const mockedStructureGeometry: StructureGeometry = {
     Bars: [bar1, bar2, bar3, bar4],
 };
 

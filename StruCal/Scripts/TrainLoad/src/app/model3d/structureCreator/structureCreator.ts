@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { Structure } from '../../structure/structure';
+import { StructureGeometry } from '../../structure/structureGeometry';
 import { material } from '../material';
 import { BaseCreator } from './baseCreator';
 import { BarsCreator } from './barsCreator';
@@ -17,13 +17,13 @@ export class StructureCreator extends BaseCreator {
         this._barsCreator = new BarsCreator(this.scene);
     }
 
-    public Draw(structure: Structure) {
-        if (structure === undefined || this.scene === undefined) {
+    public Draw(structureGeometry: StructureGeometry) {
+        if (structureGeometry === undefined || this.scene === undefined) {
             return;
         }
         this._structureData = new StructureData();
 
-        this._barsCreator.DrawBars(structure.Bars, this.structureData);
+        this._barsCreator.DrawBars(structureGeometry.Bars, this.structureData);
 
     }
 
