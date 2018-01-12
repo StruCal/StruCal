@@ -19,9 +19,10 @@ export class StructureData {
         this.meshIdGeometryMap.set(meshId, geometry.clone());
         this.meshIdBarIdMap.set(meshId, barId);
     }
-    public GetGeometry(meshId: string): any {
+    public GetGeometryByMeshId(meshId: string): any {
 
         const geometry = this.meshIdGeometryMap.get(meshId);
         return geometry;
     }
+
 }

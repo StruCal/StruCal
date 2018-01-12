@@ -17,7 +17,7 @@ export class DisplacementProvider {
 
         meshes.forEach(mesh => {
             mesh.geometry.verticesNeedUpdate = true;
-            const baseGeometry = this.structureData.GetGeometry(mesh.uuid);
+            const baseGeometry = this.structureData.GetGeometryByMeshId(mesh.uuid);
             const vertices = mesh.geometry.vertices;
             const baseVertices = baseGeometry.vertices;
 

@@ -23,7 +23,7 @@ export class StressProvider {
             const faces = mesh.geometry.faces;
             mesh.geometry.colorsNeedUpdate = true;
 
-            const baseGeometry = this.structureData.GetGeometry(mesh.uuid);
+            const baseGeometry = this.structureData.GetGeometryByMeshId(mesh.uuid);
             const baseVertices = baseGeometry.vertices;
 
             faces.forEach((face, index) => {
