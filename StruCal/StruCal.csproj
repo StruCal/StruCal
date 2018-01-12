@@ -196,6 +196,7 @@
     <Compile Include="Controllers\RCBeamController.cs" />
     <Compile Include="Controllers\SectionPropertiesController.cs" />
     <Compile Include="Controllers\ShearReinforcementController.cs" />
+    <Compile Include="Controllers\TrainLoadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -318,6 +319,7 @@
     <Content Include="Scripts\TrainLoad\src\tsconfig.spec.json" />
     <Content Include="Scripts\TrainLoad\tsconfig.json" />
     <Content Include="Scripts\TrainLoad\tslint.json" />
+    <Content Include="Views\TrainLoad\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
