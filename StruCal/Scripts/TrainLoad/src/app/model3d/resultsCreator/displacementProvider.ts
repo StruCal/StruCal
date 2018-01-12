@@ -12,7 +12,7 @@ export class DisplacementProvider {
         this.structureData = structureData;
     }
 
-    public ApplyDisplacement(): void {
+    public applyDisplacement(): void {
         const meshes = this.scene.children.filter(e => e.type === 'Mesh');
 
         meshes.forEach(mesh => {

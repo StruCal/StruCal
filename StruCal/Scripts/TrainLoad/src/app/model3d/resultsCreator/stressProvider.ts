@@ -16,7 +16,7 @@ export class StressProvider {
         this.colorProvider = new ColorProvider(381609, -715532);
     }
 
-    public ApplyStress(): void {
+    public applyStress(): void {
         this.colorProvider = new ColorProvider(this.resultInterpolation.maxStress, this.resultInterpolation.minStress);
         const meshes = this.scene.children.filter(e => e.type === 'Mesh');
         meshes.forEach(mesh => {

@@ -8,12 +8,12 @@ import { StructureData } from './structureData';
 
 export class BarsCreator extends BaseCreator {
     private structureData: StructureData;
-    constructor(scene: any, structureData: StructureData) {
+    constructor(scene: any) {
         super(scene);
-        this.structureData = structureData;
     }
 
-    public DrawBars(bars: Array<Bar>): void {
+    public DrawBars(bars: Array<Bar>, structureData: StructureData): void {
+        this.structureData = structureData;
         bars.forEach(bar => this.drawBar(bar));
     }
 

@@ -9,25 +9,26 @@ import { StructureData } from './structureData';
 
 
 export class StructureCreator extends BaseCreator {
+    private _barsCreator: any;
+    private _structureData: StructureData;
 
-    private structure: Structure;
-    private barsCreator: BarsCreator;
-
-    constructor(scene: any, structureData: StructureData) {
+    constructor(scene: any) {
         super(scene);
-        this.barsCreator = new BarsCreator(scene, structureData);
+        this._barsCreator = new BarsCreator(this.scene);
     }
 
     public Draw(structure: Structure) {
         if (structure === undefined || this.scene === undefined) {
             return;
         }
-        this.structure = structure;
+        this._structureData = new StructureData();
 
-        this.barsCreator.DrawBars(structure.Bars);
+        this._barsCreator.DrawBars(structure.Bars, this.structureData);
 
     }
 
-    
+    public get structureData() {
+        return this._structureData;
+    }
 
 }

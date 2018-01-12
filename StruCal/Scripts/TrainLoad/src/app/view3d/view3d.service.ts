@@ -9,6 +9,9 @@ import { ResultInterpolation } from '../model3d/resultsCreator/resultInterpolati
 import { DisplacementProvider } from '../model3d/resultsCreator/displacementProvider';
 import { StressProvider } from '../model3d/resultsCreator/stressProvider';
 import { StructureData } from '../model3d/structureCreator/structureData';
+import { Structure } from '../structure/structure';
+import { ResultCreator } from '../model3d/resultsCreator/resultCreator';
+import { ResultData } from '../resultData/resultData';
 
 
 
@@ -17,38 +20,39 @@ export class View3dService {
 
   private threeJsCreator: ThreeJsCreator;
   private structureCreator: StructureCreator;
-  private structureData: StructureData;
-  private resultInterpolation: ResultInterpolation;
-  private displacementProvider: DisplacementProvider;
-  private stressProvider: StressProvider;
+  private resultCreator: ResultCreator;
+
   currentTime = 0;
 
   constructor() {
-    this.resultInterpolation = new ResultInterpolation(mockedResultData, 4);
-
-
   }
 
   public InjectModelCreator(threeJsCreator: ThreeJsCreator): void {
     this.threeJsCreator = threeJsCreator;
-    this.threeJsCreator.TickAnimation = () => this.tick();
 
-    this.structureData = new StructureData();
-    this.displacementProvider = new DisplacementProvider(this.threeJsCreator.scene, this.resultInterpolation, this.structureData);
-    this.stressProvider = new StressProvider(this.threeJsCreator.scene, this.resultInterpolation, this.structureData);
-    this.structureCreator = new StructureCreator(this.threeJsCreator.scene, this.structureData);
-    this.structureCreator.Draw(mockedStructure);
+    this.structureCreator = new StructureCreator(this.threeJsCreator.scene);
+    this.resultCreator = new ResultCreator(this.threeJsCreator.scene);
+
+    this.threeJsCreator.TickAnimation = () => this.tick();
+    this.DrawStructure(mockedStructure);
+    this.DrawResults(mockedResultData);
   }
 
+
+  public DrawStructure(structure: Structure) {
+    this.structureCreator.Draw(structure);
+  }
+
+  public DrawResults(results: ResultData) {
+    this.resultCreator.SetResult(results, this.structureCreator.structureData);
+  }
 
 
   private tick(): void {
     this.currentTime++;
-    this.resultInterpolation.setTime(this.currentTime);
-    this.displacementProvider.ApplyDisplacement();
-    this.stressProvider.ApplyStress();
     if (this.currentTime > 150) {
       this.currentTime = 0;
     }
+    this.resultCreator.TickAnimation(this.currentTime);
   }
 }
