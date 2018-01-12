@@ -44,7 +44,7 @@ export class BarsCreator extends BaseCreator {
             geometry.translate(bar.StartPoint.X, bar.StartPoint.Y, bar.StartPoint.Z);
 
             const mesh = new THREE.Mesh(geometry, material);
-            this.structureData.Add(geometry, mesh.uuid, bar.Id);
+            this.structureData.add(geometry, mesh.uuid, bar.Id);
             this.scene.add(mesh);
         });
     }

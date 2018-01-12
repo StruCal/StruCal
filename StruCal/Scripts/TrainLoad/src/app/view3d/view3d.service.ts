@@ -12,6 +12,8 @@ import { StructureData } from '../model3d/structureCreator/structureData';
 import { StructureGeometry } from '../structure/structureGeometry';
 import { ResultCreator } from '../model3d/resultsCreator/resultCreator';
 import { ResultData } from '../resultData/resultData';
+import { CalculationsInput } from '../calculations/calculationsInput';
+import { calculationsInputBuilder } from '../calculations/calculationInputBuilder';
 
 
 
@@ -19,6 +21,7 @@ import { ResultData } from '../resultData/resultData';
 export class View3dService {
 
   private threeJsCreator: ThreeJsCreator;
+  private structureGeometry: StructureGeometry;
   private structureCreator: StructureCreator;
   private resultCreator: ResultCreator;
 
@@ -34,17 +37,23 @@ export class View3dService {
     this.resultCreator = new ResultCreator(this.threeJsCreator.scene);
 
     this.threeJsCreator.TickAnimation = () => this.tick();
-    this.DrawStructure(mockedStructureGeometry);
-    this.DrawResults(mockedResultData);
+    this.drawStructure(mockedStructureGeometry);
+    this.drawResults(mockedResultData);
   }
 
 
-  public DrawStructure(structureGeometry: StructureGeometry) {
+  public drawStructure(structureGeometry: StructureGeometry) {
+    this.structureGeometry = structureGeometry;
     this.structureCreator.Draw(structureGeometry);
   }
 
-  public DrawResults(results: ResultData) {
+  public drawResults(results: ResultData) {
     this.resultCreator.SetResult(results, this.structureCreator.structureData);
+  }
+
+  public getCalculationsInput(): CalculationsInput {
+    const result = calculationsInputBuilder(this.structureGeometry, this.structureCreator.structureData);
+    return result;
   }
 
 
