@@ -44,7 +44,8 @@
     <Compile Include="Extensions\Double.cs" />
     <Compile Include="Extensions\ExtendedMath.cs" />
     <Compile Include="Extensions\String.cs" />
-    <Compile Include="Geometry\Points.cs" />
+    <Compile Include="Geometry\Point3D.cs" />
+    <Compile Include="Geometry\PointD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
