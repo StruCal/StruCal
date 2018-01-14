@@ -37,6 +37,11 @@ namespace Common.Extensions
             return (Math.Abs(initialValue - value) < maximumDifferenceAllowed);
         }
 
+        public static bool IsApproximatelyEqualToZero(this double initialValue)
+        {
+            return IsApproximatelyEqualTo(initialValue, 0d);
+        }
+
         /// <summary>
         /// Rounds the given double to the 2 digits
         /// </summary>
@@ -74,7 +79,7 @@ namespace Common.Extensions
         /// <param name="base">The base of the power</param>
         /// <param name="exponent">The exponent</param>
         /// <returns></returns>
-        public static double Power(this double @base,double exponent)
+        public static double Power(this double @base, double exponent)
         {
             return Math.Pow(@base, exponent);
         }

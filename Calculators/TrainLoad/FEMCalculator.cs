@@ -1,4 +1,14 @@
-﻿using System;
+﻿using Calculators.TrainLoad.Helpers;
+using Common.Geometry;
+using FEM2D.Elements.Beam;
+using FEM2D.Nodes;
+using FEM2DCommon.DTO;
+using FEM2DCommon.ElementProperties;
+using FEM2DDynamics.Elements.Beam;
+using FEM2DDynamics.Results;
+using FEM2DDynamics.Solver;
+using FEM2DDynamics.Structure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,51 +18,75 @@ namespace Calculators.TrainLoad
 {
     internal class FEMCalculator
     {
-        public FEMCalculator()
-        {
+        const int steelDensity = 7850;
 
+        private StructureGeometry structureGeometry;
+        private IList<Node> nodes;
+
+        private DynamicStructure structure;
+
+        public IDictionary<string, IDynamicBeamElement> BarIdBeamElementMap { get; private set; }
+
+        public FEMCalculator(StructureGeometry structureGeometry)
+        {
+            this.structureGeometry = structureGeometry;
+            this.nodes = new List<Node>();
+            this.BarIdBeamElementMap = new Dictionary<string, IDynamicBeamElement>();
+
+            var settings = new DynamicSolverSettings
+            {
+                DeltaTime = 0.01,
+                EndTime = 400,
+                StartTime = 0
+            };
+            this.structure = new DynamicStructure(settings);
         }
 
-        //public void Calculate()
-        //{
-        //    var properties = BeamProperties.Default;
-        //    var dynamicProperties = new DynamicBeamProperties
-        //    {
-        //        BeamProperties = properties,
-        //        Density = 2000,
-        //    };
-        //    var settings = new DynamicSolverSettings
-        //    {
-        //        DeltaTime = 0.01,
-        //        EndTime = 400,
-        //        StartTime = 0
-        //    };
+        public DynamicBeamElementResults Calculate()
+        {
+            GenerateNodesAndElements();
+            GenerateSupports();
+
+            structure.LoadFactory.AddPointMovingLoad(-1000, 0, 1);
+            structure.LoadFactory.AddPointMovingLoad(-2000, -4, 1);
 
 
+            structure.Solve();
+            var results = structure.Results.BeamResults;
+            return results;
+        }
 
-        //    var structure = new DynamicStructure(settings);
-        //    var node1 = structure.NodeFactory.Create(0, 0);
-        //    node1.SetPinnedSupport();
-        //    var node2 = structure.NodeFactory.Create(10, 0);
-        //    var node3 = structure.NodeFactory.Create(20, 0);
-        //    node3.SetPinnedSupport();
-        //    var node4 = structure.NodeFactory.Create(30, 0);
-        //    var node5 = structure.NodeFactory.Create(40, 0);
-        //    node5.SetPinnedSupport();
+        private void GenerateSupports()
+        {
+            foreach (var support in this.structureGeometry.Supports)
+            {
+                var restraint = RestraintConverter.ConvertFromString(support.Direction);
+                var location = support.Location.ToFEMCoordinateSystem();
+                this.structure.NodeFactory.SetSupportAt(location, restraint);
+            }
+        }
 
-        //    var beam1 = structure.ElementFactory.CreateBeam(node1, node2, dynamicProperties);
-        //    var beam2 = structure.ElementFactory.CreateBeam(node2, node3, dynamicProperties);
-        //    var beam3 = structure.ElementFactory.CreateBeam(node3, node4, dynamicProperties);
-        //    var beam4 = structure.ElementFactory.CreateBeam(node4, node5, dynamicProperties);
-        //    structure.LoadFactory.AddPointMovingLoad(-1000, 0, 1);
-        //    structure.LoadFactory.AddPointMovingLoad(-2000, -4, 1);
+        private void GenerateNodesAndElements()
+        {
+            foreach (var bar in this.structureGeometry.Bars)
+            {
+                //!!!!!!!!!!! CHANGE
+                var properties = BeamProperties.Default;
+                var dynamicProperties = new DynamicBeamProperties
+                {
+                    BeamProperties = properties,
+                    Density = steelDensity,
+                };
 
-        //    structure.Solve();
-        //    var results = structure.Results.BeamResults;
 
-        //    var beam1Result = results.GetResult(beam1, 1);
-        //    var beam2Result = results.GetResult(beam2, 1);
+                var startPoint = new PointD(bar.StartPoint.Z, bar.StartPoint.Y);
+                var endPoint = new PointD(bar.EndPoint.Z, bar.EndPoint.Y);
+                var startNode = structure.NodeFactory.Create(startPoint);
+                var endNode = structure.NodeFactory.Create(endPoint);
+                var element = structure.ElementFactory.CreateBeam(startNode, endNode, dynamicProperties);
 
-        //}
+                this.BarIdBeamElementMap.Add(bar.Id, element);
+            }
+        }
     }
 }

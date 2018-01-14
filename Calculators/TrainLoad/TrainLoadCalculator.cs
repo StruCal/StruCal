@@ -10,12 +10,18 @@ namespace Calculators.TrainLoad
     {
         private readonly TrainLoadInput trainLoadInput;
         private readonly IGradientCalculator gradientCalculator;
+        private readonly FEMCalculator femCalculator;
 
         public TrainLoadCalculator(TrainLoadInput trainLoadInput)
         {
             this.trainLoadInput = trainLoadInput;
             this.gradientCalculator = new LinearGradientCalculator(this.trainLoadInput.MaxColor, this.trainLoadInput.MinColor);
+            this.femCalculator = new FEMCalculator(this.trainLoadInput.StructureGeometry);
+        }
 
+        public void Calculate()
+        {
+            this.femCalculator.Calculate();
         }
 
 

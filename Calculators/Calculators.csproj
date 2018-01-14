@@ -87,6 +87,8 @@
     <Compile Include="TrainLoad\GradienColor\Color.cs" />
     <Compile Include="TrainLoad\GradienColor\IGradientCalculator.cs" />
     <Compile Include="TrainLoad\GradienColor\LinearGradientCalculator.cs" />
+    <Compile Include="TrainLoad\Helpers\PointDHelper.cs" />
+    <Compile Include="TrainLoad\Helpers\RestraintConverter.cs" />
     <Compile Include="TrainLoad\Input\Bar.cs" />
     <Compile Include="TrainLoad\Input\Perimeter.cs" />
     <Compile Include="TrainLoad\Input\Section.cs" />

@@ -26,7 +26,10 @@ namespace StruCal.Controllers
         [System.Web.Http.HttpPost]
         public IHttpActionResult TrainLoadCalculations(TrainLoadInput input)
         {
-            
+            var calculator = new TrainLoadCalculator(input);
+            calculator.Calculate();
+            //change section properties
+
             return Ok("OK");
         }
     }
