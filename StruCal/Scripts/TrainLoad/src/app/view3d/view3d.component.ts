@@ -25,8 +25,9 @@ export class View3DComponent implements OnInit {
   test() {
     const input = this.view3dService.getCalculationsInput();
 
-    const result = this.httpService.getResult(input);
-    // console.log(input);
+    let result;
+    this.httpService.getResult(input).subscribe(data => result = data);
+    console.log(input);
 
 
   }

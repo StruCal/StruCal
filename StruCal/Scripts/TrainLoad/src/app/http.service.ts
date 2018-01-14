@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ResultData } from './resultData/resultData';
 import { CalculationsInput } from './calculations/calculationsInput';
+import { Observable } from 'rxjs/Observable';
 
 
 const url = 'http://localhost:50025/api/TrainLoadApi';
@@ -16,16 +17,10 @@ export class HttpService {
   }
 
 
-  getResult(inputData: CalculationsInput): ResultData {
-    let result: ResultData;
-    this.http.post<ResultData>(url, inputData).subscribe(
-      data => {
-        result = data;
-      },
-      error => this.onError(error),
-    );
+  getResult(inputData: CalculationsInput): Observable<ResultData> {
 
-    return result;
+    return this.http.post<ResultData>(url, inputData);
+
   }
 
 }
