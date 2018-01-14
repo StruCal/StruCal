@@ -1,7 +1,7 @@
-import { Perimeter } from "./perimeter";
+import { Perimeter } from './perimeter';
 
 
-export class Additional{
-    public Perimeter : Perimeter;
-    public Depth:Number;
+export class Additional {
+    public Perimeter: Perimeter;
+    public Depth: Number;
 }
