@@ -1,11 +1,11 @@
 import { StructureGeometry } from '../structure/structureGeometry';
 import { Point3D } from '../common/point3d';
-import { VertexInput } from './vertexInput';
+import { MeshInput } from './meshInput';
 
 
 export class CalculationsInput {
     StructureGeometry: StructureGeometry;
-    Vertices: Array<VertexInput>;
+    Vertices: Array<MeshInput>;
     MaxColor: string;
     MinColor: string;
 }

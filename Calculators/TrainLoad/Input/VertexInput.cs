@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Calculators.TrainLoad
 {
-    public class Vertex
+    public class VertexInput
     {
         public string BarId { get; set; }
         public string MeshId { get; set; }

@@ -60,7 +60,7 @@
     <Compile Include="TrainLoad\Input\Section.cs" />
     <Compile Include="TrainLoad\Input\StructureGeometry.cs" />
     <Compile Include="TrainLoad\Input\Support.cs" />
-    <Compile Include="TrainLoad\Input\Vertex.cs" />
+    <Compile Include="TrainLoad\Input\VertexInput.cs" />
     <Compile Include="TrainLoad\Output\Result.cs" />
   </ItemGroup>
   <ItemGroup>

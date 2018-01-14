@@ -1,7 +1,7 @@
 import { StructureGeometry } from '../structure/structureGeometry';
 import { StructureData } from '../model3d/structureCreator/structureData';
 import { CalculationsInput } from './calculationsInput';
-import { VertexInput } from './vertexInput';
+import { MeshInput } from './meshInput';
 import { minColor, maxColor } from '../model3d/structureCreator/colors';
 
 
@@ -14,7 +14,7 @@ export function calculationsInputBuilder(structureGeometry: StructureGeometry, s
     const vertices = meshIds.map(meshId => {
         const barVertices = structureData.getVerticesByMeshId(meshId);
         const barId = structureData.getBarIdFromMeshId(meshId);
-        const vertexInput: VertexInput = {
+        const vertexInput: MeshInput = {
             BarId: barId,
             MeshId: meshId,
             Vertices: barVertices,
