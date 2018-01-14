@@ -1,4 +1,5 @@
-﻿using StruCal.BindingModels;
+﻿using Calculators.TrainLoad;
+using StruCal.BindingModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace StruCal.Controllers
     {
         [System.Web.Http.AllowAnonymous]
         [System.Web.Http.HttpPost]
-        public IHttpActionResult RcCalculations(TrainLoadBindingModel input)
+        public IHttpActionResult RcCalculations(TrainLoadInput input)
         {
             
             return Ok("OK");
