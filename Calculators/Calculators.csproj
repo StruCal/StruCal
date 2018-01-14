@@ -84,9 +84,11 @@
     <Compile Include="SectionProperties\Calculator.cs" />
     <Compile Include="ShearReinforcement\ShearReinforcementCalculator.cs" />
     <Compile Include="TrainLoad\FEMCalculator.cs" />
+    <Compile Include="TrainLoad\FemCalculatorResult.cs" />
     <Compile Include="TrainLoad\GradienColor\Color.cs" />
-    <Compile Include="TrainLoad\GradienColor\IGradientCalculator.cs" />
-    <Compile Include="TrainLoad\GradienColor\LinearGradientCalculator.cs" />
+    <Compile Include="TrainLoad\GradienColor\ColorProvider.cs" />
+    <Compile Include="TrainLoad\GradienColor\IGradient.cs" />
+    <Compile Include="TrainLoad\GradienColor\LinearGradient.cs" />
     <Compile Include="TrainLoad\Helpers\PointDHelper.cs" />
     <Compile Include="TrainLoad\Helpers\RestraintConverter.cs" />
     <Compile Include="TrainLoad\Input\Bar.cs" />
@@ -96,7 +98,13 @@
     <Compile Include="TrainLoad\Input\Support.cs" />
     <Compile Include="TrainLoad\Input\TrainLoadInput.cs" />
     <Compile Include="TrainLoad\Input\VertexInput.cs" />
-    <Compile Include="TrainLoad\Output\Result.cs" />
+    <Compile Include="TrainLoad\Output\MeshStressResult.cs" />
+    <Compile Include="TrainLoad\Output\MeshColorResult.cs" />
+    <Compile Include="TrainLoad\Output\TrainLoadOutput.cs" />
+    <Compile Include="TrainLoad\Output\TimeResult.cs" />
+    <Compile Include="TrainLoad\Output\VertexColorResult.cs" />
+    <Compile Include="TrainLoad\Output\VertexStressResult.cs" />
+    <Compile Include="TrainLoad\ResultCreator.cs" />
     <Compile Include="TrainLoad\TrainLoadCalculator.cs" />
   </ItemGroup>
   <ItemGroup>

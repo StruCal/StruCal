@@ -8,26 +8,25 @@ using System.Threading.Tasks;
 namespace Calculators.TrainLoad
 {
     
-
-    internal class LinearGradientCalculator : IGradientCalculator
+    internal class LinearGradient : IGradient
     {
         private readonly Color maxColor;
         private readonly Color minColor;
-        private readonly int range;
+        public  int Range { get; }
 
-        public LinearGradientCalculator(string maxColor, string minColor, int range = 10)
+        public LinearGradient(string maxColor, string minColor, int range = 10)
         {
             this.maxColor = Color.FromHexString(maxColor);
             this.minColor = Color.FromHexString(minColor);
-            this.range = range;
+            this.Range = range;
         }
 
 
         public Color ColorAt(int index)
         {
-            var rAverage = this.minColor.R + (int)((this.maxColor.R - this.minColor.R) * index / this.range);
-            var gAverage = this.minColor.G + (int)((this.maxColor.G - this.minColor.G) * index / this.range);
-            var bAverage = this.minColor.B + (int)((this.maxColor.B - this.minColor.B) * index / this.range);
+            var rAverage = this.minColor.R + (int)((this.maxColor.R - this.minColor.R) * index / this.Range);
+            var gAverage = this.minColor.G + (int)((this.maxColor.G - this.minColor.G) * index / this.Range);
+            var bAverage = this.minColor.B + (int)((this.maxColor.B - this.minColor.B) * index / this.Range);
             var result = Color.FromRGB(rAverage, gAverage, bAverage);
             return result;
         }

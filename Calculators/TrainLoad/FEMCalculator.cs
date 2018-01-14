@@ -21,17 +21,14 @@ namespace Calculators.TrainLoad
         const int steelDensity = 7850;
 
         private StructureGeometry structureGeometry;
-        private IList<Node> nodes;
 
         private DynamicStructure structure;
-
-        public IDictionary<string, IDynamicBeamElement> BarIdBeamElementMap { get; private set; }
+        private IDictionary<IDynamicBeamElement,string> elementBarIdMap;
 
         public FEMCalculator(StructureGeometry structureGeometry)
         {
             this.structureGeometry = structureGeometry;
-            this.nodes = new List<Node>();
-            this.BarIdBeamElementMap = new Dictionary<string, IDynamicBeamElement>();
+            this.elementBarIdMap = new Dictionary<IDynamicBeamElement,string>();
 
             var settings = new DynamicSolverSettings
             {
@@ -42,7 +39,7 @@ namespace Calculators.TrainLoad
             this.structure = new DynamicStructure(settings);
         }
 
-        public DynamicBeamElementResults Calculate()
+        public FemCalculatorResult Calculate()
         {
             GenerateNodesAndElements();
             GenerateSupports();
@@ -53,7 +50,11 @@ namespace Calculators.TrainLoad
 
             structure.Solve();
             var results = structure.Results.BeamResults;
-            return results;
+            return new FemCalculatorResult
+            {
+                BeamElementBarIDMap = this.elementBarIdMap,
+                BeamResults = results,
+            };
         }
 
         private void GenerateSupports()
@@ -85,7 +86,7 @@ namespace Calculators.TrainLoad
                 var endNode = structure.NodeFactory.Create(endPoint);
                 var element = structure.ElementFactory.CreateBeam(startNode, endNode, dynamicProperties);
 
-                this.BarIdBeamElementMap.Add(bar.Id, element);
+                this.elementBarIdMap.Add(element,bar.Id);
             }
         }
     }

@@ -27,10 +27,10 @@ namespace StruCal.Controllers
         public IHttpActionResult TrainLoadCalculations(TrainLoadInput input)
         {
             var calculator = new TrainLoadCalculator(input);
-            calculator.Calculate();
+            var result = calculator.Calculate();
             //change section properties
 
-            return Ok("OK");
+            return Ok(result);
         }
     }
 }
