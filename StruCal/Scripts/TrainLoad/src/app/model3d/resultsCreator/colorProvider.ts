@@ -1,9 +1,9 @@
+import { minColor, middleColor, maxColor } from '../structureCreator/colors';
+
 const Rainbow = require('rainbowvis.js');
 
 const range = 10;
-const minColor = '66ff33'; // '00FF00';
-const middleColor = '66ccff'; // '00FFFF';
-const maxColor = 'FF0000';
+
 
 export class ColorProvider {
     private minValue: number;

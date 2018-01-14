@@ -55,6 +55,12 @@
     <Compile Include="RCBeam\StressFunctions.cs" />
     <Compile Include="SectionProperties\Calculator.cs" />
     <Compile Include="ShearReinforcement\ShearReinforcementCalculator.cs" />
+    <Compile Include="TrainLoad\Bar.cs" />
+    <Compile Include="TrainLoad\Perimeter.cs" />
+    <Compile Include="TrainLoad\Section.cs" />
+    <Compile Include="TrainLoad\StructureGeometry.cs" />
+    <Compile Include="TrainLoad\Support.cs" />
+    <Compile Include="TrainLoad\Vertex.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

@@ -6,4 +6,6 @@ import { VertexInput } from './vertexInput';
 export class CalculationsInput {
     StructureGeometry: StructureGeometry;
     Vertices: Array<VertexInput>;
+    MaxColor: string;
+    MinColor: string;
 }

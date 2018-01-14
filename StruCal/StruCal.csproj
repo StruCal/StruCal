@@ -193,7 +193,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BindingModels\RcBeamInput.cs" />
-    <Compile Include="BindingModels\TrainLoadBindingModel.cs" />
+    <Compile Include="BindingModels\TrainLoadInput.cs" />
     <Compile Include="Controllers\ConcretePropertiesController.cs" />
     <None Include="Controllers\ConcreteCoverController.cs" />
     <Compile Include="Controllers\CoverController.cs" />
