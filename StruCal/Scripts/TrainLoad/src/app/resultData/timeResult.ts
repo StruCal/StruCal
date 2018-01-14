@@ -1,9 +1,9 @@
-import { PositionResult } from './positionResult';
+import { MeshColorResult } from './meshColorResult';
 
 
 export interface TimeResult {
     Time: number;
     MaxStress: number;
     MinStress: number;
-    PositionResults: Array<PositionResult>;
+    PositionResults: Array<MeshColorResult>;
 }

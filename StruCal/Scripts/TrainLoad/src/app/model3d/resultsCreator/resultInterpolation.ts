@@ -26,10 +26,10 @@ export class ResultInterpolation {
         const currentResult = this.resultData.TimeResults
             .find(e => almostEqual(e.Time, time, almostEqual.DBL_EPSILON, almostEqual.DBL_EPSILON));
 
-        this.positions = currentResult.PositionResults.map(e => e.GlobalPosition);
-        this.displacements = currentResult.PositionResults.map(e => e.Displacement);
-        this.topStresses = currentResult.PositionResults.map(e => e.TopStress);
-        this.bottomStresses = currentResult.PositionResults.map(e => e.BottomStress);
+        // this.positions = currentResult.PositionResults.map(e => e.GlobalPosition);
+        // this.displacements = currentResult.PositionResults.map(e => e.Displacement);
+        // this.topStresses = currentResult.PositionResults.map(e => e.TopStress);
+        // this.bottomStresses = currentResult.PositionResults.map(e => e.BottomStress);
 
         this.maxStress = currentResult.MaxStress;
         this.minStress = currentResult.MinStress;
