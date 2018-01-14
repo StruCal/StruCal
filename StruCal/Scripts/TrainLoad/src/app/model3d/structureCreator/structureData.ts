@@ -26,15 +26,8 @@ export class StructureData {
         return geometry;
     }
 
-    public getVerticesByBarId(barId: string): Array<Point3D> {
-        let meshId: string;
-        this.meshIdBarIdMap.forEach((value, key, map) => {
-            if (value === barId) {
-                meshId = key;
-            }
-        });
-
-        const geometry = this.getGeometryByMeshId(meshId);
+    public getVerticesByMeshId(meshId: string): Array<Point3D> {
+        const geometry = this.meshIdGeometryMap.get(meshId);
         const vertices = geometry.vertices.map(vector => {
             return {
                 X: Number(vector.x),
@@ -46,8 +39,13 @@ export class StructureData {
         return vertices;
     }
 
-    public getBarIds(): Array<string> {
-        const result = Array.from(this.meshIdBarIdMap.values());
+    public getMeshIds(): Array<string> {
+        const result = Array.from(this.meshIdBarIdMap.keys());
+        return result;
+    }
+
+    public getBarIdFromMeshId(meshId: string): string {
+        const result = this.meshIdBarIdMap.get(meshId);
         return result;
     }
 

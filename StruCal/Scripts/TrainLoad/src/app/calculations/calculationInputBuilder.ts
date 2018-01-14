@@ -8,13 +8,14 @@ import { VertexInput } from './vertexInput';
 export function calculationsInputBuilder(structureGeometry: StructureGeometry, structureData: StructureData)
     : CalculationsInput {
 
-    const barIds = structureData.getBarIds();
+    const meshIds = structureData.getMeshIds();
 
-    const vertices = barIds.map(barId => {
-        const barVertices = structureData.getVerticesByBarId(barId);
-
+    const vertices = meshIds.map(meshId => {
+        const barVertices = structureData.getVerticesByMeshId(meshId);
+        const barId = structureData.getBarIdFromMeshId(meshId);
         const vertexInput: VertexInput = {
             BarId: barId,
+            MeshId: meshId,
             Vertices: barVertices,
         };
         return vertexInput;
