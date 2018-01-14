@@ -63,8 +63,10 @@
     <Compile Include="TrainLoad\Input\Section.cs" />
     <Compile Include="TrainLoad\Input\StructureGeometry.cs" />
     <Compile Include="TrainLoad\Input\Support.cs" />
+    <Compile Include="TrainLoad\Input\TrainLoadInput.cs" />
     <Compile Include="TrainLoad\Input\VertexInput.cs" />
     <Compile Include="TrainLoad\Output\Result.cs" />
+    <Compile Include="TrainLoad\TrainLoadCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
