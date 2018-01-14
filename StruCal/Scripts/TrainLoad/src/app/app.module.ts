@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ControlPanelComponent } from './control-panel/control-panel.component';
 import { View3DComponent } from './view3d/view3d.component';
 import { View3dService } from './view3d/view3d.service';
+import { HttpService } from './http.service';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import { View3dService } from './view3d/view3d.service';
   imports: [
     BrowserModule
   ],
-  providers: [View3dService],
+  providers: [View3dService, HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
