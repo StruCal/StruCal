@@ -24,7 +24,7 @@ namespace StruCal.Controllers
     {
         [System.Web.Http.AllowAnonymous]
         [System.Web.Http.HttpPost]
-        public IHttpActionResult RcCalculations(TrainLoadInput input)
+        public IHttpActionResult TrainLoadCalculations(TrainLoadInput input)
         {
             
             return Ok("OK");
