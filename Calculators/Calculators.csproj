@@ -31,6 +31,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CuttingEdge.Conditions">
+      <HintPath>..\Binaries\CuttingEdge.Conditions.dll</HintPath>
+    </Reference>
+    <Reference Include="FEM2D">
+      <HintPath>..\Binaries\FEM2D.dll</HintPath>
+    </Reference>
+    <Reference Include="FEM2DDynamics">
+      <HintPath>..\Binaries\FEM2DDynamics.dll</HintPath>
+    </Reference>
+    <Reference Include="FEM2DStressCalculator">
+      <HintPath>..\Binaries\FEM2DStressCalculator.dll</HintPath>
+    </Reference>
+    <Reference Include="FEMCommon">
+      <HintPath>..\Binaries\FEMCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="FEMOutput">
+      <HintPath>..\Binaries\FEMOutput.dll</HintPath>
+    </Reference>
+    <Reference Include="FEMTriangulation">
+      <HintPath>..\Binaries\FEMTriangulation.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics">
+      <HintPath>..\Binaries\MathNet.Numerics.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,6 +63,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Triangle">
+      <HintPath>..\Binaries\Triangle.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConcreteCover\ConcreteCoverCalculator.cs" />
