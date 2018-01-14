@@ -48,5 +48,16 @@ namespace Common.Geometry
             return !(point1 == point2);
         }
 
+        public PointD Move(PointD point)
+        {
+            var result = new PointD(this.X + point.X, this.Y + point.Y);
+            return result;
+        }
+
+        public PointD Move(double x, double y)
+        {
+            return this.Move(new PointD(x, y));
+        }
+
     }
 }

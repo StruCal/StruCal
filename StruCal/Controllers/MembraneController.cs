@@ -1,4 +1,4 @@
-﻿using Common.DTO;
+﻿
 using FEM2D.Structures;
 using Output.OutputCreator;
 using System;
@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
+using FEM2DCommon.DTO;
 
 namespace StruCal.Controllers
 {

@@ -43,6 +43,10 @@
     <Reference Include="FEM2DStressCalculator">
       <HintPath>..\Binaries\FEM2DStressCalculator.dll</HintPath>
     </Reference>
+    <Reference Include="FEMCommon, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\FEMCommon.dll</HintPath>
+    </Reference>
     <Reference Include="FEMOutput">
       <HintPath>..\Binaries\FEMOutput.dll</HintPath>
     </Reference>
@@ -79,6 +83,7 @@
     <Compile Include="RCBeam\StressFunctions.cs" />
     <Compile Include="SectionProperties\Calculator.cs" />
     <Compile Include="ShearReinforcement\ShearReinforcementCalculator.cs" />
+    <Compile Include="TrainLoad\FEMCalculator.cs" />
     <Compile Include="TrainLoad\GradienColor\Color.cs" />
     <Compile Include="TrainLoad\GradienColor\IGradientCalculator.cs" />
     <Compile Include="TrainLoad\GradienColor\LinearGradientCalculator.cs" />
