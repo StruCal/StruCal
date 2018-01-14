@@ -9,13 +9,13 @@ namespace Calculators.TrainLoad
 {
     
 
-    internal class GradientCalculator
+    internal class LinearGradientCalculator : IGradientCalculator
     {
         private readonly Color maxColor;
         private readonly Color minColor;
         private readonly int range;
 
-        public GradientCalculator(string maxColor, string minColor, int range = 10)
+        public LinearGradientCalculator(string maxColor, string minColor, int range = 10)
         {
             this.maxColor = Color.FromHexString(maxColor);
             this.minColor = Color.FromHexString(minColor);
