@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Mvc;
 
 namespace StruCal.Controllers
@@ -17,6 +18,7 @@ namespace StruCal.Controllers
         }
     }
 
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class TrainLoadApiController : ApiController
     {
         [System.Web.Http.AllowAnonymous]
