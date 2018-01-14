@@ -55,6 +55,8 @@
     <Compile Include="RCBeam\StressFunctions.cs" />
     <Compile Include="SectionProperties\Calculator.cs" />
     <Compile Include="ShearReinforcement\ShearReinforcementCalculator.cs" />
+    <Compile Include="TrainLoad\GradienColor\Color.cs" />
+    <Compile Include="TrainLoad\GradienColor\GradientCalculator.cs" />
     <Compile Include="TrainLoad\Input\Bar.cs" />
     <Compile Include="TrainLoad\Input\Perimeter.cs" />
     <Compile Include="TrainLoad\Input\Section.cs" />
