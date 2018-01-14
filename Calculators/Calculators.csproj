@@ -43,9 +43,6 @@
     <Reference Include="FEM2DStressCalculator">
       <HintPath>..\Binaries\FEM2DStressCalculator.dll</HintPath>
     </Reference>
-    <Reference Include="FEMCommon">
-      <HintPath>..\Binaries\FEMCommon.dll</HintPath>
-    </Reference>
     <Reference Include="FEMOutput">
       <HintPath>..\Binaries\FEMOutput.dll</HintPath>
     </Reference>
