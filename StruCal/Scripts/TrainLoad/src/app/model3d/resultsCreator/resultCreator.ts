@@ -30,6 +30,6 @@ export class ResultCreator {
     public TickAnimation(time: number): void {
         this.resultInterpolation.setTime(time);
         this.displacementProvider.applyDisplacement();
-        //this.stressProvider.applyStress();
+        this.stressProvider.applyStress();
     }
 }

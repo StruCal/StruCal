@@ -7,17 +7,14 @@ export class StressProvider {
     private structureData: StructureData;
     private scene: any;
     private resultInterpolation: ResultProvider;
-    private colorProvider: ColorProvider;
 
     constructor(scene: any, resultInterpolation: ResultProvider, structureData: StructureData) {
         this.scene = scene;
         this.resultInterpolation = resultInterpolation;
         this.structureData = structureData;
-        this.colorProvider = new ColorProvider(381609, -715532);
     }
 
     public applyStress(): void {
-        this.colorProvider = new ColorProvider(this.resultInterpolation.maxStress, this.resultInterpolation.minStress);
         const meshes = this.scene.children.filter(e => e.type === 'Mesh');
         meshes.forEach(mesh => {
             const faces = mesh.geometry.faces;
@@ -35,8 +32,7 @@ export class StressProvider {
 
                 for (let i = 0; i < 3; i++) {
                     const vertex = faceVertices[i];
-                    const stress = this.resultInterpolation.getStress(vertex.z, vertex.y);
-                    const color = this.colorProvider.getColor(stress);
+                    const color = this.resultInterpolation.getStress(vertex, mesh.uuid);
                     face.vertexColors[i].set(color);
 
                 }

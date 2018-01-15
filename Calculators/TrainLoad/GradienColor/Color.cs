@@ -21,11 +21,20 @@ namespace Calculators.TrainLoad.GradienColor
 
         public string GetHexCode()
         {
-            var r = this.R.ToString("X");
-            var g = this.G.ToString("X");
-            var b = this.B.ToString("X");
+            var r = CheckLength(this.R.ToString("X"));
+            var g = CheckLength(this.G.ToString("X"));
+            var b = CheckLength(this.B.ToString("X"));
             var result = r + g + b;
             return result;
+        }
+
+        private static string CheckLength(string value)
+        {
+            if (value.Length == 1)
+            {
+                return value.Insert(0, "0");
+            }
+            return value;
         }
 
         public string GetHexCodeHased()
