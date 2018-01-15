@@ -8,4 +8,5 @@ export class CalculationsInput {
     Vertices: Array<MeshInput>;
     MaxColor: string;
     MinColor: string;
+    MiddleColor: string;
 }

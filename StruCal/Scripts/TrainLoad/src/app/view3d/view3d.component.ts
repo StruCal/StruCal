@@ -27,13 +27,14 @@ public currentTime: number;
 
     this.httpService.getResult(input).subscribe(data => {
       this.view3dService.drawResults(data);
+      console.log(data);
     });
     console.log(input);
 
 
   }
 
-next(){
+next() {
   this.view3dService.next();
   this.currentTime = this.view3dService.currentTime;
 }

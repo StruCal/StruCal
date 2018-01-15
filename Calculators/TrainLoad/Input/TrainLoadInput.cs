@@ -11,6 +11,7 @@ namespace Calculators.TrainLoad
     {
         public string MaxColor { get; set; }
         public string MinColor { get; set; }
+        public string MiddleColor { get; set; }
         public StructureGeometry StructureGeometry { get; set; }
         public List<VertexInput> Vertices { get; set; }
     }

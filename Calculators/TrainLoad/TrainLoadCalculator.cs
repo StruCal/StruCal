@@ -18,7 +18,7 @@ namespace Calculators.TrainLoad
         {
             this.trainLoadInput = trainLoadInput;
             
-            this.gradient = new LinearGradient(this.trainLoadInput.MaxColor, this.trainLoadInput.MinColor);
+            this.gradient = new LinearGradient(this.trainLoadInput.MaxColor, this.trainLoadInput.MinColor, this.trainLoadInput.MiddleColor);
             this.femCalculator = new FEMCalculator(this.trainLoadInput.StructureGeometry);
             this.resultCreator = new ResultCreator(this.gradient);
         }

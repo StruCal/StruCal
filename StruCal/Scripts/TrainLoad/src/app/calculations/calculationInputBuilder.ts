@@ -2,7 +2,7 @@ import { StructureGeometry } from '../structure/structureGeometry';
 import { StructureData } from '../model3d/structureCreator/structureData';
 import { CalculationsInput } from './calculationsInput';
 import { MeshInput } from './meshInput';
-import { minColor, maxColor } from '../model3d/structureCreator/colors';
+import { minColor, maxColor, middleColor } from '../model3d/structureCreator/colors';
 
 
 
@@ -25,6 +25,7 @@ export function calculationsInputBuilder(structureGeometry: StructureGeometry, s
     return {
         MaxColor: maxColor,
         MinColor: minColor,
+        MiddleColor: middleColor,
         StructureGeometry: structureGeometry,
         Vertices: vertices,
     };

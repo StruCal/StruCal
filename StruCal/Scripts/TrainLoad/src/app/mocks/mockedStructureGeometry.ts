@@ -232,10 +232,11 @@ bar4.Additionals = additionals;
 
 const support1 = OrtogonalSupportCreator({ X: 0, Y: 0, Z: 0 });
 const support2 = OrtogonalSupportCreator({ X: 0, Y: 0, Z: 40 });
+const support3 = OrtogonalSupportCreator({ X: 0, Y: 0, Z: 20 });
 
 export const mockedStructureGeometry: StructureGeometry = {
     Bars: [bar1, bar2, bar3, bar4],
-    Supports: [support1, support2]
+    Supports: [support1, support2, support3]
 };
 
 
