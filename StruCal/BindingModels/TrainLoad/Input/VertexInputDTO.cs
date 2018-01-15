@@ -9,8 +9,8 @@ namespace StruCal.BindingModels
 {
     public class VertexInputDTO
     {
-        public string BarId { get; set; }
-        public string MeshId { get; set; }
-        public List<Point3D> Vertices { get; set; }
+        public string barId { get; set; }
+        public string meshId { get; set; }
+        public List<Point3DDTO> vertices { get; set; }
     }
 }

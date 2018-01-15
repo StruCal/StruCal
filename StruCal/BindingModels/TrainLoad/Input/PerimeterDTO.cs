@@ -9,6 +9,6 @@ namespace StruCal.BindingModels
 {
     public class PerimeterDTO
     {
-        public List<PointD> Coordinates { get; set; }
+        public List<PointDDTO> coordinates { get; set; }
     }
 }

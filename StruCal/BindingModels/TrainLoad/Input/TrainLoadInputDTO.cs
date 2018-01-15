@@ -9,11 +9,11 @@ namespace StruCal.BindingModels
 {
     public class TrainLoadInputDTO
     {
-        public string MaxColor { get; set; }
-        public string MinColor { get; set; }
-        public string MiddleColor { get; set; }
-        public StructureGeometryDTO StructureGeometry { get; set; }
-        public List<VertexInputDTO> Vertices { get; set; }
+        public string maxColor { get; set; }
+        public string minColor { get; set; }
+        public string middleColor { get; set; }
+        public StructureGeometryDTO structureGeometry { get; set; }
+        public List<VertexInputDTO> vertices { get; set; }
     }
 
 

@@ -10,8 +10,8 @@ namespace StruCal.BindingModels
 
     public class MeshColorResultDTO
     {
-        public string MeshId { get; set; }
-        public string BarId { get; set; }
-        public IEnumerable<VertexColorResultDTO> VertexResults { get; set; }
+        public string meshId { get; set; }
+        public string barId { get; set; }
+        public IEnumerable<VertexColorResultDTO> vertexResults { get; set; }
     }
 }

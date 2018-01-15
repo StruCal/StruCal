@@ -8,8 +8,8 @@ namespace StruCal.BindingModels
 {
     public class MeshStressResultDTO
     {
-        public string MeshId { get; set; }
-        public string BarId { get; set; }
-        public IEnumerable<VertexStressResultDTO> VertexResults { get; set; }
+        public string meshId { get; set; }
+        public string barId { get; set; }
+        public IEnumerable<VertexStressResultDTO> vertexResults { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace StruCal.BindingModels
 {
     public class SupportDTO
     {
-        public Point3D Location { get; set; }
-        public string Direction { get; set; }
+        public Point3DDTO location { get; set; }
+        public string direction { get; set; }
     }
 }

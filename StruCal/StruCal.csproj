@@ -210,6 +210,8 @@
     <Compile Include="BindingModels\TrainLoad\Output\TrainLoadOutputDTO.cs" />
     <Compile Include="BindingModels\TrainLoad\Output\VertexColorResultDTO.cs" />
     <Compile Include="BindingModels\TrainLoad\Output\VertexStressResultDTO.cs" />
+    <Compile Include="BindingModels\TrainLoad\Point3DDTO.cs" />
+    <Compile Include="BindingModels\TrainLoad\PointDDTO.cs" />
     <Compile Include="Controllers\ConcretePropertiesController.cs" />
     <None Include="Controllers\ConcreteCoverController.cs" />
     <Compile Include="Controllers\CoverController.cs" />

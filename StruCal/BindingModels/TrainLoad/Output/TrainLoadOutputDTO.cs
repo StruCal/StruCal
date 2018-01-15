@@ -8,7 +8,7 @@ namespace StruCal.BindingModels
 {
     public class TrainLoadOutputDTO
     {
-        public double MaxAbsoluteDisplacement { get; set; }
-        public IEnumerable<TimeResultDTO> TimeResults { get; set; }
+        public double maxAbsoluteDisplacement { get; set; }
+        public IEnumerable<TimeResultDTO> timeResults { get; set; }
     }
 }

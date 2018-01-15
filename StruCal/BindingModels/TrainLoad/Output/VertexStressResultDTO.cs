@@ -9,8 +9,8 @@ namespace StruCal.BindingModels
 {
     public class VertexStressResultDTO
     {
-        public Point3D Position { get; set; }
-        public double Displacement { get; set; }
-        public double Stress { get; set; }
+        public Point3DDTO position { get; set; }
+        public double pisplacement { get; set; }
+        public double stress { get; set; }
     }
 }

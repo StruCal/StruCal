@@ -9,10 +9,10 @@ namespace StruCal.BindingModels
 {
     public class BarDTO
     {
-        public string Id { get; set; }
-        public Point3D StartPoint { get; set; }
-        public Point3D EndPoint { get; set; }
-        public SectionDTO Section { get; set; }
+        public string id { get; set; }
+        public Point3DDTO startPoint { get; set; }
+        public Point3DDTO endPoint { get; set; }
+        public SectionDTO section { get; set; }
         //public List<Additional> Additionals { get; set; }
     }
 }

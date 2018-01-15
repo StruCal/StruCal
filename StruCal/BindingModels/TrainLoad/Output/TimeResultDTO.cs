@@ -8,9 +8,9 @@ namespace StruCal.BindingModels
 {
     public class TimeResultDTO
     {
-        public double Time { get; set; }
-        public double MaxStress { get; set; }
-        public double MinStress { get; set; }
-        public IEnumerable<MeshColorResultDTO> MeshResults { get; set; }
+        public double time { get; set; }
+        public double maxStress { get; set; }
+        public double minStress { get; set; }
+        public IEnumerable<MeshColorResultDTO> meshResults { get; set; }
     }
 }

@@ -8,6 +8,6 @@ namespace StruCal.BindingModels
 {
     public class SectionDTO
     {
-        public List<PerimeterDTO> Perimeters { get; set; }
+        public List<PerimeterDTO> perimeters { get; set; }
     }
 }

@@ -9,9 +9,9 @@ namespace StruCal.BindingModels
 {
     public class VertexColorResultDTO
     {
-        public Point3D Position { get; set; }
-        public double Displacement { get; set; }
+        public Point3DDTO position { get; set; }
+        public double displacement { get; set; }
 
-        public string Color { get; set; }
+        public string color { get; set; }
     }
 }
