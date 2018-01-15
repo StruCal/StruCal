@@ -6,6 +6,8 @@ import { material, color } from '../material';
 import { Section } from '../../structure/section';
 import { StructureData } from './structureData';
 
+const Guid = require('guid');
+
 export class BarsCreator extends BaseCreator {
     private structureData: StructureData;
     constructor(scene: any) {
@@ -40,6 +42,7 @@ export class BarsCreator extends BaseCreator {
                     face.vertexColors[i] = new THREE.Color(color);
                 }
             });
+
 
             geometry.translate(bar.StartPoint.X, bar.StartPoint.Y, bar.StartPoint.Z);
 

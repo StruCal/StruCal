@@ -1,12 +1,13 @@
-import { ResultInterpolation } from './resultInterpolation';
+import * as THREE from 'three';
+import { ResultProvider } from './resultProvider';
 import { StructureData } from '../structureCreator/structureData';
 
 
 export class DisplacementProvider {
     private structureData: StructureData;
     private scene: any;
-    private resultInterpolation: ResultInterpolation;
-    constructor(scene: any, resultInterpolation: ResultInterpolation, structureData: StructureData) {
+    private resultInterpolation: ResultProvider;
+    constructor(scene: any, resultInterpolation: ResultProvider, structureData: StructureData) {
         this.scene = scene;
         this.resultInterpolation = resultInterpolation;
         this.structureData = structureData;
@@ -23,8 +24,8 @@ export class DisplacementProvider {
 
 
             vertices.forEach((vertex, index) => {
-                const position = baseVertices[index].z;
-                const displacement = this.resultInterpolation.getDisplacement(position);
+                const position = baseVertices[index];
+                const displacement = this.resultInterpolation.getDisplacement(position, mesh.uuid);
                 vertex.y = baseVertices[index].y + displacement;
             });
 

@@ -1,4 +1,4 @@
-import { ResultInterpolation } from './resultInterpolation';
+import { ResultProvider } from './resultProvider';
 import * as THREE from 'three';
 import { ColorProvider } from './colorProvider';
 import { StructureData } from '../structureCreator/structureData';
@@ -6,10 +6,10 @@ import { StructureData } from '../structureCreator/structureData';
 export class StressProvider {
     private structureData: StructureData;
     private scene: any;
-    private resultInterpolation: ResultInterpolation;
+    private resultInterpolation: ResultProvider;
     private colorProvider: ColorProvider;
 
-    constructor(scene: any, resultInterpolation: ResultInterpolation, structureData: StructureData) {
+    constructor(scene: any, resultInterpolation: ResultProvider, structureData: StructureData) {
         this.scene = scene;
         this.resultInterpolation = resultInterpolation;
         this.structureData = structureData;

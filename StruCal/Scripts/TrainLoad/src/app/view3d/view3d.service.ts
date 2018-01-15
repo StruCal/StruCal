@@ -5,7 +5,6 @@ import { mockedStructureGeometry } from '../mocks/mockedStructureGeometry';
 import { ThreeJsCreator } from '../model3d/threeJsCreator';
 import { mockedResultData } from '../mocks/mockedResultData';
 import { StructureCreator } from '../model3d/structureCreator/structureCreator';
-import { ResultInterpolation } from '../model3d/resultsCreator/resultInterpolation';
 import { DisplacementProvider } from '../model3d/resultsCreator/displacementProvider';
 import { StressProvider } from '../model3d/resultsCreator/stressProvider';
 import { StructureData } from '../model3d/structureCreator/structureData';
@@ -36,9 +35,8 @@ export class View3dService {
     this.structureCreator = new StructureCreator(this.threeJsCreator.scene);
     this.resultCreator = new ResultCreator(this.threeJsCreator.scene);
 
-    this.threeJsCreator.TickAnimation = () => this.tick();
     this.drawStructure(mockedStructureGeometry);
-    this.drawResults(mockedResultData);
+    //this.drawResults(mockedResultData);
   }
 
 
@@ -49,6 +47,7 @@ export class View3dService {
 
   public drawResults(results: ResultData) {
     this.resultCreator.SetResult(results, this.structureCreator.structureData);
+    this.threeJsCreator.TickAnimation = () => this.tick();
   }
 
   public getCalculationsInput(): CalculationsInput {
