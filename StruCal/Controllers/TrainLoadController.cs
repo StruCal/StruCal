@@ -1,4 +1,6 @@
-﻿using Calculators.TrainLoad;
+﻿using AutoMapper;
+using Calculators.TrainLoad;
+using Common.Geometry;
 using StruCal.BindingModels;
 using System;
 using System.Collections.Generic;
@@ -28,9 +30,13 @@ namespace StruCal.Controllers
         {
             var calculator = new TrainLoadCalculator(input);
             var result = calculator.Calculate();
+            var resultDTO = result.ToTrainLoadOutputDTO();
             //change section properties
 
-            return Ok(result);
+
+            return Ok(resultDTO);
         }
+
+
     }
 }
