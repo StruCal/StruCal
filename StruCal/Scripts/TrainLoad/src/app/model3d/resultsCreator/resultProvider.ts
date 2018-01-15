@@ -1,5 +1,5 @@
 import { ResultData } from '../../resultData/resultData';
-import { isEqual } from '../../common/equal';
+import { isEqual, arePointsEqual } from '../../common/equal';
 import * as THREE from 'three';
 import { MeshColorResult } from '../../resultData/meshColorResult';
 import { VertexResult } from '../../resultData/vertexResult';
@@ -7,12 +7,6 @@ import { Point3D } from '../../common/point3d';
 
 
 
-const linear = require('everpolate').linear;
-
-function arePointsEqual(value1: Point3D, value2: any): boolean {
-    const result = isEqual(value1.x, value2.x) && isEqual(value1.y, value2.y) && isEqual(value1.z, value2.z);
-    return result;
-}
 
 export class ResultProvider {
     private resultData: ResultData;
@@ -37,20 +31,20 @@ export class ResultProvider {
         this.minStress = currentResult.minStress;
     }
 
-    public getDisplacement(position: any, meshId: string): number {
-        const vertexResult = this.getVertex(position, meshId);
+    public getDisplacement(point: Point3D, meshId: string): number {
+        const vertexResult = this.getVertex(point, meshId);
         const displacement = vertexResult.displacement;
         return displacement * 100;
     }
 
-    public getStress(position: number, meshId: string): string {
-        const vertexResult = this.getVertex(position, meshId);
+    public getStress(point: Point3D, meshId: string): string {
+        const vertexResult = this.getVertex(point, meshId);
         return vertexResult.color;
     }
 
-    private getVertex(position: any, meshId: string): VertexResult {
+    private getVertex(point: Point3D, meshId: string): VertexResult {
         const vertexResults = this.meshResults.get(meshId);
-        const vertexResult = vertexResults.find(e => arePointsEqual(e.position, position));
+        const vertexResult = vertexResults.find(e => arePointsEqual(e.position, point));
         return vertexResult;
     }
 }
