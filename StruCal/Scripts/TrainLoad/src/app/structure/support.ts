@@ -4,28 +4,28 @@ import { Point3D } from '../common/point3d';
 
 
 export interface Support {
-    Location: Point3D;
-    Direction: string;
+    location: Point3D;
+    direction: string;
 }
 
 export function VerticalSupportCreator(location: Point3D): Support {
     return {
-        Location: location,
-        Direction: 'UX',
+        location: location,
+        direction: 'UX',
     };
 }
 
 export function HorizontalSupportCreator(location: Point3D): Support {
     return {
-        Location: location,
-        Direction: 'UY',
+        location: location,
+        direction: 'UY',
     };
 }
 
 export function OrtogonalSupportCreator(location: Point3D): Support {
     return {
-        Location: location,
-        Direction: 'UX|UY',
+        location: location,
+        direction: 'UX|UY',
     };
 }
 

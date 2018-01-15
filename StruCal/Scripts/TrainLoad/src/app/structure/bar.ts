@@ -5,20 +5,20 @@ import { Additional } from './additional';
 const Guid = require('guid');
 
 export class Bar {
-    readonly Id: string;
-    Section: Section;
-    StartPoint: Point3D;
-    EndPoint: Point3D;
-    Additionals?: Array<Additional>;
+    readonly id: string;
+    section: Section;
+    startPoint: Point3D;
+    endPoint: Point3D;
+    additionals?: Array<Additional>;
 
     constructor() {
-        this.Id = Guid.raw();
+        this.id = Guid.raw();
     }
 
     getLength(): number {
-        const dx = this.StartPoint.X - this.EndPoint.X;
-        const dy = this.StartPoint.Y - this.EndPoint.Y;
-        const dz = this.StartPoint.Z - this.EndPoint.Z;
+        const dx = this.startPoint.x - this.endPoint.x;
+        const dy = this.startPoint.y - this.endPoint.y;
+        const dz = this.startPoint.z - this.endPoint.z;
         const result = Math.sqrt(dx * dx + dy * dy + dz * dz);
         return result;
     }

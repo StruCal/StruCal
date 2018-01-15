@@ -9,178 +9,178 @@ import { VerticalSupportCreator, OrtogonalSupportCreator } from '../structure/su
 const Guid = require('guid');
 const section = new Section();
 const sectionProperties = {
-    Perimeters: [
+    perimeters: [
         {
-            Coordinates: [
+            coordinates: [
                 // bottom flange
                 {
-                    X: -0.5, Y: 0,
+                    x: -0.5, y: 0,
                 },
                 {
-                    X: -0.5, Y: 0.1,
+                    x: -0.5, y: 0.1,
                 },
                 {
-                    X: 0.5, Y: 0.1,
+                    x: 0.5, y: 0.1,
                 },
                 {
-                    X: 0.5, Y: 0,
+                    x: 0.5, y: 0,
                 },
             ]
         },
         // web
         {
-            Coordinates: [
+            coordinates: [
 
                 {
-                    X: -0.05, Y: 0.1,
+                    x: -0.05, y: 0.1,
                 },
                 {
-                    X: -0.05, Y: 1,
+                    x: -0.05, y: 1,
                 },
                 {
-                    X: 0.05, Y: 1,
+                    x: 0.05, y: 1,
                 },
                 {
-                    X: 0.05, Y: 0.1,
+                    x: 0.05, y: 0.1,
                 },
             ]
         },
         {
-            Coordinates: [
+            coordinates: [
 
                 {
-                    X: -0.05, Y: 1,
+                    x: -0.05, y: 1,
                 },
                 {
-                    X: -0.05, Y: 2,
+                    x: -0.05, y: 2,
                 },
                 {
-                    X: 0.05, Y: 2,
+                    x: 0.05, y: 2,
                 },
                 {
-                    X: 0.05, Y: 1,
+                    x: 0.05, y: 1,
                 },
             ]
         },
         {
-            Coordinates: [
+            coordinates: [
 
                 {
-                    X: -0.05, Y: 2,
+                    x: -0.05, y: 2,
                 },
                 {
-                    X: -0.05, Y: 3.9,
+                    x: -0.05, y: 3.9,
                 },
                 {
-                    X: 0.05, Y: 3.9,
+                    x: 0.05, y: 3.9,
                 },
                 {
-                    X: 0.05, Y: 2,
+                    x: 0.05, y: 2,
                 },
             ]
         },
         {
-            Coordinates: [
+            coordinates: [
                 // top flange
                 {
-                    X: -0.5, Y: 3.9,
+                    x: -0.5, y: 3.9,
                 },
                 {
-                    X: -0.5, Y: 4,
+                    x: -0.5, y: 4,
                 },
                 {
-                    X: 0.5, Y: 4,
+                    x: 0.5, y: 4,
                 },
                 {
-                    X: 0.5, Y: 3.9,
+                    x: 0.5, y: 3.9,
                 },
             ]
         },
 
         // Section 2
         {
-            Coordinates: [
+            coordinates: [
                 // bottom flange
                 {
-                    X: 2, Y: 0,
+                    x: 2, y: 0,
                 },
                 {
-                    X: 2, Y: 0.1,
+                    x: 2, y: 0.1,
                 },
                 {
-                    X: 3, Y: 0.1,
+                    x: 3, y: 0.1,
                 },
                 {
-                    X: 3, Y: 0,
+                    x: 3, y: 0,
                 },
             ]
         },
         // web
         {
-            Coordinates: [
+            coordinates: [
 
                 {
-                    X: 2.45, Y: 0.1,
+                    x: 2.45, y: 0.1,
                 },
                 {
-                    X: 2.45, Y: 1,
+                    x: 2.45, y: 1,
                 },
                 {
-                    X: 2.55, Y: 1,
+                    x: 2.55, y: 1,
                 },
                 {
-                    X: 2.55, Y: 0.1,
+                    x: 2.55, y: 0.1,
                 },
             ]
         },
         {
-            Coordinates: [
+            coordinates: [
 
                 {
-                    X: 2.45, Y: 1,
+                    x: 2.45, y: 1,
                 },
                 {
-                    X: 2.45, Y: 2,
+                    x: 2.45, y: 2,
                 },
                 {
-                    X: 2.55, Y: 2,
+                    x: 2.55, y: 2,
                 },
                 {
-                    X: 2.55, Y: 1,
+                    x: 2.55, y: 1,
                 },
             ]
         },
         {
-            Coordinates: [
+            coordinates: [
 
                 {
-                    X: 2.45, Y: 2,
+                    x: 2.45, y: 2,
                 },
                 {
-                    X: 2.45, Y: 3.9,
+                    x: 2.45, y: 3.9,
                 },
                 {
-                    X: 2.55, Y: 3.9,
+                    x: 2.55, y: 3.9,
                 },
                 {
-                    X: 2.55, Y: 2,
+                    x: 2.55, y: 2,
                 },
             ]
         },
         {
-            Coordinates: [
+            coordinates: [
                 // top flange
                 {
-                    X: 2, Y: 3.9,
+                    x: 2, y: 3.9,
                 },
                 {
-                    X: 2, Y: 4,
+                    x: 2, y: 4,
                 },
                 {
-                    X: 3, Y: 4,
+                    x: 3, y: 4,
                 },
                 {
-                    X: 3, Y: 3.9,
+                    x: 3, y: 3.9,
                 },
             ]
         },
@@ -190,53 +190,53 @@ Object.assign(section, sectionProperties);
 
 const additionals: Array<Additional> = [
     {
-        Perimeter: {
-            Coordinates: [
-                { X: 0, Y: 1 },
-                { X: 0, Y: 1 },
-                { X: 0, Y: 1 },
-                { X: 0, Y: 1 },
+        perimeter: {
+            coordinates: [
+                { x: 0, y: 1 },
+                { x: 0, y: 1 },
+                { x: 0, y: 1 },
+                { x: 0, y: 1 },
             ]
         },
-        Depth: 0.02,
+        depth: 0.02,
     }
 ];
 
 const bar1 = new Bar();
 //bar1.Id = Guid.raw();
-bar1.StartPoint = { X: 0, Y: 0, Z: 0 };
-bar1.EndPoint = { X: 0, Y: 0, Z: 10 };
-bar1.Section = section;
-bar1.Additionals = additionals;
+bar1.startPoint = { x: 0, y: 0, z: 0 };
+bar1.endPoint = { x: 0, y: 0, z: 10 };
+bar1.section = section;
+bar1.additionals = additionals;
 
 const bar2 = new Bar();
 //bar2.Id = Guid.raw();
-bar2.StartPoint = { X: 0, Y: 0, Z: 10 };
-bar2.EndPoint = { X: 0, Y: 0, Z: 20 };
-bar2.Section = section;
-bar2.Additionals = additionals;
+bar2.startPoint = { x: 0, y: 0, z: 10 };
+bar2.endPoint = { x: 0, y: 0, z: 20 };
+bar2.section = section;
+bar2.additionals = additionals;
 
 const bar3 = new Bar();
 //bar3.Id = Guid.raw();
-bar3.StartPoint = { X: 0, Y: 0, Z: 20 };
-bar3.EndPoint = { X: 0, Y: 0, Z: 30 };
-bar3.Section = section;
-bar3.Additionals = additionals;
+bar3.startPoint = { x: 0, y: 0, z: 20 };
+bar3.endPoint = { x: 0, y: 0, z: 30 };
+bar3.section = section;
+bar3.additionals = additionals;
 
 const bar4 = new Bar();
 //bar4.Id = Guid.raw();
-bar4.StartPoint = { X: 0, Y: 0, Z: 30 };
-bar4.EndPoint = { X: 0, Y: 0, Z: 40 };
-bar4.Section = section;
-bar4.Additionals = additionals;
+bar4.startPoint = { x: 0, y: 0, z: 30 };
+bar4.endPoint = { x: 0, y: 0, z: 40 };
+bar4.section = section;
+bar4.additionals = additionals;
 
-const support1 = OrtogonalSupportCreator({ X: 0, Y: 0, Z: 0 });
-const support2 = OrtogonalSupportCreator({ X: 0, Y: 0, Z: 40 });
-const support3 = OrtogonalSupportCreator({ X: 0, Y: 0, Z: 20 });
+const support1 = OrtogonalSupportCreator({ x: 0, y: 0, z: 0 });
+const support2 = OrtogonalSupportCreator({ x: 0, y: 0, z: 40 });
+const support3 = OrtogonalSupportCreator({ x: 0, y: 0, z: 20 });
 
 export const mockedStructureGeometry: StructureGeometry = {
-    Bars: [bar1, bar2, bar3, bar4],
-    Supports: [support1, support2, support3]
+    bars: [bar1, bar2, bar3, bar4],
+    supports: [support1, support2, support3]
 };
 
 

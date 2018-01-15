@@ -42,12 +42,12 @@ export class View3dService {
 
   public drawStructure(structureGeometry: StructureGeometry) {
     this.structureGeometry = structureGeometry;
-    this.structureCreator.Draw(structureGeometry);
+    this.structureCreator.draw(structureGeometry);
   }
 
   public drawResults(results: ResultData) {
-    this.resultCreator.SetResult(results, this.structureCreator.structureData);
-    this.threeJsCreator.TickAnimation = () => this.tick();
+    this.resultCreator.setResult(results, this.structureCreator.structureData);
+    this.threeJsCreator.tickAnimation = () => this.tick();
   }
 
   public getCalculationsInput(): CalculationsInput {
@@ -61,7 +61,7 @@ export class View3dService {
     if (this.currentTime > 150) {
       this.currentTime = 0;
     }
-    this.resultCreator.TickAnimation(this.currentTime);
+    this.resultCreator.tickAnimation(this.currentTime);
   }
 
 

@@ -2,8 +2,8 @@ import { MeshColorResult } from './meshColorResult';
 
 
 export interface TimeResult {
-    Time: number;
-    MaxStress: number;
-    MinStress: number;
-    MeshResults: Array<MeshColorResult>;
+    time: number;
+    maxStress: number;
+    minStress: number;
+    meshResults: Array<MeshColorResult>;
 }

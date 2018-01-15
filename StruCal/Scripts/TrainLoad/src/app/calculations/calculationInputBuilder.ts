@@ -15,19 +15,19 @@ export function calculationsInputBuilder(structureGeometry: StructureGeometry, s
         const barVertices = structureData.getVerticesByMeshId(meshId);
         const barId = structureData.getBarIdFromMeshId(meshId);
         const vertexInput: MeshInput = {
-            BarId: barId,
-            MeshId: meshId,
-            Vertices: barVertices,
+            barId: barId,
+            meshId: meshId,
+            vertices: barVertices,
         };
         return vertexInput;
     });
 
     return {
-        MaxColor: maxColor,
-        MinColor: minColor,
-        MiddleColor: middleColor,
-        StructureGeometry: structureGeometry,
-        Vertices: vertices,
+        maxColor: maxColor,
+        minColor: minColor,
+        middleColor: middleColor,
+        structureGeometry: structureGeometry,
+        vertices: vertices,
     };
 
 }

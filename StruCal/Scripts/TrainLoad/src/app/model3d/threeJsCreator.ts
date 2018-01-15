@@ -10,12 +10,12 @@ export class ThreeJsCreator {
     private _scene: any;
     private camera: any;
 
-    public TickAnimation = () => { };
+    public tickAnimation = () => { };
 
     constructor() {
     }
 
-    public Create(): void {
+    public create(): void {
         const canvas = document.getElementById(canvasId);
         this.canvasHelper = new CanvasHelper(canvas);
 
@@ -58,7 +58,7 @@ export class ThreeJsCreator {
 
             requestAnimationFrame(animate);
             if (counter === 5) {
-                this.TickAnimation();
+                this.tickAnimation();
                 counter = 0;
             }
             counter++;

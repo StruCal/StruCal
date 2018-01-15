@@ -14,7 +14,7 @@ export class BarsCreator extends BaseCreator {
         super(scene);
     }
 
-    public DrawBars(bars: Array<Bar>, structureData: StructureData): void {
+    public drawBars(bars: Array<Bar>, structureData: StructureData): void {
         this.structureData = structureData;
         bars.forEach(bar => this.drawBar(bar));
     }
@@ -23,16 +23,16 @@ export class BarsCreator extends BaseCreator {
         const length = bar.getLength();
         const extrudeSettings = getExtrudeSettings(length);
 
-        bar.Section.Perimeters.forEach(perimeter => {
-            const coordinates = perimeter.Coordinates;
-            const x0 = coordinates[0].X;
-            const y0 = coordinates[0].Y;
+        bar.section.perimeters.forEach(perimeter => {
+            const coordinates = perimeter.coordinates;
+            const x0 = coordinates[0].x;
+            const y0 = coordinates[0].y;
 
             const shape = new THREE.Shape();
             shape.moveTo(x0, y0);
 
             coordinates.slice(1).forEach(point => {
-                shape.lineTo(point.X, point.Y);
+                shape.lineTo(point.x, point.y);
             });
 
             const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
@@ -44,10 +44,10 @@ export class BarsCreator extends BaseCreator {
             });
 
 
-            geometry.translate(bar.StartPoint.X, bar.StartPoint.Y, bar.StartPoint.Z);
+            geometry.translate(bar.startPoint.x, bar.startPoint.y, bar.startPoint.z);
 
             const mesh = new THREE.Mesh(geometry, material);
-            this.structureData.add(geometry, mesh.uuid, bar.Id);
+            this.structureData.add(geometry, mesh.uuid, bar.id);
             this.scene.add(mesh);
         });
     }

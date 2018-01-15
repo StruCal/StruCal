@@ -1,5 +1,5 @@
 
 export class Point {
-    public X: number;
-    public Y: number;
+    public x: number;
+    public y: number;
 }

@@ -3,5 +3,5 @@ import { Point } from '../common/point';
 
 
 export class Perimeter {
-    public Coordinates: Array<Point>;
+    public coordinates: Array<Point>;
 }

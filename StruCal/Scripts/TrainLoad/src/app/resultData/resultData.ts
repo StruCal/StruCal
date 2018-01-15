@@ -3,6 +3,6 @@ import { TimeResult } from './timeResult';
 
 
 export interface ResultData {
-    MaxAbsoluteDisplacement: number;
-    TimeResults: Array<TimeResult>;
+    maxAbsoluteDisplacement: number;
+    timeResults: Array<TimeResult>;
 }

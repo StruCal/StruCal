@@ -17,13 +17,13 @@ export class StructureCreator extends BaseCreator {
         this._barsCreator = new BarsCreator(this.scene);
     }
 
-    public Draw(structureGeometry: StructureGeometry) {
+    public draw(structureGeometry: StructureGeometry) {
         if (structureGeometry === undefined || this.scene === undefined) {
             return;
         }
         this._structureData = new StructureData();
 
-        this._barsCreator.DrawBars(structureGeometry.Bars, this.structureData);
+        this._barsCreator.drawBars(structureGeometry.bars, this.structureData);
 
     }
 
@@ -32,6 +32,5 @@ export class StructureCreator extends BaseCreator {
     }
 
 
-    
 
 }

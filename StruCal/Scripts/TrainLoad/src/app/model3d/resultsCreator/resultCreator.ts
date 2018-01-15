@@ -20,14 +20,14 @@ export class ResultCreator {
         this.scene = scene;
     }
 
-    public SetResult(result: ResultData, structureData: StructureData): void {
+    public setResult(result: ResultData, structureData: StructureData): void {
 
         this.resultInterpolation = new ResultProvider(result);
         this.displacementProvider = new DisplacementProvider(this.scene, this.resultInterpolation, structureData);
         this.stressProvider = new StressProvider(this.scene, this.resultInterpolation, structureData);
     }
 
-    public TickAnimation(time: number): void {
+    public tickAnimation(time: number): void {
         this.resultInterpolation.setTime(time);
         this.displacementProvider.applyDisplacement();
         this.stressProvider.applyStress();

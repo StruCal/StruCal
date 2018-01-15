@@ -4,9 +4,9 @@ import { MeshInput } from './meshInput';
 
 
 export class CalculationsInput {
-    StructureGeometry: StructureGeometry;
-    Vertices: Array<MeshInput>;
-    MaxColor: string;
-    MinColor: string;
-    MiddleColor: string;
+    structureGeometry: StructureGeometry;
+    vertices: Array<MeshInput>;
+    maxColor: string;
+    minColor: string;
+    middleColor: string;
 }

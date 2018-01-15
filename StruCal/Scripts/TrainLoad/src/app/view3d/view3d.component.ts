@@ -18,7 +18,7 @@ public currentTime: number;
 
   ngOnInit() {
     this.threeJsCreator = new ThreeJsCreator();
-    this.threeJsCreator.Create();
+    this.threeJsCreator.create();
     this.view3dService.InjectModelCreator(this.threeJsCreator);
   }
 

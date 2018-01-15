@@ -9,8 +9,8 @@ import { Point3D } from '../../common/point3d';
 
 const linear = require('everpolate').linear;
 
-function isEqualPoint(value1: Point3D, value2: any): boolean {
-    const result = isEqual(value1.X, value2.x) && isEqual(value1.Y, value2.y) && isEqual(value1.Z, value2.z);
+function arePointsEqual(value1: Point3D, value2: any): boolean {
+    const result = isEqual(value1.x, value2.x) && isEqual(value1.y, value2.y) && isEqual(value1.z, value2.z);
     return result;
 }
 
@@ -26,31 +26,31 @@ export class ResultProvider {
     }
 
     public setTime(time: number): void {
-        const currentResult = this.resultData.TimeResults
-            .find(e => isEqual(e.Time, time));
+        const currentResult = this.resultData.timeResults
+            .find(e => isEqual(e.time, time));
         this.meshResults = new Map<string, VertexResult[]>();
-        currentResult.MeshResults.forEach(value => {
-            this.meshResults.set(value.MeshId, value.VertexResults);
+        currentResult.meshResults.forEach(value => {
+            this.meshResults.set(value.meshId, value.vertexResults);
         });
 
-        this.maxStress = currentResult.MaxStress;
-        this.minStress = currentResult.MinStress;
+        this.maxStress = currentResult.maxStress;
+        this.minStress = currentResult.minStress;
     }
 
     public getDisplacement(position: any, meshId: string): number {
         const vertexResult = this.getVertex(position, meshId);
-        const displacement = vertexResult.Displacement;
+        const displacement = vertexResult.displacement;
         return displacement * 100;
     }
 
     public getStress(position: number, meshId: string): string {
         const vertexResult = this.getVertex(position, meshId);
-        return vertexResult.Color;
+        return vertexResult.color;
     }
 
     private getVertex(position: any, meshId: string): VertexResult {
         const vertexResults = this.meshResults.get(meshId);
-        const vertexResult = vertexResults.find(e => isEqualPoint(e.Position, position));
+        const vertexResult = vertexResults.find(e => arePointsEqual(e.position, position));
         return vertexResult;
     }
 }

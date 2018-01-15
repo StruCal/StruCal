@@ -2,7 +2,7 @@ import { VertexResult } from './vertexResult';
 
 
 export interface MeshColorResult {
-    MeshId: string;
-    BarId: string;
-    VertexResults: Array<VertexResult>;
+    meshId: string;
+    barId: string;
+    vertexResults: Array<VertexResult>;
 }

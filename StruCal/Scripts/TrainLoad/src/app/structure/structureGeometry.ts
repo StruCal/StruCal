@@ -6,6 +6,6 @@ import { Support } from './support';
 
 
 export class StructureGeometry {
-     Bars: Array<Bar>;
-     Supports: Array<Support>;
+     bars: Array<Bar>;
+     supports: Array<Support>;
 }
