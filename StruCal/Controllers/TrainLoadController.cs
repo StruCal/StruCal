@@ -26,8 +26,9 @@ namespace StruCal.Controllers
     {
         [System.Web.Http.AllowAnonymous]
         [System.Web.Http.HttpPost]
-        public IHttpActionResult TrainLoadCalculations(TrainLoadInput input)
+        public IHttpActionResult TrainLoadCalculations(TrainLoadInputDTO inputDTO)
         {
+            var input = inputDTO.ToTrainLoadInput();
             var calculator = new TrainLoadCalculator(input);
             var result = calculator.Calculate();
             var resultDTO = result.ToTrainLoadOutputDTO();
