@@ -24,7 +24,7 @@ export class View3dService {
   private structureCreator: StructureCreator;
   private resultCreator: ResultCreator;
 
-  currentTime = 0;
+  currentTime = 10;
 
   constructor() {
   }
@@ -57,10 +57,16 @@ export class View3dService {
 
 
   private tick(): void {
-    this.currentTime++;
+    //this.currentTime++;
     if (this.currentTime > 150) {
       this.currentTime = 0;
     }
     this.resultCreator.TickAnimation(this.currentTime);
+  }
+
+
+  //TEST
+  next() {
+    this.currentTime++;
   }
 }

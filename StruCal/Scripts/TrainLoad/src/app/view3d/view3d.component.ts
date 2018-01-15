@@ -12,7 +12,7 @@ import { HttpService } from '../http.service';
 export class View3DComponent implements OnInit {
   private threeJsCreator: ThreeJsCreator;
 
-
+public currentTime: number;
   constructor(private view3dService: View3dService, private httpService: HttpService) {
   }
 
@@ -32,5 +32,10 @@ export class View3DComponent implements OnInit {
 
 
   }
+
+next(){
+  this.view3dService.next();
+  this.currentTime = this.view3dService.currentTime;
+}
 
 }
