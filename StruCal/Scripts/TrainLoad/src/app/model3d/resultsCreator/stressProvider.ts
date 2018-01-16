@@ -7,16 +7,17 @@ export class StressProvider {
     private structureData: StructureData;
     private scene: any;
     private resultInterpolation: ResultProvider;
+    private meshes: Array<any>;
 
     constructor(scene: any, resultInterpolation: ResultProvider, structureData: StructureData) {
         this.scene = scene;
         this.resultInterpolation = resultInterpolation;
         this.structureData = structureData;
+        this.meshes = this.scene.children.filter(e => e.type === 'Mesh');
     }
 
     public applyStress(): void {
-        const meshes = this.scene.children.filter(e => e.type === 'Mesh');
-        meshes.forEach(mesh => {
+        this.meshes.forEach(mesh => {
             const faces = mesh.geometry.faces;
             mesh.geometry.colorsNeedUpdate = true;
 
