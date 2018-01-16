@@ -83,6 +83,7 @@
     <Compile Include="RCBeam\StressFunctions.cs" />
     <Compile Include="SectionProperties\Calculator.cs" />
     <Compile Include="ShearReinforcement\ShearReinforcementCalculator.cs" />
+    <Compile Include="TrainLoad\Extensions\Perimeter.cs" />
     <Compile Include="TrainLoad\FEMCalculator.cs" />
     <Compile Include="TrainLoad\FemCalculatorResult.cs" />
     <Compile Include="TrainLoad\GradienColor\Color.cs" />

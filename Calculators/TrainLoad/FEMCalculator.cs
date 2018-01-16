@@ -8,11 +8,15 @@ using FEM2DDynamics.Elements.Beam;
 using FEM2DDynamics.Results;
 using FEM2DDynamics.Solver;
 using FEM2DDynamics.Structure;
+using FEMCommon.ElementProperties.DynamicBeamPropertiesBuilder;
+using FEMCommon.ElementProperties.SectionBuilders.CustomSection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Calculators.TrainLoad.Extensions;
 using System.Text;
 using System.Threading.Tasks;
+using FEMSection = FEM2DCommon.Sections.Section;
 
 namespace Calculators.TrainLoad
 {
@@ -71,15 +75,14 @@ namespace Calculators.TrainLoad
         {
             foreach (var bar in this.structureGeometry.Bars)
             {
-                //!!!!!!!!!!! CHANGE
-                var properties = BeamProperties.Default;
-                var dynamicProperties = new DynamicBeamProperties
-                {
-                    BeamProperties = properties,
-                    Density = steelDensity,
-                };
 
+                var section = new FEMSection(bar.Section.Perimeters.Convert());
 
+                var dynamicProperties = DynamicBeamPropertiesBuilder.Create()
+                    .SetSteel()
+                    .SetSection(section)
+                    .Build();
+                    
                 var startPoint = new PointD(bar.StartPoint.Z, bar.StartPoint.Y);
                 var endPoint = new PointD(bar.EndPoint.Z, bar.EndPoint.Y);
                 var startNode = structure.NodeFactory.Create(startPoint);
