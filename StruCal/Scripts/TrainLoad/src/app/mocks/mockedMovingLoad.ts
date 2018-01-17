@@ -2,7 +2,7 @@ import { MovingLoad } from '../movingLoad/movingLoad';
 
 
 
-export const mockedMovingLoad: MovingLoad = {
+const mockedMovingLoadProperties = {
     speed: 1,
     forces: [
         {
@@ -19,3 +19,6 @@ export const mockedMovingLoad: MovingLoad = {
         },
     ]
 };
+
+export const mockedMovingLoad = new MovingLoad();
+Object.assign(mockedMovingLoad, mockedMovingLoadProperties);

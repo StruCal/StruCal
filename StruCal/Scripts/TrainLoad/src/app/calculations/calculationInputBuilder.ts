@@ -4,6 +4,7 @@ import { CalculationsInput } from './calculationsInput';
 import { MeshInput } from './meshInput';
 import { minColor, maxColor, middleColor } from '../model3d/structureCreator/colors';
 import { MovingLoad } from '../movingLoad/movingLoad';
+import { TimeSettings } from '../time/timeSettings';
 
 
 export function calculationsInputBuilder() {
@@ -36,9 +37,21 @@ export function calculationsInputBuilder() {
     }
     function setMovingLoad(movingLoad: MovingLoad) {
         calculationsInput.movingLoads = movingLoad;
+        return { setTimeSettings };
+    }
+    function setTimeSettings() {
+        const timeSettings = new TimeSettings();
+        const structureLength = calculationsInput.structureGeometry.getLength();
+        const loadLength = calculationsInput.movingLoads.getLength();
+
+        const endTime = (structureLength + loadLength) * calculationsInput.movingLoads.speed;
+        timeSettings.endTime = endTime;
+        calculationsInput.timeSettings = timeSettings;
         return { build };
     }
     function build(): CalculationsInput {
+
+
         return calculationsInput;
     }
 
