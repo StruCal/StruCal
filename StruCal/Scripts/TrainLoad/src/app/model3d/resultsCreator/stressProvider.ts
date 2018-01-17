@@ -33,7 +33,7 @@ export class StressProvider {
 
                 for (let i = 0; i < 3; i++) {
                     const vertex = faceVertices[i];
-                    const color = this.resultInterpolation.getStress(vertex, mesh.uuid);
+                    const color = this.resultInterpolation.getColor(vertex, mesh.uuid);
                     face.vertexColors[i].set(color);
 
                 }

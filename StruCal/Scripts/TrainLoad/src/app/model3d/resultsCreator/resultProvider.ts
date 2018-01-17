@@ -34,12 +34,16 @@ export class ResultProvider {
     public getDisplacement(point: Point3D, meshId: string): number {
         const vertexResult = this.getVertex(point, meshId);
         const displacement = vertexResult.displacement;
-        return displacement * 10000;
+        return displacement;
     }
 
-    public getStress(point: Point3D, meshId: string): string {
+    public getColor(point: Point3D, meshId: string): string {
         const vertexResult = this.getVertex(point, meshId);
         return vertexResult.color;
+    }
+
+    public getMaxDisplacement(): number {
+        return this.resultData.maxAbsoluteDisplacement;
     }
 
     private getVertex(point: Point3D, meshId: string): VertexResult {
@@ -47,4 +51,5 @@ export class ResultProvider {
         const vertexResult = vertexResults.find(e => arePointsEqual(e.position, point));
         return vertexResult;
     }
+
 }

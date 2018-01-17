@@ -2,15 +2,20 @@ import * as THREE from 'three';
 import { ResultProvider } from './resultProvider';
 import { StructureData } from '../structureCreator/structureData';
 
+const scaleFactor = 2;
 
 export class DisplacementProvider {
     private structureData: StructureData;
     private scene: any;
-    private resultInterpolation: ResultProvider;
-    constructor(scene: any, resultInterpolation: ResultProvider, structureData: StructureData) {
+    private resultProvider: ResultProvider;
+    private displacementScale: number;
+
+    constructor(scene: any, resultProvider: ResultProvider, structureData: StructureData) {
         this.scene = scene;
-        this.resultInterpolation = resultInterpolation;
+        this.resultProvider = resultProvider;
         this.structureData = structureData;
+
+        this.calculateDisplacementScale();
     }
 
     public applyDisplacement(): void {
@@ -25,12 +30,16 @@ export class DisplacementProvider {
 
             vertices.forEach((vertex, index) => {
                 const position = baseVertices[index];
-                const displacement = this.resultInterpolation.getDisplacement(position, mesh.uuid);
-                vertex.y = baseVertices[index].y + displacement;
+                const displacement = this.resultProvider.getDisplacement(position, mesh.uuid);
+                vertex.y = baseVertices[index].y + displacement * this.displacementScale;
             });
 
         });
 
     }
 
+    private calculateDisplacementScale() {
+        const maxDisplacement = this.resultProvider.getMaxDisplacement();
+        this.displacementScale = scaleFactor / maxDisplacement;
+    }
 }
