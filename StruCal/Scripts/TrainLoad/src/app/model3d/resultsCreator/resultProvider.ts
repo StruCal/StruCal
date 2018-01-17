@@ -34,7 +34,7 @@ export class ResultProvider {
     public getDisplacement(point: Point3D, meshId: string): number {
         const vertexResult = this.getVertex(point, meshId);
         const displacement = vertexResult.displacement;
-        return displacement * 100;
+        return displacement * 10000;
     }
 
     public getStress(point: Point3D, meshId: string): string {

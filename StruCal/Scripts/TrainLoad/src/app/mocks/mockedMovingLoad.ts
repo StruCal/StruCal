@@ -10,11 +10,11 @@ export const mockedMovingLoad: MovingLoad = {
             load: -1000,
         },
         {
-            basePosition: -2,
+            basePosition: -5,
             load: -1000,
         },
         {
-            basePosition: -3,
+            basePosition: -10,
             load: -1000,
         },
     ]

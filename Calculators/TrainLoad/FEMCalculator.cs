@@ -22,14 +22,14 @@ namespace Calculators.TrainLoad
 {
     internal class FEMCalculator
     {
-        private StructureGeometry structureGeometry;
-
+private readonly TrainLoadInput trainLoadInput;
         private DynamicStructure structure;
         private IDictionary<IDynamicBeamElement,string> elementBarIdMap;
+        
 
-        public FEMCalculator(StructureGeometry structureGeometry)
+        public FEMCalculator(TrainLoadInput trainLoadInput)
         {
-            this.structureGeometry = structureGeometry;
+            this.trainLoadInput = trainLoadInput;
             this.elementBarIdMap = new Dictionary<IDynamicBeamElement,string>();
 
             var settings = new DynamicSolverSettings
@@ -39,15 +39,14 @@ namespace Calculators.TrainLoad
                 StartTime = 0
             };
             this.structure = new DynamicStructure(settings);
+            this.trainLoadInput = trainLoadInput;
         }
 
         public FemCalculatorResult Calculate()
         {
             GenerateNodesAndElements();
             GenerateSupports();
-
-            structure.LoadFactory.AddPointMovingLoad(-1000, 0, 1);
-            structure.LoadFactory.AddPointMovingLoad(-2000, -4, 1);
+            GenerateMovingLoads();
 
 
             structure.Solve();
@@ -59,9 +58,18 @@ namespace Calculators.TrainLoad
             };
         }
 
+        private void GenerateMovingLoads()
+        {
+            var speed = trainLoadInput.MovingLoads.Speed;
+            foreach (var movingLoad in this.trainLoadInput.MovingLoads.Forces)
+            {
+                structure.LoadFactory.AddPointMovingLoad(movingLoad.Load, movingLoad.BasePosition, speed);
+            }
+        }
+
         private void GenerateSupports()
         {
-            foreach (var support in this.structureGeometry.Supports)
+            foreach (var support in this.trainLoadInput.StructureGeometry.Supports)
             {
                 var restraint = RestraintConverter.ConvertFromString(support.Direction);
                 var location = support.Location.ToFEMCoordinateSystem();
@@ -71,7 +79,7 @@ namespace Calculators.TrainLoad
 
         private void GenerateNodesAndElements()
         {
-            foreach (var bar in this.structureGeometry.Bars)
+            foreach (var bar in this.trainLoadInput.StructureGeometry.Bars)
             {
 
                 var section = new FEMSection(bar.Section.Perimeters.Convert());
