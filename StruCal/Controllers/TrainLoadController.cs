@@ -32,8 +32,6 @@ namespace StruCal.Controllers
             var calculator = new TrainLoadCalculator(input);
             var result = calculator.Calculate();
             var resultDTO = result.ToTrainLoadOutputDTO();
-            //change section properties
-
 
             return Ok(resultDTO);
         }
