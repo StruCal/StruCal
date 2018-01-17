@@ -16,6 +16,7 @@ namespace Calculators.TrainLoad
         public StructureGeometry StructureGeometry { get; set; }
         public List<VertexInput> Vertices { get; set; }
         public MovingLoad MovingLoads { get; set; }
+        public TimeSettings TimeSettings { get; set; }
     }
 
 

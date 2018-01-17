@@ -8,7 +8,7 @@ namespace StruCal.BindingModels.TrainLoad.Input
 {
     public class MovingLoadDTO
     {
-        public int speed { get; set; }
+        public double speed { get; set; }
         public List<MovingForceDTO> forces { get; set; }
     }
 

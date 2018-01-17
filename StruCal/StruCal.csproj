@@ -219,6 +219,7 @@
     <Compile Include="BindingModels\TrainLoad\Input\SectionDTO.cs" />
     <Compile Include="BindingModels\TrainLoad\Input\StructureGeometryDTO.cs" />
     <Compile Include="BindingModels\TrainLoad\Input\SupportDTO.cs" />
+    <Compile Include="BindingModels\TrainLoad\Input\TimeSettingsDTO.cs" />
     <Compile Include="BindingModels\TrainLoad\Input\TrainLoadInputDTO.cs" />
     <Compile Include="BindingModels\TrainLoad\Input\VertexInputDTO.cs" />
     <Compile Include="BindingModels\TrainLoad\Output\MeshColorResultDTO.cs" />

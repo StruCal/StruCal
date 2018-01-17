@@ -30,6 +30,7 @@ public currentTime: number;
     .setStructureGeometry(this.view3dService.getStructureGeometry())
     .setStructureData(this.view3dService.getStructureData())
     .setMovingLoad(this.movingLoad)
+    .setTimeSettings()
     .build();
 
     this.httpService.getResult(input).subscribe(data => {

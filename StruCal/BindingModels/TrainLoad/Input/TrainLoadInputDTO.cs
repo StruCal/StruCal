@@ -17,6 +17,7 @@ namespace StruCal.BindingModels
         public StructureGeometryDTO structureGeometry { get; set; }
         public List<VertexInputDTO> vertices { get; set; }
         public MovingLoadDTO movingLoads { get; set; }
+        public TimeSettingsDTO timeSettings { get; set; }
     }
     public static class ExtensionTrainLoadInputDTO
     {
@@ -29,7 +30,8 @@ namespace StruCal.BindingModels
                 MinColor=trainLoadInputDTO.minColor,
                 StructureGeometry=trainLoadInputDTO.structureGeometry.ToStructureGeometry(),
                 Vertices=trainLoadInputDTO.vertices.Select(e=>e.ToVertexInput()).ToList(),
-                MovingLoads=trainLoadInputDTO.movingLoads.ToMovingLoad()
+                MovingLoads=trainLoadInputDTO.movingLoads.ToMovingLoad(),
+                TimeSettings = trainLoadInputDTO.timeSettings.ToTimeSettings(),
             };
         }
     }

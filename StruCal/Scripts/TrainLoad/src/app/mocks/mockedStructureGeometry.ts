@@ -234,10 +234,12 @@ const support1 = OrtogonalSupportCreator({ x: 0, y: 0, z: 0 });
 const support2 = OrtogonalSupportCreator({ x: 0, y: 0, z: 40 });
 const support3 = OrtogonalSupportCreator({ x: 0, y: 0, z: 20 });
 
-export const mockedStructureGeometry: StructureGeometry = {
+const mockedStructureGeometryProperties = {
     bars: [bar1, bar2, bar3, bar4],
     supports: [support1, support2, support3]
 };
+export const mockedStructureGeometry = new StructureGeometry();
 
+Object.assign(mockedStructureGeometry, mockedStructureGeometryProperties);
 
 

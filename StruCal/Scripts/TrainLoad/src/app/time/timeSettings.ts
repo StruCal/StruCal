@@ -3,8 +3,7 @@ const deltaTime = 0.1;
 
 
 export class TimeSettings {
-    startTime;
+    startTime = startTime;
     endTime: number;
-    deltaTime;
-
+    deltaTime = deltaTime;
 }

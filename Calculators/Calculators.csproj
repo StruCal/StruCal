@@ -99,6 +99,7 @@
     <Compile Include="TrainLoad\Input\Section.cs" />
     <Compile Include="TrainLoad\Input\StructureGeometry.cs" />
     <Compile Include="TrainLoad\Input\Support.cs" />
+    <Compile Include="TrainLoad\Input\TimeSettings.cs" />
     <Compile Include="TrainLoad\Input\TrainLoadInput.cs" />
     <Compile Include="TrainLoad\Input\VertexInput.cs" />
     <Compile Include="TrainLoad\Output\MeshStressResult.cs" />
