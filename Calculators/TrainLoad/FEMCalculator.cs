@@ -22,8 +22,6 @@ namespace Calculators.TrainLoad
 {
     internal class FEMCalculator
     {
-        const int steelDensity = 7850;
-
         private StructureGeometry structureGeometry;
 
         private DynamicStructure structure;

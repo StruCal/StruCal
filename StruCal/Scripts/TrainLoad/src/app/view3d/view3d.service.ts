@@ -13,6 +13,8 @@ import { ResultCreator } from '../model3d/resultsCreator/resultCreator';
 import { ResultData } from '../resultData/resultData';
 import { CalculationsInput } from '../calculations/calculationsInput';
 import { calculationsInputBuilder } from '../calculations/calculationInputBuilder';
+import { MovingLoad } from '../movingLoad/movingLoad';
+import { mockedMovingLoad } from '../mocks/mockedMovingLoad';
 
 
 
@@ -23,6 +25,7 @@ export class View3dService {
   private structureGeometry: StructureGeometry;
   private structureCreator: StructureCreator;
   private resultCreator: ResultCreator;
+private movingLoad: MovingLoad;
 
   currentTime = 10;
 
@@ -36,7 +39,8 @@ export class View3dService {
     this.resultCreator = new ResultCreator(this.threeJsCreator.scene);
 
     this.drawStructure(mockedStructureGeometry);
-    //this.drawResults(mockedResultData);
+
+    this.movingLoad = mockedMovingLoad;
   }
 
 
@@ -51,7 +55,11 @@ export class View3dService {
   }
 
   public getCalculationsInput(): CalculationsInput {
-    const result = calculationsInputBuilder(this.structureGeometry, this.structureCreator.structureData);
+    const result = calculationsInputBuilder()
+                  .setStructureGeometry(this.structureGeometry)
+                  .setStructureData(this.structureCreator.structureData)
+                  .setMovingLoad(this.movingLoad)
+                  .build();
     return result;
   }
 
