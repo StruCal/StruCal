@@ -6,7 +6,7 @@ import { MovingLoad } from '../movingLoad/movingLoad';
 
 export class CalculationsInput {
     structureGeometry: StructureGeometry;
-    movingLoad: MovingLoad;
+    movingLoads: MovingLoad;
     vertices: Array<MeshInput>;
     maxColor: string;
     minColor: string;

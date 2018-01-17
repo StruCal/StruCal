@@ -93,6 +93,8 @@
     <Compile Include="TrainLoad\Helpers\PointDHelper.cs" />
     <Compile Include="TrainLoad\Helpers\RestraintConverter.cs" />
     <Compile Include="TrainLoad\Input\Bar.cs" />
+    <Compile Include="TrainLoad\Input\MovingLoad.cs" />
+    <Compile Include="TrainLoad\Input\MovingForce.cs" />
     <Compile Include="TrainLoad\Input\Perimeter.cs" />
     <Compile Include="TrainLoad\Input\Section.cs" />
     <Compile Include="TrainLoad\Input\StructureGeometry.cs" />

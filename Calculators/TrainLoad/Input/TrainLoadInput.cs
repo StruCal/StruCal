@@ -1,4 +1,5 @@
 ﻿using Calculators.TrainLoad;
+using Calculators.TrainLoad.Input;
 using Common.Geometry;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace Calculators.TrainLoad
         public string MiddleColor { get; set; }
         public StructureGeometry StructureGeometry { get; set; }
         public List<VertexInput> Vertices { get; set; }
+        public MovingLoad MovingLoads { get; set; }
     }
 
 

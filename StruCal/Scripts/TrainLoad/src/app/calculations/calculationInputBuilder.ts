@@ -35,7 +35,7 @@ export function calculationsInputBuilder() {
         return { setMovingLoad };
     }
     function setMovingLoad(movingLoad: MovingLoad) {
-        calculationsInput.movingLoad = movingLoad;
+        calculationsInput.movingLoads = movingLoad;
         return { build };
     }
     function build(): CalculationsInput {

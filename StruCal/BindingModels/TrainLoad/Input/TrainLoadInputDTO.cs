@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Calculators.TrainLoad;
+using StruCal.BindingModels.TrainLoad.Input;
 
 namespace StruCal.BindingModels
 {
@@ -15,6 +16,7 @@ namespace StruCal.BindingModels
         public string middleColor { get; set; }
         public StructureGeometryDTO structureGeometry { get; set; }
         public List<VertexInputDTO> vertices { get; set; }
+        public MovingLoadDTO movingLoads { get; set; }
     }
     public static class ExtensionTrainLoadInputDTO
     {
@@ -27,6 +29,7 @@ namespace StruCal.BindingModels
                 MinColor=trainLoadInputDTO.minColor,
                 StructureGeometry=trainLoadInputDTO.structureGeometry.ToStructureGeometry(),
                 Vertices=trainLoadInputDTO.vertices.Select(e=>e.ToVertexInput()).ToList(),
+                MovingLoads=trainLoadInputDTO.movingLoads.ToMovingLoad()
             };
         }
     }

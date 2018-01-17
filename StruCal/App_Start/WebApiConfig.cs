@@ -11,6 +11,10 @@ namespace StruCal
     {
         public static void Register(HttpConfiguration config)
         {
+#if DEBUG
+            config.EnableSystemDiagnosticsTracing();
+#endif
+
             GlobalConfiguration.Configuration.MessageHandlers.Insert(0, new ServerCompressionHandler(new GZipCompressor(), new DeflateCompressor()));
 
             config.MapHttpAttributeRoutes();
