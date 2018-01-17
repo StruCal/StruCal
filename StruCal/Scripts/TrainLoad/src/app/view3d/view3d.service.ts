@@ -25,7 +25,6 @@ export class View3dService {
   private structureGeometry: StructureGeometry;
   private structureCreator: StructureCreator;
   private resultCreator: ResultCreator;
-private movingLoad: MovingLoad;
 
   currentTime = 10;
 
@@ -40,7 +39,6 @@ private movingLoad: MovingLoad;
 
     this.drawStructure(mockedStructureGeometry);
 
-    this.movingLoad = mockedMovingLoad;
   }
 
 
@@ -54,13 +52,12 @@ private movingLoad: MovingLoad;
     this.threeJsCreator.tickAnimation = () => this.tick();
   }
 
-  public getCalculationsInput(): CalculationsInput {
-    const result = calculationsInputBuilder()
-                  .setStructureGeometry(this.structureGeometry)
-                  .setStructureData(this.structureCreator.structureData)
-                  .setMovingLoad(this.movingLoad)
-                  .build();
-    return result;
+  public getStructureGeometry(): StructureGeometry {
+    return this.structureGeometry;
+  }
+
+  public getStructureData(): StructureData {
+    return this.structureCreator.structureData;
   }
 
 

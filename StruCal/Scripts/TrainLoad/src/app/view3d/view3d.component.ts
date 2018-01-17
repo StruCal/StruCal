@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { View3dService } from './view3d.service';
 import { ThreeJsCreator } from '../model3d/threeJsCreator';
 import { HttpService } from '../http.service';
+import { calculationsInputBuilder } from '../calculations/calculationInputBuilder';
+import { MovingLoad } from '../movingLoad/movingLoad';
+import { mockedMovingLoad } from '../mocks/mockedMovingLoad';
 
 
 @Component({
@@ -11,7 +14,7 @@ import { HttpService } from '../http.service';
 })
 export class View3DComponent implements OnInit {
   private threeJsCreator: ThreeJsCreator;
-
+  private movingLoad: MovingLoad = mockedMovingLoad;
 public currentTime: number;
   constructor(private view3dService: View3dService, private httpService: HttpService) {
   }
@@ -23,7 +26,11 @@ public currentTime: number;
   }
 
   test() {
-    const input = this.view3dService.getCalculationsInput();
+    const input = calculationsInputBuilder()
+    .setStructureGeometry(this.view3dService.getStructureGeometry())
+    .setStructureData(this.view3dService.getStructureData())
+    .setMovingLoad(this.movingLoad)
+    .build();
 
     this.httpService.getResult(input).subscribe(data => {
       this.view3dService.drawResults(data);
