@@ -26,7 +26,7 @@ export class View3dService {
   private structureCreator: StructureCreator;
   private resultCreator: ResultCreator;
 
-  currentTime = 10;
+  currentTime = 0;
 
   constructor() {
   }
