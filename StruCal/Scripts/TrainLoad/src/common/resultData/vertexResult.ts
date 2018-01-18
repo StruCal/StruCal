@@ -1,4 +1,4 @@
-import { Point3D } from '../common/point3d';
+import { Point3D } from '../utils/point3d';
 
 
 export interface VertexResult {

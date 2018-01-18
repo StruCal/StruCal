@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { View3dService } from '../view3d/view3d.service';
 import { HttpService } from '../http.service';
-import { calculationsInputBuilder } from '../../3DSolver/calculations/calculationInputBuilder';
-import { mockedMovingLoad } from '../../3DSolver/mocks/mockedMovingLoad';
-import { StructureGeometry } from '../../3DSolver/structure/structureGeometry';
-import { mockedStructureGeometry } from '../../3DSolver/mocks/mockedStructureGeometry';
+import { calculationsInputBuilder } from '../../common/calculations/calculationInputBuilder';
+import { mockedStructureGeometry } from '../../common/mocks/mockedStructureGeometry';
+import { mockedMovingLoad } from '../../common/mocks/mockedMovingLoad';
+import { StructureGeometry } from '../../common/structure/structureGeometry';
+
 
 @Injectable()
 export class ControlPanelService {

@@ -1,6 +1,6 @@
 import { Section } from './section';
-import { Point3D } from '../common/point3d';
 import { Additional } from './additional';
+import { Point3D } from '../utils/point3d';
 
 const Guid = require('guid');
 

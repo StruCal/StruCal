@@ -1,10 +1,10 @@
 import { StructureGeometry } from '../structure/structureGeometry';
-import { StructureData } from '../model3d/structureCreator/structureData';
 import { CalculationsInput } from './calculationsInput';
 import { MeshInput } from './meshInput';
-import { minColor, maxColor, middleColor } from '../model3d/structureCreator/colors';
 import { MovingLoad } from '../movingLoad/movingLoad';
 import { TimeSettings } from '../time/timeSettings';
+import { maxColor, minColor, middleColor } from '../../3DDrawing/model3d/structureCreator/colors';
+import { StructureData } from '../../3DDrawing/model3d/structureCreator/structureData';
 
 
 export function calculationsInputBuilder() {

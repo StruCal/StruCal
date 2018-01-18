@@ -1,9 +1,9 @@
 import * as THREE from 'three';
-import { StructureGeometry } from '../../structure/structureGeometry';
 import { material } from '../material';
 import { BaseCreator } from './baseCreator';
 import { BarsCreator } from './barsCreator';
 import { StructureData } from './structureData';
+import { StructureGeometry } from '../../../common/structure/structureGeometry';
 
 
 

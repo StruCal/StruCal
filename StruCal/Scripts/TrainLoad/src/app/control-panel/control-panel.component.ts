@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { View3dService } from '../view3d/view3d.service';
-import { mockedMovingLoad } from '../../3DSolver/mocks/mockedMovingLoad';
-import { calculationsInputBuilder } from '../../3DSolver/calculations/calculationInputBuilder';
-import { StructureGeometry } from '../../3DSolver/structure/structureGeometry';
-import { mockedStructureGeometry } from '../../3DSolver/mocks/mockedStructureGeometry';
 import { ControlPanelService } from './control-panel.service';
 
 @Component({

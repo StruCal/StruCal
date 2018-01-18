@@ -3,10 +3,7 @@ import { StructureData } from '../structureCreator/structureData';
 import { ResultProvider } from './resultProvider';
 import { DisplacementProvider } from './displacementProvider';
 import { StressProvider } from './stressProvider';
-import { mockedResultData } from '../../mocks/mockedResultData';
-import { ResultData } from '../../resultData/resultData';
-
-
+import { ResultData } from '../../../common/resultData/resultData';
 
 
 export class ResultCreator {

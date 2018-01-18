@@ -1,6 +1,5 @@
 import * as THREE from 'three';
-import { Point3D } from '../../common/point3d';
-
+import { Point3D } from '../../../common/utils/point3d';
 
 
 export class StructureData {

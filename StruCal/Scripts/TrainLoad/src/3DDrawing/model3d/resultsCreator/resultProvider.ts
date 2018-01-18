@@ -1,9 +1,9 @@
-import { ResultData } from '../../resultData/resultData';
-import { isEqual, arePointsEqual } from '../../common/equal';
 import * as THREE from 'three';
-import { MeshColorResult } from '../../resultData/meshColorResult';
-import { VertexResult } from '../../resultData/vertexResult';
-import { Point3D } from '../../common/point3d';
+import { ResultData } from '../../../common/resultData/resultData';
+import { VertexResult } from '../../../common/resultData/vertexResult';
+import { isEqual, arePointsEqual } from '../../../common/utils/equal';
+import { Point3D } from '../../../common/utils/point3d';
+
 
 
 

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { ResultData } from '../3DSolver/resultData/resultData';
-import { CalculationsInput } from '../3DSolver/calculations/calculationsInput';
+import { CalculationsInput } from '../common/calculations/calculationsInput';
+import { ResultData } from '../common/resultData/resultData';
 
 
 const url = 'http://localhost:50025/api/TrainLoadApi';

@@ -1,10 +1,9 @@
 import * as THREE from 'three';
 import { BaseCreator } from './baseCreator';
-import { Bar } from '../../structure/bar';
-import { getExtrudeSettings } from './extrudeSettings';
 import { material, color } from '../material';
-import { Section } from '../../structure/section';
 import { StructureData } from './structureData';
+import { Bar } from '../../../common/structure/bar';
+import { getExtrudeSettings } from './extrudeSettings';
 
 const Guid = require('guid');
 

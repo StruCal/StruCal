@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import * as THREE from 'three';
-import { ThreeJsCreator } from '../../3DSolver/model3d/threeJsCreator';
-import { StructureGeometry } from '../../3DSolver/structure/structureGeometry';
-import { StructureCreator } from '../../3DSolver/model3d/structureCreator/structureCreator';
-import { ResultCreator } from '../../3DSolver/model3d/resultsCreator/resultCreator';
-import { TimeProvider } from '../../3DSolver/time/timeProvider';
-import { ResultData } from '../../3DSolver/resultData/resultData';
-import { StructureData } from '../../3DSolver/model3d/structureCreator/structureData';
-import { mockedStructureGeometry } from '../../3DSolver/mocks/mockedStructureGeometry';
+import { ThreeJsCreator } from '../../3DDrawing/model3d/threeJsCreator';
+import { StructureCreator } from '../../3DDrawing/model3d/structureCreator/structureCreator';
+import { ResultCreator } from '../../3DDrawing/model3d/resultsCreator/resultCreator';
+import { StructureData } from '../../3DDrawing/model3d/structureCreator/structureData';
+import { StructureGeometry } from '../../common/structure/structureGeometry';
+import { TimeProvider } from '../../common/time/timeProvider';
+import { mockedStructureGeometry } from '../../common/mocks/mockedStructureGeometry';
+import { ResultData } from '../../common/resultData/resultData';
+
 
 
 @Injectable()

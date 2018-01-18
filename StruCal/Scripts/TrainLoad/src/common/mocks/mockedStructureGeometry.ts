@@ -1,5 +1,4 @@
 import { StructureGeometry } from '../structure/structureGeometry';
-import { Point } from '../common/point';
 import { Perimeter } from '../structure/perimeter';
 import { Section } from '../structure/section';
 import { Additional } from '../structure/additional';
@@ -203,28 +202,24 @@ const additionals: Array<Additional> = [
 ];
 
 const bar1 = new Bar();
-//bar1.Id = Guid.raw();
 bar1.startPoint = { x: 0, y: 0, z: 0 };
 bar1.endPoint = { x: 0, y: 0, z: 10 };
 bar1.section = section;
 bar1.additionals = additionals;
 
 const bar2 = new Bar();
-//bar2.Id = Guid.raw();
 bar2.startPoint = { x: 0, y: 0, z: 10 };
 bar2.endPoint = { x: 0, y: 0, z: 20 };
 bar2.section = section;
 bar2.additionals = additionals;
 
 const bar3 = new Bar();
-//bar3.Id = Guid.raw();
 bar3.startPoint = { x: 0, y: 0, z: 20 };
 bar3.endPoint = { x: 0, y: 0, z: 30 };
 bar3.section = section;
 bar3.additionals = additionals;
 
 const bar4 = new Bar();
-//bar4.Id = Guid.raw();
 bar4.startPoint = { x: 0, y: 0, z: 30 };
 bar4.endPoint = { x: 0, y: 0, z: 40 };
 bar4.section = section;

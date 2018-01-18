@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { View3dService } from './view3d/view3d.service';
-import { mockedStructureGeometry } from '../3DSolver/mocks/mockedStructureGeometry';
 
 @Component({
   selector: 'app-root',
