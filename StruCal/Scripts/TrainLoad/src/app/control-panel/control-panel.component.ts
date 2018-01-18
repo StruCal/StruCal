@@ -12,4 +12,7 @@ export class ControlPanelComponent implements OnInit {
   ngOnInit() {
   }
 
+  calculate() {
+
+  }
 }
