@@ -1,5 +1,6 @@
-import { CanvasHelper } from '../canvasHelper/canvasHelper';
 import * as THREE from 'three';
+import { CanvasHelper } from '../../common/canvasHelper/canvasHelper';
+
 const OrbitControls = require('three-orbit-controls')(THREE);
 const TrackballControls = require('three-trackballcontrols');
 const Stats = require('stats-js');
