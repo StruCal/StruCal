@@ -24,7 +24,9 @@ export abstract class DrawingBase {
         drawBackgroundPattern(this.canvas);
     }
 
-    private drawLine(startPoint: Point, endPoint: Point) {
+    abstract draw(): void;
+
+    protected drawLine(startPoint: Point, endPoint: Point) {
         const start = this.transferToCanvasSystem(startPoint);
         const end = this.transferToCanvasSystem(endPoint);
 

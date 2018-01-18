@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DrawingBase } from '../../2DDrawing/drawingBase';
+import { SectionDrawing } from '../../2DDrawing/sectionDrawing';
 
 
 const canvasID = 'canvas2d';
@@ -11,12 +12,13 @@ const canvasID = 'canvas2d';
 })
 export class Drawing2dComponent implements OnInit {
 
-private drawingBase: DrawingBase;
+private sectionDrawing: SectionDrawing;
 
   constructor() { }
 
   ngOnInit() {
-    this.drawingBase = new DrawingBase(canvasID);
+    this.sectionDrawing = new SectionDrawing(canvasID);
+    this.sectionDrawing.draw();
   }
 
 }
