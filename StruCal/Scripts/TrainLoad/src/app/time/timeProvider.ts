@@ -1,7 +1,7 @@
 
 
 const deltaTime = 1;
-export class Time {
+export class TimeProvider {
     private currentTime: number;
 
     constructor() { }
@@ -14,4 +14,7 @@ export class Time {
         return this.currentTime;
     }
 
+    public reset(): void {
+        this.currentTime = 0;
+    }
 }

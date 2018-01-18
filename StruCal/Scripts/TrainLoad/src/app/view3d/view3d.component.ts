@@ -42,9 +42,4 @@ public currentTime: number;
 
   }
 
-next() {
-  this.view3dService.next();
-  this.currentTime = this.view3dService.currentTime;
-}
-
 }

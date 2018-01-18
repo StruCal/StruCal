@@ -15,6 +15,8 @@ import { CalculationsInput } from '../calculations/calculationsInput';
 import { calculationsInputBuilder } from '../calculations/calculationInputBuilder';
 import { MovingLoad } from '../movingLoad/movingLoad';
 import { mockedMovingLoad } from '../mocks/mockedMovingLoad';
+import { TimeProvider } from '../time/timeProvider';
+
 
 
 
@@ -25,10 +27,10 @@ export class View3dService {
   private structureGeometry: StructureGeometry;
   private structureCreator: StructureCreator;
   private resultCreator: ResultCreator;
-
-  currentTime = 0;
+  private timeProvider: TimeProvider;
 
   constructor() {
+    this.timeProvider = new TimeProvider();
   }
 
   public InjectModelCreator(threeJsCreator: ThreeJsCreator): void {
@@ -62,16 +64,11 @@ export class View3dService {
 
 
   private tick(): void {
-    this.currentTime++;
-    if (this.currentTime > 49) {
-      this.currentTime = 0;
+    this.timeProvider.tick();
+    if (this.timeProvider.getCurrentTime()  > 49) {
+      this.timeProvider.reset();
     }
-    this.resultCreator.tickAnimation(this.currentTime);
+    this.resultCreator.tickAnimation(this.timeProvider.getCurrentTime());
   }
 
-
-  //TEST
-  next() {
-    this.currentTime++;
-  }
 }
