@@ -1,5 +1,6 @@
 ﻿using Calculators.TrainLoad.GradienColor;
 using Calculators.TrainLoad.Helpers;
+using Calculators.TrainLoad.Input;
 using Calculators.TrainLoad.Output;
 using FEM2DStressCalculator.Beams;
 using System;
@@ -13,17 +14,20 @@ namespace Calculators.TrainLoad
     internal class ResultCreator
     {
         private readonly ColorProvider color;
-        public ResultCreator(IGradient gradient)
+        private readonly TimeSettings timeSettings;
+
+        public ResultCreator(IGradient gradient, TimeSettings timeSettings)
         {
             this.color = new ColorProvider(gradient);
+            this.timeSettings = timeSettings;
         }
 
         public TrainLoadOutput Calculate(FemCalculatorResult femResults, IList<VertexInput> vertices)
         {
 
-            var deltaT = 1;
-            var time = 0;
-            var endTime = 200;
+            var deltaT = 1;// this.timeSettings.DeltaTimeResults;
+            var time = this.timeSettings.StartTime;
+            var endTime = this.timeSettings.EndTime;
 
             var results = femResults.BeamResults;
 

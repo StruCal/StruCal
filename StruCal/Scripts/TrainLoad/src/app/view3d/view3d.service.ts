@@ -63,7 +63,7 @@ export class View3dService {
 
   private tick(): void {
     this.currentTime++;
-    if (this.currentTime > 150) {
+    if (this.currentTime > 49) {
       this.currentTime = 0;
     }
     this.resultCreator.tickAnimation(this.currentTime);

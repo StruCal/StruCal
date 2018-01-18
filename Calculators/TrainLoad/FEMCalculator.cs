@@ -22,22 +22,19 @@ namespace Calculators.TrainLoad
 {
     internal class FEMCalculator
     {
-private readonly TrainLoadInput trainLoadInput;
+        private const double dampingRatio = 0.03;
+
+        private readonly TrainLoadInput trainLoadInput;
         private DynamicStructure structure;
-        private IDictionary<IDynamicBeamElement,string> elementBarIdMap;
-        
+        private IDictionary<IDynamicBeamElement, string> elementBarIdMap;
+
 
         public FEMCalculator(TrainLoadInput trainLoadInput)
         {
             this.trainLoadInput = trainLoadInput;
-            this.elementBarIdMap = new Dictionary<IDynamicBeamElement,string>();
+            this.elementBarIdMap = new Dictionary<IDynamicBeamElement, string>();
 
-            var settings = new DynamicSolverSettings
-            {
-                DeltaTime = 0.01,
-                EndTime = 400,
-                StartTime = 0
-            };
+            var settings = this.trainLoadInput.TimeSettings.ToDynamicSolverSettings(dampingRatio);
             this.structure = new DynamicStructure(settings);
             this.trainLoadInput = trainLoadInput;
         }
@@ -48,8 +45,8 @@ private readonly TrainLoadInput trainLoadInput;
             GenerateSupports();
             GenerateMovingLoads();
 
-
             structure.Solve();
+
             var results = structure.Results.BeamResults;
             return new FemCalculatorResult
             {
@@ -88,14 +85,14 @@ private readonly TrainLoadInput trainLoadInput;
                     .SetSteel()
                     .SetSection(section)
                     .Build();
-                    
+
                 var startPoint = new PointD(bar.StartPoint.Z, bar.StartPoint.Y);
                 var endPoint = new PointD(bar.EndPoint.Z, bar.EndPoint.Y);
                 var startNode = structure.NodeFactory.Create(startPoint);
                 var endNode = structure.NodeFactory.Create(endPoint);
                 var element = structure.ElementFactory.CreateBeam(startNode, endNode, dynamicProperties);
 
-                this.elementBarIdMap.Add(element,bar.Id);
+                this.elementBarIdMap.Add(element, bar.Id);
             }
         }
     }

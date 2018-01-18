@@ -8,9 +8,10 @@ namespace StruCal.BindingModels.TrainLoad.Input
 {
     public class TimeSettingsDTO
     {
-        public double StartTime { get; set; }
-        public double EndTime { get; set; }
-        public double DeltaTime { get; set; }
+        public double startTime { get; set; }
+        public double endTime { get; set; }
+        public double deltaTime { get; set; }
+        public double deltaTimeResults { get; set; }
     }
 
     public static class ExtensionTimeSettingsDTO
@@ -19,9 +20,10 @@ namespace StruCal.BindingModels.TrainLoad.Input
         {
             return new TimeSettings
             {
-                DeltaTime=timeSettingsDTO.DeltaTime,
-                StartTime=timeSettingsDTO.StartTime,
-                EndTime=timeSettingsDTO.EndTime,
+                DeltaTime = timeSettingsDTO.deltaTime,
+                StartTime = timeSettingsDTO.startTime,
+                EndTime = timeSettingsDTO.endTime,
+                DeltaTimeResults = timeSettingsDTO.deltaTimeResults,
             };
         }
     }

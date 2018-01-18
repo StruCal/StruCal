@@ -7,15 +7,15 @@ const mockedMovingLoadProperties = {
     forces: [
         {
             basePosition: -1,
-            load: -1000,
+            load: -1,
         },
         {
             basePosition: -5,
-            load: -1000,
+            load: -1,
         },
         {
             basePosition: -10,
-            load: -1000,
+            load: -1,
         },
     ]
 };
