@@ -2,7 +2,7 @@
 
 const deltaTime = 1;
 export class TimeProvider {
-    private currentTime: number;
+    private currentTime = 0;
 
     constructor() { }
 

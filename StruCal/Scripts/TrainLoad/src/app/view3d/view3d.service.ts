@@ -5,13 +5,9 @@ import { StructureGeometry } from '../../3DSolver/structure/structureGeometry';
 import { StructureCreator } from '../../3DSolver/model3d/structureCreator/structureCreator';
 import { ResultCreator } from '../../3DSolver/model3d/resultsCreator/resultCreator';
 import { TimeProvider } from '../../3DSolver/time/timeProvider';
-import { mockedStructureGeometry } from '../../3DSolver/mocks/mockedStructureGeometry';
 import { ResultData } from '../../3DSolver/resultData/resultData';
 import { StructureData } from '../../3DSolver/model3d/structureCreator/structureData';
-
-
-
-
+import { mockedStructureGeometry } from '../../3DSolver/mocks/mockedStructureGeometry';
 
 
 @Injectable()
@@ -32,11 +28,9 @@ export class View3dService {
 
     this.structureCreator = new StructureCreator(this.threeJsCreator.scene);
     this.resultCreator = new ResultCreator(this.threeJsCreator.scene);
-
+    
     this.drawStructure(mockedStructureGeometry);
-
   }
-
 
   public drawStructure(structureGeometry: StructureGeometry) {
     this.structureGeometry = structureGeometry;
