@@ -9,6 +9,7 @@ import { View3dService } from './view3d/view3d.service';
 import { HttpService } from './http.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ControlPanelService } from './control-panel/control-panel.service';
+import { Drawing2dComponent } from './drawing2d/drawing2d.component';
 
 
 
@@ -16,7 +17,8 @@ import { ControlPanelService } from './control-panel/control-panel.service';
   declarations: [
     AppComponent,
     ControlPanelComponent,
-    View3DComponent
+    View3DComponent,
+    Drawing2dComponent
   ],
   imports: [
     BrowserModule,

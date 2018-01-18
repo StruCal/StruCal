@@ -4,6 +4,9 @@ const OrbitControls = require('three-orbit-controls')(THREE);
 const TrackballControls = require('three-trackballcontrols');
 const Stats = require('stats-js');
 const canvasId = 'canvas3d';
+const widthHeightRatio = 3;
+
+
 
 export class ThreeJsCreator {
     private canvasHelper: CanvasHelper;
@@ -17,7 +20,7 @@ export class ThreeJsCreator {
 
     public create(): void {
         const canvas = document.getElementById(canvasId);
-        this.canvasHelper = new CanvasHelper(canvas);
+        this.canvasHelper = new CanvasHelper(canvas, widthHeightRatio);
 
         this._scene = new THREE.Scene();
         this._scene.background = new THREE.Color(0xFFFFFF);
