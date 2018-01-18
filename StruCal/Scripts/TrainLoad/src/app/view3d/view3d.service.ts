@@ -1,21 +1,15 @@
 import { Injectable } from '@angular/core';
 import * as THREE from 'three';
+import { ThreeJsCreator } from '../../3DSolver/model3d/threeJsCreator';
+import { StructureGeometry } from '../../3DSolver/structure/structureGeometry';
+import { StructureCreator } from '../../3DSolver/model3d/structureCreator/structureCreator';
+import { ResultCreator } from '../../3DSolver/model3d/resultsCreator/resultCreator';
+import { TimeProvider } from '../../3DSolver/time/timeProvider';
+import { mockedStructureGeometry } from '../../3DSolver/mocks/mockedStructureGeometry';
+import { ResultData } from '../../3DSolver/resultData/resultData';
+import { StructureData } from '../../3DSolver/model3d/structureCreator/structureData';
 
-import { mockedStructureGeometry } from '../mocks/mockedStructureGeometry';
-import { ThreeJsCreator } from '../model3d/threeJsCreator';
-import { mockedResultData } from '../mocks/mockedResultData';
-import { StructureCreator } from '../model3d/structureCreator/structureCreator';
-import { DisplacementProvider } from '../model3d/resultsCreator/displacementProvider';
-import { StressProvider } from '../model3d/resultsCreator/stressProvider';
-import { StructureData } from '../model3d/structureCreator/structureData';
-import { StructureGeometry } from '../structure/structureGeometry';
-import { ResultCreator } from '../model3d/resultsCreator/resultCreator';
-import { ResultData } from '../resultData/resultData';
-import { CalculationsInput } from '../calculations/calculationsInput';
-import { calculationsInputBuilder } from '../calculations/calculationInputBuilder';
-import { MovingLoad } from '../movingLoad/movingLoad';
-import { mockedMovingLoad } from '../mocks/mockedMovingLoad';
-import { TimeProvider } from '../time/timeProvider';
+
 
 
 

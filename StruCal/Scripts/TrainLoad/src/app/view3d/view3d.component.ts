@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { View3dService } from './view3d.service';
-import { ThreeJsCreator } from '../model3d/threeJsCreator';
 import { HttpService } from '../http.service';
-import { calculationsInputBuilder } from '../calculations/calculationInputBuilder';
-import { MovingLoad } from '../movingLoad/movingLoad';
-import { mockedMovingLoad } from '../mocks/mockedMovingLoad';
+import { ThreeJsCreator } from '../../3DSolver/model3d/threeJsCreator';
+import { MovingLoad } from '../../3DSolver/movingLoad/movingLoad';
+import { mockedMovingLoad } from '../../3DSolver/mocks/mockedMovingLoad';
+import { calculationsInputBuilder } from '../../3DSolver/calculations/calculationInputBuilder';
+
 
 
 @Component({
