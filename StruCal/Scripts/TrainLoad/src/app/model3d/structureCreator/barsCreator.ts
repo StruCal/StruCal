@@ -46,9 +46,16 @@ export class BarsCreator extends BaseCreator {
 
             geometry.translate(bar.startPoint.x, bar.startPoint.y, bar.startPoint.z);
 
+            const mat = new THREE.LineBasicMaterial( { color: 0xffffff, linewidth: 2 } );
+            const wireframe = new THREE.LineSegments(geometry, mat);
+
             const mesh = new THREE.Mesh(geometry, material);
+            mesh.add(wireframe);
             this.structureData.add(geometry, mesh.uuid, bar.id);
             this.scene.add(mesh);
+
+
+
         });
     }
 }

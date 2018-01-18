@@ -8,4 +8,8 @@ export const material = new THREE.MeshPhongMaterial({
     vertexColors: THREE.VertexColors,
     side: THREE.DoubleSide,
     color: color,
+    //wireframe: true,
+    polygonOffset: true,
+    polygonOffsetFactor: 1, // positive value pushes polygon further away
+    polygonOffsetUnits: 1
 });
