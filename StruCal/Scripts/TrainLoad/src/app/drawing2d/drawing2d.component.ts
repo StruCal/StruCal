@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DrawingBase } from '../../2DDrawing/drawingBase';
 import { SectionDrawing } from '../../2DDrawing/sectionDrawing';
+import { mockedStructureGeometry } from '../../common/mocks/mockedStructureGeometry';
+import { Perimeter } from '../../common/structure/perimeter';
+import { Section } from '../../common/structure/section';
 
 
 const canvasID = 'canvas2d';
@@ -12,13 +15,14 @@ const canvasID = 'canvas2d';
 })
 export class Drawing2dComponent implements OnInit {
 
-private sectionDrawing: SectionDrawing;
+  private sectionDrawing: SectionDrawing;
 
   constructor() { }
 
   ngOnInit() {
     this.sectionDrawing = new SectionDrawing(canvasID);
-    this.sectionDrawing.draw();
+
+    this.sectionDrawing.draw(mockedStructureGeometry.bars[0].section);
   }
 
 }
