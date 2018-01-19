@@ -14,7 +14,7 @@ export class Section {
     }
 
     public getWidth(): number {
-        const xs = this.getCoordinates().map(e => e.y);
+        const xs = this.getCoordinates().map(e => e.x);
         const max = Math.max(...xs);
         const min = Math.min(...xs);
         const width = max - min;
@@ -28,7 +28,7 @@ export class Section {
         const xs = this.getCoordinates().map(e => e.x);
         const ys = this.getCoordinates().map(e => e.y);
         const minX = Math.min(...xs);
-        const minY = Math.min(...xs);
+        const minY = Math.min(...ys);
 
         const x = minX + width / 2;
         const y = minY + height / 2;
