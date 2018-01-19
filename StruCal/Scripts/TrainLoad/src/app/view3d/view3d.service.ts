@@ -30,7 +30,7 @@ export class View3dService {
     this.structureCreator = new StructureCreator(this.threeJsCreator.scene);
     this.resultCreator = new ResultCreator(this.threeJsCreator.scene);
     
-    this.drawStructure(mockedStructureGeometry);
+    //this.drawStructure(mockedStructureGeometry);
   }
 
   public drawStructure(structureGeometry: StructureGeometry) {
