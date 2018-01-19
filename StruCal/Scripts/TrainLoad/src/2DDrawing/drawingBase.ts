@@ -1,7 +1,6 @@
 import { CanvasHelper } from '../common/canvasHelper/canvasHelper';
 import { drawBackgroundPattern } from './backgroundPattern';
 import { Perimeter } from '../common/structure/perimeter';
-import { DrawingScaleCalculator } from './drawingScale';
 import { Point } from '../common/utils/point';
 
 const SVG = require('svg.js');
