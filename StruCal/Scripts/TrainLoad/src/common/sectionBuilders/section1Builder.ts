@@ -58,8 +58,9 @@ export function section1Builder() {
         generateDeck();
         generateRibs();
 
+        const mirroredPerimeters = perimeters.map(e => Perimeter.mirrorVertical(e));
         const section = new Section();
-        section.perimeters = perimeters;
+        section.perimeters = [...perimeters, ...mirroredPerimeters];
         return section;
     }
     function generateRibs() {
