@@ -4,8 +4,13 @@ import { Section } from '../structure/section';
 const bottomWidth = 1;
 const topWidth = 1.5;
 const webDivisionCount = 4;
-const deckElevationToHeight = 1 / 2;
+
+const deckElevationToHeight = 1 / 3;
 const deckThicknessToWebThickness = 1;
+
+const ribThicknessToDeckThickness = 0.5;
+const ribLengthToThickness = 5;
+const ribCount = 8;
 
 export function section1Builder() {
     let height: number;
@@ -14,6 +19,11 @@ export function section1Builder() {
     let topFlangeThickness: number;
     let bottomFlangeThickness: number;
     let webThickness: number;
+
+
+    let additionalDeckWidthBottom: number;
+    let deckThickness: number;
+    let deckElevation: number;
 
     const perimeters = new Array<Perimeter>();
     return { setHeight };
@@ -46,37 +56,56 @@ export function section1Builder() {
         genertateBottomFlange();
         generateWeb();
         generateDeck();
+        generateRibs();
 
         const section = new Section();
         section.perimeters = perimeters;
         return section;
     }
+    function generateRibs() {
+        const ribThickness = ribThicknessToDeckThickness * deckThickness;
+        const ribLength = ribLengthToThickness * ribThickness;
+        const deckWidth = additionalDeckWidthBottom + bottomWidth;
+        const distanceBetweenRibs = deckWidth / ribCount;
 
+        const ribs = Array.from(Array(ribCount - 1).keys()).map(e => e + 1);
+        const distances = [distanceBetweenRibs / 2, ...ribs.map(i => i * distanceBetweenRibs + distanceBetweenRibs / 2)];
+        distances.forEach(distance => {
+            const xl = -distance - ribThickness / 2;
+            const xr = -distance + ribThickness / 2;
+            const yt = deckElevation;
+            const yb = deckElevation - ribLength;
+            const coordinates = [{ x: xl, y: yb }, { x: xr, y: yb }, { x: xr, y: yt }, { x: xl, y: yt }];
+            const perimeter = new Perimeter();
+            perimeter.coordinates = coordinates;
+            perimeters.push(perimeter);
+        });
+
+    }
     function generateDeck() {
-        const elevation = deckElevationToHeight * height;
-        const deckThickness = deckThicknessToWebThickness * webThickness;
+        deckElevation = deckElevationToHeight * height;
+        deckThickness = deckThicknessToWebThickness * webThickness;
 
         const deltaWidth = topWidth - bottomWidth - webThickness;
 
-        const additionalWidthBottom = elevation * deltaWidth / height;
-        const additionWidthTop = (elevation + deckThickness) * deltaWidth / height;
+        additionalDeckWidthBottom = deckElevation * deltaWidth / height;
+        const additionWidthTop = (deckElevation + deckThickness) * deltaWidth / height;
 
-        const xbl = -additionalWidthBottom - bottomWidth;
+        const xbl = -additionalDeckWidthBottom - bottomWidth + webThickness / 2;
         const xbr = 0;
-        const ybl = elevation;
-        const ybr = elevation;
+        const ybl = deckElevation;
+        const ybr = deckElevation;
 
-        const xtl = -additionWidthTop - bottomWidth;
+        const xtl = -additionWidthTop - bottomWidth + webThickness / 2;
         const xtr = 0;
-        const ytl = elevation + deckThickness;
-        const ytr = elevation + deckThickness;
+        const ytl = deckElevation + deckThickness;
+        const ytr = deckElevation + deckThickness;
 
         const coordinates = [{ x: xbl, y: ybl }, { x: xbr, y: ybr }, { x: xtr, y: ytr }, { x: xtl, y: ytl }];
         const perimeter = new Perimeter();
         perimeter.coordinates = coordinates;
         perimeters.push(perimeter);
     }
-
     function generateWeb() {
         const webHeight = height - topFlangeThickness - bottomFlangeThickness;
         const webPartHeight = webHeight / webDivisionCount;
@@ -101,7 +130,6 @@ export function section1Builder() {
         });
 
     }
-
     function genertateBottomFlange() {
         const xl = -topWidth - topFlangeWidth / 2;
         const xr = -topWidth + topFlangeWidth / 2;
