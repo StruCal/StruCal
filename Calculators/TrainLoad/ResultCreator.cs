@@ -25,7 +25,7 @@ namespace Calculators.TrainLoad
         public TrainLoadOutput Calculate(FemCalculatorResult femResults, IList<VertexInput> vertices)
         {
 
-            var deltaT = 1;// this.timeSettings.DeltaTimeResults;
+            var deltaT = this.timeSettings.DeltaTimeResults;
             var time = this.timeSettings.StartTime;
             var endTime = this.timeSettings.EndTime;
 
