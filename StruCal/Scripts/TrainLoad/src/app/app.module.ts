@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ControlPanelService } from './control-panel/control-panel.service';
 import { Drawing2dComponent } from './drawing2d/drawing2d.component';
 import { ModalSection1Component } from './modal-section1/modal-section1.component';
+import { ModalBaseComponent } from './modal-base/modal-base.component';
 
 
 
@@ -20,7 +21,8 @@ import { ModalSection1Component } from './modal-section1/modal-section1.componen
     ControlPanelComponent,
     View3DComponent,
     Drawing2dComponent,
-    ModalSection1Component
+    ModalSection1Component,
+    ModalBaseComponent
   ],
   imports: [
     BrowserModule,
