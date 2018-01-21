@@ -10,6 +10,7 @@ import { HttpService } from './http.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ControlPanelService } from './control-panel/control-panel.service';
 import { Drawing2dComponent } from './drawing2d/drawing2d.component';
+import { ModalSection1Component } from './modal-section1/modal-section1.component';
 
 
 
@@ -18,7 +19,8 @@ import { Drawing2dComponent } from './drawing2d/drawing2d.component';
     AppComponent,
     ControlPanelComponent,
     View3DComponent,
-    Drawing2dComponent
+    Drawing2dComponent,
+    ModalSection1Component
   ],
   imports: [
     BrowserModule,
