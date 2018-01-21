@@ -72,10 +72,13 @@ export class ThreeJsCreator {
 
     private addLighting(): void {
         const directionalLight1 = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight1.position.set(100, 100, 100);
+        directionalLight1.target.position.set(0, 0, 0);
         this._scene.add(directionalLight1);
 
         const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1);
-        directionalLight2.position.set(1000, 1000, 1000);
+        directionalLight2.position.set(100, -100, 100);
+        directionalLight2.target.position.set(0, 0, 0);
         this._scene.add(directionalLight2);
 
         const light = new THREE.AmbientLight(0xffffff); // soft white light
