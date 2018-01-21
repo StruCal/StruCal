@@ -31,8 +31,8 @@ export class ThreeJsCreator {
         canvas.appendChild(renderer.domElement);
 
         this.camera = new THREE.PerspectiveCamera(45, this.canvasHelper.widthHeightRatio, 0.1, 1000);
-        this.camera.position.z = 60;
-        this.camera.position.x = 30;
+        this.camera.position.z = -40;
+        this.camera.position.x = 20;
         const controls = new OrbitControls(this.camera, renderer.domElement);
         // const controls = new TrackballControls(this.camera);
 
@@ -83,6 +83,7 @@ export class ThreeJsCreator {
 
         const light = new THREE.AmbientLight(0xffffff); // soft white light
         this._scene.add(light);
+
     }
 
 }
