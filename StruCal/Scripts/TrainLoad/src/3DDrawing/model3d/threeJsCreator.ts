@@ -36,15 +36,7 @@ export class ThreeJsCreator {
         const controls = new OrbitControls(this.camera, renderer.domElement);
         // const controls = new TrackballControls(this.camera);
 
-        const directionalLight1 = new THREE.DirectionalLight(0xffffff, 1);
-        this._scene.add(directionalLight1);
-
-        const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1);
-        directionalLight2.position.set(1000, 1000, 1000);
-        this._scene.add(directionalLight2);
-
-        const light = new THREE.AmbientLight( 0xffffff ); // soft white light
-        this._scene.add( light );
+        this.addLighting();
 
         const sphereAxis = new THREE.AxisHelper(20);
         this._scene.add(sphereAxis);
@@ -76,6 +68,18 @@ export class ThreeJsCreator {
 
     public get scene(): any {
         return this._scene;
+    }
+
+    private addLighting(): void {
+        const directionalLight1 = new THREE.DirectionalLight(0xffffff, 1);
+        this._scene.add(directionalLight1);
+
+        const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight2.position.set(1000, 1000, 1000);
+        this._scene.add(directionalLight2);
+
+        const light = new THREE.AmbientLight(0xffffff); // soft white light
+        this._scene.add(light);
     }
 
 }
