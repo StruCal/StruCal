@@ -14,6 +14,7 @@ export class ModalBaseComponent implements OnInit {
   public show(): void {
     this.visible = true;
     setTimeout(() => this.visibleAnimate = true, 100);
+
   }
 
   public hide(): void {

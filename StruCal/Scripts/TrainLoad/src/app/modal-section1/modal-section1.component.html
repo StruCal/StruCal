@@ -1,10 +1,19 @@
 <modal-base #modalBase>
     <ng-container class="app-modal-header">
-      header
+      Bridge Section - Type I
     </ng-container>
     <ng-container class="app-modal-body">
-      Whatever content you like, form fields, anything
-      <input type="text">
+      <div class="containter-fluid">
+        <div class="row">
+          <div class="col-xs-6">
+            
+          </div>
+          <div class="col-xs-6">
+            <drawing2d></drawing2d>
+          </div>
+        </div>
+      </div>
+
     </ng-container>
     <ng-container class="app-modal-footer">
       <button type="button" class="btn btn-default" (click)="modalBase.hide()">Close</button>
