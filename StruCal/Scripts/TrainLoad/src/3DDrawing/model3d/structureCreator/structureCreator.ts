@@ -22,7 +22,7 @@ export class StructureCreator extends BaseCreator {
             return;
         }
         this._structureData = new StructureData();
-
+        this.clearGeometry();
         this._barsCreator.drawBars(structureGeometry.bars, this.structureData);
 
     }
