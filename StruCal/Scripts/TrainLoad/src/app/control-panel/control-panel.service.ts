@@ -8,14 +8,22 @@ import { StructureGeometry } from '../../common/structure/structureGeometry';
 import { section1Builder } from '../../common/sectionBuilders/section1Builder';
 import { MessageService } from '../services/message.service';
 import { Section } from '../../common/structure/section';
+import { startSection1 } from '../../common/startData/mockedSection1';
 
 
 @Injectable()
 export class ControlPanelService {
 
+  private section: Section;
+
   constructor(private httpService: HttpService,
     private view3dService: View3dService,
-    private messageService: MessageService) { }
+    private messageService: MessageService) {
+    this.messageService.section$.subscribe(e => {
+      this.section = e;
+      this.setStructure();
+    });
+  }
 
   calculate() {
     const input = calculationsInputBuilder()
@@ -40,10 +48,7 @@ export class ControlPanelService {
   }
 
   private getStructureGeometry(): StructureGeometry {
-    const section2 = section1Builder().setHeight(2).setWebThickness(0.03)
-      .setTopFlangeWidth(0.5).setTopFlangeThickness(0.01).setBottomFlangeWidth(0.7)
-      .setBottomFlangeThickness(0.02).build();
-    mockedStructureGeometry.bars.forEach(e => e.section = section2);
+    mockedStructureGeometry.bars.forEach(e => e.section = this.section);
     return mockedStructureGeometry;
   }
 }
