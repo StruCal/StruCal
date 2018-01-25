@@ -20,5 +20,4 @@ export class ControlPanelComponent implements OnInit {
 
   }
 
-
 }

@@ -13,7 +13,7 @@ import { Drawing2dComponent } from './drawing2d/drawing2d.component';
 import { ModalSection1Component } from './modal-section1/modal-section1.component';
 import { ModalBaseComponent } from './modal-base/modal-base.component';
 import { MessageService } from './message.service';
-
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,6 +27,7 @@ import { MessageService } from './message.service';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [View3dService, HttpService, ControlPanelService, MessageService],
