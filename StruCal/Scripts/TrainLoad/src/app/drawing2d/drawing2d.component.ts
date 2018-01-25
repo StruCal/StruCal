@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { DrawingBase } from '../../2DDrawing/drawingBase';
 import { SectionDrawing } from '../../2DDrawing/sectionDrawing';
-import { mockedStructureGeometry } from '../../common/mocks/mockedStructureGeometry';
+import { mockedStructureGeometry } from '../../common/startData/mockedStructureGeometry';
 import { Perimeter } from '../../common/structure/perimeter';
 import { Section } from '../../common/structure/section';
 import { section1Builder } from '../../common/sectionBuilders/section1Builder';

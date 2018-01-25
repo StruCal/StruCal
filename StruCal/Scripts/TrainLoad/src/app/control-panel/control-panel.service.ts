@@ -2,17 +2,20 @@ import { Injectable } from '@angular/core';
 import { View3dService } from '../view3d/view3d.service';
 import { HttpService } from '../http.service';
 import { calculationsInputBuilder } from '../../common/calculations/calculationInputBuilder';
-import { mockedStructureGeometry } from '../../common/mocks/mockedStructureGeometry';
-import { mockedMovingLoad } from '../../common/mocks/mockedMovingLoad';
+import { mockedStructureGeometry } from '../../common/startData/mockedStructureGeometry';
+import { mockedMovingLoad } from '../../common/startData/mockedMovingLoad';
 import { StructureGeometry } from '../../common/structure/structureGeometry';
 import { section1Builder } from '../../common/sectionBuilders/section1Builder';
+import { MessageService } from '../message.service';
+import { Section } from '../../common/structure/section';
 
 
 @Injectable()
 export class ControlPanelService {
 
   constructor(private httpService: HttpService,
-    private view3dService: View3dService) { }
+    private view3dService: View3dService,
+    private messageService: MessageService) { }
 
   calculate() {
     const input = calculationsInputBuilder()

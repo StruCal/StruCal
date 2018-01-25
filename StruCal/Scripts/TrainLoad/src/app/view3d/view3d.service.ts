@@ -6,7 +6,7 @@ import { ResultCreator } from '../../3DDrawing/model3d/resultsCreator/resultCrea
 import { StructureData } from '../../3DDrawing/model3d/structureCreator/structureData';
 import { StructureGeometry } from '../../common/structure/structureGeometry';
 import { TimeProvider } from '../../common/time/timeProvider';
-import { mockedStructureGeometry } from '../../common/mocks/mockedStructureGeometry';
+import { mockedStructureGeometry } from '../../common/startData/mockedStructureGeometry';
 import { ResultData } from '../../common/resultData/resultData';
 
 
@@ -29,8 +29,6 @@ export class View3dService {
 
     this.structureCreator = new StructureCreator(this.threeJsCreator.scene);
     this.resultCreator = new ResultCreator(this.threeJsCreator.scene);
-    
-    //this.drawStructure(mockedStructureGeometry);
   }
 
   public drawStructure(structureGeometry: StructureGeometry) {

@@ -3,7 +3,7 @@ import { ViewChild } from '@angular/core';
 import { ModalBaseComponent } from '../modal-base/modal-base.component';
 import { ModalBase } from '../modal-base/modalBase';
 import { Drawing2dComponent } from '../drawing2d/drawing2d.component';
-import { mockedSection } from '../../common/mocks/mockedSection';
+import { mockedSection } from '../../common/startData/mockedSection';
 import { MessageService } from '../message.service';
 import { SectionModalInput } from './Input/sectionModalInput';
 import { SectionType } from '../../common/sectionBuilders/sectionTypes';
