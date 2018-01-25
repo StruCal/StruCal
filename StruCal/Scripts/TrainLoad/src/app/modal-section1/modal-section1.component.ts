@@ -24,7 +24,7 @@ export class ModalSection1Component implements OnInit, ModalBase {
     this.modalBase.show();
     setTimeout(() =>
       this.drawing2d.draw(mockedSection)
-      , 5);
+      , 100);
   }
   hide(): void {
     this.modalBase.hide();

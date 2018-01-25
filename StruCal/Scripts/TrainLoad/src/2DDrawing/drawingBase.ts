@@ -42,6 +42,7 @@ export abstract class DrawingBase {
 
     public reset(): void {
         this.clear();
+        this.canvasHelper.refresh();
         drawBackgroundPattern(this.canvas);
     }
 
