@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { View3dService } from './view3d.service';
-import { HttpService } from '../http.service';
 import { ThreeJsCreator } from '../../3DDrawing/model3d/threeJsCreator';
+import { HttpService } from '../services/http.service';
 
 
 

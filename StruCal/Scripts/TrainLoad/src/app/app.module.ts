@@ -6,14 +6,14 @@ import { AppComponent } from './app.component';
 import { ControlPanelComponent } from './control-panel/control-panel.component';
 import { View3DComponent } from './view3d/view3d.component';
 import { View3dService } from './view3d/view3d.service';
-import { HttpService } from './http.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ControlPanelService } from './control-panel/control-panel.service';
 import { Drawing2dComponent } from './drawing2d/drawing2d.component';
 import { ModalSection1Component } from './modal-section1/modal-section1.component';
 import { ModalBaseComponent } from './modal-base/modal-base.component';
-import { MessageService } from './message.service';
 import { FormsModule } from '@angular/forms';
+import { MessageService } from './services/message.service';
+import { HttpService } from './services/http.service';
 
 
 @NgModule({

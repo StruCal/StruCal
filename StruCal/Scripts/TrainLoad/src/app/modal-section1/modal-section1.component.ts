@@ -4,11 +4,11 @@ import { ModalBaseComponent } from '../modal-base/modal-base.component';
 import { ModalBase } from '../modal-base/modalBase';
 import { Drawing2dComponent } from '../drawing2d/drawing2d.component';
 import { startSection1 } from '../../common/startData/mockedSection1';
-import { MessageService } from '../message.service';
 import { SectionModalInput } from './Input/sectionModalInput';
 import { SectionType } from '../../common/sectionBuilders/sectionTypes';
 import { sectionInputFactory } from './Input/sectionInputFactory';
 import { Section } from '../../common/structure/section';
+import { MessageService } from '../services/message.service';
 
 
 
