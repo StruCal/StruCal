@@ -4,6 +4,7 @@ import { ModalBaseComponent } from '../modal-base/modal-base.component';
 import { ModalBase } from '../modal-base/modalBase';
 import { Drawing2dComponent } from '../drawing2d/drawing2d.component';
 import { mockedSection } from '../../common/mocks/mockedSection';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'modal-section1',
@@ -18,13 +19,17 @@ export class ModalSection1Component implements OnInit, ModalBase {
   @ViewChild(Drawing2dComponent)
   private drawing2d: Drawing2dComponent;
 
-  constructor() { }
+  constructor(private messageService: MessageService) {
+
+  }
 
   show(): void {
     this.modalBase.show();
-    setTimeout(() =>
-      this.drawing2d.draw(mockedSection)
-      , 100);
+    this.messageService.section$.subscribe(section => {
+      setTimeout(() =>
+        this.drawing2d.draw(mockedSection)
+        , 100);
+    });
   }
   hide(): void {
     this.modalBase.hide();
