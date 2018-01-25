@@ -25,8 +25,10 @@ export class ModalSection1Component implements OnInit {
 
   @ViewChild(Drawing2dComponent)
   private drawing2d: Drawing2dComponent;
+
   private sectionInputBuilder: any;
   private section: Section;
+  private sectionType: SectionType;
 
   inputs: Array<SectionModalInput>;
 
@@ -35,10 +37,11 @@ export class ModalSection1Component implements OnInit {
   }
 
   show(sectionType: SectionType): void {
+    this.sectionType = sectionType;
     this.modalBase.show();
 
-    this.inputs = sectionInputFactory().getInput(sectionType);
     this.sectionInputBuilder = sectionInputFactory().getSectionBuilder(sectionType);
+    this.setInputs();
     this.updateSection();
     this.draw();
 
@@ -53,6 +56,20 @@ export class ModalSection1Component implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  private setInputs() {
+    this.inputs = JSON.parse(localStorage.getItem(this.getLocalStorageKey())) || sectionInputFactory().getInput(this.sectionType);
+  }
+
+  private saveAndClose() {
+    this.messageService.setSection(this.section);
+    localStorage.setItem(this.getLocalStorageKey(), JSON.stringify(this.inputs));
+    this.hide();
+  }
+
+  private getLocalStorageKey(): string {
+    return SectionType[this.sectionType];
   }
 
   private updateSection(): void {
