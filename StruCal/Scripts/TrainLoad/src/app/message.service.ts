@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { Section } from '../common/structure/section';
 import { Subject } from 'rxjs/Subject';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import { startSection } from '../common/startData/mockedSection';
+import { startSection1 } from '../common/startData/mockedSection1';
 
 @Injectable()
 export class MessageService {
 
-  private sectionSource = new BehaviorSubject<Section>(startSection);
+  private sectionSource = new BehaviorSubject<Section>(startSection1);
 
   public section$ = this.sectionSource.asObservable();
 
