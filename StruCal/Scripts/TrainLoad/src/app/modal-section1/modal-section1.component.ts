@@ -50,8 +50,7 @@ export class ModalSection1Component implements OnInit {
   }
 
   onChange() {
-    const newSection = sectionInputFactory().getSectionBuilder(this.sectionType).section1FromInput(this.inputs);
-    this.structureService.setSection(newSection);
+    this.section = sectionInputFactory().getSectionBuilder(this.sectionType).section1FromInput(this.inputs);
     this.draw();
   }
 
@@ -60,6 +59,7 @@ export class ModalSection1Component implements OnInit {
 
   private saveAndClose() {
     this.structureService.saveSectionInput(this.inputs, this.sectionType);
+    this.structureService.setSection(this.section);
     this.hide();
   }
 
