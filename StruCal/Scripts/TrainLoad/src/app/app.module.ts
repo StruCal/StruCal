@@ -12,7 +12,7 @@ import { Drawing2dComponent } from './drawing2d/drawing2d.component';
 import { ModalSection1Component } from './modal-section1/modal-section1.component';
 import { ModalBaseComponent } from './modal-base/modal-base.component';
 import { FormsModule } from '@angular/forms';
-import { MessageService } from './services/message.service';
+import { StructureService } from './services/structure.service';
 import { HttpService } from './services/http.service';
 import { ModalTrainLoadComponent } from './modal-train-load/modal-train-load.component';
 import { InputComponent } from './input/input.component';
@@ -34,7 +34,7 @@ import { InputComponent } from './input/input.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [View3dService, HttpService, ControlPanelService, MessageService],
+  providers: [View3dService, HttpService, ControlPanelService, StructureService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

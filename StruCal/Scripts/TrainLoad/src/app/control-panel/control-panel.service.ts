@@ -6,7 +6,7 @@ import { mockedStructureGeometry } from '../../common/startData/mockedStructureG
 import { mockedMovingLoad } from '../../common/startData/mockedMovingLoad';
 import { StructureGeometry } from '../../common/structure/structureGeometry';
 import { section1Builder } from '../../common/sectionBuilders/section1Builder';
-import { MessageService } from '../services/message.service';
+import { StructureService } from '../services/structure.service';
 import { Section } from '../../common/structure/section';
 import { startSection1 } from '../../common/startData/mockedSection1';
 
@@ -18,7 +18,7 @@ export class ControlPanelService {
 
   constructor(private httpService: HttpService,
     private view3dService: View3dService,
-    private messageService: MessageService) {
+    private messageService: StructureService) {
     this.messageService.section$.subscribe(e => {
       this.section = e;
       this.setStructure();

@@ -7,7 +7,7 @@ import { startSection1 } from '../../common/startData/mockedSection1';
 import { SectionType } from '../../common/sectionBuilders/sectionTypes';
 import { sectionInputFactory } from './Input/sectionInputFactory';
 import { Section } from '../../common/structure/section';
-import { MessageService } from '../services/message.service';
+import { StructureService } from '../services/structure.service';
 import { ModelInput } from '../input/modelInput';
 
 
@@ -32,7 +32,7 @@ export class ModalSection1Component implements OnInit {
 
   inputs: Array<ModelInput>;
 
-  constructor(private messageService: MessageService) {
+  constructor(private messageService: StructureService) {
 
   }
 

@@ -6,7 +6,7 @@ import { startSection1 } from '../../common/startData/mockedSection1';
 
 
 @Injectable()
-export class MessageService {
+export class StructureService {
 
   private sectionSource = new Subject<Section>();
 
