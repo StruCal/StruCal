@@ -34,6 +34,7 @@ export class View3dService {
   public drawStructure(structureGeometry: StructureGeometry) {
     this.structureGeometry = structureGeometry;
     this.structureCreator.draw(structureGeometry);
+    this.threeJsCreator.tickAnimation = () => { };
   }
 
   public drawResults(results: ResultData) {
@@ -52,7 +53,7 @@ export class View3dService {
 
   private tick(): void {
     this.timeProvider.tick();
-    if (this.timeProvider.getCurrentTime()  > 49) {
+    if (this.timeProvider.getCurrentTime() > 49) {
       this.timeProvider.reset();
     }
     this.resultCreator.tickAnimation(this.timeProvider.getCurrentTime());
