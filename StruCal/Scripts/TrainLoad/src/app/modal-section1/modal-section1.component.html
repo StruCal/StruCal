@@ -1,29 +1,21 @@
 <modal-base #modalBase>
-    <ng-container class="app-modal-header">
-      Bridge Section - Type I
-    </ng-container>
-    <ng-container class="app-modal-body">
-      <div class="containter-fluid">
-        <div class="row">
-          <div class="col-xs-4">
-              <form #form="ngForm">
-                <div class="row form-group" *ngFor="let input of inputs; let i = index; trackBy:trackByIndex">
-                  <div class="col-xs-6"><label class="control-label">{{input.name}}</label></div>
-                  <div class="col-xs-6">
-                    <input type="number" min="0" class="form-control" step="{{input.step}}" (input)="onChange()" [(ngModel)]="input.value" name="{{i}}">
-                  </div>
-                </div>
-              </form>
-          </div>
-          <div class="col-xs-8">
-            <drawing2d></drawing2d>
-          </div>
+  <ng-container class="app-modal-header">
+    Bridge Section - Type I
+  </ng-container>
+  <ng-container class="app-modal-body">
+    <div class="containter-fluid">
+      <div class="row">
+        <div class="col-xs-4">
+          <app-input [(inputs)]="inputs" (change)="onChange()"></app-input>
+        </div>
+        <div class="col-xs-8">
+          <drawing2d></drawing2d>
         </div>
       </div>
-
-    </ng-container>
-    <ng-container class="app-modal-footer">
-      <button type="button" class="btn btn-default" (click)="hide()">Close</button>
-      <button type="button" class="btn btn-primary" (click)="saveAndClose()">Save changes</button>
-    </ng-container>
+    </div>
+  </ng-container>
+  <ng-container class="app-modal-footer">
+    <button type="button" class="btn btn-default" (click)="hide()">Close</button>
+    <button type="button" class="btn btn-primary" (click)="saveAndClose()">Save changes</button>
+  </ng-container>
 </modal-base>
