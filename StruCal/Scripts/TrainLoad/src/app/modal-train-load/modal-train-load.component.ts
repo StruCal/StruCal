@@ -15,11 +15,15 @@ export class ModalTrainLoadComponent implements OnInit {
 
   @Input() inputs;
 
-  constructor(private structureSecrive: StructureService) { }
+  constructor(private structureSecrive: StructureService) {
+    structureSecrive.trainLoadInput$.subscribe(e => this.inputs = e);
+  }
 
   show(trainLoadType: TrainLoadType) {
     this.trainLoadType = trainLoadType;
+
     this.modalBase.show();
+    this.structureSecrive.setTrainLoadUsingType(trainLoadType);
   }
 
   hide() {
