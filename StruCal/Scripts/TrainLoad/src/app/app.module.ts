@@ -14,6 +14,7 @@ import { ModalBaseComponent } from './modal-base/modal-base.component';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from './services/message.service';
 import { HttpService } from './services/http.service';
+import { ModalTrainLoadComponent } from './modal-train-load/modal-train-load.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { HttpService } from './services/http.service';
     View3DComponent,
     Drawing2dComponent,
     ModalSection1Component,
-    ModalBaseComponent
+    ModalBaseComponent,
+    ModalTrainLoadComponent
   ],
   imports: [
     BrowserModule,

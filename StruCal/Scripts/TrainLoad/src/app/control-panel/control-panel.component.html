@@ -1,5 +1,5 @@
 <modal-section1 #modalSection1></modal-section1>
-
+<modal-train-load #modalTrainLoad></modal-train-load>
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Control Panel</h3>
@@ -13,7 +13,7 @@
                   Train Load <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a href="#" >HSLM-A</a></li>
+                  <li><a href="#" (click)="modalTrainLoad.show()" >HSLM-A</a></li>
                   <li><a href="#">HSLM-B</a></li>
                 </ul>
               </div>
