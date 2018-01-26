@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ModelInput } from '../input/modelInput';
 import { SectionType } from '../../common/sectionBuilders/sectionTypes';
+import { TrainLoadType } from '../../common/trainLoadBuilders/trainLoadType';
 
 @Injectable()
 export class LocalStorageService {
@@ -27,8 +28,24 @@ export class LocalStorageService {
     return inputs;
   }
 
+  saveTrainLoadInput(input: Array<ModelInput>, type: TrainLoadType) {
+    const key = this.getTrainLoadInputKey(type);
+    this.saveInput(input, key);
+  }
+
+  getTrainLoadInput(type: TrainLoadType){
+    const key = this.getTrainLoadInputKey(type);
+    const inputs = JSON.parse(this.getInput(key));
+    return inputs;
+  }
+
   private getSectionInputKey(type: SectionType): string {
     return `SectionType::${SectionType[type]}`;
   }
+
+  private getTrainLoadInputKey(type: TrainLoadType): string {
+    return `TrainLoadType::${TrainLoadType[type]}`;
+  }
+
 
 }
