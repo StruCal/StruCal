@@ -16,6 +16,7 @@ import { StructureService } from './services/structure.service';
 import { HttpService } from './services/http.service';
 import { ModalTrainLoadComponent } from './modal-train-load/modal-train-load.component';
 import { InputComponent } from './input/input.component';
+import { LocalStorageService } from './services/local-storage.service';
 
 
 @NgModule({
@@ -34,7 +35,13 @@ import { InputComponent } from './input/input.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [View3dService, HttpService, ControlPanelService, StructureService],
+  providers: [
+    View3dService,
+    HttpService,
+    ControlPanelService,
+    StructureService,
+    LocalStorageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -20,7 +20,7 @@ export function sectionInputFactory() {
     function getSectionBuilder(type: SectionType) {
         switch (type) {
             case SectionType.Section1: {
-                return section1FromInput;
+                return {section1FromInput};
             }
         }
     }

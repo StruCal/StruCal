@@ -26,55 +26,40 @@ export class ModalSection1Component implements OnInit {
   @ViewChild(Drawing2dComponent)
   private drawing2d: Drawing2dComponent;
 
-  private sectionInputBuilder: any;
   private section: Section;
   private sectionType: SectionType;
 
-  inputs: Array<ModelInput>;
+  public inputs: Array<ModelInput>;
 
-  constructor(private messageService: StructureService) {
-
+  constructor(private structureService: StructureService) {
+    this.structureService.sectionInput$.subscribe(e => this.inputs = e);
+    this.structureService.section$.subscribe(e => this.section = e);
   }
 
   show(sectionType: SectionType): void {
     this.sectionType = sectionType;
     this.modalBase.show();
-
-    this.sectionInputBuilder = sectionInputFactory().getSectionBuilder(sectionType);
-    this.setInputs();
-    this.updateSection();
+    this.structureService.setSectionUsingType(sectionType);
     this.draw();
-
   }
   hide(): void {
     this.modalBase.hide();
   }
 
   onChange() {
-    this.updateSection();
+    const newSection = sectionInputFactory().getSectionBuilder(this.sectionType).section1FromInput(this.inputs);
+    this.structureService.setSection(newSection);
     this.draw();
   }
 
   ngOnInit() {
   }
 
-  private setInputs() {
-    this.inputs = JSON.parse(localStorage.getItem(this.getLocalStorageKey())) || sectionInputFactory().getInput(this.sectionType);
-  }
-
   private saveAndClose() {
-    this.messageService.setSection(this.section);
-    localStorage.setItem(this.getLocalStorageKey(), JSON.stringify(this.inputs));
+    this.structureService.saveSectionInput(this.inputs, this.sectionType);
     this.hide();
   }
 
-  private getLocalStorageKey(): string {
-    return SectionType[this.sectionType];
-  }
-
-  private updateSection(): void {
-    this.section = this.sectionInputBuilder(this.inputs);
-  }
 
   private draw() {
     setTimeout(() =>
