@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ModalBaseComponent } from '../modal-base/modal-base.component';
+import { StructureService } from '../services/structure.service';
+import { TrainLoadType } from '../../common/trainLoadBuilders/trainLoadType';
 
 @Component({
   selector: 'modal-train-load',
@@ -7,12 +9,16 @@ import { ModalBaseComponent } from '../modal-base/modal-base.component';
   styleUrls: ['./modal-train-load.component.css']
 })
 export class ModalTrainLoadComponent implements OnInit {
+  trainLoadType: TrainLoadType;
   @ViewChild(ModalBaseComponent)
   private modalBase: ModalBaseComponent;
 
-  constructor() { }
+  @Input() inputs;
 
-  show() {
+  constructor(private structureSecrive: StructureService) { }
+
+  show(trainLoadType: TrainLoadType) {
+    this.trainLoadType = trainLoadType;
     this.modalBase.show();
   }
 

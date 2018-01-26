@@ -1,5 +1,7 @@
-import { MovingLoad } from '../movingLoad';
-import { MovingForce } from '../movingForce';
+import { MovingLoad } from '../movingLoad/movingLoad';
+import { MovingForce } from '../movingLoad/movingForce';
+
+
 
 
 export function HSMLBBuilder() {

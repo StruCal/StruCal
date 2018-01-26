@@ -7,7 +7,7 @@ export const startSection1Data = {
     topFlangeThickness: 0.01,
     bottomFlangeWidth: 0.7,
     bottomFlangeThicknes: 0.02
-}
+};
 
 export const startSection1 = section1Builder()
     .setHeight(startSection1Data.height)

@@ -1,5 +1,7 @@
-import { MovingLoad } from '../movingLoad';
-import { MovingForce } from '../movingForce';
+import { MovingForce } from '../movingLoad/movingForce';
+import { MovingLoad } from '../movingLoad/movingLoad';
+
+
 
 
 
