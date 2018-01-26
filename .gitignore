@@ -244,3 +244,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 StruCal/Scripts/TrainLoad/files/HSLM-A.bak
+StruCal/Scripts/TrainLoad/files/HSLM-B.bak

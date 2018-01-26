@@ -1,110 +1,239 @@
 <?xml version="1.0" encoding="UTF-8" ?>
- <svg viewBox="-0.8333333333333331 -25.30780304092116  101.66666666666663 34.84933347625622" xmlns="http://www.w3.org/2000/svg" version="1.0" overflow="visible">
+ <svg viewBox="0 -42.04269148535411  106.147282029428 42.04269148535411" xmlns="http://www.w3.org/2000/svg" version="1.0" overflow="visible">
   <defs>
+   <g id="ID__#42_D9">
+    <line x1="55.19200277040061" y1="14.93434824844368" x2="55.19200277040061" y2="8.684348248443682" id="ID_4A0"/>
+    <line x1="59.89748130352808" y1="14.93434824844368" x2="59.89748130352808" y2="8.684348248443682" id="ID_4A1"/>
+    <line x1="52.19200277040061" y1="9.934348248443683" x2="49.19200277040062" y2="9.934348248443683" id="ID_4A2"/>
+    <line x1="62.89748130352807" y1="9.934348248443683" x2="65.89748130352808" y2="9.934348248443683" id="ID_4A3"/>
+    <line x1="55.19200277040061" y1="9.934348248443683" x2="59.89748130352808" y2="9.934348248443683" id="ID_4A4"/>
+    <polygon points="52.19200277040061,10.43434824844368 52.19200277040061,9.434348248443683 55.19200277040061,9.934348248443683 55.19200277040061,9.934348248443683 " id="ID_4A5" fill="currentColor"/>
+    <polygon points="62.89748130352807,10.43434824844368 62.89748130352807,9.434348248443683 59.89748130352808,9.934348248443683 59.89748130352808,9.934348248443683 " id="ID_4A6" fill="currentColor"/>
+    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="57.54474203696434" y="11.82981209564696" font-size="2.5" transform="matrix(1 0 0 -1 0 23.65962419129392)" fill="currentColor" id="ID_4A7">
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5"/>
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5">d</tspan>
+    </text>
+   </g>
    <g id="ID__#42_D8">
-    <line x1="75" y1="-3.291530435335062" x2="75" y2="-9.541530435335062" id="ID_3FC"/>
-    <line x1="100" y1="-3.291530435335062" x2="100" y2="-9.541530435335062" id="ID_3FD"/>
-    <line x1="78" y1="-8.291530435335062" x2="97" y2="-8.291530435335062" id="ID_3FE"/>
-    <polygon points="78.0,-7.791530435335062 78.0,-8.791530435335062 75.0,-8.291530435335062 75.0,-8.291530435335062 " id="ID_3FF" fill="currentColor"/>
-    <polygon points="97.0,-7.791530435335062 97.0,-8.791530435335062 100.0,-8.291530435335062 100.0,-8.291530435335062 " id="ID_400" fill="currentColor"/>
-    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="87.5" y="-6.396066588131787" font-size="2.5" transform="matrix(1 0 0 -1 0 -12.792133176263574)" fill="currentColor" id="ID_401">
+    <line x1="31.4635713571376" y1="14.93434824844368" x2="31.4635713571376" y2="8.684348248443682" id="ID_492"/>
+    <line x1="36.16904989026507" y1="14.93434824844368" x2="36.16904989026507" y2="8.684348248443682" id="ID_493"/>
+    <line x1="28.46357135713761" y1="9.934348248443683" x2="25.46357135713761" y2="9.934348248443683" id="ID_494"/>
+    <line x1="39.16904989026507" y1="9.934348248443683" x2="42.16904989026504" y2="9.934348248443683" id="ID_495"/>
+    <line x1="31.4635713571376" y1="9.934348248443683" x2="36.16904989026507" y2="9.934348248443683" id="ID_496"/>
+    <polygon points="28.46357135713761,10.43434824844368 28.46357135713761,9.434348248443683 31.4635713571376,9.934348248443683 31.4635713571376,9.934348248443683 " id="ID_497" fill="currentColor"/>
+    <polygon points="39.16904989026507,10.43434824844368 39.16904989026507,9.434348248443683 36.16904989026507,9.934348248443683 36.16904989026507,9.934348248443683 " id="ID_498" fill="currentColor"/>
+    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="33.81631062370133" y="11.82981209564696" font-size="2.5" transform="matrix(1 0 0 -1 0 23.65962419129392)" fill="currentColor" id="ID_499">
      <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5"/>
      <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5">d</tspan>
     </text>
    </g>
    <g id="ID__#42_D7">
+    <line x1="77.83123242557815" y1="9.039821302545192" x2="77.83123242557815" y2="2.789821302545192" id="ID_60C"/>
+    <line x1="102.8312324255781" y1="9.039821302545192" x2="102.8312324255781" y2="2.789821302545192" id="ID_60D"/>
+    <line x1="80.83123242557816" y1="4.039821302545192" x2="99.83123242557816" y2="4.039821302545192" id="ID_60E"/>
+    <polygon points="80.83123242557816,4.539821302545192 80.83123242557816,3.539821302545192 77.83123242557815,4.039821302545192 77.83123242557815,4.039821302545192 " id="ID_60F" fill="currentColor"/>
+    <polygon points="99.83123242557816,4.539821302545192 99.83123242557816,3.539821302545192 102.8312324255781,4.039821302545192 102.8312324255781,4.039821302545192 " id="ID_610" fill="currentColor"/>
+    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="90.33123242557815" y="5.935285149748466" font-size="2.5" transform="matrix(1 0 0 -1 0 11.870570299496933)" fill="currentColor" id="ID_611">
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5"/>
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5">d</tspan>
+    </text>
+   </g>
+   <g id="ID__#42_D6">
     <line x1="125" y1="-3.291530435335062" x2="125" y2="-9.541530435335062" id="ID_35C"/>
     <line x1="150" y1="-3.291530435335062" x2="150" y2="-9.541530435335062" id="ID_35D"/>
     <line x1="128" y1="-8.291530435335062" x2="147" y2="-8.291530435335062" id="ID_35E"/>
     <polygon points="128.0,-7.791530435335062 128.0,-8.791530435335062 125.0,-8.291530435335062 125.0,-8.291530435335062 " id="ID_35F" fill="currentColor"/>
     <polygon points="147.0,-7.791530435335062 147.0,-8.791530435335062 150.0,-8.291530435335062 150.0,-8.291530435335062 " id="ID_360" fill="currentColor"/>
-    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="137.5" y="-6.396066588131787" font-size="2.5" transform="matrix(1 0 0 -1 0 -12.792133176263574)" fill="currentColor" id="ID_361">
+    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="137.5" y="-6.396066588131786" font-size="2.5" transform="matrix(1 0 0 -1 0 -12.792133176263572)" fill="currentColor" id="ID_361">
      <tspan baseline-shift="-40%" font-size="2.5">d</tspan>
     </text>
    </g>
-   <g id="ID__#42_Paper_Space"/>
-   <g id="ID__#42_D6">
-    <line x1="50" y1="-3.291530435335062" x2="50" y2="-9.541530435335062" id="ID_3EA"/>
-    <line x1="75" y1="-3.291530435335062" x2="75" y2="-9.541530435335062" id="ID_3EB"/>
-    <line x1="53" y1="-8.291530435335062" x2="72" y2="-8.291530435335062" id="ID_3EC"/>
-    <polygon points="53.0,-7.791530435335062 53.0,-8.791530435335062 50.0,-8.291530435335062 50.0,-8.291530435335062 " id="ID_3ED" fill="currentColor"/>
-    <polygon points="72.0,-7.791530435335062 72.0,-8.791530435335062 75.0,-8.291530435335062 75.0,-8.291530435335062 " id="ID_3EE" fill="currentColor"/>
-    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="62.5" y="-6.396066588131787" font-size="2.5" transform="matrix(1 0 0 -1 0 -12.792133176263574)" fill="currentColor" id="ID_3EF">
-     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5"/>
-     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5">d</tspan>
-    </text>
-   </g>
    <g id="ID__#42_D5">
-    <line x1="25" y1="-3.291530435335062" x2="25" y2="-9.541530435335062" id="ID_3D8"/>
-    <line x1="50" y1="-3.291530435335062" x2="50" y2="-9.541530435335062" id="ID_3D9"/>
-    <line x1="28" y1="-8.291530435335062" x2="47" y2="-8.291530435335062" id="ID_3DA"/>
-    <polygon points="28.0,-7.791530435335062 28.0,-8.791530435335062 25.0,-8.291530435335062 25.0,-8.291530435335062 " id="ID_3DB" fill="currentColor"/>
-    <polygon points="47.0,-7.791530435335062 47.0,-8.791530435335062 50.0,-8.291530435335062 50.0,-8.291530435335062 " id="ID_3DC" fill="currentColor"/>
-    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="37.5" y="-6.396066588131787" font-size="2.5" transform="matrix(1 0 0 -1 0 -12.792133176263574)" fill="currentColor" id="ID_3DD">
+    <line x1="52.83123242557815" y1="9.039821302545192" x2="52.83123242557815" y2="2.789821302545192" id="ID_603"/>
+    <line x1="77.83123242557815" y1="9.039821302545192" x2="77.83123242557815" y2="2.789821302545192" id="ID_604"/>
+    <line x1="55.83123242557815" y1="4.039821302545192" x2="74.83123242557815" y2="4.039821302545192" id="ID_605"/>
+    <polygon points="55.83123242557815,4.539821302545192 55.83123242557815,3.539821302545192 52.83123242557815,4.039821302545192 52.83123242557815,4.039821302545192 " id="ID_606" fill="currentColor"/>
+    <polygon points="74.83123242557815,4.539821302545192 74.83123242557815,3.539821302545192 77.83123242557815,4.039821302545192 77.83123242557815,4.039821302545192 " id="ID_607" fill="currentColor"/>
+    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="65.33123242557815" y="5.935285149748466" font-size="2.5" transform="matrix(1 0 0 -1 0 11.870570299496933)" fill="currentColor" id="ID_608">
      <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5"/>
      <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5">d</tspan>
     </text>
    </g>
    <g id="ID__#42_D4">
-    <line x1="-0.0000000000000002" y1="-3.291530435335062" x2="-0.0000000000000006" y2="-9.541530435335062" id="ID_3B4"/>
-    <line x1="25" y1="-3.291530435335062" x2="25" y2="-9.541530435335062" id="ID_3B5"/>
-    <line x1="2.999999999999999" y1="-8.291530435335062" x2="22" y2="-8.291530435335062" id="ID_3B6"/>
-    <polygon points="2.999999999999999,-7.791530435335062 2.999999999999999,-8.791530435335062 -5.0E-16,-8.291530435335062 -5.0E-16,-8.291530435335062 " id="ID_3B7" fill="currentColor"/>
-    <polygon points="22.0,-7.791530435335062 22.0,-8.791530435335062 25.0,-8.291530435335062 25.0,-8.291530435335062 " id="ID_3B8" fill="currentColor"/>
-    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="12.5" y="-6.396066588131787" font-size="2.5" transform="matrix(1 0 0 -1 0 -12.792133176263574)" fill="currentColor" id="ID_3B9">
+    <line x1="27.83123242557815" y1="9.039821302545192" x2="27.83123242557815" y2="2.789821302545192" id="ID_5F1"/>
+    <line x1="52.83123242557815" y1="9.039821302545192" x2="52.83123242557815" y2="2.789821302545192" id="ID_5F2"/>
+    <line x1="30.83123242557815" y1="4.039821302545192" x2="49.83123242557815" y2="4.039821302545192" id="ID_5F3"/>
+    <polygon points="30.83123242557815,4.539821302545192 30.83123242557815,3.539821302545192 27.83123242557815,4.039821302545192 27.83123242557815,4.039821302545192 " id="ID_5F4" fill="currentColor"/>
+    <polygon points="49.83123242557815,4.539821302545192 49.83123242557815,3.539821302545192 52.83123242557815,4.039821302545192 52.83123242557815,4.039821302545192 " id="ID_5F5" fill="currentColor"/>
+    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="40.33123242557815" y="5.935285149748466" font-size="2.5" transform="matrix(1 0 0 -1 0 11.870570299496933)" fill="currentColor" id="ID_5F6">
      <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5"/>
      <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5">d</tspan>
     </text>
    </g>
-   <g id="ID__#42_Model_Space"/>
+   <g id="ID__#42_D3">
+    <line x1="2.83123242557815" y1="9.039821302545192" x2="2.83123242557815" y2="2.789821302545192" id="ID_5FA"/>
+    <line x1="27.83123242557815" y1="9.039821302545192" x2="27.83123242557815" y2="2.789821302545192" id="ID_5FB"/>
+    <line x1="5.83123242557815" y1="4.039821302545192" x2="24.83123242557815" y2="4.039821302545192" id="ID_5FC"/>
+    <polygon points="5.83123242557815,4.539821302545192 5.83123242557815,3.539821302545192 2.83123242557815,4.039821302545192 2.83123242557815,4.039821302545192 " id="ID_5FD" fill="currentColor"/>
+    <polygon points="24.83123242557815,4.539821302545192 24.83123242557815,3.539821302545192 27.83123242557815,4.039821302545192 27.83123242557815,4.039821302545192 " id="ID_5FE" fill="currentColor"/>
+    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="15.33123242557815" y="5.935285149748466" font-size="2.5" transform="matrix(1 0 0 -1 0 11.870570299496933)" fill="currentColor" id="ID_5FF">
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5"/>
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5">d</tspan>
+    </text>
+   </g>
    <g id="ID__#42_D2">
-    <line x1="0.0000000000000012" y1="19.05780304092116" x2="0.0000000000000015" y2="25.30780304092116" id="ID_390"/>
-    <line x1="100" y1="19.05780304092116" x2="100" y2="25.30780304092116" id="ID_391"/>
-    <line x1="3.000000000000001" y1="24.05780304092116" x2="97" y2="24.05780304092116" id="ID_392"/>
-    <polygon points="3.000000000000001,24.55780304092116 3.000000000000001,23.55780304092116 1.5E-15,24.05780304092116 1.5E-15,24.05780304092116 " id="ID_393" fill="currentColor"/>
-    <polygon points="97.0,24.55780304092116 97.0,23.55780304092116 100.0,24.05780304092116 100.0,24.05780304092116 " id="ID_394" fill="currentColor"/>
-    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="50.0" y="25.95923551022539" font-size="2.5" transform="matrix(1 0 0 -1 0 51.91847102045078)" fill="currentColor" id="ID_395">
+    <line x1="2.831232425578151" y1="31.38915477880142" x2="2.831232425578151" y2="37.63915477880142" id="ID_5E8"/>
+    <line x1="102.8312324255781" y1="31.38915477880142" x2="102.8312324255781" y2="37.63915477880142" id="ID_5E9"/>
+    <line x1="5.831232425578152" y1="36.38915477880142" x2="99.83123242557816" y2="36.38915477880142" id="ID_5EA"/>
+    <polygon points="5.831232425578152,36.88915477880141 5.831232425578152,35.88915477880141 2.831232425578151,36.38915477880142 2.831232425578151,36.38915477880142 " id="ID_5EB" fill="currentColor"/>
+    <polygon points="99.83123242557816,36.88915477880141 99.83123242557816,35.88915477880141 102.8312324255781,36.38915477880142 102.8312324255781,36.38915477880142 " id="ID_5EC" fill="currentColor"/>
+    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="52.83123242557815" y="38.29058724810565" font-size="2.5" transform="matrix(1 0 0 -1 0 76.5811744962113)" fill="currentColor" id="ID_5ED">
      <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5"/>
      <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5">N x 170kN</tspan>
     </text>
    </g>
    <g id="ID__#42_D1">
-    <line x1="5.000000000000002" y1="41.08302713027251" x2="95" y2="41.08302713027251" id="ID_2B2"/>
-    <polygon points="5.000000000000002,41.91636046360584 5.000000000000002,40.24969379693917 2.5E-15,41.08302713027251 2.5E-15,41.08302713027251 " id="ID_2B3" fill="currentColor"/>
-    <polygon points="95.0,41.91636046360584 95.0,40.24969379693917 100.0,41.08302713027251 100.0,41.08302713027251 " id="ID_2B4" fill="currentColor"/>
+    <line x1="5.000000000000001" y1="41.0830271302725" x2="95" y2="41.0830271302725" id="ID_2B2"/>
+    <polygon points="5.000000000000001,41.91636046360584 5.000000000000001,40.24969379693916 2.5E-15,41.0830271302725 2.5E-15,41.0830271302725 " id="ID_2B3" fill="currentColor"/>
+    <polygon points="95.0,41.91636046360584 95.0,40.24969379693916 100.0,41.0830271302725 100.0,41.0830271302725 " id="ID_2B4" fill="currentColor"/>
     <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="50.0" y="42.98445959957674" font-size="2.5" transform="matrix(1 0 0 -1 0 85.96891919915348)" fill="currentColor" id="ID_2B5">
      <tspan baseline-shift="-40%" font-size="2.5">100</tspan>
     </text>
    </g>
+   <g id="ID__#42_D18">
+    <line x1="77.22251674633208" y1="60.97941025095899" x2="77.22251674633208" y2="54.72941025095899" id="ID_584"/>
+    <line x1="100.9509481595951" y1="60.97941025095899" x2="100.9509481595951" y2="54.72941025095899" id="ID_585"/>
+    <line x1="80.22251674633208" y1="55.97941025095899" x2="97.9509481595951" y2="55.97941025095899" id="ID_586"/>
+    <polygon points="80.22251674633208,56.47941025095899 80.22251674633208,55.47941025095898 77.22251674633208,55.97941025095899 77.22251674633208,55.97941025095899 " id="ID_587" fill="currentColor"/>
+    <polygon points="97.9509481595951,56.47941025095899 97.9509481595951,55.47941025095898 100.9509481595951,55.97941025095899 100.9509481595951,55.97941025095899 " id="ID_588" fill="currentColor"/>
+    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="89.08673245296359" y="57.85441025095899" font-size="2.5" transform="matrix(1 0 0 -1 0 115.70882050191798)" fill="currentColor" id="ID_589">
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5"/>
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5">D</tspan>
+    </text>
+   </g>
+   <g id="ID__#42_D17">
+    <line x1="53.49408533306905" y1="60.97941025095899" x2="53.49408533306905" y2="54.72941025095899" id="ID_57B"/>
+    <line x1="77.22251674633208" y1="60.97941025095899" x2="77.22251674633208" y2="54.72941025095899" id="ID_57C"/>
+    <line x1="56.49408533306905" y1="55.97941025095899" x2="74.22251674633208" y2="55.97941025095899" id="ID_57D"/>
+    <polygon points="56.49408533306905,56.47941025095899 56.49408533306905,55.47941025095898 53.49408533306905,55.97941025095899 53.49408533306905,55.97941025095899 " id="ID_57E" fill="currentColor"/>
+    <polygon points="74.22251674633208,56.47941025095899 74.22251674633208,55.47941025095898 77.22251674633208,55.97941025095899 77.22251674633208,55.97941025095899 " id="ID_57F" fill="currentColor"/>
+    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="65.35830103970056" y="57.85441025095899" font-size="2.5" transform="matrix(1 0 0 -1 0 115.70882050191798)" fill="currentColor" id="ID_580">
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5"/>
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5">D</tspan>
+    </text>
+   </g>
+   <g id="ID__#42_D16">
+    <line x1="98.59820889303136" y1="67.51257057096191" x2="98.59820889303136" y2="61.26257057096191" id="ID_570"/>
+    <line x1="103.3036874261588" y1="67.51257057096191" x2="103.3036874261588" y2="61.26257057096191" id="ID_571"/>
+    <line x1="95.59820889303136" y1="62.51257057096191" x2="92.59820889303136" y2="62.51257057096191" id="ID_572"/>
+    <line x1="106.3036874261588" y1="62.51257057096191" x2="109.3036874261588" y2="62.51257057096191" id="ID_573"/>
+    <line x1="98.59820889303136" y1="62.51257057096191" x2="103.3036874261588" y2="62.51257057096191" id="ID_574"/>
+    <polygon points="95.59820889303136,63.01257057096191 95.59820889303136,62.01257057096191 98.59820889303136,62.51257057096191 98.59820889303136,62.51257057096191 " id="ID_575" fill="currentColor"/>
+    <polygon points="106.3036874261588,63.01257057096191 106.3036874261588,62.01257057096191 103.3036874261588,62.51257057096191 103.3036874261588,62.51257057096191 " id="ID_576" fill="currentColor"/>
+    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="100.9509481595951" y="64.40803441816519" font-size="2.5" transform="matrix(1 0 0 -1 0 128.81606883633037)" fill="currentColor" id="ID_577">
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5"/>
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5">d</tspan>
+    </text>
+   </g>
+   <g id="ID__#42_D15">
+    <line x1="74.86977747976835" y1="67.51257057096191" x2="74.86977747976835" y2="61.26257057096191" id="ID_565"/>
+    <line x1="79.5752560128958" y1="67.51257057096191" x2="79.5752560128958" y2="61.26257057096191" id="ID_566"/>
+    <line x1="71.86977747976835" y1="62.51257057096191" x2="68.86977747976835" y2="62.51257057096191" id="ID_567"/>
+    <line x1="82.5752560128958" y1="62.51257057096191" x2="85.5752560128958" y2="62.51257057096191" id="ID_568"/>
+    <line x1="74.86977747976835" y1="62.51257057096191" x2="79.5752560128958" y2="62.51257057096191" id="ID_569"/>
+    <polygon points="71.86977747976835,63.01257057096191 71.86977747976835,62.01257057096191 74.86977747976835,62.51257057096191 74.86977747976835,62.51257057096191 " id="ID_56A" fill="currentColor"/>
+    <polygon points="82.5752560128958,63.01257057096191 82.5752560128958,62.01257057096191 79.5752560128958,62.51257057096191 79.5752560128958,62.51257057096191 " id="ID_56B" fill="currentColor"/>
+    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="77.22251674633208" y="64.40803441816519" font-size="2.5" transform="matrix(1 0 0 -1 0 128.81606883633037)" fill="currentColor" id="ID_56C">
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5"/>
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5">d</tspan>
+    </text>
+   </g>
+   <g id="ID__#42_D14">
+    <line x1="51.14134606650533" y1="67.51257057096191" x2="51.14134606650533" y2="61.26257057096191" id="ID_55A"/>
+    <line x1="55.84682459963278" y1="67.51257057096191" x2="55.84682459963278" y2="61.26257057096191" id="ID_55B"/>
+    <line x1="48.14134606650533" y1="62.51257057096191" x2="45.14134606650532" y2="62.51257057096191" id="ID_55C"/>
+    <line x1="58.84682459963279" y1="62.51257057096191" x2="61.84682459963279" y2="62.51257057096191" id="ID_55D"/>
+    <line x1="51.14134606650533" y1="62.51257057096191" x2="55.84682459963278" y2="62.51257057096191" id="ID_55E"/>
+    <polygon points="48.14134606650533,63.01257057096191 48.14134606650533,62.01257057096191 51.14134606650533,62.51257057096191 51.14134606650533,62.51257057096191 " id="ID_55F" fill="currentColor"/>
+    <polygon points="58.84682459963279,63.01257057096191 58.84682459963279,62.01257057096191 55.84682459963278,62.51257057096191 55.84682459963278,62.51257057096191 " id="ID_560" fill="currentColor"/>
+    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="53.49408533306906" y="64.40803441816519" font-size="2.5" transform="matrix(1 0 0 -1 0 128.81606883633037)" fill="currentColor" id="ID_561">
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5"/>
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5">d</tspan>
+    </text>
+   </g>
+   <g id="ID__#42_D12">
+    <line x1="57.54474203696435" y1="8.401187928440754" x2="57.54474203696435" y2="2.151187928440755" id="ID_4C8"/>
+    <line x1="81.27317345022738" y1="8.401187928440754" x2="81.27317345022738" y2="2.151187928440755" id="ID_4C9"/>
+    <line x1="60.54474203696436" y1="3.401187928440755" x2="78.27317345022738" y2="3.401187928440755" id="ID_4CA"/>
+    <polygon points="60.54474203696436,3.901187928440755 60.54474203696436,2.901187928440755 57.54474203696435,3.401187928440755 57.54474203696435,3.401187928440755 " id="ID_4CB" fill="currentColor"/>
+    <polygon points="78.27317345022738,3.901187928440755 78.27317345022738,2.901187928440755 81.27317345022738,3.401187928440755 81.27317345022738,3.401187928440755 " id="ID_4CC" fill="currentColor"/>
+    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="69.40895774359586" y="5.276187928440754" font-size="2.5" transform="matrix(1 0 0 -1 0 10.552375856881508)" fill="currentColor" id="ID_4CD">
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5"/>
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5">D</tspan>
+    </text>
+   </g>
    <g id="ID__#42_Paper_Space0"/>
+   <g id="ID__#42_D11">
+    <line x1="33.81631062370133" y1="8.401187928440754" x2="33.81631062370133" y2="2.151187928440755" id="ID_4BC"/>
+    <line x1="57.54474203696435" y1="8.401187928440754" x2="57.54474203696435" y2="2.151187928440755" id="ID_4BD"/>
+    <line x1="36.81631062370133" y1="3.401187928440755" x2="54.54474203696435" y2="3.401187928440755" id="ID_4BE"/>
+    <polygon points="36.81631062370133,3.901187928440755 36.81631062370133,2.901187928440755 33.81631062370133,3.401187928440755 33.81631062370133,3.401187928440755 " id="ID_4BF" fill="currentColor"/>
+    <polygon points="54.54474203696435,3.901187928440755 54.54474203696435,2.901187928440755 57.54474203696435,3.401187928440755 57.54474203696435,3.401187928440755 " id="ID_4C0" fill="currentColor"/>
+    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="45.68052633033284" y="5.276187928440754" font-size="2.5" transform="matrix(1 0 0 -1 0 10.552375856881508)" fill="currentColor" id="ID_4C1">
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5"/>
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5">D</tspan>
+    </text>
+   </g>
+   <g id="ID__#42_D10">
+    <line x1="78.92043418366363" y1="14.93434824844368" x2="78.92043418366363" y2="8.684348248443682" id="ID_4AE"/>
+    <line x1="83.6259127167911" y1="14.93434824844368" x2="83.6259127167911" y2="8.684348248443682" id="ID_4AF"/>
+    <line x1="75.92043418366363" y1="9.934348248443683" x2="72.92043418366363" y2="9.934348248443683" id="ID_4B0"/>
+    <line x1="86.6259127167911" y1="9.934348248443683" x2="89.62591271679109" y2="9.934348248443683" id="ID_4B1"/>
+    <line x1="78.92043418366363" y1="9.934348248443683" x2="83.6259127167911" y2="9.934348248443683" id="ID_4B2"/>
+    <polygon points="75.92043418366363,10.43434824844368 75.92043418366363,9.434348248443683 78.92043418366363,9.934348248443683 78.92043418366363,9.934348248443683 " id="ID_4B3" fill="currentColor"/>
+    <polygon points="86.6259127167911,10.43434824844368 86.6259127167911,9.434348248443683 83.6259127167911,9.934348248443683 83.6259127167911,9.934348248443683 " id="ID_4B4" fill="currentColor"/>
+    <text writing-mode="lr-tb" text-anchor="middle" alignment-baseline="middle" x="81.27317345022738" y="11.82981209564696" font-size="2.5" transform="matrix(1 0 0 -1 0 23.65962419129392)" fill="currentColor" id="ID_4B5">
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5"/>
+     <tspan baseline-shift="-40%" font-style="italic" font-family="Arial" font-size="2.5">d</tspan>
+    </text>
+   </g>
+   <g id="ID__#42_Model_Space"/>
+   <g id="ID__#42_Paper_Space"/>
   </defs>
-  <g id="draft" transform="matrix(1 0 0 -1 0 0)" stroke-width="0.017064500017865355">
-   <g id="Defpoints" color="rgb(0,0,0)" stroke="currentColor" fill="none" stroke-width="0.017064500017865355"/>
-   <g id="ID_0" color="rgb(0,0,0)" stroke="currentColor" fill="none" stroke-width="0.17064500017865355">
-    <path d="M 100 4.999999999999999 L 100 13.94616097701691 L 100 15.41689329459529 " id="ID_37C"/>
-    <path d="M 75 4.999999999999999 L 75 13.94616097701691 L 75 15.41689329459529 " id="ID_37F"/>
-    <path d="M 50 4.999999999999999 L 50 13.94616097701691 L 50 15.41689329459529 " id="ID_381"/>
-    <path d="M 25 4.999999999999999 L 25 13.94616097701691 L 25 15.41689329459529 " id="ID_383"/>
-    <path d="M 0 4.999999999999999 L 0 13.94616097701691 L 0 15.41689329459529 " id="ID_385"/>
-    <polygon points="100.8333333333333,4.999999999999999 100.0,0.0 99.16666666666667,4.999999999999999 99.16666666666667,4.999999999999999 " id="ID_37B" fill="currentColor"/>
-    <polygon points="75.83333333333333,4.999999999999999 75.0,0.0 74.16666666666667,4.999999999999999 74.16666666666667,4.999999999999999 " id="ID_37E" fill="currentColor"/>
-    <polygon points="50.83333333333333,4.999999999999999 50.0,0.0 49.16666666666666,4.999999999999999 49.16666666666666,4.999999999999999 " id="ID_380" fill="currentColor"/>
-    <polygon points="25.83333333333333,4.999999999999999 25.0,0.0 24.16666666666667,4.999999999999999 24.16666666666667,4.999999999999999 " id="ID_382" fill="currentColor"/>
-    <polygon points="0.8333333333333331,4.999999999999999 0.0,0.0 -0.8333333333333331,4.999999999999999 -0.8333333333333331,4.999999999999999 " id="ID_384" fill="currentColor"/>
-    <g transform="translate(0.0 0.0)" id="ID_2B9" stroke-width="0.017064500017865355">
+  <g id="draft" transform="matrix(1 0 0 -1 0 0)" stroke-width="0.018523746689347764">
+   <g id="Defpoints" color="rgb(0,0,0)" stroke="currentColor" fill="none" stroke-width="0.018523746689347764"/>
+   <g id="boundingBox" color="rgb(0,0,0)" stroke="currentColor" fill="none" stroke-width="0.00018523746689347764">
+    <path d="M 0 42.04269148535411 L 106.147282029428 42.04269148535411 L 106.147282029428 0 L 0 0  z" id="ID_58D"/>
+   </g>
+   <g id="strzalki" color="rgb(0,0,0)" stroke="currentColor" fill="none" stroke-width="0.18523746689347764">
+    <path d="M 102.8312324255781 17.33135173788025 L 102.8312324255781 26.27751271489716 L 102.8312324255781 27.74824503247554 " id="ID_37C"/>
+    <path d="M 77.83123242557815 17.33135173788025 L 77.83123242557815 26.27751271489716 L 77.83123242557815 27.74824503247554 " id="ID_37F"/>
+    <path d="M 52.83123242557815 17.33135173788025 L 52.83123242557815 26.27751271489716 L 52.83123242557815 27.74824503247554 " id="ID_381"/>
+    <path d="M 27.83123242557815 17.33135173788025 L 27.83123242557815 26.27751271489716 L 27.83123242557815 27.74824503247554 " id="ID_383"/>
+    <path d="M 2.83123242557815 17.33135173788025 L 2.83123242557815 26.27751271489716 L 2.83123242557815 27.74824503247554 " id="ID_385"/>
+    <polygon points="103.6645657589114,17.33135173788025 102.8312324255781,12.33135173788025 101.9978990922448,17.33135173788025 101.9978990922448,17.33135173788025 " id="ID_37B" fill="currentColor"/>
+    <polygon points="78.66456575891148,17.33135173788025 77.83123242557815,12.33135173788025 76.99789909224482,17.33135173788025 76.99789909224482,17.33135173788025 " id="ID_37E" fill="currentColor"/>
+    <polygon points="53.66456575891148,17.33135173788025 52.83123242557815,12.33135173788025 51.99789909224481,17.33135173788025 51.99789909224481,17.33135173788025 " id="ID_380" fill="currentColor"/>
+    <polygon points="28.66456575891148,17.33135173788025 27.83123242557815,12.33135173788025 26.99789909224482,17.33135173788025 26.99789909224482,17.33135173788025 " id="ID_382" fill="currentColor"/>
+    <polygon points="3.664565758911483,17.33135173788025 2.83123242557815,12.33135173788025 1.997899092244817,17.33135173788025 1.997899092244817,17.33135173788025 " id="ID_384" fill="currentColor"/>
+   </g>
+   <g id="Opis" color="rgb(0,0,0)" stroke="currentColor" fill="none" stroke-width="0.018523746689347764"/>
+   <g id="ID_0" color="rgb(0,0,0)" stroke="currentColor" fill="none" stroke-width="0.018523746689347764"/>
+   <g id="Wymiary" color="rgb(0,0,0)" stroke="currentColor" fill="none" stroke-width="0.018523746689347764">
+    <g transform="translate(0.0 0.0)" id="ID_2B9" stroke-width="0.018523746689347764">
      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ID__#42_D2"/>
     </g>
-    <g transform="translate(0.0 0.0)" id="ID_2FB" stroke-width="0.017064500017865355">
+    <g transform="translate(0.0 0.0)" id="ID_2FB" stroke-width="0.018523746689347764">
+     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ID__#42_D3"/>
+    </g>
+    <g transform="translate(0.0 0.0)" id="ID_323" stroke-width="0.018523746689347764">
      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ID__#42_D4"/>
     </g>
-    <g transform="translate(0.0 0.0)" id="ID_323" stroke-width="0.017064500017865355">
+    <g transform="translate(0.0 0.0)" id="ID_339" stroke-width="0.018523746689347764">
      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ID__#42_D5"/>
     </g>
-    <g transform="translate(0.0 0.0)" id="ID_339" stroke-width="0.017064500017865355">
-     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ID__#42_D6"/>
-    </g>
-    <g transform="translate(0.0 0.0)" id="ID_365" stroke-width="0.017064500017865355">
-     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ID__#42_D8"/>
+    <g transform="translate(0.0 0.0)" id="ID_365" stroke-width="0.018523746689347764">
+     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ID__#42_D7"/>
     </g>
    </g>
   </g>
