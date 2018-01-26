@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { ModalBaseComponent } from '../modal-base/modal-base.component';
 import { ModalBase } from '../modal-base/modalBase';
@@ -9,6 +9,7 @@ import { sectionInputFactory } from './Input/sectionInputFactory';
 import { Section } from '../../common/structure/section';
 import { StructureService } from '../services/structure.service';
 import { ModelInput } from '../input/modelInput';
+import { sectionTitleFactory } from './Input/sectionTitles';
 
 
 
@@ -30,6 +31,7 @@ export class ModalSection1Component implements OnInit {
   private sectionType: SectionType;
 
   public inputs: Array<ModelInput>;
+  public title: string;
 
   constructor(private structureService: StructureService) {
     this.structureService.sectionInput$.subscribe(e => this.inputs = e);
@@ -37,6 +39,7 @@ export class ModalSection1Component implements OnInit {
   }
 
   show(sectionType: SectionType): void {
+    this.title = sectionTitleFactory[sectionType];
     this.sectionType = sectionType;
     this.modalBase.show();
     this.structureService.setSectionUsingType(sectionType);
