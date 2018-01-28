@@ -27,7 +27,7 @@ export function HSLMBBuilder() {
         const forces = Array.from(Array(numberOfForces).keys())
             .map(e => distanceBetweenForces * e);
         forces.forEach(position => {
-            movingForces.push({ basePosition: position, load: pointLoad });
+            movingForces.push({ basePosition: -position, load: -pointLoad });
         });
 
         trainLoad.forces = movingForces;

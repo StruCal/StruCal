@@ -52,7 +52,7 @@ export function HSLMABuilder() {
         const positions = distances.map((e, i) => distances.slice(0, i + 1))
             .map(e => e.reduce((a, g) => a + g));
         positions.forEach(position => {
-                movingForces.push({ basePosition: position, load: pointForce });
+                movingForces.push({ basePosition: -position, load: -pointForce });
         });
 
         trainLoad.forces = movingForces;

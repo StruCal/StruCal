@@ -44,7 +44,7 @@ export function calculationsInputBuilder() {
         const structureLength = calculationsInput.structureGeometry.getLength();
         const loadLength = calculationsInput.movingLoads.getLength();
 
-        const endTime = (structureLength + loadLength) * calculationsInput.movingLoads.speed;
+        const endTime = (structureLength + loadLength) / calculationsInput.movingLoads.speed;
         timeSettings.endTime = endTime;
         calculationsInput.timeSettings = timeSettings;
         return { build };

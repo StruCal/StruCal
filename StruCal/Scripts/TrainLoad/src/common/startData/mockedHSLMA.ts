@@ -1,7 +1,7 @@
 import { HSLMABuilder } from '../trainLoadBuilders/HSLMABuilder';
 
 export const startHSLMAData = {
-    speed: 30,
+    speed: 3,
     numberOfIntermediateCoached: 10,
     coachLength: 10,
     bogieAxleSpacing: 2,
