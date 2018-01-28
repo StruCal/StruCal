@@ -9,33 +9,36 @@ import { section1Builder } from '../../common/sectionBuilders/section1Builder';
 import { StructureService } from '../services/structure.service';
 import { Section } from '../../common/structure/section';
 import { startSection1 } from '../../common/startData/mockedSection1';
+import { MovingLoad } from '../../common/movingLoad/movingLoad';
 
 
 @Injectable()
 export class ControlPanelService {
 
   private section: Section;
+  private movingLoad: MovingLoad;
 
   constructor(private httpService: HttpService,
     private view3dService: View3dService,
-    private messageService: StructureService) {
-    this.messageService.section$.subscribe(e => {
+    private structureService: StructureService) {
+    this.structureService.section$.subscribe(e => {
       this.section = e;
       this.setStructure();
     });
+    this.structureService.trainLoad$.subscribe(e => this.movingLoad = e);
   }
 
   calculate() {
     const input = calculationsInputBuilder()
       .setStructureGeometry(this.view3dService.getStructureGeometry())
       .setStructureData(this.view3dService.getStructureData())
-      .setMovingLoad(this.getMovingLoad())
+      .setMovingLoad(this.movingLoad)
       .setTimeSettings()
       .build();
 
-    this.httpService.getResult(input).subscribe(data => {
-      this.view3dService.drawResults(data);
-    });
+      this.httpService.getResult(input).subscribe(data => {
+        this.view3dService.drawResults(data);
+      });
   }
 
   setStructure() {
@@ -43,9 +46,6 @@ export class ControlPanelService {
     this.view3dService.drawStructure(str);
   }
 
-  private getMovingLoad() {
-    return mockedMovingLoad;
-  }
 
   private getStructureGeometry(): StructureGeometry {
     mockedStructureGeometry.bars.forEach(e => e.section = this.section);

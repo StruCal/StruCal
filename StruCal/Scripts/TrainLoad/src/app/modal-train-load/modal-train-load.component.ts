@@ -3,6 +3,7 @@ import { ModalBaseComponent } from '../modal-base/modal-base.component';
 import { StructureService } from '../services/structure.service';
 import { TrainLoadType } from '../../common/trainLoadBuilders/trainLoadType';
 import { trainLoadTitleFactory, trainLoadImagePathFactory } from './input/trainLoadHTMLHelper';
+import { trainLoadInputFactory } from './input/trainLoadInputFactory';
 
 @Component({
   selector: 'modal-train-load',
@@ -34,6 +35,21 @@ export class ModalTrainLoadComponent implements OnInit {
   hide() {
     this.modalBase.hide();
   }
+
+  saveAndClose() {
+    this.structureService.saveTrainLoadInput(this.inputs, this.trainLoadType);
+
+    const trainLoad = trainLoadInputFactory()
+    .getTrainLoadBuilder(this.trainLoadType)
+    .FromInput(this.inputs);
+
+    this.structureService.setTrainLoad(trainLoad);
+    this.hide();
+  }
+
+  onChange() {
+  }
+
   ngOnInit() {
   }
 

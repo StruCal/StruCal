@@ -26,7 +26,7 @@ export class StructureService {
   public trainLoadInput$ = this.trainLoadInputSource.asObservable();
 
   private trainLoadSource = new Subject<MovingLoad>();
-  private trainLoad$ = this.trainLoadSource.asObservable();
+  public trainLoad$ = this.trainLoadSource.asObservable();
 
   constructor(private localStorageService: LocalStorageService) {
   }
