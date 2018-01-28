@@ -2,6 +2,8 @@ import { TrainLoadType } from '../../../common/trainLoadBuilders/trainLoadType';
 import { ModelInput } from '../../input/modelInput';
 import { HSLMAFromInput } from './HSLMA/HSLMAFromInput';
 import { HSLMAInput } from './HSLMA/HSLMAInput';
+import { HSLMBInput } from './HSLMB/HSLMBInput';
+import { HSLMBFromInput } from './HSLMB/HSLMBFromInput';
 
 
 
@@ -9,10 +11,13 @@ export function trainLoadInputFactory() {
 
     return { getInput, getTrainLoadBuilder };
 
-    function getInput(type: TrainLoadType|string): Array<ModelInput> {
+    function getInput(type: TrainLoadType | string): Array<ModelInput> {
         switch (type) {
             case TrainLoadType.HSLMA: {
                 return HSLMAInput;
+            }
+            case TrainLoadType.HSLMB: {
+                return HSLMBInput;
             }
         }
     }
@@ -20,7 +25,10 @@ export function trainLoadInputFactory() {
     function getTrainLoadBuilder(type: TrainLoadType) {
         switch (type) {
             case TrainLoadType.HSLMA: {
-                return {HSLMAFromInput};
+                return { FromInput: HSLMAFromInput };
+            }
+            case TrainLoadType.HSLMB: {
+                return { FromInput: HSLMBFromInput };
             }
         }
     }

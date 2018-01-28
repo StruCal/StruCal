@@ -56,9 +56,9 @@ export class StructureService {
   }
 
   public setTrainLoadUsingType(type: TrainLoadType): void {
-    const trainLoadInputBuilder = trainLoadInputFactory().getTrainLoadBuilder(type);
     const trainLoadInput = this.localStorageService.getTrainLoadInput(type) || trainLoadInputFactory().getInput(type);
-    const trainLoad = trainLoadInputBuilder.HSLMAFromInput(trainLoadInput);
+    const trainLoadInputBuilder = trainLoadInputFactory().getTrainLoadBuilder(type);
+    const trainLoad = trainLoadInputBuilder.FromInput(trainLoadInput);
     this.setTrainLoad(trainLoad);
     this.trainLoadInputSource.next(trainLoadInput);
   }

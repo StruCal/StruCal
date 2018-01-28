@@ -4,7 +4,7 @@ import { MovingForce } from '../movingLoad/movingForce';
 
 
 
-export function HSMLBBuilder() {
+export function HSLMBBuilder() {
     const trainLoad = new MovingLoad();
     const pointLoad = 170;
     let numberOfForces: number;
