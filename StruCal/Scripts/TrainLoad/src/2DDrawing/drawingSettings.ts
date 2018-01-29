@@ -39,10 +39,10 @@ export const TrainLoadDrawingSettings: DrawingSettings = {
     polygonFillColor: '#3276b1',
     polygonFillOpacity: 0.9,
     polygonStrokeColor: '#054072',
-    polygonStrokeWidth: 3,
+    polygonStrokeWidth: 1,
 
     lineColor: '#f06',
-    lineStrokeWidth: 1,
+    lineStrokeWidth: 0.01,
 
     backgroundDrawingFunction: () => { }
 };

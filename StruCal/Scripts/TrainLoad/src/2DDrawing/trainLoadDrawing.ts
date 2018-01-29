@@ -17,9 +17,33 @@ export class TrainLoadDrawing extends DrawingBase {
     }
 
     draw(): void {
-        this.drawingCentre = { x: 5, y: 5 };
+        this.drawingCentre = { x: 50, y: 5 };
         this.drawingHeight = 10;
         this.drawingWidth = 100;
-        this.drawLine({ x: 0, y: 0 }, { x: 10, y: 10 });
+
+        this.drawRectangle({ x: 0, y: 0 }, { x: 100, y: 10 });
+        this.drawPolygon(this.getArrow({ x: 50, y: 0 }));
+    }
+
+
+    private getArrow(insertPoint: Point): Array<Point> {
+        const headWidth = 1;
+        const headtHeight = 2;
+        const tailHeight = 2;
+        const arrow = [
+            { x: 0, y: 0 },
+            { x: headWidth / 2, y: headtHeight },
+            { x: 0, y: headtHeight },
+            { x: 0, y: headtHeight + tailHeight },
+            { x: 0, y: headtHeight },
+            { x: -headWidth / 2, y: headtHeight },
+        ];
+
+        const transformedToInsertion = arrow.map(e => {
+            return {
+                x: e.x + insertPoint.x, y: e.y + insertPoint.y
+            };
+        });
+        return transformedToInsertion;
     }
 }

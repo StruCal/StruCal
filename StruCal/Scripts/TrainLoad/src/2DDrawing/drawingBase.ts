@@ -25,23 +25,37 @@ export abstract class DrawingBase {
         this.settings.backgroundDrawingFunction(this.canvas);
     }
 
+    protected drawRectangle(bottomLeftPoint: Point, topRightPoint: Point) {
+        const p1 = bottomLeftPoint;
+        const p2 = { x: topRightPoint.x, y: bottomLeftPoint.y };
+        const p3 = topRightPoint;
+        const p4 = { x: bottomLeftPoint.x, y: topRightPoint.y };
+
+        this.drawLine(p1, p2);
+        this.drawLine(p2, p3);
+        this.drawLine(p3, p4);
+        this.drawLine(p4, p1);
+    }
+
+
+    
     protected drawLine(startPoint: Point, endPoint: Point) {
         const start = this.transferToCanvasSystem(startPoint);
         const end = this.transferToCanvasSystem(endPoint);
 
         const line = this.canvas.line(start.x, start.y, end.x, end.y)
-                                .stroke({ width: this.settings.lineStrokeWidth, color: this.settings.lineColor });
+            .stroke({ width: this.settings.lineStrokeWidth, color: this.settings.lineColor });
     }
     protected drawPolygon(points: Array<Point>): void {
         const coordinates = points
-                            .map(e => this.transferToCanvasSystem(e))
-                            .map(e => e.x + ' ' + e.y)
-                            .reduce((a, b) => ' ' + a + ' ' + b)
-                            .trim();
+            .map(e => this.transferToCanvasSystem(e))
+            .map(e => e.x + ' ' + e.y)
+            .reduce((a, b) => ' ' + a + ' ' + b)
+            .trim();
 
         const polygon = this.canvas.polygon(coordinates)
-                                   .fill({ color: this.settings.polygonFillColor, opacity: this.settings.polygonFillOpacity })
-                                   .stroke({ width: this.settings.polygonStrokeWidth, color: this.settings.polygonStrokeColor });
+            .fill({ color: this.settings.polygonFillColor, opacity: this.settings.polygonFillOpacity })
+            .stroke({ width: this.settings.polygonStrokeWidth, color: this.settings.polygonStrokeColor });
     }
 
     public reset(): void {
