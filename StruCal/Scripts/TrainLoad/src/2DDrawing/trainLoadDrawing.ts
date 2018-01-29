@@ -22,7 +22,9 @@ export class TrainLoadDrawing extends DrawingBase {
         this.drawingWidth = 100;
 
         this.drawRectangle({ x: 0, y: 0 }, { x: 100, y: 10 });
+
         this.drawPolygon(this.getArrow({ x: 50, y: 0 }));
+
     }
 
 
