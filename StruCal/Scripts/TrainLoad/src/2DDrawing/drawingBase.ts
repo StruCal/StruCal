@@ -2,13 +2,13 @@ import { CanvasHelper } from '../common/canvasHelper/canvasHelper';
 import { drawBackgroundPattern } from './backgroundPattern';
 import { Perimeter } from '../common/structure/perimeter';
 import { Point } from '../common/utils/point';
+import { DrawingSettings } from './drawingSettings';
 
 const SVG = require('svg.js');
 
-const widthHeightRatio = 1;
-const scaleFactor = 1.5;
 
 export abstract class DrawingBase {
+    private settings: DrawingSettings;
 
     private canvas: any;
     private canvasHelper: CanvasHelper;
@@ -17,9 +17,11 @@ export abstract class DrawingBase {
     protected abstract drawingWidth: number;
     protected abstract drawingCentre: Point;
 
-    constructor(private canvasId: string) {
+
+    constructor(private canvasId: string, settings: DrawingSettings) {
+        this.settings = settings;
         const canvasObject = document.getElementById(canvasId);
-        this.canvasHelper = new CanvasHelper(canvasObject, widthHeightRatio);
+        this.canvasHelper = new CanvasHelper(canvasObject, settings.widthHeightRatio);
         this.canvas = SVG(canvasId);
         drawBackgroundPattern(this.canvas);
     }
@@ -58,8 +60,8 @@ export abstract class DrawingBase {
     }
 
     private calculateScale(): number {
-        const scale1 = this.canvasHelper.height / this.drawingHeight / scaleFactor;
-        const scale2 = this.canvasHelper.width / this.drawingWidth / scaleFactor;
+        const scale1 = this.canvasHelper.height / this.drawingHeight / this.settings.scaleFactor;
+        const scale2 = this.canvasHelper.width / this.drawingWidth / this.settings.scaleFactor;
 
         const scale = Math.min(scale1, scale2);
         return scale;

@@ -1,6 +1,7 @@
 import { DrawingBase } from './drawingBase';
 import { Point } from '../common/utils/point';
 import { Section } from '../common/structure/section';
+import { SectionDrawingSettings } from './drawingSettings';
 
 
 
@@ -10,10 +11,11 @@ export class SectionDrawing extends DrawingBase {
     protected drawingHeight: number;
     protected drawingWidth: number;
 
+
     private section: Section;
 
     constructor(canvasId: string) {
-        super(canvasId);
+        super(canvasId, SectionDrawingSettings);
     }
 
     draw(section: Section): void {
