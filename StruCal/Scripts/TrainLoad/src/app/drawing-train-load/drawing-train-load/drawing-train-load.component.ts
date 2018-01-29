@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { TrainLoadType } from '../../../common/trainLoadBuilders/trainLoadType';
+import { TrainLoadDrawing } from '../../../2DDrawing/trainLoadDrawing';
+
+const canvasId = 'canvasTrainLoad';
 
 @Component({
   selector: 'drawing-train-load',
@@ -7,9 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DrawingTrainLoadComponent implements OnInit {
 
-  constructor() { }
+  private drawing: TrainLoadDrawing;
+
+  constructor() { 
+  }
 
   ngOnInit() {
+    this.drawing = new TrainLoadDrawing(canvasId);
+
+    this.drawing.draw();
   }
 
 }
