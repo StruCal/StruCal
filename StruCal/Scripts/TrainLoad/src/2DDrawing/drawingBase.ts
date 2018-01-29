@@ -1,5 +1,4 @@
 import { CanvasHelper } from '../common/canvasHelper/canvasHelper';
-import { drawBackgroundPattern } from './backgroundPattern';
 import { Perimeter } from '../common/structure/perimeter';
 import { Point } from '../common/utils/point';
 import { DrawingSettings } from './drawingSettings';
@@ -23,7 +22,7 @@ export abstract class DrawingBase {
         const canvasObject = document.getElementById(canvasId);
         this.canvasHelper = new CanvasHelper(canvasObject, settings.widthHeightRatio);
         this.canvas = SVG(canvasId);
-        drawBackgroundPattern(this.canvas);
+        this.settings.backgroundDrawingFunction(this.canvas);
     }
 
     protected drawLine(startPoint: Point, endPoint: Point) {
@@ -45,7 +44,7 @@ export abstract class DrawingBase {
     public reset(): void {
         this.clear();
         this.canvasHelper.refresh();
-        drawBackgroundPattern(this.canvas);
+        this.settings.backgroundDrawingFunction(this.canvas);
     }
 
     public clear(): void {

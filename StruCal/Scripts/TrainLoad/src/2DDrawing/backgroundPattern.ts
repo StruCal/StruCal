@@ -2,7 +2,7 @@
 const patternSize = 20;
 
 export function drawBackgroundPattern(canvas: any) {
-    
+
     const width = canvas.node.clientWidth;
     const height = canvas.node.clientHeight;
 
