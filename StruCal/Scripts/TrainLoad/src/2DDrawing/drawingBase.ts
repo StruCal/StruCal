@@ -29,7 +29,8 @@ export abstract class DrawingBase {
         const start = this.transferToCanvasSystem(startPoint);
         const end = this.transferToCanvasSystem(endPoint);
 
-        const line = this.canvas.line(start.x, start.y, end.x, end.y).stroke({ width: 1, color: '#f06' });
+        const line = this.canvas.line(start.x, start.y, end.x, end.y)
+                                .stroke({ width: this.settings.lineStrokeWidth, color: this.settings.lineColor });
     }
     protected drawPolygon(points: Array<Point>): void {
         const coordinates = points
@@ -38,7 +39,9 @@ export abstract class DrawingBase {
                             .reduce((a, b) => ' ' + a + ' ' + b)
                             .trim();
 
-        const polygon = this.canvas.polygon(coordinates).fill({ color: '#3276b1', opacity: 0.9 }).stroke({ width: 3, color: '#054072' });
+        const polygon = this.canvas.polygon(coordinates)
+                                   .fill({ color: this.settings.polygonFillColor, opacity: this.settings.polygonFillOpacity })
+                                   .stroke({ width: this.settings.polygonStrokeWidth, color: this.settings.polygonStrokeColor });
     }
 
     public reset(): void {
