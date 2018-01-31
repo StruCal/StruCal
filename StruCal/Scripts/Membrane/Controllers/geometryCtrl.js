@@ -14,9 +14,9 @@
         $scope.vertices[index].SupportX = $scope.verticesInput[index].SupportX;
         $scope.vertices[index].SupportY = $scope.verticesInput[index].SupportY;
 
-        inputData = inputDataCalculator.getInputData($scope.vertices);
+        
         updateDrawing();
-        sendInput();
+        
 
     };
     $scope.cancel = function (index) {
@@ -39,11 +39,13 @@
         }
         $scope.vertices.push(newVertex);
         $scope.verticesInput.push(angular.copy(newVertex));
+        updateDrawing();
     }
 
     $scope.remove = function (index) {
         $scope.vertices.splice(index, 1);
         $scope.verticesInput.splice(index, 1);
+        updateDrawing();
     }
 
     $scope.setSupportX=function(showForms,vertex){
@@ -62,7 +64,9 @@
         $rootScope.$broadcast('edgesMsg', inputData.Edges);
     }
     function updateDrawing() {
+        inputData = inputDataCalculator.getInputData($scope.vertices);
         drawingService.setInput(inputData);
+        sendInput();
     }
 
     (function init() {
