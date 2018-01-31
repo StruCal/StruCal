@@ -37,7 +37,7 @@ export class ControlPanelService {
       .build();
 
       this.httpService.getResult(input).subscribe(data => {
-        this.view3dService.drawResults(data);
+        this.view3dService.drawResults(data, this.movingLoad);
       });
   }
 
