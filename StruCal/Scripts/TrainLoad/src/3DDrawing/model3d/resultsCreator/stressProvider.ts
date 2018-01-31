@@ -13,7 +13,7 @@ export class StressProvider {
         this.scene = scene;
         this.resultInterpolation = resultInterpolation;
         this.structureData = structureData;
-        this.meshes = this.scene.children.filter(e => e.type === 'Mesh');
+        this.meshes = this.scene.children.filter(e => e.type === 'Mesh' && structureData.isStructureMesh(e.uuid));
         
     }
 

@@ -9,6 +9,7 @@ export class DisplacementProvider {
     private scene: any;
     private resultProvider: ResultProvider;
     private displacementScale: number;
+    private meshes: Array<any>;
 
     constructor(scene: any, resultProvider: ResultProvider, structureData: StructureData) {
         this.scene = scene;
@@ -16,12 +17,12 @@ export class DisplacementProvider {
         this.structureData = structureData;
 
         this.calculateDisplacementScale();
+        this.meshes = this.scene.children.filter(e => e.type === 'Mesh' && structureData.isStructureMesh(e.uuid));
     }
 
     public applyDisplacement(): void {
-        const meshes = this.scene.children.filter(e => e.type === 'Mesh');
 
-        meshes.forEach(mesh => {
+        this.meshes.forEach(mesh => {
             mesh.geometry.verticesNeedUpdate = true;
             const baseGeometry = this.structureData.getGeometryByMeshId(mesh.uuid);
             const vertices = mesh.geometry.vertices;

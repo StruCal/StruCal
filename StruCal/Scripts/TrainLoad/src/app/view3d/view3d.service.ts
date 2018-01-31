@@ -61,7 +61,9 @@ export class View3dService {
     if (this.timeProvider.getCurrentTime() > 49) {
       this.timeProvider.reset();
     }
-    this.resultCreator.tickAnimation(this.timeProvider.getCurrentTime());
+    const time = this.timeProvider.getCurrentTime();
+    this.resultCreator.tickAnimation(time);
+    this.movingLoadCreator.tickAnimation(time)
   }
 
 }

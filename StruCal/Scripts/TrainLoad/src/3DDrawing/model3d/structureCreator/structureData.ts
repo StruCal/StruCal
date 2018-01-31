@@ -48,4 +48,8 @@ export class StructureData {
         return result;
     }
 
+    public isStructureMesh(meshId: string) {
+        const result = this.meshIdGeometryMap.has(meshId);
+        return result;
+    }
 }
