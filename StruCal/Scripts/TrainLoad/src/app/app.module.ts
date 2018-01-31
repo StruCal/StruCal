@@ -17,7 +17,7 @@ import { HttpService } from './services/http.service';
 import { ModalTrainLoadComponent } from './modal-train-load/modal-train-load.component';
 import { InputComponent } from './input/input.component';
 import { LocalStorageService } from './services/local-storage.service';
-import { DrawingTrainLoadComponent } from './drawing-train-load/drawing-train-load/drawing-train-load.component';
+
 
 
 @NgModule({
@@ -30,7 +30,6 @@ import { DrawingTrainLoadComponent } from './drawing-train-load/drawing-train-lo
     ModalBaseComponent,
     ModalTrainLoadComponent,
     InputComponent,
-    DrawingTrainLoadComponent
   ],
   imports: [
     BrowserModule,
