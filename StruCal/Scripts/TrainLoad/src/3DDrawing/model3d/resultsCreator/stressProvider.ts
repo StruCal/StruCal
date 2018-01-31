@@ -14,6 +14,7 @@ export class StressProvider {
         this.resultInterpolation = resultInterpolation;
         this.structureData = structureData;
         this.meshes = this.scene.children.filter(e => e.type === 'Mesh');
+        
     }
 
     public applyStress(): void {

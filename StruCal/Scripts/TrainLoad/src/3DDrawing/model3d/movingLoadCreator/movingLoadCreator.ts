@@ -18,7 +18,7 @@ export class MovingLoadCreator {
         this.arrowGeometries = [];
         this.movingLoad = movingLoad;
  
-        //movingLoad.forces.forEach(load => this.createArrow(load.basePosition));
+        movingLoad.forces.forEach(load => this.createArrow(load.basePosition));
     }
 
     public tickAnimation(time: number) {
