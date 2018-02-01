@@ -17,6 +17,7 @@ import { HttpService } from './services/http.service';
 import { ModalTrainLoadComponent } from './modal-train-load/modal-train-load.component';
 import { InputComponent } from './input/input.component';
 import { LocalStorageService } from './services/local-storage.service';
+import { ModalSpanComponent } from './modal-span/modal-span/modal-span.component';
 
 
 
@@ -30,6 +31,7 @@ import { LocalStorageService } from './services/local-storage.service';
     ModalBaseComponent,
     ModalTrainLoadComponent,
     InputComponent,
+    ModalSpanComponent,
   ],
   imports: [
     BrowserModule,
