@@ -43,7 +43,7 @@ export class View3dService {
 
   public drawResults(results: ResultData, movingLoad: MovingLoad) {
     this.resultCreator.setResult(results, this.structureCreator.structureData);
-    this.movingLoadCreator.start(movingLoad);
+    this.movingLoadCreator.start(movingLoad, this.structureGeometry.getLength());
     this.threeJsCreator.tickAnimation = () => this.tick();
   }
 
@@ -63,7 +63,7 @@ export class View3dService {
     }
     const time = this.timeProvider.getCurrentTime();
     this.resultCreator.tickAnimation(time);
-    this.movingLoadCreator.tickAnimation(time)
+    this.movingLoadCreator.tickAnimation(time);
   }
 
 }
