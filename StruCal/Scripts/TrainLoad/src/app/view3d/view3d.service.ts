@@ -24,7 +24,6 @@ export class View3dService {
   private movingLoadCreator: MovingLoadCreator;
 
   constructor() {
-    this.timeProvider = new TimeProvider();
   }
 
   public InjectModelCreator(threeJsCreator: ThreeJsCreator): void {
@@ -42,6 +41,7 @@ export class View3dService {
   }
 
   public drawResults(results: ResultData, movingLoad: MovingLoad) {
+    this.timeProvider = new TimeProvider(results.timeSettings);
     this.resultCreator.setResult(results, this.structureCreator.structureData);
     this.movingLoadCreator.start(movingLoad, this.structureGeometry.getLength());
     this.threeJsCreator.tickAnimation = () => this.tick();
@@ -58,9 +58,6 @@ export class View3dService {
 
   private tick(): void {
     this.timeProvider.tick();
-    if (this.timeProvider.getCurrentTime() > 49) {
-      this.timeProvider.reset();
-    }
     const time = this.timeProvider.getCurrentTime();
     this.resultCreator.tickAnimation(time);
     this.movingLoadCreator.tickAnimation(time);
