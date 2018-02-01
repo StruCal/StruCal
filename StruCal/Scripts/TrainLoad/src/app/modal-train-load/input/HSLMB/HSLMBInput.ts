@@ -1,11 +1,7 @@
 import { startHSLMBData } from '../../../../common/startData/mockedHSLMB';
 
 
-export const HSLMBInput = [{
-    name: 'Speed:',
-    value: startHSLMBData.speed,
-    step: 1,
-  },
+export const HSLMBInput = [
   {
     name: 'Number of wheels:',
     value: startHSLMBData.numberOfForces,

@@ -1,7 +1,8 @@
 import {HSLMBBuilder} from '../trainLoadBuilders/HSLMBBuilder';
+import { speed } from './speed';
 
 export const startHSLMBData = {
-    speed: 3,
+    speed: speed,
     numberOfForces: 10,
     distanceBetweenForces: 10
 };
