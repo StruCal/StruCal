@@ -116,6 +116,7 @@ namespace Calculators.TrainLoad
                 .ToList();
 
             resultData.MaxAbsoluteDisplacement = extremes.Max();
+            resultData.TimeSettings = this.timeSettings;
             return resultData;
         }
     }

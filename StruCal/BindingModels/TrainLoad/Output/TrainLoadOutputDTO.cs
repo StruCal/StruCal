@@ -1,4 +1,5 @@
 ﻿using Calculators.TrainLoad.Output;
+using StruCal.BindingModels.TrainLoad.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace StruCal.BindingModels
     {
         public double maxAbsoluteDisplacement { get; set; }
         public IEnumerable<TimeResultDTO> timeResults { get; set; }
+        public TimeSettingsDTO timeSettings { get; set; }
     }
 
     public static class ExtensionTrainLoadOutputDTO
@@ -21,7 +23,7 @@ namespace StruCal.BindingModels
             {
                 maxAbsoluteDisplacement = trainLoadOutput.MaxAbsoluteDisplacement,
                 timeResults = trainLoadOutput.TimeResults.Select(e => e.ToTimeResultDTO()).ToList(),
-                
+                timeSettings = trainLoadOutput.TimeSettings.ToTimeSettingsDTO(),
             };
         }
     }
