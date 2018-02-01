@@ -15,7 +15,7 @@ export class MovingLoadCreator {
     private arrowBasePositionMap: Map<THREE.Mesh, number>;
     private structureLength: number;
 
-    constructor(private scene: any) { }
+    constructor(private scene: THREE.Scene) { }
 
     public start(movingLoad: MovingLoad, structureLength: number): void {
         this.structureLength = structureLength;
@@ -32,7 +32,6 @@ export class MovingLoadCreator {
             this.previousPosition = 0;
         }
 
-
         const position = this.movingLoad.speed * (time);
         const delta = position - this.previousPosition;
 
@@ -42,7 +41,6 @@ export class MovingLoadCreator {
         });
 
         this.previousPosition = position;
-
     }
 
     private resetPositions() {
