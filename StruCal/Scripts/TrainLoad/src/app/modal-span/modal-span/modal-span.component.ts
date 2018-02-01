@@ -15,6 +15,7 @@ export class ModalSpanComponent implements OnInit {
   }
 
   show(): void {
+    this.modalBase.setSmallModal();
     this.modalBase.show();
   }
   hide(): void {

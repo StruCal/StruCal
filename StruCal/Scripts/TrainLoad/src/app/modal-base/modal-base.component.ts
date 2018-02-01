@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class ModalBaseComponent implements OnInit {
   public visible = false;
   private visibleAnimate = false;
-
-  constructor() {}
+  private largeModal = true;
+  constructor() { }
 
   public show(): void {
     this.visible = true;
@@ -30,4 +30,7 @@ export class ModalBaseComponent implements OnInit {
   ngOnInit() {
   }
 
+  public setSmallModal() {
+    this.largeModal = false;
+  }
 }
