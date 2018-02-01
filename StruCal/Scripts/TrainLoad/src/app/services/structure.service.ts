@@ -35,11 +35,9 @@ export class StructureService {
     this.sectionSource.next(section);
   }
 
-  public setSectionUsingType(type: SectionType): void {
+  public setSectionInputUsingType(type: SectionType): void {
     const sectionInputBuilder = sectionInputFactory().getSectionBuilder(type);
     const sectionInput = this.localStorageService.getSectionInput(type) || sectionInputFactory().getInput(type);
-    const section = sectionInputBuilder.section1FromInput(sectionInput);
-    this.setSection(section);
     this.sectionInputSource.next(sectionInput);
   }
 
@@ -55,11 +53,9 @@ export class StructureService {
     this.localStorageService.saveTrainLoadInput(inputs, type);
   }
 
-  public setTrainLoadUsingType(type: TrainLoadType): void {
+  public setTrainLoadInputUsingType(type: TrainLoadType): void {
     const trainLoadInput = this.localStorageService.getTrainLoadInput(type) || trainLoadInputFactory().getInput(type);
     const trainLoadInputBuilder = trainLoadInputFactory().getTrainLoadBuilder(type);
-    const trainLoad = trainLoadInputBuilder.FromInput(trainLoadInput);
-    this.setTrainLoad(trainLoad);
     this.trainLoadInputSource.next(trainLoadInput);
   }
 

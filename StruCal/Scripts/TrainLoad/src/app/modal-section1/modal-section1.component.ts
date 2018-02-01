@@ -42,7 +42,7 @@ export class ModalSection1Component implements OnInit {
     this.title = sectionTitleFactory[sectionType];
     this.sectionType = sectionType;
     this.modalBase.show();
-    this.structureService.setSectionUsingType(sectionType);
+    this.structureService.setSectionInputUsingType(sectionType);
     this.draw();
   }
   hide(): void {

@@ -29,7 +29,7 @@ export class ModalTrainLoadComponent implements OnInit {
     this.title = trainLoadTitleFactory[trainLoadType];
     this.imagePath = trainLoadImagePathFactory[trainLoadType];
     this.modalBase.show();
-    this.structureService.setTrainLoadUsingType(trainLoadType);
+    this.structureService.setTrainLoadInputUsingType(trainLoadType);
   }
 
   hide() {
