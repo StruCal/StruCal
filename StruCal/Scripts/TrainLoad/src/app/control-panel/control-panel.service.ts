@@ -10,6 +10,7 @@ import { StructureService } from '../services/structure.service';
 import { Section } from '../../common/structure/section';
 import { startSection1 } from '../../common/startData/mockedSection1';
 import { MovingLoad } from '../../common/movingLoad/movingLoad';
+import { StatusBarService } from '../services/status-bar.service';
 
 
 @Injectable()
@@ -20,15 +21,21 @@ export class ControlPanelService {
 
   constructor(private httpService: HttpService,
     private view3dService: View3dService,
-    private structureService: StructureService) {
+    private structureService: StructureService,
+    private statusBarService: StatusBarService) {
     this.structureService.section$.subscribe(e => {
       this.section = e;
       this.setStructure();
+      this.statusBarService.setDirty();
     });
-    this.structureService.trainLoad$.subscribe(e => this.movingLoad = e);
+    this.structureService.trainLoad$.subscribe(e => {
+      this.movingLoad = e;
+      this.statusBarService.setDirty();
+    });
   }
 
   calculate() {
+    this.statusBarService.setProgress();
     const input = calculationsInputBuilder()
       .setStructureGeometry(this.view3dService.getStructureGeometry())
       .setStructureData(this.view3dService.getStructureData())
@@ -36,9 +43,16 @@ export class ControlPanelService {
       .setTimeSettings()
       .build();
 
-      this.httpService.getResult(input).subscribe(data => {
+    this.httpService.getResult(input).subscribe(
+      data => {
         this.view3dService.drawResults(data, this.movingLoad);
-      });
+        this.statusBarService.setValid();
+      },
+      error => {
+        this.statusBarService.setError();
+      }
+
+    );
   }
 
   setStructure() {

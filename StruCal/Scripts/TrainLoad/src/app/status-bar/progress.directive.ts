@@ -1,5 +1,5 @@
 import { Directive, ElementRef } from '@angular/core';
-import { startProgress, test } from './progress';
+import { startProgress} from './progress';
 import { OnInit, AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Directive({

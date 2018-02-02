@@ -55,8 +55,8 @@ export class StatusBarService {
   public setValid() {
     this.dirtySource.next(false);
     this.errorSource.next(false);
-    this.validSource.next(false);
-    this.progressSource.next(true);
+    this.validSource.next(true);
+    this.progressSource.next(false);
 
     this.msgSource.next(validMsg);
   }
