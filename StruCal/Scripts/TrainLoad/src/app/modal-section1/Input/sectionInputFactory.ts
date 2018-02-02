@@ -12,7 +12,7 @@ export function sectionInputFactory() {
     function getInput(type: SectionType|string): Array<ModelInput> {
         switch (type) {
             case SectionType.Section1: {
-                return section1Input;
+                return JSON.parse(JSON.stringify(section1Input));
             }
         }
     }

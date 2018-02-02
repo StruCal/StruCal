@@ -14,10 +14,10 @@ export function trainLoadInputFactory() {
     function getInput(type: TrainLoadType | string): Array<ModelInput> {
         switch (type) {
             case TrainLoadType.HSLMA: {
-                return HSLMAInput;
+                return JSON.parse(JSON.stringify(HSLMAInput));
             }
             case TrainLoadType.HSLMB: {
-                return HSLMBInput;
+                return JSON.parse(JSON.stringify(HSLMBInput));
             }
         }
     }
