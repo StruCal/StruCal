@@ -1,3 +1,9 @@
-<p>
-  status-bar works!
-</p>
+<div class="col-xs-2" *ngIf="progress">
+    <div id="progress" class="progress" Progress>
+    </div>
+</div>
+<div [ngClass]="{'col-xs-10':progress,'col-xs-12':!progress}">
+    <div class="alert" [ngClass]="{'alert-success':valid,'alert-warning':dirty,'alert-danger':error,'alert-info':progress}" role="alert">
+        {{message}} Work in progress
+    </div>
+</div>

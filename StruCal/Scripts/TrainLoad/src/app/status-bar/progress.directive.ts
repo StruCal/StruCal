@@ -1,10 +1,19 @@
-import { Directive } from '@angular/core';
+import { Directive, ElementRef } from '@angular/core';
+import { startProgress, test } from './progress';
+import { OnInit, AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Directive({
-  selector: '[appProgress]'
+  selector: '[Progress]'
 })
-export class ProgressDirective {
+export class ProgressDirective implements AfterViewInit {
+  ngAfterViewInit(): void {
+    const id = this.el.nativeElement.id;
+    startProgress(id);
+  }
 
-  constructor() { }
+
+  constructor(private el: ElementRef) {
+
+  }
 
 }
