@@ -50,7 +50,10 @@ export class ModalSection1Component implements OnInit {
   }
 
   onChange(invalid: boolean) {
-    if (invalid) { return; }
+    if (invalid) {
+      this.drawing2d.reset();
+      return;
+    }
     this.section = sectionInputFactory().getSectionBuilder(this.sectionType).section1FromInput(this.inputs);
     this.draw();
   }

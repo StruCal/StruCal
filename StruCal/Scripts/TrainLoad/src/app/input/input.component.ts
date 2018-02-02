@@ -17,14 +17,14 @@ export class InputComponent implements OnInit {
   public form: NgForm;
 
   @Input() inputs;
-  @Output() change = new EventEmitter<boolean>();
+  @Output() changeEvent = new EventEmitter<boolean>();
   constructor() { }
 
   ngOnInit() {
   }
 
   onChange() {
-    this.change.emit(this.form.invalid);
+    this.changeEvent.emit(this.form.invalid);
   }
 
 

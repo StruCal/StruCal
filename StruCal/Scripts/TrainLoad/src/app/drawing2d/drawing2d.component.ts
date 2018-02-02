@@ -27,6 +27,10 @@ export class Drawing2dComponent implements OnInit, AfterViewInit {
     this.sectionDrawing.draw(section);
   }
 
+  reset(): void {
+    this.sectionDrawing.reset();
+  }
+
   ngAfterViewInit(): void {
 
   }
