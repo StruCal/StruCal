@@ -2,7 +2,7 @@
   <div class="form-group" *ngFor="let input of inputs; let i = index; trackBy:trackByIndex">
     <div class="col-xs-8"><label class="control-label">{{input.name}}</label></div>
     <div class="col-xs-4">
-      <input type="number" min="0" class="form-control" step="{{input.step}}" (input)="onChange()" [(ngModel)]="input.value" name="{{i}}">
+      <input type="number" min="1" pattern="^[1-9]\d.*" required class="form-control" step="{{input.step}}" (input)="onChange()" [(ngModel)]="input.value" name="{{i}}">
     </div>
   </div>
 </form>

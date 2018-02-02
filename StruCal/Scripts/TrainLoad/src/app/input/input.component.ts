@@ -3,6 +3,9 @@ import { Input } from '@angular/core';
 import { section1Input } from '../modal-section1/Input/section1/section1Input';
 import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import { ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-input',
@@ -10,16 +13,19 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./input.component.css']
 })
 export class InputComponent implements OnInit {
+  @ViewChild('form')
+  public form: NgForm;
 
   @Input() inputs;
-  @Output() change = new EventEmitter();
+  @Output() change = new EventEmitter<boolean>();
   constructor() { }
 
   ngOnInit() {
   }
 
   onChange() {
-    this.change.emit();
+    this.change.emit(this.form.invalid);
   }
+
 
 }

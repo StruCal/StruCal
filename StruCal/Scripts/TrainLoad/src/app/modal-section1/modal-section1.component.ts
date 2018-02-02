@@ -49,9 +49,14 @@ export class ModalSection1Component implements OnInit {
     this.modalBase.hide();
   }
 
-  onChange() {
+  onChange(invalid: boolean) {
+    if (invalid) { return; }
     this.section = sectionInputFactory().getSectionBuilder(this.sectionType).section1FromInput(this.inputs);
     this.draw();
+  }
+
+  onInvalid(value: boolean) {
+    alert('OK');
   }
 
   ngOnInit() {
