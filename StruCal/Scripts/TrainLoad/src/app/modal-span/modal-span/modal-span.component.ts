@@ -11,6 +11,8 @@ export class ModalSpanComponent implements OnInit {
   @ViewChild(ModalBaseComponent)
   private modalBase: ModalBaseComponent;
 
+  public spanLength = 11;
+
   constructor(private structureService: StructureService) {
   }
 
