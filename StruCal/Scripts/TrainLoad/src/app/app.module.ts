@@ -21,6 +21,7 @@ import { ModalSpanComponent } from './modal-span/modal-span/modal-span.component
 import { StatusBarComponent } from './status-bar/status-bar.component';
 import { ProgressDirective } from './status-bar/progress.directive';
 import { StatusBarService } from './services/status-bar.service';
+import { DetailsComponentComponent } from './details-component/details-component.component';
 
 
 
@@ -37,6 +38,7 @@ import { StatusBarService } from './services/status-bar.service';
     ModalSpanComponent,
     StatusBarComponent,
     ProgressDirective,
+    DetailsComponentComponent,
   ],
   imports: [
     BrowserModule,

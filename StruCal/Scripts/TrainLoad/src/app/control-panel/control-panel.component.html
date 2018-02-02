@@ -7,44 +7,49 @@
   </div>
   <div class="panel-body">
     <div class="container-fluid">
-      <div class="row form-group">
-        <div class="col-xs-12">
-          <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Train Load
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li>
-                <a href="#" (click)="modalTrainLoad.show(0)">HSLM-A</a>
-              </li>
-              <li>
-                <a href="#" (click)="modalTrainLoad.show(1)">HSLM-B</a>
-              </li>
-            </ul>
+      <div class="col-xs-6">
+        <div class="row form-group">
+          <div class="col-xs-12">
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Train Load
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="#" (click)="modalTrainLoad.show(0)">HSLM-A</a>
+                </li>
+                <li>
+                  <a href="#" (click)="modalTrainLoad.show(1)">HSLM-B</a>
+                </li>
+              </ul>
+            </div>
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Section
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="#" (click)="modalSection1.show(0)">Type I</a>
+                </li>
+              </ul>
+            </div>
+            <div class="btn btn-primary" (click)="modalSpan.show()">Span</div>
           </div>
-          <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Section
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li>
-                <a href="#" (click)="modalSection1.show(0)">Type I</a>
-              </li>
-            </ul>
+        </div>
+        <div class="row form-group">
+          <div class="col-xs-12">
+            <button (click)="calculate()" class="btn btn-lg btn-warning">
+              <span class="glyphicon glyphicon-cog"></span> Calculate</button>
           </div>
-          <div class="btn btn-primary" (click)="modalSpan.show()">Span</div>
+        </div>
+        <div class="row form-group">
+          <div class="col-xs-8"><status-bar></status-bar></div>
         </div>
       </div>
-      <div class="row form-group">
-        <div class="col-xs-12">
-          <button (click)="calculate()" class="btn btn-lg btn-warning">
-            <span class="glyphicon glyphicon-cog"></span> Calculate</button>
-        </div>
-      </div>
-      <div class="row form-group">
-        <div class="col-xs-4"><status-bar></status-bar></div>
+      <div class="col-xs-2">
+        <details-component></details-component>
       </div>
     </div>
   </div>
