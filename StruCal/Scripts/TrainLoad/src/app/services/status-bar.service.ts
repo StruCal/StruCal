@@ -1,18 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
+const progressMsg = 'Processing...';
+const dirtyMsg = 'Results are NOT up to date.';
+const errorMsg = 'An error has occured. Please try again.';
+const validMsg = 'Results are up to date';
 
 @Injectable()
 export class StatusBarService {
 
-  private dirtySource = new Subject<boolean>();
+  private dirtySource = new BehaviorSubject<boolean>(true);
   private errorSource = new Subject<boolean>();
   private validSource = new Subject<boolean>();
   private progressSource = new Subject<boolean>();
+  private msgSource = new BehaviorSubject<string>(dirtyMsg);
 
   public dirty$ = this.dirtySource.asObservable();
   public error$ = this.errorSource.asObservable();
   public valid$ = this.validSource.asObservable();
   public progress$ = this.progressSource.asObservable();
+  public msg$ = this.msgSource.asObservable();
 
   constructor() { }
 
@@ -22,6 +30,8 @@ export class StatusBarService {
     this.errorSource.next(false);
     this.validSource.next(false);
     this.progressSource.next(false);
+
+    this.msgSource.next(dirtyMsg);
   }
 
   public setError() {
@@ -29,6 +39,8 @@ export class StatusBarService {
     this.errorSource.next(true);
     this.validSource.next(false);
     this.progressSource.next(false);
+
+    this.msgSource.next(errorMsg);
   }
 
   public setProgress() {
@@ -36,6 +48,8 @@ export class StatusBarService {
     this.errorSource.next(false);
     this.validSource.next(false);
     this.progressSource.next(true);
+
+    this.msgSource.next(progressMsg);
   }
 
   public setValid() {
@@ -43,6 +57,8 @@ export class StatusBarService {
     this.errorSource.next(false);
     this.validSource.next(false);
     this.progressSource.next(true);
+
+    this.msgSource.next(validMsg);
   }
 
 }

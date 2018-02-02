@@ -8,16 +8,18 @@ import { StatusBarService } from '../services/status-bar.service';
 })
 export class StatusBarComponent implements OnInit {
 
-  valid = false;
-  dirty = true;
-  error = false;
-  progress = false;
+  valid: boolean;
+  dirty: boolean;
+  error: boolean;
+  progress: boolean;
+  message: string;
 
   constructor(private statusBarService: StatusBarService) {
     statusBarService.dirty$.subscribe(e => this.dirty = e);
     statusBarService.valid$.subscribe(e => this.valid = e);
     statusBarService.error$.subscribe(e => this.error = e);
     statusBarService.progress$.subscribe(e => this.progress = e);
+    statusBarService.msg$.subscribe(e => this.message = e);
   }
 
   ngOnInit() {
