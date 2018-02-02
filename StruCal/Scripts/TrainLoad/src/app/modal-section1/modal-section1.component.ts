@@ -32,6 +32,7 @@ export class ModalSection1Component implements OnInit {
 
   public inputs: Array<ModelInput>;
   public title: string;
+  public invalid: boolean;
 
   constructor(private structureService: StructureService) {
     this.structureService.sectionInput$.subscribe(e => this.inputs = e);
@@ -50,6 +51,7 @@ export class ModalSection1Component implements OnInit {
   }
 
   onChange(invalid: boolean) {
+    this.invalid = invalid;
     if (invalid) {
       this.drawing2d.reset();
       return;
@@ -58,9 +60,6 @@ export class ModalSection1Component implements OnInit {
     this.draw();
   }
 
-  onInvalid(value: boolean) {
-    alert('OK');
-  }
 
   ngOnInit() {
   }

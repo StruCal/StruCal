@@ -19,6 +19,7 @@ export class ModalTrainLoadComponent implements OnInit {
   @Input() inputs;
   title: string;
   imagePath: string;
+  invalid: boolean;
 
   constructor(private structureService: StructureService) {
     structureService.trainLoadInput$.subscribe(e => this.inputs = e);
@@ -47,7 +48,8 @@ export class ModalTrainLoadComponent implements OnInit {
     this.hide();
   }
 
-  onChange() {
+  onChange(invalid: boolean) {
+    this.invalid = invalid;
   }
 
   ngOnInit() {

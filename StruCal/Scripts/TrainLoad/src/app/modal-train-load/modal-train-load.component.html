@@ -6,7 +6,7 @@
     <div class="containter-fluid">
       <div class="row">
         <div class="col-xs-4">
-          <app-input [(inputs)]="inputs" (changeEvent)="onChange()"></app-input>
+          <app-input [(inputs)]="inputs" (changeEvent)="onChange($event)"></app-input>
         </div>
         <div class="col-xs-8">
           <img src="{{imagePath}}">
@@ -16,6 +16,6 @@
   </ng-container>
   <ng-container class="app-modal-footer">
     <button type="button" class="btn btn-default" (click)="hide()">Close</button>
-    <button type="button" class="btn btn-primary" (click)="saveAndClose()">Save changes</button>
+    <button type="button" class="btn btn-primary" [disabled]="invalid" (click)="saveAndClose()">Save changes</button>
   </ng-container>
 </modal-base>
