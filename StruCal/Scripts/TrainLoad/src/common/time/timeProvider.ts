@@ -9,7 +9,7 @@ export class TimeProvider {
     constructor(private timeSettings: TimeSettings) { }
 
     public tick(): void {
-        this.currentTime = this.currentTime > this.timeSettings.endTime ? 0 : this.currentTime + deltaTime;
+        this.currentTime = this.currentTime >= this.timeSettings.endTime ? 0 : this.currentTime + deltaTime;
     }
 
     public getCurrentTime(): number {
