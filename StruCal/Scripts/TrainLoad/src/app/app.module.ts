@@ -17,11 +17,11 @@ import { HttpService } from './services/http.service';
 import { ModalTrainLoadComponent } from './modal-train-load/modal-train-load.component';
 import { InputComponent } from './input/input.component';
 import { LocalStorageService } from './services/local-storage.service';
-import { ModalSpanComponent } from './modal-span/modal-span/modal-span.component';
 import { StatusBarComponent } from './status-bar/status-bar.component';
 import { ProgressDirective } from './status-bar/progress.directive';
 import { StatusBarService } from './services/status-bar.service';
 import { DetailsComponentComponent } from './details-component/details-component.component';
+import { ModalSpanComponent } from './modal-span/modal-span.component';
 
 
 
