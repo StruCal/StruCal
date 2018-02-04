@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalBaseComponent } from '../../modal-base/modal-base.component';
 import { StructureService } from '../../services/structure.service';
+import { spanType } from './input/spanType';
 
 @Component({
   selector: 'modal-span',
@@ -11,7 +12,8 @@ export class ModalSpanComponent implements OnInit {
   @ViewChild(ModalBaseComponent)
   private modalBase: ModalBaseComponent;
 
-  public spanLength = 11;
+  public spanLength: number;
+  public isSingleSpan: spanType;
 
   constructor(private structureService: StructureService) {
   }

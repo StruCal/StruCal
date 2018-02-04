@@ -22,15 +22,15 @@
               <div class="col-xs-4 col-xs-offset-3">
                 <div class="funkyradio">
                   <div class="funkyradio-success">
-                    <input type="radio" name="radio" id="radio2" checked/>
+                    <input type="radio" name="radio" id="radio2" [(ngModel)]="isSingleSpan" value="spanType.single"/>
                     <label for="radio2">Single span</label>
                   </div>
                   <div class="funkyradio-success">
-                    <input type="radio" name="radio" id="radio3"/>
+                    <input type="radio" name="radio" id="radio3" [(ngModel)]="isSingleSpan" value="spanType.double"/>
                     <label for="radio3">Double span</label>
                   </div>
                 </div>
-
+{{isSingleSpan}}{{spanLength}}
               </div>
             </div>
 
