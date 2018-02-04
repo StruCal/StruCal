@@ -11,6 +11,7 @@ import { MovingLoad } from '../../common/movingLoad/movingLoad';
 import { TrainLoadType } from '../../common/trainLoadBuilders/trainLoadType';
 import { trainLoadInputFactory } from '../modal-train-load/input/trainLoadInputFactory';
 import { startHSLMA } from '../../common/startData/mockedHSLMA';
+import { Span } from '../../common/structure/span';
 
 
 @Injectable()
@@ -27,6 +28,9 @@ export class StructureService {
 
   private trainLoadSource = new Subject<MovingLoad>();
   public trainLoad$ = this.trainLoadSource.asObservable();
+
+  private spanSource = new Subject<Span>();
+  public span$ = this.spanSource.asObservable();
 
   constructor(private localStorageService: LocalStorageService) {
   }
@@ -57,6 +61,10 @@ export class StructureService {
     const trainLoadInput = this.localStorageService.getTrainLoadInput(type) || trainLoadInputFactory().getInput(type);
     const trainLoadInputBuilder = trainLoadInputFactory().getTrainLoadBuilder(type);
     this.trainLoadInputSource.next(trainLoadInput);
+  }
+
+  public setSpan(span: Span) {
+    this.spanSource.next(span);
   }
 
   public start(): void {

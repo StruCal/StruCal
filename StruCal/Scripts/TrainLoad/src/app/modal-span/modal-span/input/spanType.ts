@@ -1,5 +1,5 @@
 
-export enum spanType {
+export enum SpanType {
     single,
     double
 }
