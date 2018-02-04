@@ -3,15 +3,15 @@ import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Section } from '../../common/structure/section';
 import { startSection1 } from '../../common/startData/mockedSection1';
-import { SectionType } from '../../common/sectionBuilders/sectionTypes';
 import { LocalStorageService } from './local-storage.service';
 import { ModelInput } from '../input/modelInput';
 import { sectionInputFactory } from '../modal-section1/Input/sectionInputFactory';
 import { MovingLoad } from '../../common/movingLoad/movingLoad';
-import { TrainLoadType } from '../../common/trainLoadBuilders/trainLoadType';
 import { trainLoadInputFactory } from '../modal-train-load/input/trainLoadInputFactory';
 import { startHSLMA } from '../../common/startData/mockedHSLMA';
 import { Span } from '../../common/structure/span';
+import { SectionType } from '../../common/types/sectionTypes';
+import { TrainLoadType } from '../../common/types/trainLoadType';
 
 
 @Injectable()

@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ModalBaseComponent } from '../modal-base/modal-base.component';
 import { StructureService } from '../services/structure.service';
-import { TrainLoadType } from '../../common/trainLoadBuilders/trainLoadType';
 import { trainLoadTitleFactory, trainLoadImagePathFactory } from './input/trainLoadHTMLHelper';
 import { trainLoadInputFactory } from './input/trainLoadInputFactory';
+import { TrainLoadType } from '../../common/types/trainLoadType';
 
 @Component({
   selector: 'modal-train-load',

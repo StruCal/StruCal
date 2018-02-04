@@ -1,9 +1,9 @@
-import { TrainLoadType } from '../../../common/trainLoadBuilders/trainLoadType';
 import { ModelInput } from '../../input/modelInput';
 import { HSLMAFromInput } from './HSLMA/HSLMAFromInput';
 import { HSLMAInput } from './HSLMA/HSLMAInput';
 import { HSLMBInput } from './HSLMB/HSLMBInput';
 import { HSLMBFromInput } from './HSLMB/HSLMBFromInput';
+import { TrainLoadType } from '../../../common/types/trainLoadType';
 
 
 

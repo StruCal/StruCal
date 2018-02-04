@@ -1,4 +1,6 @@
-import { SectionType } from '../../../common/sectionBuilders/sectionTypes';
+import { SectionType } from '../../../common/types/sectionTypes';
+
+
 
 
 export const sectionTitleFactory = {};

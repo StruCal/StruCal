@@ -1,7 +1,7 @@
-import { SectionType } from '../../../common/sectionBuilders/sectionTypes';
 import { section1Input } from './section1/section1Input';
 import { section1FromInput } from './section1/section1FromInput';
 import { ModelInput } from '../../input/modelInput';
+import { SectionType } from '../../../common/types/sectionTypes';
 
 
 

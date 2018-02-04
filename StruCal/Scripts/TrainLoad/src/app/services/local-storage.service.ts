@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ModelInput } from '../input/modelInput';
-import { SectionType } from '../../common/sectionBuilders/sectionTypes';
-import { TrainLoadType } from '../../common/trainLoadBuilders/trainLoadType';
+import { SectionType } from '../../common/types/sectionTypes';
+import { TrainLoadType } from '../../common/types/trainLoadType';
 
 @Injectable()
 export class LocalStorageService {
@@ -33,7 +33,7 @@ export class LocalStorageService {
     this.saveInput(input, key);
   }
 
-  getTrainLoadInput(type: TrainLoadType){
+  getTrainLoadInput(type: TrainLoadType) {
     const key = this.getTrainLoadInputKey(type);
     const inputs = JSON.parse(this.getInput(key));
     return inputs;

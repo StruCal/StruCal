@@ -1,4 +1,6 @@
-import { TrainLoadType } from '../../../common/trainLoadBuilders/trainLoadType';
+import { TrainLoadType } from '../../../common/types/trainLoadType';
+
+
 
 
 export const trainLoadTitleFactory = {};
