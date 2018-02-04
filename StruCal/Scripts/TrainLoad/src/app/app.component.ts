@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { OnInit, AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { View3dService } from './view3d/view3d.service';
-import { ControlPanelService } from './control-panel/control-panel.service';
 import { StructureService } from './services/structure.service';
 
 @Component({
@@ -13,9 +12,9 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   title = 'app';
 
-  constructor(private messageService: StructureService) { }
+  constructor(private structureService: StructureService) { }
   ngAfterViewInit(): void {
-    this.messageService.start();
+    this.structureService.start();
   }
   ngOnInit(): void {
 

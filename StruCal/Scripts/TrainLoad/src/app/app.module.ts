@@ -7,7 +7,6 @@ import { ControlPanelComponent } from './control-panel/control-panel.component';
 import { View3DComponent } from './view3d/view3d.component';
 import { View3dService } from './view3d/view3d.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ControlPanelService } from './control-panel/control-panel.service';
 import { Drawing2dComponent } from './drawing2d/drawing2d.component';
 import { ModalSection1Component } from './modal-section1/modal-section1.component';
 import { ModalBaseComponent } from './modal-base/modal-base.component';
@@ -22,6 +21,7 @@ import { ProgressDirective } from './status-bar/progress.directive';
 import { StatusBarService } from './services/status-bar.service';
 import { DetailsComponentComponent } from './details-component/details-component.component';
 import { ModalSpanComponent } from './modal-span/modal-span.component';
+import { ControlPanelService } from './services/control-panel.service';
 
 
 

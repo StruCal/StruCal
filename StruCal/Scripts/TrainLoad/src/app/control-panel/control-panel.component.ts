@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { View3dService } from '../view3d/view3d.service';
-import { ControlPanelService } from './control-panel.service';
+import { ControlPanelService } from '../services/control-panel.service';
 
 @Component({
   selector: 'control-panel',
