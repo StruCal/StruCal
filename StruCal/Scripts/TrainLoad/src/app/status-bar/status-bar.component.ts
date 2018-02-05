@@ -7,7 +7,7 @@ import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
   templateUrl: './status-bar.component.html',
   styleUrls: ['./status-bar.component.css']
 })
-export class StatusBarComponent implements OnInit, AfterViewInit{
+export class StatusBarComponent implements OnInit, AfterViewInit {
   
 
   valid = false;

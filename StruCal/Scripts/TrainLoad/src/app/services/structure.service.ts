@@ -30,7 +30,7 @@ export class StructureService {
   public sectionType$ = this.sectionTypeSource.asObservable();
 
   private trainLoadTypeSource = new Subject<TrainLoadType>();
-  public trainLoadType$ = this.sectionTypeSource.asObservable();
+  public trainLoadType$ = this.trainLoadTypeSource.asObservable();
 
   constructor() {
   }
