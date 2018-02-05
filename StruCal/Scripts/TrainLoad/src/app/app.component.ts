@@ -1,46 +1,31 @@
 import { Component } from '@angular/core';
-import { OnInit, AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { OnInit, AfterViewInit, AfterViewChecked } from '@angular/core/src/metadata/lifecycle_hooks';
 import { View3dService } from './view3d/view3d.service';
 import { StructureService } from './services/structure.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { SectionType } from '../common/types/sectionTypes';
 import { sectionInputFactory } from './modal-section1/Input/sectionInputFactory';
 import { trainLoadInputFactory } from './modal-train-load/input/trainLoadInputFactory';
-import { InputService } from './services/input.service';
+import { InitializationService } from './services/initialization.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements AfterViewChecked {
 
-  title = 'app';
 
   constructor(private structureService: StructureService,
-    private initializationService: InputService) { }
-  ngAfterViewInit(): void {
-    this.setSection();
-    this.setTrainLoad();
-  }
+    private initializationService: InitializationService) { }
 
-  private setSection(): void {
-    const sectionType = this.initializationService.getSectionType();
-    const sectionInput = this.initializationService.getSectionInput(sectionType);
-    const section = sectionInputFactory().getSectionBuilder(sectionType).section1FromInput(sectionInput);
-    this.structureService.setSection(section);
-    this.structureService.setSectionType(sectionType);
-  }
-
-  private setTrainLoad(): void {
-    const trainLoadType = this.initializationService.getTrainLoadType();
-    const trainLoadInput = this.initializationService.getTrainLoadInput(trainLoadType);
-    const trainLoad = trainLoadInputFactory().getTrainLoadBuilder(trainLoadType).FromInput(trainLoadInput);
-    this.structureService.setTrainLoad(trainLoad);
-    this.structureService.setTrainLoadType(trainLoadType);
-  }
-
-  ngOnInit(): void {
+  ngAfterViewChecked(): void {
+    setTimeout(() => {
+      this.structureService.setSection(this.initializationService.section);
+      this.structureService.setSectionType(this.initializationService.sectionType);
+      this.structureService.setTrainLoad(this.initializationService.trainLoad);
+      this.structureService.setTrainLoadType(this.initializationService.trainLoadType);
+    }, 200);
 
   }
 }
