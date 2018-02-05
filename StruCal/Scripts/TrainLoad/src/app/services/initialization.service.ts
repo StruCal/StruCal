@@ -9,7 +9,7 @@ import { trainLoadInputFactory } from '../modal-train-load/input/trainLoadInputF
 import { trainLoadImagePathFactory } from '../modal-train-load/input/trainLoadHTMLHelper';
 
 @Injectable()
-export class InputService {
+export class InitializationService {
 
   constructor(private localStorageService: LocalStorageService) { }
 

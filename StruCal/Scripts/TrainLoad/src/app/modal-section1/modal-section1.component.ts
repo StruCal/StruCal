@@ -10,7 +10,7 @@ import { StructureService } from '../services/structure.service';
 import { ModelInput } from '../input/modelInput';
 import { sectionTitleFactory } from './Input/sectionTitles';
 import { SectionType } from '../../common/types/sectionTypes';
-import { InputService } from '../services/input.service';
+import { InitializationService } from '../services/initialization.service';
 
 
 
@@ -36,14 +36,14 @@ export class ModalSection1Component implements OnInit {
   public invalid: boolean;
 
   constructor(private structureService: StructureService,
-              private inputService: InputService) {
+              private initializationService: InitializationService) {
   }
 
   show(sectionType: SectionType): void {
     this.title = sectionTitleFactory[sectionType];
     this.sectionType = sectionType;
     this.modalBase.show();
-    this.inputs = this.inputService.getSectionInput(sectionType);
+    this.inputs = this.initializationService.getSectionInput(sectionType);
     this.draw();
   }
   hide(): void {
@@ -63,7 +63,7 @@ export class ModalSection1Component implements OnInit {
   }
 
   private saveAndClose() {
-    this.inputService.saveSectionInput(this.inputs, this.sectionType);
+    this.initializationService.saveSectionInput(this.inputs, this.sectionType);
     this.structureService.setSection(this.section);
     this.hide();
   }
