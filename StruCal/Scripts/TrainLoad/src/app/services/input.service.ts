@@ -6,6 +6,7 @@ import { SectionType } from '../../common/types/sectionTypes';
 import { sectionInputFactory } from '../modal-section1/Input/sectionInputFactory';
 import { TrainLoadType } from '../../common/types/trainLoadType';
 import { trainLoadInputFactory } from '../modal-train-load/input/trainLoadInputFactory';
+import { trainLoadImagePathFactory } from '../modal-train-load/input/trainLoadHTMLHelper';
 
 @Injectable()
 export class InputService {
@@ -15,6 +16,10 @@ export class InputService {
   public getSectionInput(type: SectionType): Array<ModelInput> {
     const sectionInput = this.localStorageService.getSectionInput(type) || sectionInputFactory().getInput(type);
     return sectionInput;
+  }
+
+  public getSectionType(): SectionType {
+    return this.localStorageService.getSectionType() || SectionType.Section1;
   }
 
   public saveSectionInput(inputs: Array<ModelInput>, type: SectionType): void {
@@ -28,5 +33,9 @@ export class InputService {
   public getTrainLoadInput(type: TrainLoadType): Array<ModelInput> {
     const trainLoadInput = this.localStorageService.getTrainLoadInput(type) || trainLoadInputFactory().getInput(type);
     return trainLoadInput;
+  }
+
+  public getTrainLoadType(): TrainLoadType {
+    return this.localStorageService.getTrainLoadType() || TrainLoadType.HSLMA;
   }
 }

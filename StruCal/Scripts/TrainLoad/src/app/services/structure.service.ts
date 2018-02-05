@@ -26,23 +26,32 @@ export class StructureService {
   private spanSource = new Subject<Span>();
   public span$ = this.spanSource.asObservable();
 
+  private sectionTypeSource = new Subject<SectionType>();
+  public sectionType$ = this.sectionTypeSource.asObservable();
+
+  private trainLoadTypeSource = new Subject<TrainLoadType>();
+  public trainLoadType$ = this.sectionTypeSource.asObservable();
+
   constructor() {
   }
 
-  public setSection(section: Section) {
+  public setSection(section: Section): void {
     this.sectionSource.next(section);
   }
 
-  public setTrainLoad(trainLoad: MovingLoad) {
+  public setTrainLoad(trainLoad: MovingLoad): void {
     this.trainLoadSource.next(trainLoad);
   }
 
-  public setSpan(span: Span) {
+  public setSpan(span: Span): void {
     this.spanSource.next(span);
   }
 
-  public start(): void {
-    this.setSection(startSection1);
-    this.setTrainLoad(startHSLMA);
+  public setSectionType(sectionType: SectionType): void {
+    this.sectionTypeSource.next(sectionType);
+  }
+
+  public setTrainLoadType(trainLoadType: TrainLoadType): void {
+    this.trainLoadTypeSource.next(trainLoadType);
   }
 }
