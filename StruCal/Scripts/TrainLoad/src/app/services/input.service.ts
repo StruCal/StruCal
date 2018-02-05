@@ -12,16 +12,9 @@ export class InputService {
 
   constructor(private localStorageService: LocalStorageService) { }
 
-  private sectionInputSource = new Subject<Array<ModelInput>>();
-  public sectionInput$ = this.sectionInputSource.asObservable();
-
-  private trainLoadInputSource = new Subject<Array<ModelInput>>();
-  public trainLoadInput$ = this.trainLoadInputSource.asObservable();
-
-  public setSectionInputUsingType(type: SectionType): void {
-    const sectionInputBuilder = sectionInputFactory().getSectionBuilder(type);
+  public getSectionInput(type: SectionType): Array<ModelInput> {
     const sectionInput = this.localStorageService.getSectionInput(type) || sectionInputFactory().getInput(type);
-    this.sectionInputSource.next(sectionInput);
+    return sectionInput;
   }
 
   public saveSectionInput(inputs: Array<ModelInput>, type: SectionType): void {
@@ -32,9 +25,8 @@ export class InputService {
     this.localStorageService.saveTrainLoadInput(inputs, type);
   }
 
-  public setTrainLoadInputUsingType(type: TrainLoadType): void {
+  public getTrainLoadInput(type: TrainLoadType): Array<ModelInput> {
     const trainLoadInput = this.localStorageService.getTrainLoadInput(type) || trainLoadInputFactory().getInput(type);
-    const trainLoadInputBuilder = trainLoadInputFactory().getTrainLoadBuilder(type);
-    this.trainLoadInputSource.next(trainLoadInput);
+    return trainLoadInput;
   }
 }

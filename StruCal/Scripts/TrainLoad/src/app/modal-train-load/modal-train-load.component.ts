@@ -24,7 +24,7 @@ export class ModalTrainLoadComponent implements OnInit {
 
   constructor(private structureService: StructureService,
               private inputService: InputService) {
-    inputService.trainLoadInput$.subscribe(e => this.inputs = e);
+
   }
 
   show(trainLoadType: TrainLoadType) {
@@ -32,7 +32,7 @@ export class ModalTrainLoadComponent implements OnInit {
     this.title = trainLoadTitleFactory[trainLoadType];
     this.imagePath = trainLoadImagePathFactory[trainLoadType];
     this.modalBase.show();
-    this.inputService.setTrainLoadInputUsingType(trainLoadType);
+    this.inputs = this.inputService.getTrainLoadInput(trainLoadType);
   }
 
   hide() {

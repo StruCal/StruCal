@@ -37,15 +37,13 @@ export class ModalSection1Component implements OnInit {
 
   constructor(private structureService: StructureService,
               private inputService: InputService) {
-    this.inputService.sectionInput$.subscribe(e => this.inputs = e);
-    this.structureService.section$.subscribe(e => this.section = e);
   }
 
   show(sectionType: SectionType): void {
     this.title = sectionTitleFactory[sectionType];
     this.sectionType = sectionType;
     this.modalBase.show();
-    this.inputService.setSectionInputUsingType(sectionType);
+    this.inputs = this.inputService.getSectionInput(sectionType);
     this.draw();
   }
   hide(): void {
@@ -58,7 +56,6 @@ export class ModalSection1Component implements OnInit {
       this.drawing2d.reset();
       return;
     }
-    this.section = sectionInputFactory().getSectionBuilder(this.sectionType).section1FromInput(this.inputs);
     this.draw();
   }
 
@@ -72,6 +69,7 @@ export class ModalSection1Component implements OnInit {
   }
 
   private draw() {
+    this.section = sectionInputFactory().getSectionBuilder(this.sectionType).section1FromInput(this.inputs);
     setTimeout(() =>
       this.drawing2d.draw(this.section)
       , 100);
