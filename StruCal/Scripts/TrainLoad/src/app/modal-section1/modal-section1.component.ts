@@ -10,7 +10,7 @@ import { StructureService } from '../services/structure.service';
 import { ModelInput } from '../input/modelInput';
 import { sectionTitleFactory } from './Input/sectionTitles';
 import { SectionType } from '../../common/types/sectionTypes';
-import { InitializationService } from '../services/initialization.service';
+import { InputService } from '../services/initialization.service';
 
 
 
@@ -36,7 +36,7 @@ export class ModalSection1Component implements OnInit {
   public invalid: boolean;
 
   constructor(private structureService: StructureService,
-              private initializationService: InitializationService) {
+              private initializationService: InputService) {
   }
 
   show(sectionType: SectionType): void {

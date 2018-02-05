@@ -6,7 +6,7 @@ import { LocalStorageService } from './services/local-storage.service';
 import { SectionType } from '../common/types/sectionTypes';
 import { sectionInputFactory } from './modal-section1/Input/sectionInputFactory';
 import { trainLoadInputFactory } from './modal-train-load/input/trainLoadInputFactory';
-import { InitializationService } from './services/initialization.service';
+import { InputService } from './services/initialization.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   title = 'app';
 
   constructor(private structureService: StructureService,
-    private initializationService: InitializationService) { }
+    private initializationService: InputService) { }
   ngAfterViewInit(): void {
     this.setSection();
     this.setTrainLoad();

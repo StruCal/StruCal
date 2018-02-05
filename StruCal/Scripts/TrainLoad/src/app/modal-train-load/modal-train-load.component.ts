@@ -4,7 +4,7 @@ import { StructureService } from '../services/structure.service';
 import { trainLoadTitleFactory, trainLoadImagePathFactory } from './input/trainLoadHTMLHelper';
 import { trainLoadInputFactory } from './input/trainLoadInputFactory';
 import { TrainLoadType } from '../../common/types/trainLoadType';
-import { InitializationService } from '../services/initialization.service';
+import { InputService } from '../services/initialization.service';
 
 @Component({
   selector: 'modal-train-load',
@@ -23,7 +23,7 @@ export class ModalTrainLoadComponent implements OnInit {
   invalid: boolean;
 
   constructor(private structureService: StructureService,
-              private inputService: InitializationService) {
+              private inputService: InputService) {
 
   }
 
