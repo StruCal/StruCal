@@ -18,11 +18,11 @@ export class InputService {
   }
 
   public saveSectionInput(inputs: Array<ModelInput>, type: SectionType): void {
-    this.localStorageService.saveSectionInput(inputs, type);
+    this.localStorageService.saveSectionData(inputs, type);
   }
 
   public saveTrainLoadInput(inputs: Array<ModelInput>, type: TrainLoadType): void {
-    this.localStorageService.saveTrainLoadInput(inputs, type);
+    this.localStorageService.saveTrainLoadData(inputs, type);
   }
 
   public getTrainLoadInput(type: TrainLoadType): Array<ModelInput> {

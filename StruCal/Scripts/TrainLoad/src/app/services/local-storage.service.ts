@@ -3,6 +3,9 @@ import { ModelInput } from '../input/modelInput';
 import { SectionType } from '../../common/types/sectionTypes';
 import { TrainLoadType } from '../../common/types/trainLoadType';
 
+const sectionTypeKey = 'SectionType';
+const trainLoadTypeKey = 'TrainLoadType';
+
 @Injectable()
 export class LocalStorageService {
 
@@ -17,9 +20,10 @@ export class LocalStorageService {
     return localStorage.getItem(key);
   }
 
-  saveSectionInput(input: Array<ModelInput>, type: SectionType) {
-    const key = this.getSectionInputKey(type);
-    this.saveInput(input, key);
+  saveSectionData(input: Array<ModelInput>, type: SectionType) {
+    localStorage.setItem(sectionTypeKey, JSON.stringify(type));
+    const inputKey = this.getSectionInputKey(type);
+    this.saveInput(input, inputKey);
   }
 
   getSectionInput(type: SectionType): Array<ModelInput> {
@@ -28,9 +32,10 @@ export class LocalStorageService {
     return inputs;
   }
 
-  saveTrainLoadInput(input: Array<ModelInput>, type: TrainLoadType) {
-    const key = this.getTrainLoadInputKey(type);
-    this.saveInput(input, key);
+  saveTrainLoadData(input: Array<ModelInput>, type: TrainLoadType) {
+    localStorage.setItem(trainLoadTypeKey, JSON.stringify(type));
+    const inputKey = this.getTrainLoadInputKey(type);
+    this.saveInput(input, inputKey);
   }
 
   getTrainLoadInput(type: TrainLoadType) {
@@ -39,12 +44,22 @@ export class LocalStorageService {
     return inputs;
   }
 
+  getSectionType(): SectionType {
+    const result = JSON.parse(localStorage.getItem(sectionTypeKey));
+    return result;
+  }
+
+  getTrainLoadType(): TrainLoadType {
+    const result = JSON.parse(localStorage.getItem(trainLoadTypeKey));
+    return result;
+  }
+
   private getSectionInputKey(type: SectionType): string {
-    return `SectionType::${SectionType[type]}`;
+    return `SectionInput::${SectionType[type]}`;
   }
 
   private getTrainLoadInputKey(type: TrainLoadType): string {
-    return `TrainLoadType::${TrainLoadType[type]}`;
+    return `TrainLoadInput::${TrainLoadType[type]}`;
   }
 
 
