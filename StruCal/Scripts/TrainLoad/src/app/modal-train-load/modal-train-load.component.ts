@@ -4,7 +4,7 @@ import { StructureService } from '../services/structure.service';
 import { trainLoadTitleFactory, trainLoadImagePathFactory } from './input/trainLoadHTMLHelper';
 import { trainLoadInputFactory } from './input/trainLoadInputFactory';
 import { TrainLoadType } from '../../common/types/trainLoadType';
-import { InputService } from '../services/initialization.service';
+import { InputService } from '../services/input.service';
 
 @Component({
   selector: 'modal-train-load',

@@ -10,7 +10,7 @@ import { StructureService } from '../services/structure.service';
 import { ModelInput } from '../input/modelInput';
 import { sectionTitleFactory } from './Input/sectionTitles';
 import { SectionType } from '../../common/types/sectionTypes';
-import { InputService } from '../services/initialization.service';
+import { InputService } from '../services/input.service';
 
 
 

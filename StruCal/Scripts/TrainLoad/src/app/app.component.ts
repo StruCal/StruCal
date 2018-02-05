@@ -6,7 +6,7 @@ import { LocalStorageService } from './services/local-storage.service';
 import { SectionType } from '../common/types/sectionTypes';
 import { sectionInputFactory } from './modal-section1/Input/sectionInputFactory';
 import { trainLoadInputFactory } from './modal-train-load/input/trainLoadInputFactory';
-import { InputService } from './services/initialization.service';
+import { InputService } from './services/input.service';
 
 @Component({
   selector: 'app-root',
