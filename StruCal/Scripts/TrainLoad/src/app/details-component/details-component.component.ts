@@ -21,7 +21,9 @@ export class DetailsComponentComponent implements OnInit {
   ngOnInit() {
     this.structureService.span$.subscribe(e => this.span = `${e.lengths.length}x${e.lengths[0]}`);
     this.structureService.sectionType$.subscribe(e => this.sectionType = SectionType[e]);
-    this.structureService.trainLoadType$.subscribe(e => this.trainLoadType = TrainLoadType[e]);
+    this.structureService.trainLoadType$.subscribe(e => {
+      this.trainLoadType = TrainLoadType[e];
+    });
   }
 
 }

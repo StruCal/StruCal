@@ -47,6 +47,7 @@ export class ModalTrainLoadComponent implements OnInit {
     .FromInput(this.inputs);
 
     this.structureService.setTrainLoad(trainLoad);
+    this.structureService.setTrainLoadType(this.trainLoadType);
     this.hide();
   }
 
