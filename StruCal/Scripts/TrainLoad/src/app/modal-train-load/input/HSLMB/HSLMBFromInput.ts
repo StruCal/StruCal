@@ -8,8 +8,8 @@ import { speed } from '../../../../common/startData/speed';
 export function HSLMBFromInput(input: Array<ModelInput>): MovingLoad {
     const result = HSLMBBuilder()
     .setSpeed(speed)
-    .setNumberOfForces(input[1].value)
-    .setDistanceBetweenForces(input[2].value)
+    .setNumberOfForces(input[0].value)
+    .setDistanceBetweenForces(input[1].value)
     .build();
     return result;
 }
