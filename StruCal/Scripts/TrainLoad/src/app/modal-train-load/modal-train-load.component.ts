@@ -4,6 +4,7 @@ import { StructureService } from '../services/structure.service';
 import { trainLoadTitleFactory, trainLoadImagePathFactory } from './input/trainLoadHTMLHelper';
 import { trainLoadInputFactory } from './input/trainLoadInputFactory';
 import { TrainLoadType } from '../../common/types/trainLoadType';
+import { InputService } from '../services/input.service';
 
 @Component({
   selector: 'modal-train-load',
@@ -21,8 +22,9 @@ export class ModalTrainLoadComponent implements OnInit {
   imagePath: string;
   invalid: boolean;
 
-  constructor(private structureService: StructureService) {
-    structureService.trainLoadInput$.subscribe(e => this.inputs = e);
+  constructor(private structureService: StructureService,
+              private inputService: InputService) {
+    inputService.trainLoadInput$.subscribe(e => this.inputs = e);
   }
 
   show(trainLoadType: TrainLoadType) {
@@ -30,7 +32,7 @@ export class ModalTrainLoadComponent implements OnInit {
     this.title = trainLoadTitleFactory[trainLoadType];
     this.imagePath = trainLoadImagePathFactory[trainLoadType];
     this.modalBase.show();
-    this.structureService.setTrainLoadInputUsingType(trainLoadType);
+    this.inputService.setTrainLoadInputUsingType(trainLoadType);
   }
 
   hide() {
@@ -38,7 +40,7 @@ export class ModalTrainLoadComponent implements OnInit {
   }
 
   saveAndClose() {
-    this.structureService.saveTrainLoadInput(this.inputs, this.trainLoadType);
+    this.inputService.saveTrainLoadInput(this.inputs, this.trainLoadType);
 
     const trainLoad = trainLoadInputFactory()
     .getTrainLoadBuilder(this.trainLoadType)

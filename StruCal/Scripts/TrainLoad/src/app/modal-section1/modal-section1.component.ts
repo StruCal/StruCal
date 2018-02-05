@@ -10,6 +10,7 @@ import { StructureService } from '../services/structure.service';
 import { ModelInput } from '../input/modelInput';
 import { sectionTitleFactory } from './Input/sectionTitles';
 import { SectionType } from '../../common/types/sectionTypes';
+import { InputService } from '../services/input.service';
 
 
 
@@ -34,8 +35,9 @@ export class ModalSection1Component implements OnInit {
   public title: string;
   public invalid: boolean;
 
-  constructor(private structureService: StructureService) {
-    this.structureService.sectionInput$.subscribe(e => this.inputs = e);
+  constructor(private structureService: StructureService,
+              private inputService: InputService) {
+    this.inputService.sectionInput$.subscribe(e => this.inputs = e);
     this.structureService.section$.subscribe(e => this.section = e);
   }
 
@@ -43,7 +45,7 @@ export class ModalSection1Component implements OnInit {
     this.title = sectionTitleFactory[sectionType];
     this.sectionType = sectionType;
     this.modalBase.show();
-    this.structureService.setSectionInputUsingType(sectionType);
+    this.inputService.setSectionInputUsingType(sectionType);
     this.draw();
   }
   hide(): void {
@@ -60,16 +62,14 @@ export class ModalSection1Component implements OnInit {
     this.draw();
   }
 
-
   ngOnInit() {
   }
 
   private saveAndClose() {
-    this.structureService.saveSectionInput(this.inputs, this.sectionType);
+    this.inputService.saveSectionInput(this.inputs, this.sectionType);
     this.structureService.setSection(this.section);
     this.hide();
   }
-
 
   private draw() {
     setTimeout(() =>

@@ -22,6 +22,7 @@ import { StatusBarService } from './services/status-bar.service';
 import { DetailsComponentComponent } from './details-component/details-component.component';
 import { ModalSpanComponent } from './modal-span/modal-span.component';
 import { ControlPanelService } from './services/control-panel.service';
+import { InputService } from './services/input.service';
 
 
 
@@ -51,7 +52,8 @@ import { ControlPanelService } from './services/control-panel.service';
     ControlPanelService,
     StructureService,
     LocalStorageService,
-    StatusBarService
+    StatusBarService,
+    InputService
   ],
   bootstrap: [AppComponent]
 })
