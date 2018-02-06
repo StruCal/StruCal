@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { ModelInput } from '../input/modelInput';
 import { SectionType } from '../../common/types/sectionTypes';
 import { TrainLoadType } from '../../common/types/trainLoadType';
+import { Span } from '../../common/structure/span';
 
 const sectionTypeKey = 'SectionType';
 const trainLoadTypeKey = 'TrainLoadType';
+const spanKey = 'Span';
 
 @Injectable()
 export class LocalStorageService {
@@ -18,6 +20,10 @@ export class LocalStorageService {
 
   getInput(key: string): string {
     return localStorage.getItem(key);
+  }
+
+  saveSpan(span: Span): void {
+    localStorage.setItem(spanKey, JSON.stringify(span));
   }
 
   saveSectionData(input: Array<ModelInput>, type: SectionType) {
@@ -51,6 +57,11 @@ export class LocalStorageService {
 
   getTrainLoadType(): TrainLoadType {
     const result = JSON.parse(localStorage.getItem(trainLoadTypeKey));
+    return result;
+  }
+
+  getSpan(): Span {
+    const result  = JSON.parse(localStorage.getItem(spanKey));
     return result;
   }
 
