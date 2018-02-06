@@ -7,6 +7,7 @@ import { trainLoadInputFactory } from '../modal-train-load/input/trainLoadInputF
 import { MovingLoad } from '../../common/movingLoad/movingLoad';
 import { SectionType } from '../../common/types/sectionTypes';
 import { TrainLoadType } from '../../common/types/trainLoadType';
+import { Span } from '../../common/structure/span';
 
 @Injectable()
 export class InitializationService {
@@ -33,5 +34,10 @@ export class InitializationService {
     const trainLoadInput = this.inputService.getTrainLoadInput(trainLoadType);
     const trainLoad = trainLoadInputFactory().getTrainLoadBuilder(trainLoadType).FromInput(trainLoadInput);
     return trainLoad;
+  }
+
+  public get span(): Span {
+    const span = this.inputService.getSpan();
+    return span;
   }
 }

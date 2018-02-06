@@ -13,6 +13,8 @@ export function structureGeometryBuilder() {
     let _section: Section;
     let _span: Span;
 
+    return { setSection };
+
     function setSection(section: Section) {
         _section = section;
         return { setSpan };
@@ -48,7 +50,7 @@ export function structureGeometryBuilder() {
             const bar = new Bar();
             bar.section = _section;
             bar.startPoint = { x: 0, y: 0, z: i * barLength };
-            bar.endPoint = { x: 0, y: 0, z: i * barLength };
+            bar.endPoint = { x: 0, y: 0, z: (i + 1) * barLength };
             bars.push(bar);
         }
 

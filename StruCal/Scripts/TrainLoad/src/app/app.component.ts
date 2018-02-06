@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
         this.structureService.setSectionType(this.initializationService.sectionType);
         this.structureService.setTrainLoad(this.initializationService.trainLoad);
         this.structureService.setTrainLoadType(this.initializationService.trainLoadType);
+        this.structureService.setSpan(this.initializationService.span);
       }, 200);
     }
 

@@ -11,6 +11,8 @@ import { Section } from '../../common/structure/section';
 import { startSection1 } from '../../common/startData/mockedSection1';
 import { MovingLoad } from '../../common/movingLoad/movingLoad';
 import { StatusBarService } from '../services/status-bar.service';
+import { structureGeometryBuilder } from '../../common/structureGeometryBuilder/structureGeometryBuilder';
+import { Span } from '../../common/structure/span';
 
 
 @Injectable()
@@ -18,18 +20,27 @@ export class ControlPanelService {
 
   private section: Section;
   private movingLoad: MovingLoad;
+  private span: Span;
 
   constructor(private httpService: HttpService,
     private view3dService: View3dService,
     private structureService: StructureService,
     private statusBarService: StatusBarService) {
+
     this.structureService.section$.subscribe(e => {
       this.section = e;
       this.setStructure();
       this.statusBarService.setDirty();
     });
+
     this.structureService.trainLoad$.subscribe(e => {
       this.movingLoad = e;
+      this.statusBarService.setDirty();
+    });
+
+    this.structureService.span$.subscribe(e => {
+      this.span = e;
+      this.setStructure();
       this.statusBarService.setDirty();
     });
   }
@@ -56,13 +67,11 @@ export class ControlPanelService {
   }
 
   setStructure() {
-    const str = this.getStructureGeometry();
+    if (!this.section || !this.span) {
+      return;
+    }
+
+    const str = structureGeometryBuilder().setSection(this.section).setSpan(this.span).build();
     this.view3dService.drawStructure(str);
-  }
-
-
-  private getStructureGeometry(): StructureGeometry {
-    mockedStructureGeometry.bars.forEach(e => e.section = this.section);
-    return mockedStructureGeometry;
   }
 }
