@@ -112,7 +112,7 @@ namespace Calculators.TrainLoad
 
             var extremes = timeResults.SelectMany(e => e.MeshResults)
                 .SelectMany(e => e.VertexResults)
-                .Select(e=>e.Displacement)
+                .Select(e=>Math.Abs(e.Displacement))
                 .ToList();
 
             resultData.MaxAbsoluteDisplacement = extremes.Max();
