@@ -13,19 +13,21 @@ import { InitializationService } from './services/initialization.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewChecked {
+export class AppComponent implements OnInit {
 
+
+  title = 'app';
 
   constructor(private structureService: StructureService,
     private initializationService: InitializationService) { }
 
-  ngAfterViewChecked(): void {
-    setTimeout(() => {
-      this.structureService.setSection(this.initializationService.section);
-      this.structureService.setSectionType(this.initializationService.sectionType);
-      this.structureService.setTrainLoad(this.initializationService.trainLoad);
-      this.structureService.setTrainLoadType(this.initializationService.trainLoadType);
-    }, 200);
+    ngOnInit(): void {
+      setTimeout(() => {
+        this.structureService.setSection(this.initializationService.section);
+        this.structureService.setSectionType(this.initializationService.sectionType);
+        this.structureService.setTrainLoad(this.initializationService.trainLoad);
+        this.structureService.setTrainLoadType(this.initializationService.trainLoadType);
+      }, 200);
+    }
 
-  }
 }
