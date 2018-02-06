@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { ResultProvider } from './resultProvider';
 import { StructureData } from '../structureCreator/structureData';
 
-const scaleFactor = 2;
+const scaleFactor = 4;
 
 export class DisplacementProvider {
     private structureData: StructureData;
