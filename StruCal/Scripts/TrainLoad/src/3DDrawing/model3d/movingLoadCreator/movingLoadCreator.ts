@@ -50,6 +50,7 @@ export class MovingLoadCreator {
     }
 
     public reset() {
+        this.previousPosition = 0;
         if (this.arrowBasePositionMap === undefined) {
             return;
         }
