@@ -7,6 +7,8 @@ import { sectionInputFactory } from '../modal-section1/Input/sectionInputFactory
 import { TrainLoadType } from '../../common/types/trainLoadType';
 import { trainLoadInputFactory } from '../modal-train-load/input/trainLoadInputFactory';
 import { trainLoadImagePathFactory } from '../modal-train-load/input/trainLoadHTMLHelper';
+import { Span } from '../../common/structure/span';
+import { startSpan } from '../../common/startData/startSpan';
 
 @Injectable()
 export class InputService {
@@ -37,5 +39,14 @@ export class InputService {
 
   public getTrainLoadType(): TrainLoadType {
     return this.localStorageService.getTrainLoadType() || TrainLoadType.HSLMA;
+  }
+
+  public saveSpan(span: Span): void {
+    this.localStorageService.saveSpan(span);
+  }
+
+  public getSpan(): Span {
+    const span = this.localStorageService.getSpan() || startSpan;
+    return span;
   }
 }
