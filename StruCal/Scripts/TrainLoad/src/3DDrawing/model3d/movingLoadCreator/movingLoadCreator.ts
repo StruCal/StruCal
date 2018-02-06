@@ -19,7 +19,7 @@ export class MovingLoadCreator {
 
     public start(movingLoad: MovingLoad, structureLength: number): void {
         this.structureLength = structureLength;
-        this.removeMeshes();
+        this.reset();
         this.arrowBasePositionMap = new Map<THREE.Mesh, number>();
         this.movingLoad = movingLoad;
 
@@ -49,7 +49,7 @@ export class MovingLoadCreator {
         });
     }
 
-    private removeMeshes() {
+    public reset() {
         if (this.arrowBasePositionMap === undefined) {
             return;
         }

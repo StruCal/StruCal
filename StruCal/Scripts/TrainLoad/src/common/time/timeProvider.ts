@@ -15,4 +15,8 @@ export class TimeProvider {
     public getCurrentTime(): number {
         return this.currentTime;
     }
+
+    public reset() {
+        this.currentTime = 0;
+    }
 }

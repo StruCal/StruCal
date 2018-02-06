@@ -37,6 +37,8 @@ export class View3dService {
   public drawStructure(structureGeometry: StructureGeometry) {
     this.structureGeometry = structureGeometry;
     this.structureCreator.draw(structureGeometry);
+    this.movingLoadCreator.reset();
+    this.timeProvider.reset();
     this.threeJsCreator.tickAnimation = () => { };
   }
 
