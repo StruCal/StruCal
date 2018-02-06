@@ -1,17 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { View3dService } from '../view3d/view3d.service';
 import { ControlPanelService } from '../services/control-panel.service';
+import { StatusBarService } from '../services/status-bar.service';
 
 @Component({
   selector: 'control-panel',
   templateUrl: './control-panel.component.html',
   styleUrls: ['./control-panel.component.css']
 })
-export class ControlPanelComponent implements OnInit {
+export class ControlPanelComponent implements AfterViewInit {
 
-  constructor(private controlPanelService: ControlPanelService) { }
+  valid = false;
+  dirty = true;
+  error = false;
+  progress = false;
 
-  ngOnInit() {
+  constructor(private controlPanelService: ControlPanelService,
+    private statusBarService: StatusBarService,
+    private cdr: ChangeDetectorRef) { }
+
+  ngAfterViewInit(): void {
+    this.statusBarService.dirty$.subscribe(e => this.dirty = e);
+    this.statusBarService.valid$.subscribe(e => this.valid = e);
+    this.statusBarService.error$.subscribe(e => this.error = e);
+    this.statusBarService.progress$.subscribe(e => this.progress = e);
+
+    this.cdr.detectChanges();
   }
 
   calculate() {

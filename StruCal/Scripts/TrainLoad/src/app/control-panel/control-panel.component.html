@@ -40,7 +40,7 @@
         </div>
         <div class="row form-group">
           <div class="col-xs-12">
-            <button (click)="calculate()" class="btn btn-lg btn-warning">
+            <button (click)="calculate()" class="btn btn-lg" [ngClass]="{'btn-success':valid,'btn-warning':dirty,'btn-danger':error,'btn-info':progress}">
               <span class="glyphicon glyphicon-cog"></span> Calculate</button>
           </div>
         </div>

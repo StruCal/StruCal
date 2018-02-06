@@ -22,7 +22,7 @@ export class StatusBarService {
   public progress$ = this.progressSource.asObservable();
   public msg$ = this.msgSource.asObservable();
 
-  constructor() { 
+  constructor() {
     this.setDirty();
   }
 
