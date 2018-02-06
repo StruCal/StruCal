@@ -36,14 +36,14 @@ export class ModalSection1Component implements OnInit {
   public invalid: boolean;
 
   constructor(private structureService: StructureService,
-              private initializationService: InputService) {
+              private inputService: InputService) {
   }
 
   show(sectionType: SectionType): void {
     this.title = sectionTitleFactory[sectionType];
     this.sectionType = sectionType;
     this.modalBase.show();
-    this.inputs = this.initializationService.getSectionInput(sectionType);
+    this.inputs = this.inputService.getSectionInput(sectionType);
     this.draw();
   }
   hide(): void {
@@ -63,7 +63,7 @@ export class ModalSection1Component implements OnInit {
   }
 
   private saveAndClose() {
-    this.initializationService.saveSectionInput(this.inputs, this.sectionType);
+    this.inputService.saveSectionInput(this.inputs, this.sectionType);
     this.structureService.setSection(this.section);
     this.hide();
   }
