@@ -35,6 +35,7 @@ export class ControlPanelService {
 
     this.structureService.trainLoad$.subscribe(e => {
       this.movingLoad = e;
+      this.setStructure();
       this.statusBarService.setDirty();
     });
 
