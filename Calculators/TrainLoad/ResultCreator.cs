@@ -41,7 +41,6 @@ namespace Calculators.TrainLoad
             Parallel.ForEach(times, time =>
             {
                 var meshStressResults = new List<MeshStressResult>();
-                var stresses = new List<double>();
                 for (int i = 0; i < beams.Count; i++)
                 {
                     var beam = beams[i];
@@ -63,7 +62,6 @@ namespace Calculators.TrainLoad
 
                             var stress = stressCalculator.NormalStressAt(forces, location.Y);
 
-                            stresses.Add(stress);
                             var vertexResult = VertexStressResult.GenerateVertexResult(vertex, displ, stress);
                             vertexResults.Add(vertexResult);
                         }
@@ -72,6 +70,9 @@ namespace Calculators.TrainLoad
                     }
 
                 }
+
+                var stresses = GetStresses(meshStressResults);
+
                 var maxStress = stresses.Max();
                 var minStress = stresses.Min();
                 var meshColorResults = ConvertStressToColor(meshStressResults, maxStress, minStress);
@@ -95,9 +96,18 @@ namespace Calculators.TrainLoad
             return resultData;
         }
 
+        private static List<double> GetStresses(List<MeshStressResult> meshStressResults)
+        {
+            return meshStressResults
+                            .Select(e => e.VertexResults)
+                            .SelectMany(e => e).
+                            Select(e => e.Stress)
+                            .ToList();
+        }
+
         private double GetMaxDisplacement()
         {
-            var result =  timeResults.SelectMany(e => e.MeshResults)
+            var result = timeResults.SelectMany(e => e.MeshResults)
                             .SelectMany(e => e.VertexResults)
                             .Select(e => Math.Abs(e.Displacement))
                             .ToList()
@@ -120,8 +130,8 @@ namespace Calculators.TrainLoad
             }).ToList();
         }
 
-        
 
-        
+
+
     }
 }
