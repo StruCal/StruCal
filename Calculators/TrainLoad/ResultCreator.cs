@@ -16,6 +16,8 @@ namespace Calculators.TrainLoad
         private readonly ColorProvider color;
         private readonly TimeSettings timeSettings;
 
+        List<TimeResult> timeResults = new List<TimeResult>();
+
         public ResultCreator(IGradient gradient, TimeSettings timeSettings)
         {
             this.color = new ColorProvider(gradient);
@@ -34,8 +36,6 @@ namespace Calculators.TrainLoad
             var beams = femResults.BeamElementBarIDMap.Select(e => e.Key).ToList();
             var stressCalculators = beams.Select(e => new BeamStressCalculator(e.BeamProperties.Section.SectionProperties)).ToList();
             
-            var timeResults = new List<TimeResult>();
-
             while (time <= endTime)
             {
                 var meshStressResults = new List<MeshStressResult>();

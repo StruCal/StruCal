@@ -48,6 +48,11 @@ namespace Calculators.TrainLoad
             structure.Solve();
 
             var results = structure.Results.BeamResults;
+            return GenerateFEMResult(results);
+        }
+
+        private FemCalculatorResult GenerateFEMResult(DynamicBeamElementResults results)
+        {
             return new FemCalculatorResult
             {
                 BeamElementBarIDMap = this.elementBarIdMap,
@@ -78,7 +83,6 @@ namespace Calculators.TrainLoad
         {
             foreach (var bar in this.trainLoadInput.StructureGeometry.Bars)
             {
-
                 var section = new FEMSection(bar.Section.Perimeters.Convert());
 
                 var dynamicProperties = DynamicBeamPropertiesBuilder.Create()
