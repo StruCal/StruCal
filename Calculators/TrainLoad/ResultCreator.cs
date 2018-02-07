@@ -31,6 +31,8 @@ namespace Calculators.TrainLoad
         public TrainLoadOutput Calculate(FemCalculatorResult femResults, IList<VertexInput> vertices)
         {
             var beamStressCalculatorMap = GetBeamStressCalculatorMap(femResults);
+            var beamVeriticesMap = femResults.BeamElementBarIDMap.Select(e => e.Key)
+                .ToDictionary(e => e, f => vertices.Where(g => g.BarId == femResults.BeamElementBarIDMap[f]).ToList());
 
             var times = this.timeSettings.GetTimeRange().ToList();
 
@@ -56,24 +58,21 @@ namespace Calculators.TrainLoad
                 var maxStress = stresses.Max();
                 var minStress = stresses.Min();
                 var meshColorResults = ConvertStressToColor(meshStressResults, maxStress, minStress);
-
-                var timeResult = new TimeResult
-                {
-                    Time = time,
-                    MaxStress = maxStress,
-                    MinStress = minStress,
-                    MeshResults = meshColorResults
-                };
+                var timeResult = TimeResult.GenerateTimeResult(time, maxStress, minStress, meshColorResults);
                 timeResults.Add(timeResult);
             });
+            var resultData = this.GenerateTimeResults();
+            return resultData;
+        }
 
-            var resultData = new TrainLoadOutput
+        private TrainLoadOutput GenerateTimeResults()
+        {
+            return new TrainLoadOutput
             {
                 TimeResults = timeResults.OrderBy(e => e.Time).ToList(),
                 MaxAbsoluteDisplacement = GetMaxDisplacement(),
                 TimeSettings = this.timeSettings
             };
-            return resultData;
         }
 
         private static IDictionary<IDynamicBeamElement,BeamStressCalculator> GetBeamStressCalculatorMap(FemCalculatorResult femResults)
@@ -129,9 +128,5 @@ namespace Calculators.TrainLoad
                 })
             }).ToList();
         }
-
-
-
-
     }
 }
