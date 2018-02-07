@@ -20,8 +20,6 @@ namespace Calculators.TrainLoad
         private readonly TimeSettings timeSettings;
 
         private ConcurrentBag<TimeResult> timeResults = new ConcurrentBag<TimeResult>();
-        private List<IDynamicBeamElement> beams;
-        private List<BeamStressCalculator> stressCalculators;
 
 
         public ResultCreator(IGradient gradient, TimeSettings timeSettings)
@@ -32,19 +30,17 @@ namespace Calculators.TrainLoad
 
         public TrainLoadOutput Calculate(FemCalculatorResult femResults, IList<VertexInput> vertices)
         {
-
-            this.beams = femResults.BeamElementBarIDMap.Select(e => e.Key).ToList();
-            this.stressCalculators = beams.Select(e => new BeamStressCalculator(e.BeamProperties.Section.SectionProperties)).ToList();
+            var beamStressCalculatorMap = GetBeamStressCalculatorMap(femResults);
 
             var times = this.timeSettings.GetTimeRange().ToList();
 
             Parallel.ForEach(times, time =>
             {
                 var meshStressResults = new List<MeshStressResult>();
-                for (int i = 0; i < beams.Count; i++)
+                foreach (var beamStressCalculatorPair in beamStressCalculatorMap)
                 {
-                    var beam = beams[i];
-                    var stressCalculator = stressCalculators[i];
+                    var beam = beamStressCalculatorPair.Key;
+                    var stressCalculator = beamStressCalculatorPair.Value;
                     var barID = femResults.BeamElementBarIDMap[beam];
 
                     var beamResult = femResults.BeamResults.GetResult(beam, time);
@@ -80,6 +76,14 @@ namespace Calculators.TrainLoad
             return resultData;
         }
 
+        private static IDictionary<IDynamicBeamElement,BeamStressCalculator> GetBeamStressCalculatorMap(FemCalculatorResult femResults)
+        {
+            var beamStressCalculatorMap = femResults.BeamElementBarIDMap
+                .Select(e => e.Key)
+                .ToDictionary(f => f, e => new BeamStressCalculator(e.BeamProperties.Section.SectionProperties));
+            return beamStressCalculatorMap;
+        }
+            
         private static IEnumerable<MeshStressResult> GenerateMeshStressResult(IEnumerable<VertexInput> beamVertices, VertexResultCalculator vertexResultCalculator)
         {
             var result = new List<MeshStressResult>();
@@ -96,8 +100,8 @@ namespace Calculators.TrainLoad
         {
             return meshStressResults
                             .Select(e => e.VertexResults)
-                            .SelectMany(e => e).
-                            Select(e => e.Stress)
+                            .SelectMany(e => e)
+                            .Select(e => e.Stress)
                             .ToList();
         }
 
