@@ -31,8 +31,7 @@ namespace Calculators.TrainLoad
         public TrainLoadOutput Calculate(FemCalculatorResult femResults, IList<VertexInput> vertices)
         {
             var beamStressCalculatorMap = GetBeamStressCalculatorMap(femResults);
-            var beamVeriticesMap = femResults.BeamElementBarIDMap.Select(e => e.Key)
-                .ToDictionary(e => e, f => vertices.Where(g => g.BarId == femResults.BeamElementBarIDMap[f]).ToList());
+            var beamVeriticesMap = GetBeamVerticesMap(femResults, vertices);
 
             var times = this.timeSettings.GetTimeRange().ToList();
 
@@ -43,11 +42,10 @@ namespace Calculators.TrainLoad
                 {
                     var beam = beamStressCalculatorPair.Key;
                     var stressCalculator = beamStressCalculatorPair.Value;
-                    var barID = femResults.BeamElementBarIDMap[beam];
 
                     var beamResult = femResults.BeamResults.GetResult(beam, time);
 
-                    var beamVertices = vertices.Where(e => e.BarId == barID).ToList();
+                    var beamVertices = beamVeriticesMap[beam];
                     var vertexResultCalculator = new VertexResultCalculator(beamResult, beam, stressCalculator);
                     var vertexMeshRestresResults = GenerateMeshStressResult(beamVertices, vertexResultCalculator);
                     meshStressResults.AddRange(vertexMeshRestresResults);
@@ -63,6 +61,12 @@ namespace Calculators.TrainLoad
             });
             var resultData = this.GenerateTimeResults();
             return resultData;
+        }
+
+        private static Dictionary<IDynamicBeamElement, List<VertexInput>> GetBeamVerticesMap(FemCalculatorResult femResults, IList<VertexInput> vertices)
+        {
+            return femResults.BeamElementBarIDMap.Select(e => e.Key)
+                .ToDictionary(e => e, f => vertices.Where(g => g.BarId == femResults.BeamElementBarIDMap[f]).ToList());
         }
 
         private TrainLoadOutput GenerateTimeResults()
