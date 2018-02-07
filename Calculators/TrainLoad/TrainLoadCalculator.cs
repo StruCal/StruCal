@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Calculators.TrainLoad
 {
@@ -27,7 +28,13 @@ namespace Calculators.TrainLoad
         public TrainLoadOutput Calculate()
         {
             var femResult = this.femCalculator.Calculate();
+
+            var time = new Stopwatch();
+            time.Start();
             var output = this.resultCreator.Calculate(femResult,this.trainLoadInput.Vertices);
+            time.Stop();
+            Console.WriteLine(time.ElapsedMilliseconds);
+
             return output;
         }
 

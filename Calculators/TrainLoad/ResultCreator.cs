@@ -5,6 +5,7 @@ using Calculators.TrainLoad.Output;
 using Common.Utils;
 using FEM2DStressCalculator.Beams;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace Calculators.TrainLoad
         private readonly ColorProvider color;
         private readonly TimeSettings timeSettings;
 
-        List<TimeResult> timeResults = new List<TimeResult>();
+        ConcurrentBag<TimeResult> timeResults = new ConcurrentBag<TimeResult>();
 
         public ResultCreator(IGradient gradient, TimeSettings timeSettings)
         {
@@ -31,9 +32,9 @@ namespace Calculators.TrainLoad
             var beams = femResults.BeamElementBarIDMap.Select(e => e.Key).ToList();
             var stressCalculators = beams.Select(e => new BeamStressCalculator(e.BeamProperties.Section.SectionProperties)).ToList();
 
-            var times = Range.GetRange(this.timeSettings.StartTime, this.timeSettings.EndTime, this.timeSettings.DeltaTimeResults);
+            var times = Range.GetRange(this.timeSettings.StartTime, this.timeSettings.EndTime, this.timeSettings.DeltaTimeResults).ToList();
 
-            foreach (var time in times)
+            Parallel.ForEach(times, time =>
             {
                 var meshStressResults = new List<MeshStressResult>();
                 var stresses = new List<double>();
@@ -78,11 +79,10 @@ namespace Calculators.TrainLoad
                 timeResult.MinStress = minStress;
                 timeResult.MeshResults = meshColorResults;
                 timeResults.Add(timeResult);
-                //time += deltaT;
-            }
+            });
 
             var resultData = new TrainLoadOutput();
-            resultData.TimeResults = timeResults;
+            resultData.TimeResults = timeResults.OrderBy(e=>e.Time).ToList();
 
             var extremes = timeResults.SelectMany(e => e.MeshResults)
                 .SelectMany(e => e.VertexResults)
