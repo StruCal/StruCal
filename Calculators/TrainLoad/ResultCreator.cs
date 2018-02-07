@@ -49,15 +49,10 @@ namespace Calculators.TrainLoad
 
                     var beamResult = femResults.BeamResults.GetResult(beam, time);
 
-                    var beamVertices = vertices.Where(e => e.BarId == barID);
+                    var beamVertices = vertices.Where(e => e.BarId == barID).ToList();
                     var vertexResultCalculator = new VertexResultCalculator(beamResult, beam, stressCalculator);
-                    foreach (var beamVertex in beamVertices)
-                    {
-                        var vertexResults = vertexResultCalculator.GetVertexStressResult(beamVertex.Vertices).ToList();
-                        var meshResult = MeshStressResult.GenerateMeshResult(beamVertex, vertexResults);
-                        meshStressResults.Add(meshResult);
-                    }
-
+                    var vertexMeshRestresResults = GenerateMeshStressResult(beamVertices, vertexResultCalculator);
+                    meshStressResults.AddRange(vertexMeshRestresResults);
                 }
 
                 var stresses = GetStresses(meshStressResults);
@@ -83,6 +78,18 @@ namespace Calculators.TrainLoad
                 TimeSettings = this.timeSettings
             };
             return resultData;
+        }
+
+        private static IEnumerable<MeshStressResult> GenerateMeshStressResult(IEnumerable<VertexInput> beamVertices, VertexResultCalculator vertexResultCalculator)
+        {
+            var result = new List<MeshStressResult>();
+            foreach (var beamVertex in beamVertices)
+            {
+                var vertexResults = vertexResultCalculator.GetVertexStressResult(beamVertex.Vertices).ToList();
+                var meshResult = MeshStressResult.GenerateMeshResult(beamVertex, vertexResults);
+                result.Add(meshResult);
+            }
+            return result;
         }
 
         private static List<double> GetStresses(List<MeshStressResult> meshStressResults)
