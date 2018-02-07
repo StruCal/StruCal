@@ -1,4 +1,5 @@
-﻿using FEM2DDynamics.Solver;
+﻿using Common.Utils;
+using FEM2DDynamics.Solver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,12 @@ namespace Calculators.TrainLoad.Input
                 EndTime = this.EndTime,
                 DeltaTime = this.DeltaTime,
             };
+        }
+
+        public IEnumerable<double> GetTimeRange()
+        {
+            var result = Range.GetRange(this.StartTime, this.EndTime, this.DeltaTimeResults);
+            return result;
         }
     }
 }

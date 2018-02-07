@@ -3,6 +3,7 @@ using Calculators.TrainLoad.Helpers;
 using Calculators.TrainLoad.Input;
 using Calculators.TrainLoad.Output;
 using Common.Utils;
+using FEM2DDynamics.Elements.Beam;
 using FEM2DStressCalculator.Beams;
 using System;
 using System.Collections.Concurrent;
@@ -18,7 +19,10 @@ namespace Calculators.TrainLoad
         private readonly ColorProvider color;
         private readonly TimeSettings timeSettings;
 
-        ConcurrentBag<TimeResult> timeResults = new ConcurrentBag<TimeResult>();
+        private ConcurrentBag<TimeResult> timeResults = new ConcurrentBag<TimeResult>();
+        private List<IDynamicBeamElement> beams;
+        private List<BeamStressCalculator> stressCalculators;
+
 
         public ResultCreator(IGradient gradient, TimeSettings timeSettings)
         {
@@ -29,10 +33,10 @@ namespace Calculators.TrainLoad
         public TrainLoadOutput Calculate(FemCalculatorResult femResults, IList<VertexInput> vertices)
         {
 
-            var beams = femResults.BeamElementBarIDMap.Select(e => e.Key).ToList();
-            var stressCalculators = beams.Select(e => new BeamStressCalculator(e.BeamProperties.Section.SectionProperties)).ToList();
+            this.beams = femResults.BeamElementBarIDMap.Select(e => e.Key).ToList();
+            this.stressCalculators = beams.Select(e => new BeamStressCalculator(e.BeamProperties.Section.SectionProperties)).ToList();
 
-            var times = Range.GetRange(this.timeSettings.StartTime, this.timeSettings.EndTime, this.timeSettings.DeltaTimeResults).ToList();
+            var times = this.timeSettings.GetTimeRange().ToList();
 
             Parallel.ForEach(times, time =>
             {
@@ -68,30 +72,37 @@ namespace Calculators.TrainLoad
                     }
 
                 }
-
                 var maxStress = stresses.Max();
                 var minStress = stresses.Min();
                 var meshColorResults = ConvertStressToColor(meshStressResults, maxStress, minStress);
 
-                var timeResult = new TimeResult();
-                timeResult.Time = time;
-                timeResult.MaxStress = maxStress;
-                timeResult.MinStress = minStress;
-                timeResult.MeshResults = meshColorResults;
+                var timeResult = new TimeResult
+                {
+                    Time = time,
+                    MaxStress = maxStress,
+                    MinStress = minStress,
+                    MeshResults = meshColorResults
+                };
                 timeResults.Add(timeResult);
             });
 
-            var resultData = new TrainLoadOutput();
-            resultData.TimeResults = timeResults.OrderBy(e=>e.Time).ToList();
-
-            var extremes = timeResults.SelectMany(e => e.MeshResults)
-                .SelectMany(e => e.VertexResults)
-                .Select(e=>Math.Abs(e.Displacement))
-                .ToList();
-
-            resultData.MaxAbsoluteDisplacement = extremes.Max();
-            resultData.TimeSettings = this.timeSettings;
+            var resultData = new TrainLoadOutput
+            {
+                TimeResults = timeResults.OrderBy(e => e.Time).ToList(),
+                MaxAbsoluteDisplacement = GetMaxDisplacement(),
+                TimeSettings = this.timeSettings
+            };
             return resultData;
+        }
+
+        private double GetMaxDisplacement()
+        {
+            var result =  timeResults.SelectMany(e => e.MeshResults)
+                            .SelectMany(e => e.VertexResults)
+                            .Select(e => Math.Abs(e.Displacement))
+                            .ToList()
+                            .Max();
+            return result;
         }
 
         private List<MeshColorResult> ConvertStressToColor(List<MeshStressResult> meshStressResults, double maxStress, double minStress)
