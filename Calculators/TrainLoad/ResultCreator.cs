@@ -2,6 +2,7 @@
 using Calculators.TrainLoad.Helpers;
 using Calculators.TrainLoad.Input;
 using Calculators.TrainLoad.Output;
+using Common.Utils;
 using FEM2DStressCalculator.Beams;
 using System;
 using System.Collections.Generic;
@@ -27,16 +28,12 @@ namespace Calculators.TrainLoad
         public TrainLoadOutput Calculate(FemCalculatorResult femResults, IList<VertexInput> vertices)
         {
 
-            var deltaT = this.timeSettings.DeltaTimeResults;
-            var time = this.timeSettings.StartTime;
-            var endTime = this.timeSettings.EndTime;
-
-            var results = femResults.BeamResults;
-
             var beams = femResults.BeamElementBarIDMap.Select(e => e.Key).ToList();
             var stressCalculators = beams.Select(e => new BeamStressCalculator(e.BeamProperties.Section.SectionProperties)).ToList();
-            
-            while (time <= endTime)
+
+            var times = Range.GetRange(this.timeSettings.StartTime, this.timeSettings.EndTime, this.timeSettings.DeltaTimeResults);
+
+            foreach (var time in times)
             {
                 var meshStressResults = new List<MeshStressResult>();
                 var stresses = new List<double>();
@@ -46,7 +43,7 @@ namespace Calculators.TrainLoad
                     var stressCalculator = stressCalculators[i];
                     var barID = femResults.BeamElementBarIDMap[beam];
 
-                    var beamResult = results.GetResult(beam, time);
+                    var beamResult = femResults.BeamResults.GetResult(beam, time);
 
                     var beamVertices = vertices.Where(e => e.BarId == barID);
                     foreach (var beamVertex in beamVertices)
@@ -81,7 +78,7 @@ namespace Calculators.TrainLoad
                 timeResult.MinStress = minStress;
                 timeResult.MeshResults = meshColorResults;
                 timeResults.Add(timeResult);
-                time += deltaT;
+                //time += deltaT;
             }
 
             var resultData = new TrainLoadOutput();
