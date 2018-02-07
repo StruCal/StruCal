@@ -110,6 +110,7 @@
     <Compile Include="TrainLoad\Output\VertexStressResult.cs" />
     <Compile Include="TrainLoad\ResultCreator.cs" />
     <Compile Include="TrainLoad\TrainLoadCalculator.cs" />
+    <Compile Include="TrainLoad\VertexResultCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

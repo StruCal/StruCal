@@ -50,21 +50,10 @@ namespace Calculators.TrainLoad
                     var beamResult = femResults.BeamResults.GetResult(beam, time);
 
                     var beamVertices = vertices.Where(e => e.BarId == barID);
+                    var vertexResultCalculator = new VertexResultCalculator(beamResult, beam, stressCalculator);
                     foreach (var beamVertex in beamVertices)
                     {
-                        var vertexResults = new List<VertexStressResult>();
-                        foreach (var vertex in beamVertex.Vertices)
-                        {
-                            var location = vertex.ToFEMCoordinateSystem();
-                            var relativePosition = (location.X - beam.Nodes[0].Coordinates.X) / beam.Length;
-                            var displ = beamResult.GetDisplacement(relativePosition);
-                            var forces = beamResult.GetBeamForces(relativePosition);
-
-                            var stress = stressCalculator.NormalStressAt(forces, location.Y);
-
-                            var vertexResult = VertexStressResult.GenerateVertexResult(vertex, displ, stress);
-                            vertexResults.Add(vertexResult);
-                        }
+                        var vertexResults = vertexResultCalculator.GetVertexStressResult(beamVertex.Vertices).ToList();
                         var meshResult = MeshStressResult.GenerateMeshResult(beamVertex, vertexResults);
                         meshStressResults.Add(meshResult);
                     }
