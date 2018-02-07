@@ -13,5 +13,7 @@ namespace Calculators.TrainLoad.Output
         public double Displacement { get; set; }
 
         public string Color { get; set; }
+
+
     }
 }

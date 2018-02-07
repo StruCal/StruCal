@@ -45,7 +45,7 @@ namespace Calculators.TrainLoad
                     var beam = beams[i];
                     var stressCalculator = stressCalculators[i];
                     var barID = femResults.BeamElementBarIDMap[beam];
-                    
+
                     var beamResult = results.GetResult(beam, time);
 
                     var beamVertices = vertices.Where(e => e.BarId == barID);
@@ -54,7 +54,6 @@ namespace Calculators.TrainLoad
                         var vertexResults = new List<VertexStressResult>();
                         foreach (var vertex in beamVertex.Vertices)
                         {
-
                             var location = vertex.ToFEMCoordinateSystem();
                             var relativePosition = (location.X - beam.Nodes[0].Coordinates.X) / beam.Length;
                             var displ = beamResult.GetDisplacement(relativePosition);
@@ -63,21 +62,10 @@ namespace Calculators.TrainLoad
                             var stress = stressCalculator.NormalStressAt(forces, location.Y);
 
                             stresses.Add(stress);
-
-                            var vertexResult = new VertexStressResult
-                            {
-                                Position = vertex,
-                                Stress = stress,
-                                Displacement = displ,
-                            };
+                            var vertexResult = VertexStressResult.GenerateVertexResult(vertex, displ, stress);
                             vertexResults.Add(vertexResult);
                         }
-                        var meshResult = new MeshStressResult
-                        {
-                            BarId = beamVertex.BarId,
-                            MeshId = beamVertex.MeshId,
-                            VertexResults = vertexResults,
-                        };
+                        var meshResult = MeshStressResult.GenerateMeshResult(beamVertex, vertexResults);
                         meshStressResults.Add(meshResult);
                     }
 
@@ -85,18 +73,7 @@ namespace Calculators.TrainLoad
 
                 var maxStress = stresses.Max();
                 var minStress = stresses.Min();
-
-                var meshColorResults = meshStressResults.Select(e => new MeshColorResult
-                {
-                    BarId = e.BarId,
-                    MeshId = e.MeshId,
-                    VertexResults = e.VertexResults.Select(f => new VertexColorResult
-                    {
-                        Displacement = f.Displacement,
-                        Position = f.Position,
-                        Color = this.color.GetColor(f.Stress, maxStress, minStress),
-                    })
-                }).ToList();
+                var meshColorResults = ConvertStressToColor(meshStressResults, maxStress, minStress);
 
                 var timeResult = new TimeResult();
                 timeResult.Time = time;
@@ -119,5 +96,24 @@ namespace Calculators.TrainLoad
             resultData.TimeSettings = this.timeSettings;
             return resultData;
         }
+
+        private List<MeshColorResult> ConvertStressToColor(List<MeshStressResult> meshStressResults, double maxStress, double minStress)
+        {
+            return meshStressResults.Select(e => new MeshColorResult
+            {
+                BarId = e.BarId,
+                MeshId = e.MeshId,
+                VertexResults = e.VertexResults.Select(f => new VertexColorResult
+                {
+                    Displacement = f.Displacement,
+                    Position = f.Position,
+                    Color = this.color.GetColor(f.Stress, maxStress, minStress),
+                })
+            }).ToList();
+        }
+
+        
+
+        
     }
 }
