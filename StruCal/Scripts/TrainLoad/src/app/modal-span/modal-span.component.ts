@@ -6,6 +6,7 @@ import { Span } from '../../common/structure/span';
 import { InputService } from '../services/input.service';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'modal-span',
   templateUrl: './modal-span.component.html',
   styleUrls: ['./modal-span.component.css']

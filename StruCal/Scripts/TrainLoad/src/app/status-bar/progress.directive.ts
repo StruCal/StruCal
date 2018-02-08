@@ -3,6 +3,7 @@ import { startProgress} from './progress';
 import { OnInit, AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Directive({
+  // tslint:disable-next-line:directive-selector
   selector: '[Progress]'
 })
 export class ProgressDirective implements AfterViewInit {

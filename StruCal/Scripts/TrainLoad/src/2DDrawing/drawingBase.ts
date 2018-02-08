@@ -16,7 +16,6 @@ export abstract class DrawingBase {
     protected abstract drawingWidth: number;
     protected abstract drawingCentre: Point;
 
-
     constructor(private canvasId: string, settings: DrawingSettings) {
         this.settings = settings;
         const canvasObject = document.getElementById(canvasId);
@@ -37,8 +36,6 @@ export abstract class DrawingBase {
         this.drawLine(p4, p1);
     }
 
-
-    
     protected drawLine(startPoint: Point, endPoint: Point) {
         const start = this.transferToCanvasSystem(startPoint);
         const end = this.transferToCanvasSystem(endPoint);
@@ -82,7 +79,4 @@ export abstract class DrawingBase {
         const scale = Math.min(scale1, scale2);
         return scale;
     }
-
-
-
 }

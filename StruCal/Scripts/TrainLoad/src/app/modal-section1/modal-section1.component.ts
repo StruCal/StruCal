@@ -15,6 +15,7 @@ import { InputService } from '../services/input.service';
 
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'modal-section1',
   templateUrl: './modal-section1.component.html',
   styleUrls: ['./modal-section1.component.css']

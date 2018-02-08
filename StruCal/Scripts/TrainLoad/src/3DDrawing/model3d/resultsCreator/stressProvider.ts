@@ -5,16 +5,15 @@ import { StructureData } from '../structureCreator/structureData';
 
 export class StressProvider {
     private structureData: StructureData;
-    private scene: any;
+    private scene: THREE.Scene;
     private resultInterpolation: ResultProvider;
     private meshes: Array<any>;
 
-    constructor(scene: any, resultInterpolation: ResultProvider, structureData: StructureData) {
+    constructor(scene: THREE.Scene, resultInterpolation: ResultProvider, structureData: StructureData) {
         this.scene = scene;
         this.resultInterpolation = resultInterpolation;
         this.structureData = structureData;
         this.meshes = this.scene.children.filter(e => e.type === 'Mesh' && structureData.isStructureMesh(e.uuid));
-        
     }
 
     public applyStress(): void {

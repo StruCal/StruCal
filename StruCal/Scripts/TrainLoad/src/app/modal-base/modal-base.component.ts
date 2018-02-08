@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'modal-base',
   templateUrl: './modal-base.component.html',
   styleUrls: ['./modal-base.component.css']

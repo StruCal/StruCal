@@ -10,6 +10,7 @@ import { section1Builder } from '../../common/sectionBuilders/section1Builder';
 const canvasID = 'canvas2d';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'drawing2d',
   templateUrl: './drawing2d.component.html',
   styleUrls: ['./drawing2d.component.css']

@@ -3,12 +3,12 @@ import { StatusBarService } from '../services/status-bar.service';
 import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'status-bar',
   templateUrl: './status-bar.component.html',
   styleUrls: ['./status-bar.component.css']
 })
 export class StatusBarComponent implements OnInit, AfterViewInit {
-  
 
   valid = false;
   dirty = true;
@@ -18,7 +18,7 @@ export class StatusBarComponent implements OnInit, AfterViewInit {
 
   constructor(private statusBarService: StatusBarService,
   private cdr: ChangeDetectorRef) {
-    
+
   }
 
   ngAfterViewInit(): void {

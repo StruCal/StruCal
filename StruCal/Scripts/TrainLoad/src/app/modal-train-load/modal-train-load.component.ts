@@ -7,6 +7,7 @@ import { TrainLoadType } from '../../common/types/trainLoadType';
 import { InputService } from '../services/input.service';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'modal-train-load',
   templateUrl: './modal-train-load.component.html',
   styleUrls: ['./modal-train-load.component.css']

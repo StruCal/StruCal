@@ -4,6 +4,7 @@ import { ControlPanelService } from '../services/control-panel.service';
 import { StatusBarService } from '../services/status-bar.service';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'control-panel',
   templateUrl: './control-panel.component.html',
   styleUrls: ['./control-panel.component.css']
