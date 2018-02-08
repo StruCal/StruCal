@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calculators.TrainLoad.GradienColor
 {
-    internal class Color
+    public class Color
     {
         const int hex = 16;
 

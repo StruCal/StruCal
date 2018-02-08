@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Calculators.TrainLoad
 {
     
-    internal class LinearGradient : IGradient
+    public class LinearGradient : IGradient
     {
         private readonly Color maxColor;
         private readonly Color minColor;

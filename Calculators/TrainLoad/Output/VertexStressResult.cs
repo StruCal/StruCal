@@ -1,4 +1,5 @@
-﻿using Common.Geometry;
+﻿using Calculators.TrainLoad.GradienColor;
+using Common.Geometry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,15 @@ namespace Calculators.TrainLoad.Output
                 Stress = stress,
                 Displacement = displ,
             };
+        }
+
+        public VertexColorResult ConvertToColor(ColorProvider colorProvider, double maxStress, double minStress)
+        {
+            var result = new VertexColorResult();
+            result.Displacement = this.Displacement;
+            result.Position = this.Position;
+            result.Color = colorProvider.GetColor(this.Stress, maxStress, minStress);
+            return result;
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calculators.TrainLoad.GradienColor
 {
-    internal class ColorProvider
+    public class ColorProvider
     {
         private readonly IGradient gradient;
 

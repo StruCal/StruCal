@@ -110,17 +110,7 @@ namespace Calculators.TrainLoad
 
         private List<MeshColorResult> ConvertStressToColor(List<MeshStressResult> meshStressResults, double maxStress, double minStress)
         {
-            return meshStressResults.Select(e => new MeshColorResult
-            {
-                BarId = e.BarId,
-                MeshId = e.MeshId,
-                VertexResults = e.VertexResults.Select(f => new VertexColorResult
-                {
-                    Displacement = f.Displacement,
-                    Position = f.Position,
-                    Color = this.color.GetColor(f.Stress, maxStress, minStress),
-                })
-            }).ToList();
+            return meshStressResults.Select(e => e.ConvertToColor(this.color, maxStress, minStress)).ToList();
         }
     }
 }
