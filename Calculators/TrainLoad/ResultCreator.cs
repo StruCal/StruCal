@@ -28,9 +28,8 @@ namespace Calculators.TrainLoad
             this.timeSettings = timeSettings;
         }
 
-        public TrainLoadOutput Calculate(FemCalculatorResult femResults, IList<VertexInput> vertices)
+        public TrainLoadOutput Calculate(FemResultProvider femResults, IList<VertexInput> vertices)
         {
-            var beamStressCalculatorMap = GetBeamStressCalculatorMap(femResults);
             var beamVeriticesMap = GetBeamVerticesMap(femResults, vertices);
 
             var times = this.timeSettings.GetTimeRange().ToList();
@@ -38,12 +37,11 @@ namespace Calculators.TrainLoad
             Parallel.ForEach(times, time =>
             {
                 var meshStressResults = new List<MeshStressResult>();
-                foreach (var beamStressCalculatorPair in beamStressCalculatorMap)
+                foreach (var beam in femResults.GetBeams())
                 {
-                    var beam = beamStressCalculatorPair.Key;
-                    var stressCalculator = beamStressCalculatorPair.Value;
+                    var stressCalculator = femResults.GetStressCalculator(beam);
 
-                    var beamResult = femResults.BeamResults.GetResult(beam, time);
+                    var beamResult = femResults.GetResult(beam, time);
 
                     var beamVertices = beamVeriticesMap[beam];
                     var vertexResultCalculator = new VertexResultCalculator(beamResult, beam, stressCalculator);
@@ -63,10 +61,10 @@ namespace Calculators.TrainLoad
             return resultData;
         }
 
-        private static Dictionary<IDynamicBeamElement, List<VertexInput>> GetBeamVerticesMap(FemCalculatorResult femResults, IList<VertexInput> vertices)
+        private static Dictionary<IDynamicBeamElement, List<VertexInput>> GetBeamVerticesMap(FemResultProvider femResults, IList<VertexInput> vertices)
         {
-            return femResults.BeamElementBarIDMap.Select(e => e.Key)
-                .ToDictionary(e => e, f => vertices.Where(g => g.BarId == femResults.BeamElementBarIDMap[f]).ToList());
+            return femResults.beamElementBarIDMap.Select(e => e.Key)
+                .ToDictionary(e => e, f => vertices.Where(g => g.BarId == femResults.beamElementBarIDMap[f]).ToList());
         }
 
         private TrainLoadOutput GenerateTimeResults()
@@ -79,13 +77,7 @@ namespace Calculators.TrainLoad
             };
         }
 
-        private static IDictionary<IDynamicBeamElement,BeamStressCalculator> GetBeamStressCalculatorMap(FemCalculatorResult femResults)
-        {
-            var beamStressCalculatorMap = femResults.BeamElementBarIDMap
-                .Select(e => e.Key)
-                .ToDictionary(f => f, e => new BeamStressCalculator(e.BeamProperties.Section.SectionProperties));
-            return beamStressCalculatorMap;
-        }
+        
             
         private static IEnumerable<MeshStressResult> GenerateMeshStressResult(IEnumerable<VertexInput> beamVertices, VertexResultCalculator vertexResultCalculator)
         {

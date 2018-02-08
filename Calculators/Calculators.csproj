@@ -85,7 +85,7 @@
     <Compile Include="ShearReinforcement\ShearReinforcementCalculator.cs" />
     <Compile Include="TrainLoad\Extensions\Perimeter.cs" />
     <Compile Include="TrainLoad\FEMCalculator.cs" />
-    <Compile Include="TrainLoad\FemCalculatorResult.cs" />
+    <Compile Include="TrainLoad\FemResultProvider.cs" />
     <Compile Include="TrainLoad\GradienColor\Color.cs" />
     <Compile Include="TrainLoad\GradienColor\ColorProvider.cs" />
     <Compile Include="TrainLoad\GradienColor\IGradient.cs" />

@@ -29,6 +29,7 @@ namespace Calculators.TrainLoad
         {
             var femResult = this.femCalculator.Calculate();
 
+
             var time = new Stopwatch();
             time.Start();
             var output = this.resultCreator.Calculate(femResult,this.trainLoadInput.Vertices);

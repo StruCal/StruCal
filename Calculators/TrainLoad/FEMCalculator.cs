@@ -39,7 +39,7 @@ namespace Calculators.TrainLoad
             this.trainLoadInput = trainLoadInput;
         }
 
-        public FemCalculatorResult Calculate()
+        public FemResultProvider Calculate()
         {
             GenerateNodesAndElements();
             GenerateSupports();
@@ -48,17 +48,9 @@ namespace Calculators.TrainLoad
             structure.Solve();
 
             var results = structure.Results.BeamResults;
-            return GenerateFEMResult(results);
+            return new FemResultProvider(this.elementBarIdMap, results);
         }
 
-        private FemCalculatorResult GenerateFEMResult(DynamicBeamElementResults results)
-        {
-            return new FemCalculatorResult
-            {
-                BeamElementBarIDMap = this.elementBarIdMap,
-                BeamResults = results,
-            };
-        }
 
         private void GenerateMovingLoads()
         {
