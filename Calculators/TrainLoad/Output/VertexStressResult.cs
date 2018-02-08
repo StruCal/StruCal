@@ -24,12 +24,12 @@ namespace Calculators.TrainLoad.Output
             };
         }
 
-        public VertexColorResult ConvertToColor(ColorProvider colorProvider, double maxStress, double minStress)
+        public VertexColorResult ConvertToColor(ColorProvider colorProvider)
         {
             var result = new VertexColorResult();
             result.Displacement = this.Displacement;
             result.Position = this.Position;
-            result.Color = colorProvider.GetColor(this.Stress, maxStress, minStress);
+            result.Color = colorProvider.GetColor(this.Stress);
             return result;
         }
     }

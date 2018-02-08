@@ -88,6 +88,7 @@
     <Compile Include="TrainLoad\FemResultProvider.cs" />
     <Compile Include="TrainLoad\GradienColor\Color.cs" />
     <Compile Include="TrainLoad\GradienColor\ColorProvider.cs" />
+    <Compile Include="TrainLoad\GradienColor\ColorProviderFactory.cs" />
     <Compile Include="TrainLoad\GradienColor\IGradient.cs" />
     <Compile Include="TrainLoad\GradienColor\LinearGradient.cs" />
     <Compile Include="TrainLoad\Helpers\PointDHelper.cs" />

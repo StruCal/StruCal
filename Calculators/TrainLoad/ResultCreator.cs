@@ -16,7 +16,7 @@ namespace Calculators.TrainLoad
 {
     internal class ResultCreator
     {
-        private readonly ColorProvider color;
+        private readonly ColorProviderFactory colorFactory;
         private readonly TimeSettings timeSettings;
 
         private ConcurrentBag<TimeResult> timeResults = new ConcurrentBag<TimeResult>();
@@ -24,7 +24,7 @@ namespace Calculators.TrainLoad
 
         public ResultCreator(IGradient gradient, TimeSettings timeSettings)
         {
-            this.color = new ColorProvider(gradient);
+            this.colorFactory = new ColorProviderFactory(gradient);
             this.timeSettings = timeSettings;
         }
 
@@ -43,7 +43,6 @@ namespace Calculators.TrainLoad
 
                     var beamVertices = this.beamVerticesMap[beam];
                     var vertexMeshRestresResults = GenerateMeshStressResult(beamVertices, vertexResultCalculator);
-
                     meshStressResults.AddRange(vertexMeshRestresResults);
                 }
 
@@ -75,8 +74,6 @@ namespace Calculators.TrainLoad
             };
         }
 
-        
-            
         private static IEnumerable<MeshStressResult> GenerateMeshStressResult(IEnumerable<VertexInput> beamVertices, VertexResultCalculator vertexResultCalculator)
         {
             var result = new List<MeshStressResult>();
@@ -89,7 +86,7 @@ namespace Calculators.TrainLoad
             return result;
         }
 
-        private static List<double> GetStresses(List<MeshStressResult> meshStressResults)
+        private static List<double> GetStresses(IEnumerable<MeshStressResult> meshStressResults)
         {
             return meshStressResults
                             .Select(e => e.VertexResults)
@@ -108,9 +105,10 @@ namespace Calculators.TrainLoad
             return result;
         }
 
-        private List<MeshColorResult> ConvertStressToColor(List<MeshStressResult> meshStressResults, double maxStress, double minStress)
+        private IList<MeshColorResult> ConvertStressToColor(IEnumerable<MeshStressResult> meshStressResults, double maxStress, double minStress)
         {
-            return meshStressResults.Select(e => e.ConvertToColor(this.color, maxStress, minStress)).ToList();
+            var colorProvider = this.colorFactory.GetColorProvider(maxStress, minStress);
+            return meshStressResults.Select(e => e.ConvertToColor(colorProvider)).ToList();
         }
     }
 }

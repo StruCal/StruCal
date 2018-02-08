@@ -23,12 +23,12 @@ namespace Calculators.TrainLoad.Output
             };
         }
 
-       public MeshColorResult ConvertToColor(ColorProvider colorProvider, double maxStress, double minStress)
+       public MeshColorResult ConvertToColor(ColorProvider colorProvider)
         {
             var result = new MeshColorResult();
             result.BarId = this.BarId;
             result.MeshId = this.MeshId;
-            result.VertexResults = this.VertexResults.Select(f => f.ConvertToColor(colorProvider, maxStress, minStress));
+            result.VertexResults = this.VertexResults.Select(f => f.ConvertToColor(colorProvider));
             return result;
         }
 
