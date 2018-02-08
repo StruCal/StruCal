@@ -21,5 +21,7 @@ namespace Calculators.TrainLoad.Output
                 VertexResults = vertexResults,
             };
         }
+
+       
     }
 }

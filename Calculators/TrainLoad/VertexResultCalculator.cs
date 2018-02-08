@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Calculators.TrainLoad
 {
-    public class VertexResultCalculator
+    internal class VertexResultCalculator
     {
         private readonly DynamicBeamElementResult beamResult;
         private readonly IDynamicBeamElement beam;
@@ -23,6 +23,13 @@ namespace Calculators.TrainLoad
             this.beamResult = beamResult;
             this.beam = beam;
             this.stressCalculator = stressCalculator;
+        }
+
+        public static VertexResultCalculator FromFEMResult(FemResultProvider femResults, IDynamicBeamElement beam, double time)
+        {
+            var stressCalculator = femResults.GetStressCalculator(beam);
+            var beamResult = femResults.GetResult(beam, time);
+            return new VertexResultCalculator(beamResult, beam, stressCalculator);
         }
 
         public VertexStressResult GetVertexStressResult(Point3D vertex)
