@@ -27,7 +27,7 @@ export class StructureCreator extends BaseCreator {
         this._structureData = new StructureData();
         this.clearGeometry();
         this._barsCreator.drawBars(structureGeometry.bars, this.structureData);
-        this._supportCreator.drawSupports(structureGeometry.bars);
+        this._supportCreator.drawSupports(structureGeometry.supports);
     }
 
     public get structureData() {

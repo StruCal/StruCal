@@ -22,5 +22,5 @@ export const materialLoad = new THREE.MeshPhongMaterial({
 export const materialSupport = new THREE.MeshBasicMaterial({
     color: supportColor,
     transparent: true,
-    opacity: 0.2,
+    opacity: 0.3,
 });

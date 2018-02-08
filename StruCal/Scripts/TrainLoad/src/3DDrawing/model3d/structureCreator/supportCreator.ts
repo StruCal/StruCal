@@ -4,23 +4,20 @@ import { Point3D } from '../../../common/utils/point3d';
 import * as THREE from 'three';
 import { getExtrudeSettings } from './extrudeSettings';
 import { materialSupport } from '../material';
+import { Support } from '../../../common/structure/support';
 
-const width = 0.2;
+const width = 0.3;
 const length = 1;
-const headHeight = 0.2;
-const bodyHeight = 0.2;
+const headHeight = 0.3;
+const bodyHeight = 0.3;
 
 export class SupportCreator extends BaseCreator {
     constructor(scene: THREE.Scene) {
         super(scene);
     }
 
-    public drawSupports(bars: Array<Bar>): void {
-        const supportPoints = bars.map(e => [e.startPoint, e.endPoint])
-            .reduce((a, e) => a.concat(e));
-        const supportLocation = [...Array.from(new Set<Point3D>(supportPoints))];
-        supportLocation.forEach(e => this.drawSupport(e));
-
+    public drawSupports(supports: Array<Support>): void {
+        supports.forEach(s => this.drawSupport(s.location));
     }
 
     private drawSupport(location: Point3D): void {
@@ -39,7 +36,7 @@ export class SupportCreator extends BaseCreator {
         const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
         geometry.rotateY(Math.PI / 2);
 
-        geometry.translate(0, -headHeight-bodyHeight, 0);
+        geometry.translate(0, -headHeight - bodyHeight, location.z);
 
         const mesh = new THREE.Mesh(geometry, materialSupport);
 
