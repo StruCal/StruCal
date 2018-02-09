@@ -24,7 +24,7 @@ export class ThreeJsCreator {
         this.canvasHelper = new CanvasHelper(canvas, widthHeightRatio);
 
         this._scene = new THREE.Scene();
-        this._scene.background = new THREE.Color(0xFFFFFF);
+        this._scene.background = new THREE.Color(0xf5f5f5);
 
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize(this.canvasHelper.width, this.canvasHelper.height);
@@ -72,17 +72,20 @@ export class ThreeJsCreator {
 
     private addLighting(): void {
         const directionalLight1 = new THREE.DirectionalLight(0xffffff, 1);
-        directionalLight1.position.set(100, 100, 100);
+        directionalLight1.position.set(0, 100, 100);
         directionalLight1.target.position.set(0, 0, 0);
         this._scene.add(directionalLight1);
 
-        const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1);
-        directionalLight2.position.set(100, -100, 100);
-        directionalLight2.target.position.set(0, 0, 0);
+        const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.5);
+        directionalLight2.position.set(0, -100, 100);
+        directionalLight2.target.position.set(0, 0, 100);
         this._scene.add(directionalLight2);
 
-        const light = new THREE.AmbientLight(0xffffff); // soft white light
-        this._scene.add(light);
+        const light = new THREE.HemisphereLight( 0xffffff, 0xffffff, 1 );
+        this.scene.add( light );
+
+        //const light = new THREE.AmbientLight(0xffffff); // soft white light
+        //this._scene.add(light);
 
     }
 
