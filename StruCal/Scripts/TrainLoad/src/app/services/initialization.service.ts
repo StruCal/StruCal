@@ -25,7 +25,7 @@ export class InitializationService {
   public get section(): Section {
     const sectionType = this.inputService.getSectionType();
     const sectionInput = this.inputService.getSectionInput(sectionType);
-    const section = sectionInputFactory().getSectionBuilder(sectionType).section1FromInput(sectionInput);
+    const section = sectionInputFactory().getSectionBuilder(sectionType).sectionFromInput(sectionInput);
     return section;
   }
 

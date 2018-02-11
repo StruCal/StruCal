@@ -66,11 +66,12 @@ export class ModalSection1Component implements OnInit {
   private saveAndClose() {
     this.inputService.saveSectionInput(this.inputs, this.sectionType);
     this.structureService.setSection(this.section);
+    this.structureService.setSectionType(this.sectionType);
     this.hide();
   }
 
   private draw() {
-    this.section = sectionInputFactory().getSectionBuilder(this.sectionType).section1FromInput(this.inputs);
+    this.section = sectionInputFactory().getSectionBuilder(this.sectionType).sectionFromInput(this.inputs);
     setTimeout(() =>
       this.drawing2d.draw(this.section)
       , 100);
