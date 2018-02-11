@@ -8,8 +8,6 @@ import { section1Builder } from '../../common/sectionBuilders/section1Builder';
 import { Drawing2dDirective } from './drawing2d.directive';
 
 
-const canvasID = 'canvas2d';
-
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'drawing2d',
@@ -41,8 +39,8 @@ export class Drawing2dComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.sectionDrawing = new SectionDrawing(canvasID);
-    this.drawing2dElement.log();
+    const canvasId = this.drawing2dElement.getCanvasId();
+    this.sectionDrawing = new SectionDrawing(canvasId);
   }
 
 }
