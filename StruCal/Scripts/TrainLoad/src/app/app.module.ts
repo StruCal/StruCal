@@ -24,6 +24,7 @@ import { ModalSpanComponent } from './modal-span/modal-span.component';
 import { ControlPanelService } from './services/control-panel.service';
 import { InputService } from './services/input.service';
 import { InitializationService } from './services/initialization.service';
+import { Drawing2dDirective } from './drawing2d/drawing2d.directive';
 
 
 
@@ -41,6 +42,7 @@ import { InitializationService } from './services/initialization.service';
     StatusBarComponent,
     ProgressDirective,
     DetailsComponentComponent,
+    Drawing2dDirective,
   ],
   imports: [
     BrowserModule,

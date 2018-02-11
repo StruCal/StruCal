@@ -1,10 +1,11 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ContentChild } from '@angular/core';
 import { DrawingBase } from '../../2DDrawing/drawingBase';
 import { SectionDrawing } from '../../2DDrawing/sectionDrawing';
 import { mockedStructureGeometry } from '../../common/startData/mockedStructureGeometry';
 import { Perimeter } from '../../common/structure/perimeter';
 import { Section } from '../../common/structure/section';
 import { section1Builder } from '../../common/sectionBuilders/section1Builder';
+import { Drawing2dDirective } from './drawing2d.directive';
 
 
 const canvasID = 'canvas2d';
@@ -16,6 +17,9 @@ const canvasID = 'canvas2d';
   styleUrls: ['./drawing2d.component.css']
 })
 export class Drawing2dComponent implements OnInit, AfterViewInit {
+
+@ContentChild('drawingDir', {read: Drawing2dDirective})
+ drawing2dElement;
 
   private sectionDrawing: SectionDrawing;
 
@@ -33,11 +37,12 @@ export class Drawing2dComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-
+    
   }
 
   ngOnInit() {
     this.sectionDrawing = new SectionDrawing(canvasID);
+    this.drawing2dElement.log();
   }
 
 }

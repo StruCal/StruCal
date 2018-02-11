@@ -4,7 +4,7 @@ import { Point } from '../common/utils/point';
 import { DrawingSettings } from './drawingSettings';
 
 const SVG = require('svg.js');
-
+const drawingClassName = 'drawing2d';
 
 export abstract class DrawingBase {
     private settings: DrawingSettings;
@@ -18,9 +18,13 @@ export abstract class DrawingBase {
 
     constructor(private canvasId: string, settings: DrawingSettings) {
         this.settings = settings;
-        const canvasObject = document.getElementById(canvasId);
+        const drawingObject = document.getElementById(canvasId);
+        const canvasObject = Array.from(drawingObject.childNodes)
+        .filter(childNode => typeof (childNode as HTMLInputElement).className !== 'undefined')
+        .filter(childNode => (childNode as HTMLInputElement).className.includes(drawingClassName))[0] as HTMLInputElement;
+        canvasObject.id = 'test';
         this.canvasHelper = new CanvasHelper(canvasObject, settings.widthHeightRatio);
-        this.canvas = SVG(canvasId);
+        this.canvas = SVG(canvasObject.id);
         this.settings.backgroundDrawingFunction(this.canvas);
     }
 
