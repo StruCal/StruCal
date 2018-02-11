@@ -18,8 +18,8 @@ const canvasID = 'canvas2d';
 })
 export class Drawing2dComponent implements OnInit, AfterViewInit {
 
-@ContentChild('drawingDir', {read: Drawing2dDirective})
- drawing2dElement;
+@ContentChild(Drawing2dDirective)
+ drawing2dElement: Drawing2dDirective;
 
   private sectionDrawing: SectionDrawing;
 
@@ -37,7 +37,7 @@ export class Drawing2dComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    
+
   }
 
   ngOnInit() {
