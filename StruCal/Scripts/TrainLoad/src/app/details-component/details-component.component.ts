@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef, AfterViewInit, AfterContentInit }
 import { StructureService } from '../services/structure.service';
 import { SectionType } from '../../common/types/sectionTypes';
 import { TrainLoadType } from '../../common/types/trainLoadType';
+import { sectionDetailDescription, trainDetailDescription } from './detail-descriptions';
 
 
 @Component({
@@ -27,10 +28,8 @@ export class DetailsComponentComponent implements OnInit, AfterContentInit {
 
   ngOnInit() {
     this.structureService.span$.subscribe(e => this.span = `${e.lengths.length}x${e.lengths[0]}`);
-    this.structureService.sectionType$.subscribe(e => this.sectionType = SectionType[e].toString());
-    this.structureService.trainLoadType$.subscribe(e => {
-      this.trainLoadType = TrainLoadType[e];
-    });
+    this.structureService.sectionType$.subscribe(e => this.sectionType = sectionDetailDescription[e]);
+    this.structureService.trainLoadType$.subscribe(e => this.trainLoadType = trainDetailDescription[e]);
     this.cdr.detectChanges();
   }
 
