@@ -6,8 +6,8 @@ import { ResultData } from '../../common/resultData/resultData';
 
 
 
-const url = 'http://localhost:50025/api/TrainLoadApi';
-
+// const url = 'http://localhost:50025/api/TrainLoadApi';
+const url = 'api/TrainLoadApi';
 @Injectable()
 export class HttpService {
 
