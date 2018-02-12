@@ -40,7 +40,7 @@ export class ModalSpanComponent implements OnInit {
   ngOnInit() {
   }
 
-  private saveAndClose() {
+ saveAndClose() {
     const span = this.generateSpan();
     this.structureService.setSpan(span);
     this.inputService.saveSpan(span);

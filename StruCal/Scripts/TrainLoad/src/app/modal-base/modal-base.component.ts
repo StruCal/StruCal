@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalBaseComponent implements OnInit {
   public visible = false;
-  private visibleAnimate = false;
-  private largeModal = true;
+  public visibleAnimate = false;
+  public largeModal = true;
   constructor() { }
 
   public show(): void {

@@ -63,7 +63,7 @@ export class ModalSection1Component implements OnInit {
   ngOnInit() {
   }
 
-  private saveAndClose() {
+ saveAndClose() {
     this.inputService.saveSectionInput(this.inputs, this.sectionType);
     this.structureService.setSection(this.section);
     this.structureService.setSectionType(this.sectionType);
