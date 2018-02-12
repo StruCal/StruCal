@@ -3,7 +3,7 @@ import { Section } from '../structure/section';
 import * as _ from 'lodash';
 
 const distanceBetweenGirders = 2;
-const webDivisionCount = 4;
+const webDivisionCount = 15;
 
 export function section2Builder() {
     let height: number;
