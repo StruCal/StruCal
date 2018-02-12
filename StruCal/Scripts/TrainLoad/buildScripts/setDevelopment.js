@@ -2,7 +2,7 @@ const replace = require('replace-in-file');
 
 const options = {
     disableGlobs: true,
-    files: 'buildScripts\\buildType.js',
+    files: 'buildScripts\\buildType.ts',
     from: 'true',
     to: 'false',
   };
