@@ -323,13 +323,15 @@
     <Content Include="Scripts\RcBeam\ModalControllers\rectangularSectionCtrl.js" />
     <Content Include="Scripts\RcBeam\MainPageControllers\resultPanelCtrl.js" />
     <Content Include="Scripts\RcBeam\ModalControllers\steelCtrl.js" />
-    <Content Include="Scripts\TrainLoad\karma.conf.js" />
-    <Content Include="Scripts\TrainLoad\protractor.conf.js" />
-    <Content Include="Scripts\TrainLoad\src\app\app.component.css" />
-    <Content Include="Scripts\TrainLoad\src\app\app.component.html" />
-    <Content Include="Scripts\TrainLoad\src\favicon.ico" />
-    <Content Include="Scripts\TrainLoad\src\index.html" />
-    <Content Include="Scripts\TrainLoad\src\styles.css" />
+    <Content Include="Scripts\TrainLoad\dist\3rdpartylicenses.txt" />
+    <Content Include="Scripts\TrainLoad\dist\assets\HSLM-A.svg" />
+    <Content Include="Scripts\TrainLoad\dist\assets\HSLM-B.svg" />
+    <Content Include="Scripts\TrainLoad\dist\favicon.ico" />
+    <Content Include="Scripts\TrainLoad\dist\index.html" />
+    <Content Include="Scripts\TrainLoad\dist\inline.bundle.js" />
+    <Content Include="Scripts\TrainLoad\dist\main.bundle.js" />
+    <Content Include="Scripts\TrainLoad\dist\polyfills.bundle.js" />
+    <Content Include="Scripts\TrainLoad\dist\styles.bundle.css" />
     <Content Include="Views\RCBeam\_CoefficientsModal.cshtml" />
     <Content Include="Views\RCBeam\_ConcreteModal.cshtml" />
     <Content Include="Views\RCBeam\_SteelModal.cshtml" />
@@ -348,18 +350,6 @@
     <Content Include="Views\Membrane\_membraneGeometry.cshtml" />
     <Content Include="Views\Membrane\_membraneProperties.cshtml" />
     <Content Include="Views\Membrane\_membraneCalculations.cshtml" />
-    <Content Include="Scripts\TrainLoad\.angular-cli.json" />
-    <Content Include="Scripts\TrainLoad\.editorconfig" />
-    <Content Include="Scripts\TrainLoad\.gitignore" />
-    <Content Include="Scripts\TrainLoad\e2e\tsconfig.e2e.json" />
-    <Content Include="Scripts\TrainLoad\package-lock.json" />
-    <Content Include="Scripts\TrainLoad\package.json" />
-    <Content Include="Scripts\TrainLoad\README.md" />
-    <Content Include="Scripts\TrainLoad\src\assets\.gitkeep" />
-    <Content Include="Scripts\TrainLoad\src\tsconfig.app.json" />
-    <Content Include="Scripts\TrainLoad\src\tsconfig.spec.json" />
-    <Content Include="Scripts\TrainLoad\tsconfig.json" />
-    <Content Include="Scripts\TrainLoad\tslint.json" />
     <Content Include="Views\TrainLoad\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -476,19 +466,6 @@
       <Project>{c394e565-ed2a-434b-95f5-7b2b924eb9ac}</Project>
       <Name>Common</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="Scripts\TrainLoad\e2e\app.e2e-spec.ts" />
-    <TypeScriptCompile Include="Scripts\TrainLoad\e2e\app.po.ts" />
-    <TypeScriptCompile Include="Scripts\TrainLoad\src\app\app.component.spec.ts" />
-    <TypeScriptCompile Include="Scripts\TrainLoad\src\app\app.component.ts" />
-    <TypeScriptCompile Include="Scripts\TrainLoad\src\app\app.module.ts" />
-    <TypeScriptCompile Include="Scripts\TrainLoad\src\environments\environment.prod.ts" />
-    <TypeScriptCompile Include="Scripts\TrainLoad\src\environments\environment.ts" />
-    <TypeScriptCompile Include="Scripts\TrainLoad\src\main.ts" />
-    <TypeScriptCompile Include="Scripts\TrainLoad\src\polyfills.ts" />
-    <TypeScriptCompile Include="Scripts\TrainLoad\src\test.ts" />
-    <TypeScriptCompile Include="Scripts\TrainLoad\src\typings.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
