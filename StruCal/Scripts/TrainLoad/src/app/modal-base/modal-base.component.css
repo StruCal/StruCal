@@ -1,3 +1,7 @@
 .modal {
     background: rgba(0,0,0,0.6);
   }
+
+  .extraPadding {
+    padding-top: 60px;
+  }
