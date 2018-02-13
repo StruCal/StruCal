@@ -259,6 +259,7 @@
     <Content Include="img\RCBeamImg.svg">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="img\TrainLoadImg.svg" />
     <Content Include="Scripts\AngularShared\angularShared.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />

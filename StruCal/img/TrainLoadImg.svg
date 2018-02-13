@@ -1,0 +1,16 @@
+<svg viewBox ="0 0 50 50" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+  <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+  
+ <g>
+  <title>Layer 1</title>
+  <path id="svg_1" stroke-width="1" stroke-miterlimit="10" stroke="#000000" fill="none" d="m32,13c0,0.552 -0.447,1 -1,1l-12,0c-0.552,0 -1,-0.448 -1,-1l0,-2c0,-0.552 0.448,-1 1,-1l12,0c0.553,0 1,0.448 1,1l0,2z"/>
+  <rect id="svg_2" width="50" height="50" fill="none"/>
+  <line id="svg_3" y2="44.166" y1="49" x2="13.346" x1="7.577" stroke-width="1" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke="#000000" fill="none"/>
+  <line id="svg_4" y2="44.166" y1="49" x2="36.654" x1="42.423" stroke-width="1" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke="#000000" fill="none"/>
+  <path id="svg_5" stroke-width="1" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke="#000000" fill="none" d="m16.991,4l-1.991,0c-3.312,0 -6,2.56 -6,5.714l0,28.572c0,3.154 2.688,5.714 6,5.714l20,0c3.312,0 6,-2.56 6,-5.714l0,-28.572c0,-3.154 -2.688,-5.714 -6,-5.714l-1.932,0m-5.035,0l-5.91,0"/>
+  <path id="svg_8" stroke-width="1" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke="#000000" fill="none" d="m13,15.833c0,-1.012 0.896,-1.833 2,-1.833l20,0c1.104,0 2,0.821 2,1.833l0,8.333c0,1.012 -0.896,1.834 -2,1.834l-20,0c-1.104,0 -2,-0.822 -2,-1.834l0,-8.333z"/>
+  <circle id="svg_9" stroke-width="1" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke="#000000" r="3" fill="none" cy="36" cx="16"/>
+  <circle id="svg_10" stroke-width="1" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" stroke="#000000" r="3" fill="none" cy="36" cx="34"/>
+  <line stroke-linecap="round" stroke-linejoin="round" id="svg_12" y2="4.003174" x2="33.166482" y1="4.003174" x1="16.833518" fill-opacity="null" stroke-opacity="null" stroke-width="1" stroke="#000000" fill="none"/>
+ </g>
+</svg>
