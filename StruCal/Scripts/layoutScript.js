@@ -22,6 +22,10 @@
             });
         } // End if
     });
+
+    $("#aboutBtn").on('click', function () {
+        window.location.href = "/#about";
+    });
 })
 
 $(window).scroll(function () {
