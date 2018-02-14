@@ -3,14 +3,15 @@ import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Section } from '../../common/structure/section';
 import { startSection1 } from '../../common/startData/mockedSection1';
-import { SectionType } from '../../common/sectionBuilders/sectionTypes';
 import { LocalStorageService } from './local-storage.service';
 import { ModelInput } from '../input/modelInput';
 import { sectionInputFactory } from '../modal-section1/Input/sectionInputFactory';
 import { MovingLoad } from '../../common/movingLoad/movingLoad';
-import { TrainLoadType } from '../../common/trainLoadBuilders/trainLoadType';
 import { trainLoadInputFactory } from '../modal-train-load/input/trainLoadInputFactory';
 import { startHSLMA } from '../../common/startData/mockedHSLMA';
+import { Span } from '../../common/structure/span';
+import { SectionType } from '../../common/types/sectionTypes';
+import { TrainLoadType } from '../../common/types/trainLoadType';
 
 
 @Injectable()
@@ -19,52 +20,38 @@ export class StructureService {
   private sectionSource = new Subject<Section>();
   public section$ = this.sectionSource.asObservable();
 
-  private sectionInputSource = new Subject<Array<ModelInput>>();
-  public sectionInput$ = this.sectionInputSource.asObservable();
-
-  private trainLoadInputSource = new Subject<Array<ModelInput>>();
-  public trainLoadInput$ = this.trainLoadInputSource.asObservable();
-
   private trainLoadSource = new Subject<MovingLoad>();
   public trainLoad$ = this.trainLoadSource.asObservable();
 
-  constructor(private localStorageService: LocalStorageService) {
+  private spanSource = new Subject<Span>();
+  public span$ = this.spanSource.asObservable();
+
+  private sectionTypeSource = new Subject<SectionType>();
+  public sectionType$ = this.sectionTypeSource.asObservable();
+
+  private trainLoadTypeSource = new Subject<TrainLoadType>();
+  public trainLoadType$ = this.trainLoadTypeSource.asObservable();
+
+  constructor() {
   }
 
-  public setSection(section: Section) {
+  public setSection(section: Section): void {
     this.sectionSource.next(section);
   }
 
-  public setSectionUsingType(type: SectionType): void {
-    const sectionInputBuilder = sectionInputFactory().getSectionBuilder(type);
-    const sectionInput = this.localStorageService.getSectionInput(type) || sectionInputFactory().getInput(type);
-    const section = sectionInputBuilder.section1FromInput(sectionInput);
-    this.setSection(section);
-    this.sectionInputSource.next(sectionInput);
-  }
-
-  public saveSectionInput(inputs: Array<ModelInput>, type: SectionType): void {
-    this.localStorageService.saveSectionInput(inputs, type);
-  }
-
-  public setTrainLoad(trainLoad: MovingLoad) {
+  public setTrainLoad(trainLoad: MovingLoad): void {
     this.trainLoadSource.next(trainLoad);
   }
 
-  public saveTrainLoadInput(inputs: Array<ModelInput>, type: TrainLoadType): void {
-    this.localStorageService.saveTrainLoadInput(inputs, type);
+  public setSpan(span: Span): void {
+    this.spanSource.next(span);
   }
 
-  public setTrainLoadUsingType(type: TrainLoadType): void {
-    const trainLoadInput = this.localStorageService.getTrainLoadInput(type) || trainLoadInputFactory().getInput(type);
-    const trainLoadInputBuilder = trainLoadInputFactory().getTrainLoadBuilder(type);
-    const trainLoad = trainLoadInputBuilder.FromInput(trainLoadInput);
-    this.setTrainLoad(trainLoad);
-    this.trainLoadInputSource.next(trainLoadInput);
+  public setSectionType(sectionType: SectionType): void {
+    this.sectionTypeSource.next(sectionType);
   }
 
-  public start(): void {
-    this.setSection(startSection1);
-    this.setTrainLoad(startHSLMA);
+  public setTrainLoadType(trainLoadType: TrainLoadType): void {
+    this.trainLoadTypeSource.next(trainLoadType);
   }
 }

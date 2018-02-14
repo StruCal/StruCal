@@ -17,4 +17,8 @@ export class StructureGeometry {
         const length = maxX - minX;
         return length;
     }
+
+    public getBottomWidth(): number {
+        return this.bars[0].section.getBottomWidth();
+    }
 }

@@ -5,15 +5,15 @@ import { StructureData } from '../structureCreator/structureData';
 
 export class StressProvider {
     private structureData: StructureData;
-    private scene: any;
-    private resultInterpolation: ResultProvider;
+    private scene: THREE.Scene;
+    private resultProvider: ResultProvider;
     private meshes: Array<any>;
 
-    constructor(scene: any, resultInterpolation: ResultProvider, structureData: StructureData) {
+    constructor(scene: THREE.Scene, resultProvider: ResultProvider, structureData: StructureData) {
         this.scene = scene;
-        this.resultInterpolation = resultInterpolation;
+        this.resultProvider = resultProvider;
         this.structureData = structureData;
-        this.meshes = this.scene.children.filter(e => e.type === 'Mesh');
+        this.meshes = this.scene.children.filter(e => e.type === 'Mesh' && structureData.isStructureMesh(e.uuid));
     }
 
     public applyStress(): void {
@@ -33,7 +33,7 @@ export class StressProvider {
 
                 for (let i = 0; i < 3; i++) {
                     const vertex = faceVertices[i];
-                    const color = this.resultInterpolation.getColor(vertex, mesh.uuid);
+                    const color = this.resultProvider.getColor(vertex, mesh.uuid);
                     face.vertexColors[i].set(color);
 
                 }

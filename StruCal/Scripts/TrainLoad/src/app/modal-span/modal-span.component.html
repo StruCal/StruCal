@@ -1,0 +1,74 @@
+<modal-base>
+  <ng-container class="app-modal-header">
+    Spans
+  </ng-container>
+  <ng-container class="app-modal-body">
+    <div class="containter-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <form #formSpan="ngForm" class="form-horizontal">
+            <div class="form-group">
+              <div class="col-xs-3">
+                <label class="control-label">Span length: </label>
+              </div>
+              <div class="col-xs-4">
+                <input type="number" pattern="^[1-9]\d*" 
+                required class="form-control" min="10" max="60" 
+                [(ngModel)]="spanLength"
+                name="spanInput">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-4 col-xs-offset-3">
+                <div class="funkyradio">
+                  <div class="funkyradio-success">
+                    <input type="radio" name="radio" id="radio2" [(ngModel)]="spanType" value="single"/>
+                    <label for="radio2">Single span</label>
+                  </div>
+                  <div class="funkyradio-success">
+                    <input type="radio" name="radio" id="radio3" [(ngModel)]="spanType" value="double"/>
+                    <label for="radio3">Double span</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container class="app-modal-footer">
+    <button type="button" class="btn btn-default" (click)="hide()">Close</button>
+    <button type="button" class="btn btn-primary" [disabled]="formSpan.invalid" (click)="saveAndClose()">Save changes</button>
+  </ng-container>
+</modal-base>
+
+<!-- <h4>Radio Buttons</h4>
+
+    <div class="funkyradio">
+        <div class="funkyradio-default">
+            <input type="radio" name="radio" id="radio1" />
+            <label for="radio1">First Option default</label>
+        </div>
+        <div class="funkyradio-primary">
+            <input type="radio" name="radio" id="radio2" checked/>
+            <label for="radio2">Second Option primary</label>
+        </div>
+        <div class="funkyradio-success">
+            <input type="radio" name="radio" id="radio3" />
+            <label for="radio3">Third Option success</label>
+        </div>
+        <div class="funkyradio-danger">
+            <input type="radio" name="radio" id="radio4" />
+            <label for="radio4">Fourth Option danger</label>
+        </div>
+        <div class="funkyradio-warning">
+            <input type="radio" name="radio" id="radio5" />
+            <label for="radio5">Fifth Option warning</label>
+        </div>
+        <div class="funkyradio-info">
+            <input type="radio" name="radio" id="radio6" />
+            <label for="radio6">Sixth Option info</label>
+        </div>
+    </div> -->

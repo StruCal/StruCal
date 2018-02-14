@@ -10,7 +10,7 @@ export const section1Input = [{
 {
   name: 'Web thickness:',
   value: startSection1Data.webThickness * multiplier,
-  step: 0.1,
+  step: 1,
 },
 {
   name: 'Top flange width:',
@@ -20,7 +20,7 @@ export const section1Input = [{
 {
   name: 'Top flange thickness:',
   value: startSection1Data.topFlangeThickness * multiplier,
-  step: 0.1,
+  step: 1,
 },
 {
   name: 'Bottom flange width:',
@@ -30,6 +30,6 @@ export const section1Input = [{
 {
   name: 'Bottom flange thickness:',
   value: startSection1Data.bottomFlangeThicknes * multiplier,
-  step: 0.1,
+  step: 1,
 }
 ];

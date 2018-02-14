@@ -39,7 +39,7 @@ namespace Calculators.TrainLoad
             this.trainLoadInput = trainLoadInput;
         }
 
-        public FemCalculatorResult Calculate()
+        public FemResultProvider Calculate()
         {
             GenerateNodesAndElements();
             GenerateSupports();
@@ -48,12 +48,9 @@ namespace Calculators.TrainLoad
             structure.Solve();
 
             var results = structure.Results.BeamResults;
-            return new FemCalculatorResult
-            {
-                BeamElementBarIDMap = this.elementBarIdMap,
-                BeamResults = results,
-            };
+            return new FemResultProvider(this.elementBarIdMap, results);
         }
+
 
         private void GenerateMovingLoads()
         {
@@ -78,7 +75,6 @@ namespace Calculators.TrainLoad
         {
             foreach (var bar in this.trainLoadInput.StructureGeometry.Bars)
             {
-
                 var section = new FEMSection(bar.Section.Perimeters.Convert());
 
                 var dynamicProperties = DynamicBeamPropertiesBuilder.Create()

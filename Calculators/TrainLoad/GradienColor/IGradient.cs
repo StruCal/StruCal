@@ -2,7 +2,7 @@
 
 namespace Calculators.TrainLoad
 {
-    internal interface IGradient
+    public interface IGradient
     {
         Color ColorAt(int index);
         int Range { get; }

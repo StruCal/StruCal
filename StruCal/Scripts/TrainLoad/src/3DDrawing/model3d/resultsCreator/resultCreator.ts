@@ -9,7 +9,7 @@ import { ResultData } from '../../../common/resultData/resultData';
 export class ResultCreator {
     private scene: any;
 
-    private resultInterpolation: ResultProvider;
+    private resultProvider: ResultProvider;
     private displacementProvider: DisplacementProvider;
     private stressProvider: StressProvider;
 
@@ -19,13 +19,13 @@ export class ResultCreator {
 
     public setResult(result: ResultData, structureData: StructureData): void {
 
-        this.resultInterpolation = new ResultProvider(result);
-        this.displacementProvider = new DisplacementProvider(this.scene, this.resultInterpolation, structureData);
-        this.stressProvider = new StressProvider(this.scene, this.resultInterpolation, structureData);
+        this.resultProvider = new ResultProvider(result);
+        this.displacementProvider = new DisplacementProvider(this.scene, this.resultProvider, structureData);
+        this.stressProvider = new StressProvider(this.scene, this.resultProvider, structureData);
     }
 
     public tickAnimation(time: number): void {
-        this.resultInterpolation.setTime(time);
+        this.resultProvider.setTime(time);
         this.displacementProvider.applyDisplacement();
         this.stressProvider.applyStress();
     }

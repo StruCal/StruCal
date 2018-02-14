@@ -6,6 +6,7 @@ import { TimeSettings } from '../time/timeSettings';
 import { maxColor, minColor, middleColor } from '../../3DDrawing/model3d/structureCreator/colors';
 import { StructureData } from '../../3DDrawing/model3d/structureCreator/structureData';
 
+const extraTimeFactor = 1;
 
 export function calculationsInputBuilder() {
 
@@ -44,7 +45,7 @@ export function calculationsInputBuilder() {
         const structureLength = calculationsInput.structureGeometry.getLength();
         const loadLength = calculationsInput.movingLoads.getLength();
 
-        const endTime = (structureLength + loadLength) / calculationsInput.movingLoads.speed;
+        const endTime = ((structureLength + loadLength) / calculationsInput.movingLoads.speed) * extraTimeFactor;
         timeSettings.endTime = endTime;
         calculationsInput.timeSettings = timeSettings;
         return { build };

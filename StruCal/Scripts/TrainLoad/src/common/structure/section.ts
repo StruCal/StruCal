@@ -1,5 +1,6 @@
 import { Perimeter } from './perimeter';
 import { Point } from '../utils/point';
+import { isEqual } from '../utils/equal';
 
 
 export class Section {
@@ -36,6 +37,17 @@ export class Section {
         return { x, y };
     }
 
+    public getBottomWidth(): number {
+        const coordinates = this.getCoordinates();
+        const sortedVertically = coordinates.sort((a, b) => a.y - b.y);
+        const minY = coordinates[0].y;
+        const bottomXs = sortedVertically.filter(e => isEqual(e.y, minY)).map(e => e.x);
+        const maxX = Math.max(...bottomXs);
+        const minX = Math.min(...bottomXs);
+
+        const width = maxX - minX;
+        return width;
+    }
 
     private getCoordinates(): Array<Point> {
         const coord = this.perimeters.map(e => e.coordinates).reduce((a, b) => a.concat(b));

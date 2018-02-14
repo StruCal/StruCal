@@ -26,5 +26,17 @@ namespace StruCal.BindingModels.TrainLoad.Input
                 DeltaTimeResults = timeSettingsDTO.deltaTimeResults,
             };
         }
+
+        public static TimeSettingsDTO ToTimeSettingsDTO(this TimeSettings timeSettings)
+        {
+            return new TimeSettingsDTO
+            {
+                deltaTime = timeSettings.DeltaTime,
+                startTime = timeSettings.StartTime,
+                endTime = timeSettings.EndTime,
+                deltaTimeResults = timeSettings.DeltaTimeResults,
+            };
+        }
+
     }
 }

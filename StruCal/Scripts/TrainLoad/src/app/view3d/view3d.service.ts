@@ -8,6 +8,8 @@ import { StructureGeometry } from '../../common/structure/structureGeometry';
 import { TimeProvider } from '../../common/time/timeProvider';
 import { mockedStructureGeometry } from '../../common/startData/mockedStructureGeometry';
 import { ResultData } from '../../common/resultData/resultData';
+import { MovingLoadCreator } from '../../3DDrawing/model3d/movingLoadCreator/movingLoadCreator';
+import { MovingLoad } from '../../common/movingLoad/movingLoad';
 
 
 
@@ -19,9 +21,9 @@ export class View3dService {
   private structureCreator: StructureCreator;
   private resultCreator: ResultCreator;
   private timeProvider: TimeProvider;
+  private movingLoadCreator: MovingLoadCreator;
 
   constructor() {
-    this.timeProvider = new TimeProvider();
   }
 
   public InjectModelCreator(threeJsCreator: ThreeJsCreator): void {
@@ -29,16 +31,20 @@ export class View3dService {
 
     this.structureCreator = new StructureCreator(this.threeJsCreator.scene);
     this.resultCreator = new ResultCreator(this.threeJsCreator.scene);
+    this.movingLoadCreator = new MovingLoadCreator(this.threeJsCreator.scene);
   }
 
   public drawStructure(structureGeometry: StructureGeometry) {
     this.structureGeometry = structureGeometry;
     this.structureCreator.draw(structureGeometry);
+    this.movingLoadCreator.reset();
     this.threeJsCreator.tickAnimation = () => { };
   }
 
-  public drawResults(results: ResultData) {
+  public drawResults(results: ResultData, movingLoad: MovingLoad) {
+    this.timeProvider = new TimeProvider(results.timeSettings);
     this.resultCreator.setResult(results, this.structureCreator.structureData);
+    this.movingLoadCreator.start(movingLoad, this.structureGeometry.getLength());
     this.threeJsCreator.tickAnimation = () => this.tick();
   }
 
@@ -53,10 +59,9 @@ export class View3dService {
 
   private tick(): void {
     this.timeProvider.tick();
-    if (this.timeProvider.getCurrentTime() > 49) {
-      this.timeProvider.reset();
-    }
-    this.resultCreator.tickAnimation(this.timeProvider.getCurrentTime());
+    const time = this.timeProvider.getCurrentTime();
+    this.resultCreator.tickAnimation(time);
+    this.movingLoadCreator.tickAnimation(time);
   }
 
 }

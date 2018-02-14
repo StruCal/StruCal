@@ -1,9 +1,9 @@
-import { TrainLoadType } from '../../../common/trainLoadBuilders/trainLoadType';
 import { ModelInput } from '../../input/modelInput';
 import { HSLMAFromInput } from './HSLMA/HSLMAFromInput';
 import { HSLMAInput } from './HSLMA/HSLMAInput';
 import { HSLMBInput } from './HSLMB/HSLMBInput';
 import { HSLMBFromInput } from './HSLMB/HSLMBFromInput';
+import { TrainLoadType } from '../../../common/types/trainLoadType';
 
 
 
@@ -14,10 +14,10 @@ export function trainLoadInputFactory() {
     function getInput(type: TrainLoadType | string): Array<ModelInput> {
         switch (type) {
             case TrainLoadType.HSLMA: {
-                return HSLMAInput;
+                return JSON.parse(JSON.stringify(HSLMAInput));
             }
             case TrainLoadType.HSLMB: {
-                return HSLMBInput;
+                return JSON.parse(JSON.stringify(HSLMBInput));
             }
         }
     }

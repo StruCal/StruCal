@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'modal-base',
   templateUrl: './modal-base.component.html',
   styleUrls: ['./modal-base.component.css']
 })
 export class ModalBaseComponent implements OnInit {
   public visible = false;
-  private visibleAnimate = false;
-
-  constructor() {}
+  public visibleAnimate = false;
+  public largeModal = true;
+  constructor() { }
 
   public show(): void {
     this.visible = true;
@@ -30,4 +31,7 @@ export class ModalBaseComponent implements OnInit {
   ngOnInit() {
   }
 
+  public setSmallModal() {
+    this.largeModal = false;
+  }
 }

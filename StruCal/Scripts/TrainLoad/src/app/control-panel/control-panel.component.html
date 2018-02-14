@@ -1,41 +1,64 @@
-<modal-section1 #modalSection1></modal-section1>
+<modal-section1 #modalSection1 ></modal-section1>
 <modal-train-load #modalTrainLoad></modal-train-load>
+<modal-span #modalSpan></modal-span>
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Control Panel</h3>
   </div>
   <div class="panel-body">
     <div class="container-fluid">
-      <div class="row form-group">
-        <div class="col-xs-12">
+      <div class="col-xs-6">
+        <div class="row form-group">
+          <div class="col-xs-12">
             <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Train Load <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a href="#" (click)="modalTrainLoad.show(0)" >HSLM-A</a></li>
-                  <li><a href="#" (click)="modalTrainLoad.show(1)">HSLM-B</a></li>
-                </ul>
-              </div>
-              <div class="btn-group">
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Section <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a href="#" (click)="modalSection1.show(0)">Type I</a></li>
-                  </ul>
-                </div>
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Train Load
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="#" (click)="modalTrainLoad.show(0)">HSLM-A</a>
+                </li>
+                <li>
+                  <a href="#" (click)="modalTrainLoad.show(1)">HSLM-B</a>
+                </li>
+              </ul>
+            </div>
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Section
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="#" (click)="modalSection1.show(0)">Type 1</a>
+                </li>
+                <li>
+                  <a href="#" (click)="modalSection1.show(1)">Type 2</a>
+                </li>
+              </ul>
+            </div>
+            <div class="btn btn-primary" (click)="modalSpan.show()">Span</div>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-xs-12">
+            <button (click)="calculate()" class="btn btn-lg" [ngClass]="{'btn-success':valid,'btn-warning':dirty,'btn-danger':error,'btn-info':progress}">
+              <span class="glyphicon glyphicon-cog"></span> Calculate</button>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-xs-8"><status-bar></status-bar></div>
         </div>
       </div>
-      <div class="row form-group">
-        <div class="col-xs-12">
-          <button (click)="calculate()" class="btn btn-lg btn-warning">
-            <span class="glyphicon glyphicon-cog"></span> Calculate</button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-6">
-          <div class="alert alert-warning">Work in progress.</div>
+      <div class="col-xs-6">
+        <div class="row row-eq-height">
+          <div class="col-xs-4 col">
+            <details-component></details-component>
+          </div>
+          <div class="col-xs-4 col">
+            
+          </div>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import { Perimeter } from '../structure/perimeter';
 import { Section } from '../structure/section';
+import * as _ from 'lodash';
 
 const bottomWidth = 1;
 const topWidth = 1.5;
@@ -69,7 +70,7 @@ export function section1Builder() {
         const deckWidth = additionalDeckWidthBottom + bottomWidth;
         const distanceBetweenRibs = deckWidth / ribCount;
 
-        const ribs = Array.from(Array(ribCount - 1).keys()).map(e => e + 1);
+        const ribs = _.range(1, ribCount, 1);
         const distances = [distanceBetweenRibs / 2, ...ribs.map(i => i * distanceBetweenRibs + distanceBetweenRibs / 2)];
         distances.forEach(distance => {
             const xl = -distance - ribThickness / 2;
