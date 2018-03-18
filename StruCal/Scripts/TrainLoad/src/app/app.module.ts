@@ -25,6 +25,8 @@ import { ControlPanelService } from './services/control-panel.service';
 import { InputService } from './services/input.service';
 import { InitializationService } from './services/initialization.service';
 import { Drawing2dDirective } from './drawing2d/drawing2d.directive';
+import { AccelerationGaugeComponent } from './acceleration-gauge/acceleration-gauge.component';
+import { AccelerationGaugeService } from './services/acceleration-gauge.service';
 
 
 
@@ -43,6 +45,7 @@ import { Drawing2dDirective } from './drawing2d/drawing2d.directive';
     ProgressDirective,
     DetailsComponentComponent,
     Drawing2dDirective,
+    AccelerationGaugeComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +56,7 @@ import { Drawing2dDirective } from './drawing2d/drawing2d.directive';
     View3dService,
     HttpService,
     ControlPanelService,
+    AccelerationGaugeService,
     StructureService,
     LocalStorageService,
     StatusBarService,

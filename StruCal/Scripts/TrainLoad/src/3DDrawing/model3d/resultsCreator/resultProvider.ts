@@ -5,9 +5,6 @@ import { isEqual, arePointsEqual } from '../../../common/utils/equal';
 import { Point3D } from '../../../common/utils/point3d';
 
 
-
-
-
 export class ResultProvider {
     private resultData: ResultData;
     private meshResults: Map<string, VertexResult[]>;
