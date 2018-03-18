@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-const progressMsg = 'Processing...';
+const progressMsg = 'Processing... It may take a few seconds.';
 const dirtyMsg = 'Results are NOT up to date.';
 const errorMsg = 'An error has occured. Please try again.';
 const validMsg = 'Results are up to date';
