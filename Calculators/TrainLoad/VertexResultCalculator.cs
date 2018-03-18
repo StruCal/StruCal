@@ -37,11 +37,12 @@ namespace Calculators.TrainLoad
             var location = vertex.ToFEMCoordinateSystem();
             var relativePosition = (location.X - beam.Nodes[0].Coordinates.X) / beam.Length;
             var displ = beamResult.GetDisplacement(relativePosition);
+            var acceleration = beamResult.GetAcceleration(relativePosition);
             var forces = beamResult.GetBeamForces(relativePosition);
 
             var stress = stressCalculator.NormalStressAt(forces, location.Y);
-
-            var vertexResult = VertexStressResult.GenerateVertexResult(vertex, displ, stress);
+            
+            var vertexResult = VertexStressResult.GenerateVertexResult(vertex, displ, stress,acceleration);
             return vertexResult;
         }
 

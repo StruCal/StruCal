@@ -51,12 +51,15 @@ namespace Calculators.TrainLoad
                 var maxStress = stresses.Max();
                 var minStress = stresses.Min();
                 var meshColorResults = ConvertStressToColor(meshStressResults, maxStress, minStress);
-                var timeResult = TimeResult.GenerateTimeResult(time, meshColorResults);
+                var maxAcceleration = GetMaxAcceleration(meshStressResults);
+
+                var timeResult = TimeResult.GenerateTimeResult(time, maxAcceleration, meshColorResults);
                 timeResults.Add(timeResult);
             });
             var resultData = this.GenerateTimeResults();
             return resultData;
         }
+
 
         private void InitializeBeamVerticesMap(FemResultProvider femResults, IList<VertexInput> vertices)
         {
@@ -93,6 +96,14 @@ namespace Calculators.TrainLoad
                             .SelectMany(e => e)
                             .Select(e => e.Stress)
                             .ToList();
+        }
+
+        private static double GetMaxAcceleration(IEnumerable<MeshStressResult> meshStressResults)
+        {
+            return meshStressResults.Select(e => e.VertexResults)
+                            .SelectMany(e => e)
+                            .Select(e => e.Acceleration)
+                            .Max();
         }
 
         private double GetMaxDisplacement()

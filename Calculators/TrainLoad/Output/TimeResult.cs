@@ -10,13 +10,15 @@ namespace Calculators.TrainLoad.Output
     {
         public double Time { get; private set; }
         public IEnumerable<MeshColorResult> MeshResults { get; private set; }
+        public double Acceleration { get; private set; }
 
-        public static TimeResult GenerateTimeResult(double time, IEnumerable<MeshColorResult> meshColorResults)
+        public static TimeResult GenerateTimeResult(double time,double acceleration, IEnumerable<MeshColorResult> meshColorResults)
         {
             return new TimeResult
             {
                 Time = time,
-                MeshResults = meshColorResults
+                MeshResults = meshColorResults,
+                Acceleration = acceleration
             };
         }
     }

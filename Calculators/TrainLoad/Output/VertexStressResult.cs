@@ -12,15 +12,17 @@ namespace Calculators.TrainLoad.Output
     {
         public Point3D Position { get; private set; }
         public double Displacement { get; private set; }
+        public double Acceleration { get; private set; }
         public double Stress { get; private set; }
 
-        public static VertexStressResult GenerateVertexResult(Point3D vertex, double displ, double stress)
+        public static VertexStressResult GenerateVertexResult(Point3D vertex, double displ, double stress, double acceleration)
         {
             return new VertexStressResult
             {
                 Position = vertex,
                 Stress = stress,
                 Displacement = displ,
+                Acceleration = acceleration,
             };
         }
 

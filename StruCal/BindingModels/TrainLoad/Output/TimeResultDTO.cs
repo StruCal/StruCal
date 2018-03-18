@@ -9,6 +9,7 @@ namespace StruCal.BindingModels
 {
     public class TimeResultDTO
     {
+        public double acceleration { get; set; }
         public double time { get; set; }
         public IEnumerable<MeshColorResultDTO> meshResults { get; set; }
     }
@@ -21,7 +22,7 @@ namespace StruCal.BindingModels
             {
                 meshResults = timeResult.MeshResults.Select(e => e.ToMeshColorResultDTO()).ToList(),
                 time = timeResult.Time,
-
+                acceleration = timeResult.Acceleration,
             };
         }
     }
