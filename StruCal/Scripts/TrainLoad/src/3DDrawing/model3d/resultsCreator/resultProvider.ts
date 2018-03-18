@@ -9,6 +9,7 @@ export class ResultProvider {
     private resultData: ResultData;
     private meshResults: Map<string, VertexResult[]>;
 
+    private currentAcceleration: number;
 
     constructor(resultData: ResultData) {
         this.resultData = resultData;
@@ -21,7 +22,11 @@ export class ResultProvider {
         currentResult.meshResults.forEach(value => {
             this.meshResults.set(value.meshId, value.vertexResults);
         });
+        this.currentAcceleration = currentResult.acceleration;
+    }
 
+    public getMaxAcceleration(): number {
+        return this.currentAcceleration;
     }
 
     public getDisplacement(point: Point3D, meshId: string): number {

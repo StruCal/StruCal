@@ -17,15 +17,14 @@ export class ResultCreator {
         this.scene = scene;
     }
 
-    public setResult(result: ResultData, structureData: StructureData): void {
+    public setResult(resultProvider: ResultProvider, structureData: StructureData): void {
 
-        this.resultProvider = new ResultProvider(result);
+        this.resultProvider = resultProvider;
         this.displacementProvider = new DisplacementProvider(this.scene, this.resultProvider, structureData);
         this.stressProvider = new StressProvider(this.scene, this.resultProvider, structureData);
     }
 
     public tickAnimation(time: number): void {
-        this.resultProvider.setTime(time);
         this.displacementProvider.applyDisplacement();
         this.stressProvider.applyStress();
     }
