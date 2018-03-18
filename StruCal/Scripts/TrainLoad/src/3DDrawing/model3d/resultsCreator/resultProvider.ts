@@ -12,8 +12,6 @@ export class ResultProvider {
     private resultData: ResultData;
     private meshResults: Map<string, VertexResult[]>;
 
-    public maxStress: number;
-    public minStress: number;
 
     constructor(resultData: ResultData) {
         this.resultData = resultData;
@@ -27,8 +25,6 @@ export class ResultProvider {
             this.meshResults.set(value.meshId, value.vertexResults);
         });
 
-        this.maxStress = currentResult.maxStress;
-        this.minStress = currentResult.minStress;
     }
 
     public getDisplacement(point: Point3D, meshId: string): number {

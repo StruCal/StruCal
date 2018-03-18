@@ -51,7 +51,7 @@ namespace Calculators.TrainLoad
                 var maxStress = stresses.Max();
                 var minStress = stresses.Min();
                 var meshColorResults = ConvertStressToColor(meshStressResults, maxStress, minStress);
-                var timeResult = TimeResult.GenerateTimeResult(time, maxStress, minStress, meshColorResults);
+                var timeResult = TimeResult.GenerateTimeResult(time, meshColorResults);
                 timeResults.Add(timeResult);
             });
             var resultData = this.GenerateTimeResults();
