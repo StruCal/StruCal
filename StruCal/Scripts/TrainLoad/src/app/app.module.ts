@@ -27,6 +27,7 @@ import { InitializationService } from './services/initialization.service';
 import { Drawing2dDirective } from './drawing2d/drawing2d.directive';
 import { AccelerationGaugeComponent } from './acceleration-gauge/acceleration-gauge.component';
 import { AccelerationGaugeService } from './services/acceleration-gauge.service';
+import { AccelerationFormatPipe } from './pipes/acceleration-format.pipe';
 
 
 
@@ -46,6 +47,7 @@ import { AccelerationGaugeService } from './services/acceleration-gauge.service'
     DetailsComponentComponent,
     Drawing2dDirective,
     AccelerationGaugeComponent,
+    AccelerationFormatPipe,
   ],
   imports: [
     BrowserModule,
