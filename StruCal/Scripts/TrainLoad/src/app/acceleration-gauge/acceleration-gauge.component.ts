@@ -10,6 +10,7 @@ import { AccelerationGaugeService } from '../services/acceleration-gauge.service
 export class AccelerationGaugeComponent implements OnInit {
 
   public value: number;
+  public invisible = true;
 
   constructor(private accelerationGaugeService: AccelerationGaugeService) {
 
@@ -17,6 +18,7 @@ export class AccelerationGaugeComponent implements OnInit {
 
   ngOnInit() {
     this.accelerationGaugeService.value$.subscribe(v => this.value = v);
+    this.accelerationGaugeService.invisible$.subscribe(v => this.invisible = v);
   }
 
 }
