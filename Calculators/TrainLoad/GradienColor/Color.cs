@@ -1,22 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Calculators.TrainLoad.GradienColor
 {
     public class Color
     {
-        const int hex = 16;
+        private const int hex = 16;
 
-        public int R { get; private set;}
-        public int G { get; private set;}
+        public int R { get; private set; }
+        public int G { get; private set; }
         public int B { get; private set; }
 
         private Color()
         {
-           
         }
 
         public string GetHexCode()

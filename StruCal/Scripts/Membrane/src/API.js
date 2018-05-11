@@ -1,1 +1,1 @@
-function getMembraneOutput() {}
+function getMembraneOutput() { }

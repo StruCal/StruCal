@@ -1,5 +1,4 @@
 function supportCreator(scene, nodeTransformation, scaleCalculator) {
-
     var supportProv = new supportProvider();
     var membraneInput;
     var transformationFunction = nodeTransformation;
@@ -19,7 +18,6 @@ function supportCreator(scene, nodeTransformation, scaleCalculator) {
     }
 
     this.update = function () {
-
         var vertices = membraneInput.Vertices;
         var scale = scaleCalculator.getSupportScale();
         supportProv.setScale(scale);
@@ -40,8 +38,6 @@ function supportCreator(scene, nodeTransformation, scaleCalculator) {
                 scene.add(supportY);
                 supports.push(supportY);
             }
-
         }
     }
-
 }

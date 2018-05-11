@@ -1,11 +1,9 @@
 function outputCreator(scene, transformationFunction, resultProvider, colorProvider) {
-
     var membraneOutput;
     var materialTriangle = new THREE.MeshBasicMaterial({
         vertexColors: THREE.VertexColors,
         side: THREE.DoubleSide
     });
-
 
     var materialLine = new THREE.LineBasicMaterial({ color: 0x808080 });
     var meshGeometry;
@@ -15,7 +13,7 @@ function outputCreator(scene, transformationFunction, resultProvider, colorProvi
 
     this.drawMesh = true;
 
-    this.setMembraneOutput = function(membraneOutputData) {
+    this.setMembraneOutput = function (membraneOutputData) {
         membraneOutput = membraneOutputData;
         return this;
     }
@@ -32,10 +30,9 @@ function outputCreator(scene, transformationFunction, resultProvider, colorProvi
         }
     }
 
-    this.update = function() {
-
-       meshGeometry = new THREE.Geometry();
-       lineGeometry = new THREE.Geometry();
+    this.update = function () {
+        meshGeometry = new THREE.Geometry();
+        lineGeometry = new THREE.Geometry();
 
         createNodes.call(this);
         createGeometry.call(this);
@@ -82,7 +79,6 @@ function outputCreator(scene, transformationFunction, resultProvider, colorProvi
     }
 
     function createLine(triangle) {
-
         var point0 = transformationFunction.getTransformationOutput(triangle.Nodes[0]);
         var point1 = transformationFunction.getTransformationOutput(triangle.Nodes[1]);
         var point2 = transformationFunction.getTransformationOutput(triangle.Nodes[2]);
@@ -94,6 +90,4 @@ function outputCreator(scene, transformationFunction, resultProvider, colorProvi
         lineGeometry.vertices.push(new THREE.Vector3(point2.x, point2.y, 0.0))
         lineGeometry.vertices.push(new THREE.Vector3(point0.x, point0.y, 0.0))
     }
-
-
 }

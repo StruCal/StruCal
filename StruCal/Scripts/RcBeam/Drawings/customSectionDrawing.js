@@ -46,7 +46,6 @@
             bars.push({ x, y, d });
         }
 
-
         return bars;
     }
 }

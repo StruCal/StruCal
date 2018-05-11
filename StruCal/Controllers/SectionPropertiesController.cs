@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.ComponentModel.DataAnnotations;
-using Calculators.SectionProperties;
-using Common.Extensions;
-using System.Text.RegularExpressions;
+﻿using Calculators.SectionProperties;
 using StruCal.ViewModels;
+using System.Web.Mvc;
 
 namespace StruCal.Controllers
 {
-    
-
     public class SectionPropertiesController : Controller
     {
         // GET: SectionProperties

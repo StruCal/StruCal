@@ -1,8 +1,8 @@
-﻿.btn span.chbox {    			
-	opacity: 0;				
+﻿.btn span.chbox {
+	opacity: 0;
 }
-.btn.active span.chbox {				
-	opacity: 1;				
+.btn.active span.chbox {
+	opacity: 1;
 }
 .chbox-checked{
 	opacity:1;

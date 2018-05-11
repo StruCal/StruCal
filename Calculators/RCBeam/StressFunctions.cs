@@ -1,12 +1,8 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+
 namespace Calculators.RCBeam
 {
-    static class StressFunctions 
+    internal static class StressFunctions
     {
         static public double ConcreteStressDesign(double ec, Concrete concrete)
         {
@@ -23,6 +19,7 @@ namespace Calculators.RCBeam
             }
             return stress;
         }
+
         static public double ConcreteStressCharacteristic(double ec, Concrete concrete)
         {
             double s = 0;
@@ -36,6 +33,7 @@ namespace Calculators.RCBeam
             }
             return s;
         }
+
         static public double SteelStressDesign(double e, Steel steel)
         {
             double a;
@@ -55,6 +53,7 @@ namespace Calculators.RCBeam
             }
             return stress;
         }
+
         static public double SteelStressCharacteristic(double e, Steel steel)
         {
             double s;

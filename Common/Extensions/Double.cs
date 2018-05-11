@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Extensions
 {
     public static class DoubleExtensionMethods
     {
         /// <summary>
-        /// Maximum difference allowed in comparing two doubles to determine if they are equal 
+        /// Maximum difference allowed in comparing two doubles to determine if they are equal
         /// </summary>
         public const double MaximumDifferenceAllowed = 0.0000001;
 

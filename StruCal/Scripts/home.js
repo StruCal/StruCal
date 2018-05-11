@@ -9,7 +9,6 @@ $('#cog').on('mouseover', function () {
     setTimeout(function () {
         $this.removeClass("gly-spin");
     }, 2000);
-
 });
 
 function makeBigger() {

@@ -1,8 +1,4 @@
 ﻿using Common.Geometry;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace StruCal.BindingModels
 {
@@ -18,6 +14,7 @@ namespace StruCal.BindingModels
         {
             return new PointD(point.x, point.y);
         }
+
         public static PointDDTO ToPointDDTO(this PointD point)
         {
             return new PointDDTO

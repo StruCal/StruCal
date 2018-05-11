@@ -1,21 +1,10 @@
-﻿using Calculators.TrainLoad.Helpers;
+﻿using Calculators.TrainLoad.Extensions;
+using Calculators.TrainLoad.Helpers;
 using Common.Geometry;
-using FEM2D.Elements.Beam;
-using FEM2D.Nodes;
-using FEM2DCommon.DTO;
-using FEM2DCommon.ElementProperties;
 using FEM2DDynamics.Elements.Beam;
-using FEM2DDynamics.Results;
-using FEM2DDynamics.Solver;
 using FEM2DDynamics.Structure;
 using FEMCommon.ElementProperties.DynamicBeamPropertiesBuilder;
-using FEMCommon.ElementProperties.SectionBuilders.CustomSection;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using Calculators.TrainLoad.Extensions;
-using System.Text;
-using System.Threading.Tasks;
 using FEMSection = FEM2DCommon.Sections.Section;
 
 namespace Calculators.TrainLoad
@@ -27,7 +16,6 @@ namespace Calculators.TrainLoad
         private readonly TrainLoadInput trainLoadInput;
         private DynamicStructure structure;
         private IDictionary<IDynamicBeamElement, string> elementBarIdMap;
-
 
         public FEMCalculator(TrainLoadInput trainLoadInput)
         {
@@ -50,7 +38,6 @@ namespace Calculators.TrainLoad
             var results = structure.Results.BeamResults;
             return new FemResultProvider(this.elementBarIdMap, results);
         }
-
 
         private void GenerateMovingLoads()
         {

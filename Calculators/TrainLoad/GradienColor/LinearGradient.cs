@@ -1,28 +1,21 @@
 ﻿using Calculators.TrainLoad.GradienColor;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Calculators.TrainLoad
 {
-    
     public class LinearGradient : IGradient
     {
         private readonly Color maxColor;
         private readonly Color minColor;
         private readonly Color middleColor;
-        public  int Range { get; }
+        public int Range { get; }
 
-        public LinearGradient(string maxColor, string minColor,string middleColor, int range = 10)
+        public LinearGradient(string maxColor, string minColor, string middleColor, int range = 10)
         {
             this.maxColor = Color.FromHexString(maxColor);
             this.minColor = Color.FromHexString(minColor);
             this.middleColor = Color.FromHexString(middleColor);
             this.Range = range;
         }
-
 
         public Color ColorAt(int index)
         {
@@ -32,7 +25,7 @@ namespace Calculators.TrainLoad
                 index = this.Range;
 
             var result = index < this.Range / 2 ? CalculateColor(this.minColor, this.middleColor, index) : CalculateColor(this.middleColor, this.maxColor, index);
-            
+
             return result;
         }
 

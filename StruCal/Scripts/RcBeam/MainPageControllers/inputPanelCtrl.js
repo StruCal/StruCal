@@ -1,4 +1,4 @@
-﻿angular.module('rcBeam').controller('inputPanelCtrl',['$scope','$rootScope', function ($scope, $rootScope) {
+﻿angular.module('rcBeam').controller('inputPanelCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
     //$scope.concrete = "C12/15";
     //$scope.steel = "500A";
 
@@ -51,5 +51,4 @@
         $rootScope.$broadcast('loads', loadCases);
         $rootScope.$broadcast('currentLoadCaseName', loadCases[0].name);
     })();
-
 }]);

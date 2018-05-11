@@ -1,12 +1,11 @@
 ﻿angular.module('membraneFEM').service('drawingService', ['canvasFactory', function (canvasFactory) {
-
     var self = this;
-   
+
     var text = true;
     var canvas = canvasFactory.getCanvas();
     var drawing;
 
-    this.drawOutput =false;
+    this.drawOutput = false;
     (function init() {
         var membraneOutput = getMembraneOutput();
 
@@ -15,14 +14,14 @@
         animate();
     })();
     function animate() {
-            requestAnimationFrame(animate);
-            drawing.renderer.render(drawing.scene, drawing.camera);
-            drawing.controls.update();
-            
-            if (text && self.drawOutput) {
-                drawing.updateText();
-            }
+        requestAnimationFrame(animate);
+        drawing.renderer.render(drawing.scene, drawing.camera);
+        drawing.controls.update();
+
+        if (text && self.drawOutput) {
+            drawing.updateText();
         }
+    }
     this.drawSupports = function (value) {
         drawing.drawSupports(value);
     }
@@ -33,20 +32,20 @@
         text = value;
         drawing.drawText(value);
     }
-    this.drawDisplacement = function (drawDisplacement,drawSupports,drawPointLoads) {
+    this.drawDisplacement = function (drawDisplacement, drawSupports, drawPointLoads) {
         drawing.drawDisplacement(drawDisplacement, drawSupports, drawPointLoads);
     }
     this.drawSmoothing = function (value) {
         drawing.drawSmoothing(value);
     }
 
-    this.setSxx=function(){
+    this.setSxx = function () {
         drawing.setSxx();
     }
-    this.setSyy=function(){
+    this.setSyy = function () {
         drawing.setSyy();
     }
-    this.setTxy=function(){
+    this.setTxy = function () {
         drawing.setTxy();
     }
 
@@ -60,5 +59,4 @@
         self.drawOutput = true;
         drawing.setMembraneOutput(outputData).updateOutput();
     }
-
 }]);

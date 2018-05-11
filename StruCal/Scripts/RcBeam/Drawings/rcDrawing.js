@@ -1,11 +1,9 @@
-﻿
-class rcDrawing {
+﻿class rcDrawing {
     constructor(drawing) {
         this.drawing = drawing;
     }
     //drawing functions. Coordinates are provides as array
     drawSection(coordinates, canvasObject) {
-
         var x = coordinates.map(function (a) { return a.x });
         var y = coordinates.map(function (a) { return a.y });
 
@@ -44,7 +42,6 @@ class rcDrawing {
 
         var correctedWidth = Math.floor(width / patternSize) * patternSize;
         var correctedHeight = Math.floor(height / patternSize) * patternSize;
-
 
         //var pattern = drawing.pattern(patternSize, patternSize, function (add) {
         //    add.line(0, 0, patternSize, 0).stroke({ width: 1, color: 'grey' });
@@ -105,10 +102,8 @@ class rcDrawing {
         }
     }
 
-
     //private methods
     transferXToCanvasSystem(pointX) {
-
         var x = ((pointX - this.sectionCentreX) * this.scale) + this.canvasWidth / 2;
         //console.log('poinX:' + pointX + ' centreX:' + this.sectionCentreX + ' scale:' + this.scale + ' canvasWidth:' + this.canvasWidth + ' x:' + x);
         return x;
@@ -127,12 +122,3 @@ class rcDrawing {
         return scale;
     }
 }
-
-
-
-
-
-
-
-
-

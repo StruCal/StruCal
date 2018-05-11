@@ -2,21 +2,21 @@
     var self = this;
     this.getSteelClasses = function () {
         return [
-        {
-            grade: "A",
-            k: 1.05,
-            euk: 0.025,
-        },
-        {
-            grade: "B",
-            k: 1.08,
-            euk: 0.05,
-        },
-        {
-            grade: "C",
-            k: 1.15,
-            euk: 0.075,
-        },
+            {
+                grade: "A",
+                k: 1.05,
+                euk: 0.025,
+            },
+            {
+                grade: "B",
+                k: 1.08,
+                euk: 0.05,
+            },
+            {
+                grade: "C",
+                k: 1.15,
+                euk: 0.075,
+            },
         ]
     };
 

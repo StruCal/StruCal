@@ -1,11 +1,7 @@
-﻿using StruCal.BindingModels;
-using Common.Geometry;
-using System;
+﻿using Calculators.TrainLoad;
+using StruCal.BindingModels.TrainLoad.Input;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using Calculators.TrainLoad;
-using StruCal.BindingModels.TrainLoad.Input;
 
 namespace StruCal.BindingModels
 {
@@ -19,18 +15,19 @@ namespace StruCal.BindingModels
         public MovingLoadDTO movingLoads { get; set; }
         public TimeSettingsDTO timeSettings { get; set; }
     }
+
     public static class ExtensionTrainLoadInputDTO
     {
         public static TrainLoadInput ToTrainLoadInput(this TrainLoadInputDTO trainLoadInputDTO)
         {
             return new TrainLoadInput
             {
-                MaxColor=trainLoadInputDTO.maxColor,
-                MiddleColor=trainLoadInputDTO.middleColor,
-                MinColor=trainLoadInputDTO.minColor,
-                StructureGeometry=trainLoadInputDTO.structureGeometry.ToStructureGeometry(),
-                Vertices=trainLoadInputDTO.vertices.Select(e=>e.ToVertexInput()).ToList(),
-                MovingLoads=trainLoadInputDTO.movingLoads.ToMovingLoad(),
+                MaxColor = trainLoadInputDTO.maxColor,
+                MiddleColor = trainLoadInputDTO.middleColor,
+                MinColor = trainLoadInputDTO.minColor,
+                StructureGeometry = trainLoadInputDTO.structureGeometry.ToStructureGeometry(),
+                Vertices = trainLoadInputDTO.vertices.Select(e => e.ToVertexInput()).ToList(),
+                MovingLoads = trainLoadInputDTO.movingLoads.ToMovingLoad(),
                 TimeSettings = trainLoadInputDTO.timeSettings.ToTimeSettings(),
             };
         }
@@ -41,5 +38,4 @@ namespace StruCal.BindingModels
     //    public Perimeter Perimeter { get; set; }
     //    public double Depth { get; set; }
     //}
-
 }

@@ -1,9 +1,5 @@
 ﻿using Common.Extensions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Calculators.ConcreteCover
 {
@@ -11,16 +7,19 @@ namespace Calculators.ConcreteCover
     {
         // Rebar properties
         public string RebarDiameter { get; set; }
+
         public string ArrangementOfBars { get; set; }
 
         // Concrete properties
         public string ConcreteClass { get; set; }
+
         public string ExposureClass { get; set; }
         public string BaseStructuralClass { get; set; }
         public bool NominalMaximumAggregateSizeIsGreaterThan32mm { get; set; }
 
         // EnvironmentalConditions
         public bool DesignWorkingLifeOf100Years { get; set; }
+
         public bool MemberWithSlabGeometry { get; set; }
         public bool SpecialQualityControlOfTheConcreteProductionEnsured { get; set; }
 
@@ -96,7 +95,7 @@ namespace Calculators.ConcreteCover
             this.outputData.StructuralClass = this.inputData.BaseStructuralClass;
 
             // Check Exposure Class
-            if (exposureClass == ExposureClass.X0 ||  exposureClass == ExposureClass.XC1 ||
+            if (exposureClass == ExposureClass.X0 || exposureClass == ExposureClass.XC1 ||
                 exposureClass == ExposureClass.XC2 || exposureClass == ExposureClass.XC3 ||
                 exposureClass == ExposureClass.XC4 || exposureClass == ExposureClass.XD1 ||
                 exposureClass == ExposureClass.XD2 || exposureClass == ExposureClass.XS1 ||
@@ -112,12 +111,11 @@ namespace Calculators.ConcreteCover
                 }
 
                 // Modification based on Concrete Class and Exposure Class
-                if ((concreteClass >= ConcreteClass.C30_37 && (exposureClass == ExposureClass.X0 ||  exposureClass == ExposureClass.XC1)) ||
+                if ((concreteClass >= ConcreteClass.C30_37 && (exposureClass == ExposureClass.X0 || exposureClass == ExposureClass.XC1)) ||
                     (concreteClass >= ConcreteClass.C35_45 && (exposureClass == ExposureClass.XC2 || exposureClass == ExposureClass.XC3)) ||
                     (concreteClass >= ConcreteClass.C40_50 && (exposureClass == ExposureClass.XC4 || exposureClass == ExposureClass.XD1 || exposureClass == ExposureClass.XD2 || exposureClass == ExposureClass.XS1)) ||
                     (concreteClass >= ConcreteClass.C45_55 && (exposureClass == ExposureClass.XD3 || exposureClass == ExposureClass.XS2 || exposureClass == ExposureClass.XS3)))
                 {
-
                     //this.StructuralClass = (StructuralClass)((int)StructuralClass - 1).Clamp((int)StructuralClass.S1, (int)StructuralClass.S6);
                     this.outputData.StructuralClass = ((int)ConvertStringToStructuralClass(this.outputData.StructuralClass) - 1).ToString();
                 }
@@ -335,7 +333,7 @@ namespace Calculators.ConcreteCover
 
         /// <summary>
         /// Calculate Nominal Concrete Cover based on PN-EN 1992-1-1 4.4.1.2 (4.2)
-        /// Symbol c_min 
+        /// Symbol c_min
         /// </summary>
         public ConcreteCoverOutput CalculateMinimumCover(ConcreteCoverInput inputData)
         {
@@ -366,6 +364,7 @@ namespace Calculators.ConcreteCover
         }
 
         #region Converters
+
         /// <summary>
         /// Converts rebar diameter as String to double.
         /// </summary>
@@ -468,6 +467,7 @@ namespace Calculators.ConcreteCover
         {
             return (StructuralClass)Enum.Parse(typeof(StructuralClass), structuralClassString);
         }
+
         #endregion Converters
     }
 

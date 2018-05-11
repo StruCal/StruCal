@@ -3,7 +3,6 @@
     $scope.v = 0.25;
     $scope.t = 200;
 
-
     $scope.$watch('E', send);
     $scope.$watch('v', send);
     $scope.$watch('t', send);

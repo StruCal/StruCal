@@ -22,7 +22,7 @@ function textCreator(scene, camera, canvas, transformationFunction, result, cont
 
     var translation;
 
-    this.update = function() {
+    this.update = function () {
         var triangles = membraneOutput.Triangles;
         translation = scaleCalculator.getCentreTranslation();
         for (var i = 0; i < triangles.length; i++) {
@@ -51,7 +51,7 @@ function textCreator(scene, camera, canvas, transformationFunction, result, cont
         }
     }
 
-    this.setMembraneOutput = function(membraneOutputData) {
+    this.setMembraneOutput = function (membraneOutputData) {
         membraneOutput = membraneOutputData;
         return this;
     }
@@ -65,7 +65,6 @@ function textCreator(scene, camera, canvas, transformationFunction, result, cont
     }
 
     function getTextPosition(point) {
-
         var x = point.x - translation.x;
         var y = point.y - translation.y;
 
@@ -85,7 +84,6 @@ function textCreator(scene, camera, canvas, transformationFunction, result, cont
     }
 
     function addText(point, triangle) {
-
         var id = getId(triangle);
 
         var text = document.getElementById(id);
@@ -101,9 +99,8 @@ function textCreator(scene, camera, canvas, transformationFunction, result, cont
         text.style.color = 'black';
         text.style.cursor = 'default';
         text.innerHTML = result.getCenterValue(triangle).toFixed(2);
-        text.style.top = point.y-textHeight + 'px';
-        text.style.left = point.x-textWidth + 'px';
-
+        text.style.top = point.y - textHeight + 'px';
+        text.style.left = point.x - textWidth + 'px';
     }
 
     function calculateCentre(triangle) {
@@ -113,16 +110,13 @@ function textCreator(scene, camera, canvas, transformationFunction, result, cont
         var p1 = transformationFunction.getTransformationOutput(nodes[1]);
         var p2 = transformationFunction.getTransformationOutput(nodes[2]);
 
-
         var x = (p0.x + p1.x + p2.x) / 3;
         var y = (p0.y + p1.y + p2.y) / 3;
 
         return { x: x, y: y };
-
     }
 
     function getId(triangle) {
         return 'triangle' + triangle.Number;
     }
-
 }

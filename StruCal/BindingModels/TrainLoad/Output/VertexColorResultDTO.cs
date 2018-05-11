@@ -1,10 +1,4 @@
 ﻿using Calculators.TrainLoad.Output;
-using Common.Geometry;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StruCal.BindingModels
 {
@@ -15,15 +9,15 @@ namespace StruCal.BindingModels
 
         public string color { get; set; }
     }
+
     public static class ExtensionVertexColorResultDTO
     {
-        
         public static VertexColorResultDTO ToVertexColorResultDTO(this VertexColorResult vertexColorResult)
         {
             return new VertexColorResultDTO
             {
                 color = vertexColorResult.Color,
-                displacement=vertexColorResult.Displacement,
+                displacement = vertexColorResult.Displacement,
                 position = vertexColorResult.Position.ToPointDDTO(),
             };
         }

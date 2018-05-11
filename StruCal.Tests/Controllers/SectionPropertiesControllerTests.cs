@@ -1,12 +1,7 @@
 ﻿using NUnit.Framework;
-using StruCal.Controllers;
 using StruCal.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StruCal.Controllers.Tests
 {
@@ -14,6 +9,7 @@ namespace StruCal.Controllers.Tests
     public class SectionPropertiesControllerTests
     {
         /*taken from http://stackoverflow.com/questions/2167811/unit-testing-asp-net-dataannotations-validation */
+
         private IList<ValidationResult> validateModel(object model)
         {
             var validationResults = new List<ValidationResult>();
@@ -59,6 +55,5 @@ namespace StruCal.Controllers.Tests
             var actualErrors = validateModel(viewModel);
             Assert.IsTrue(actualErrors.Count == 0);
         }
-
     }
 }

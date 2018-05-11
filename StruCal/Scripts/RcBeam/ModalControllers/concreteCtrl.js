@@ -1,4 +1,4 @@
-﻿angular.module('rcBeam').controller('concreteCtrl',['$scope','$rootScope','concreteService','chartService', function ($scope, $rootScope, concreteService, chartService) {
+﻿angular.module('rcBeam').controller('concreteCtrl', ['$scope', '$rootScope', 'concreteService', 'chartService', function ($scope, $rootScope, concreteService, chartService) {
     $scope.concretes = concreteService.getConcreteClasses();
     $scope.selectedConcrete = $scope.concretes[0];
     $scope.alphaCC = 1;
@@ -53,7 +53,4 @@
         $scope.concreteLabels = chartValues.strain;
         $scope.concreteData = [chartValues.designStress, chartValues.charStress];
     }
-
-
 }]);
-

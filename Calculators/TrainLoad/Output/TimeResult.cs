@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Calculators.TrainLoad.Output
 {
@@ -12,7 +8,7 @@ namespace Calculators.TrainLoad.Output
         public IEnumerable<MeshColorResult> MeshResults { get; private set; }
         public double Acceleration { get; private set; }
 
-        public static TimeResult GenerateTimeResult(double time,double acceleration, IEnumerable<MeshColorResult> meshColorResults)
+        public static TimeResult GenerateTimeResult(double time, double acceleration, IEnumerable<MeshColorResult> meshColorResults)
         {
             return new TimeResult
             {

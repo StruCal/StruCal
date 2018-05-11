@@ -43,7 +43,7 @@ namespace StruCal.Controllers
                 ReductionOfMinimumCoverForUseOfStainlessSteel = viewModel.ReductionOfMinimumCoverForUseOfStainlessSteel / 1000d,
                 AllowanceInDesignForDeviation = viewModel.AllowanceInDesignForDeviation / 1000d
             };
-                concreteCoverCalculator.CalculateNominalConcreteCover();
+            concreteCoverCalculator.CalculateNominalConcreteCover();
             //}
 
             viewModel.StructuralClass = concreteCoverCalculator.StructuralClass.ToString();

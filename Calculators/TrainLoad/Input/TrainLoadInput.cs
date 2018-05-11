@@ -1,10 +1,5 @@
-﻿using Calculators.TrainLoad;
-using Calculators.TrainLoad.Input;
-using Common.Geometry;
-using System;
+﻿using Calculators.TrainLoad.Input;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Calculators.TrainLoad
 {
@@ -19,11 +14,9 @@ namespace Calculators.TrainLoad
         public TimeSettings TimeSettings { get; set; }
     }
 
-
     //public class Additional
     //{
     //    public Perimeter Perimeter { get; set; }
     //    public double Depth { get; set; }
     //}
-
 }

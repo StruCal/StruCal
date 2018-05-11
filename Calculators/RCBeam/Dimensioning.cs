@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using Common.Geometry;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using Common.Geometry;
 
 namespace Calculators.RCBeam
 {
@@ -15,7 +13,7 @@ namespace Calculators.RCBeam
             var capacity = new SectionCapacity(concrete, steel);
             var section = new Section(sectionCoordinates);
             var loadCaseResults = new List<LoadCaseResult>();
-            for (int i = 0; i <= loadCases.Count - 1; i++) 
+            for (int i = 0; i <= loadCases.Count - 1; i++)
             {
                 var loadCase = loadCases[i];
                 //progressIndicatior.Report(ProgressArgument.CalculateProgress(i, loadCases.Count, loadCase.Name));
@@ -34,6 +32,7 @@ namespace Calculators.RCBeam
 
             return result;
         }
+
         //public static IEnumerable<DetailedResult> GetDetailedResults(Concrete concrete, Steel steel, IEnumerable<LoadCaseResult> calcualtionResults)
         //{
         //    var resultList = new List<DetailedResult>();
@@ -45,6 +44,7 @@ namespace Calculators.RCBeam
         //    return resultList;
         //}
     }
+
     public class InteractionCurveCalculator
     {
         private readonly int deltaAngle = 5;
@@ -52,7 +52,8 @@ namespace Calculators.RCBeam
         private IList<PointD> coordinates;
         private Concrete concrete;
         private Steel steel;
-        IList<LoadCase> loadCases;
+        private IList<LoadCase> loadCases;
+
         public InteractionCurveCalculator(Concrete concrete, Steel steel, IList<Bar> bars, IList<PointD> coordinates, IList<LoadCase> loadCases)
         {
             this.concrete = concrete;
@@ -63,11 +64,12 @@ namespace Calculators.RCBeam
             this.bars = bars;
             this.coordinates = coordinates;
         }
+
         public IEnumerable<InteractionCurveResult> GetInteractionCurve()
         {
             var sectionCapacity = new SectionCapacity(concrete, steel);
             var result = new List<InteractionCurveResult>();
-            for (int i = 0; i <= loadCases.Count - 1; i++) 
+            for (int i = 0; i <= loadCases.Count - 1; i++)
             {
                 var loadCase = loadCases[i];
                 //progress.Report(ProgressArgument.CalculateProgress(i, loadCases.Count, loadCase.Name));
@@ -102,6 +104,7 @@ namespace Calculators.RCBeam
             }
             return result;
         }
+
         private IList<Bar> rotateBarCoordinates(double angle)
         {
             List<Bar> newBars = new List<Bar>();
@@ -114,6 +117,7 @@ namespace Calculators.RCBeam
             }
             return newBars;
         }
+
         private IList<PointD> rotateSectionCoordinates(double angle)
         {
             List<PointD> coordinates = new List<PointD>();
@@ -125,12 +129,11 @@ namespace Calculators.RCBeam
             }
             return coordinates;
         }
+
         private void calculatePrincipalMoments(double angle, double moment, out double mx, out double my)
         {
             my = moment * Math.Cos((90 - angle) * Math.PI / 180);
             mx = moment * Math.Sin((90 - angle) * Math.PI / 180);
         }
     }
-    
-    
 }

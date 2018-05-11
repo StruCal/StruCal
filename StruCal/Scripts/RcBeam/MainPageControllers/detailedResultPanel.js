@@ -1,4 +1,4 @@
-﻿angular.module('rcBeam').controller('detailedResultPanelCtrl',['$scope', function ($scope) {
+﻿angular.module('rcBeam').controller('detailedResultPanelCtrl', ['$scope', function ($scope) {
     var results;
     var loadCaseResults;
     var currentLoadCase;
@@ -24,7 +24,7 @@
     });
 
     function updateLoadCase() {
-        $scope.currentLoadCase = loadCaseResults.find(e=>e.LoadCase.Name == currentLoadCaseName);
+        $scope.currentLoadCase = loadCaseResults.find(e => e.LoadCase.Name == currentLoadCaseName);
         //$scope.normalForce = currentLoadCase.LoadCase.NormalForce;
     };
 }]);

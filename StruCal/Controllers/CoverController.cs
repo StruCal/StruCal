@@ -1,8 +1,4 @@
 ﻿using Calculators.ConcreteCover;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 
@@ -24,8 +20,9 @@ namespace StruCal.Controllers
         {
             var calculator = new ConcreteCoverCalculator();
             var output = calculator.CalculateNominalConcreteCover(input);
-        
-            return new ConcreteCoverOutputString {
+
+            return new ConcreteCoverOutputString
+            {
                 StructuralClass = "S" + output.StructuralClass.ToString(),
                 MinimumCover = (output.MinimumCover * 1000).ToString() + " mm",
                 MinimumCoverDueToBondRequirement = (output.MinimumCoverDueToBondRequirement * 1000).ToString() + " mm",

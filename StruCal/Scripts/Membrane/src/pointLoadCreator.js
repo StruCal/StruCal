@@ -1,11 +1,10 @@
 function pointLoadCreator(scene, nodeTransformation, scaleCalculator) {
-
     var pointLoadProv = new pointLoadProvider();
     var membraneInput;
     var transformationFunction = nodeTransformation;
     var pointLoads = new Array();
 
-    this.setMembraneInput = function(membraneInputData) {
+    this.setMembraneInput = function (membraneInputData) {
         membraneInput = membraneInputData;
         return this;
     }
@@ -17,7 +16,7 @@ function pointLoadCreator(scene, nodeTransformation, scaleCalculator) {
         }
     }
 
-    this.update = function() {
+    this.update = function () {
         var vertices = membraneInput.Vertices;
         var scale = scaleCalculator.getPointLoadScale();
         pointLoadProv.setScale(scale);

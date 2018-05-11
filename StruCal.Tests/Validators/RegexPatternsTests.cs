@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using System.Text.RegularExpressions;
+﻿using NUnit.Framework;
 using StruCal.Validators;
+using System.Text.RegularExpressions;
 
 namespace StruCal.Tests.Validators
 {
@@ -71,8 +66,6 @@ namespace StruCal.Tests.Validators
             var result = regex.Match(inputData);
             Assert.IsTrue(result.Success);
         }
-
-
 
         [TestCase("10;20;-30")]
         [TestCase("00;20 30;20.5;00.5 -20;18.2;0")]

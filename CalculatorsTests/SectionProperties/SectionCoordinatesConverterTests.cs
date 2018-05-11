@@ -1,11 +1,6 @@
-﻿using NUnit.Framework;
-using Calculators.SectionProperties.Calculations;
-using System;
+﻿using Common.Geometry;
+using NUnit.Framework;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Geometry;
 
 namespace Calculators.SectionProperties.Calculations.Tests
 {
@@ -26,10 +21,9 @@ namespace Calculators.SectionProperties.Calculations.Tests
             expectedPoints.Add(new PointD(80, 38));
             expectedPoints.Add(new PointD(40, 50.2));
             expectedPoints.Add(new PointD(20, 30));
-            expectedPoints.Add(new PointD(10, 12.5)); 
+            expectedPoints.Add(new PointD(10, 12.5));
             expectedPoints.Add(new PointD(90, -10));//first and last point in section cordinates should be the same
             var expectedResult = new SectionCoordinates(expectedPoints);
-
 
             CollectionAssert.AreEquivalent(expectedResult.Coordinates, actualResult.Coordinates);
         }

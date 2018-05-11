@@ -1,11 +1,10 @@
-﻿angular.module('rcBeam').controller('customSectionCtrl',['$scope','$rootScope', function ($scope, $rootScope) {
-    $scope.sectionCoordinates= "0;0 200;0 200;200 0;200"
+﻿angular.module('rcBeam').controller('customSectionCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+    $scope.sectionCoordinates = "0;0 200;0 200;200 0;200"
     $scope.barCoordinates = "100;50;10";
 
-    
-    $scope.$watchGroup(['sectionCoordinates', 'barCoordinates'], () =>updateDrawing());
-    $('#modalCustomSection').on('shown.bs.modal', () =>updateDrawing());
-    
+    $scope.$watchGroup(['sectionCoordinates', 'barCoordinates'], () => updateDrawing());
+    $('#modalCustomSection').on('shown.bs.modal', () => updateDrawing());
+
     var drawing;
     function updateDrawing() {
         var canvasObject = $('#customDrawing');
@@ -19,6 +18,3 @@
         $rootScope.$broadcast('dirty', true);
     }
 }]);
-
-
-

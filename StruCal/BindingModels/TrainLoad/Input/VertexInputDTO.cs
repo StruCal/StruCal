@@ -1,10 +1,6 @@
 ﻿using Calculators.TrainLoad;
-using Common.Geometry;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StruCal.BindingModels
 {
@@ -14,6 +10,7 @@ namespace StruCal.BindingModels
         public string meshId { get; set; }
         public List<Point3DDTO> vertices { get; set; }
     }
+
     public static class ExtensionVertexInputDTO
     {
         public static VertexInput ToVertexInput(this VertexInputDTO vertexInputDTO)
@@ -21,8 +18,8 @@ namespace StruCal.BindingModels
             return new VertexInput
             {
                 BarId = vertexInputDTO.barId,
-                MeshId=vertexInputDTO.meshId,
-                Vertices=vertexInputDTO.vertices.Select(e=>e.ToPointD()).ToList(),
+                MeshId = vertexInputDTO.meshId,
+                Vertices = vertexInputDTO.vertices.Select(e => e.ToPointD()).ToList(),
             };
         }
     }

@@ -1,5 +1,4 @@
-function inputCreator(scene,scaleCalc) {
-
+function inputCreator(scene, scaleCalc) {
     var material = new THREE.MeshBasicMaterial({ color: 0x3276B1 });
     var pointMaterial = new THREE.MeshPhongMaterial({ color: 0x3276B1 });
 
@@ -7,13 +6,12 @@ function inputCreator(scene,scaleCalc) {
     var points = [];
     this.membraneInput;
 
-    this.setMembraneInput = function(membraneInputData) {
+    this.setMembraneInput = function (membraneInputData) {
         this.membraneInput = membraneInputData;
         return this;
     }
 
-    this.updateInput = function() {
-
+    this.updateInput = function () {
         createGeometry.call(this);
         createPoints.call(this);
 
@@ -30,7 +28,6 @@ function inputCreator(scene,scaleCalc) {
             scene.remove(point);
         });
     }
-
 
     function createGeometry() {
         var nodes = this.membraneInput.Vertices;

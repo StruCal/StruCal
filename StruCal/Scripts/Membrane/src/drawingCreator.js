@@ -1,5 +1,4 @@
 function drawingCreator(canvas) {
-
     var membraneOutput;
     var membraneInput;
 
@@ -16,7 +15,6 @@ function drawingCreator(canvas) {
     this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
     this.camera.position.z = 100;
 
-
     var result = new resultProvider();
     var scaleCalc = new scaleCalculator(width, height);
     var transformationFunction = new nodeTransformation(scaleCalc);
@@ -25,7 +23,7 @@ function drawingCreator(canvas) {
     var output = new outputCreator(this.scene, transformationFunction, result, color);
     var support = new supportCreator(this.scene, transformationFunction, scaleCalc);
     var pointLoad = new pointLoadCreator(this.scene, transformationFunction, scaleCalc);
-    var input = new inputCreator(this.scene,scaleCalc);
+    var input = new inputCreator(this.scene, scaleCalc);
 
     var directionalLight1 = new THREE.DirectionalLight(0xffffff, 1);
     this.scene.add(directionalLight1);
@@ -73,7 +71,7 @@ function drawingCreator(canvas) {
 
     this.updateOutput = function () {
         clean.call(this);
-        
+
         support.update();
         pointLoad.update();
         output.update();
@@ -83,7 +81,7 @@ function drawingCreator(canvas) {
     this.updateText = function () {
         text.update();
     }
-    
+
     this.drawSupports = function (show) {
         if (show) {
             support.update();
@@ -117,9 +115,9 @@ function drawingCreator(canvas) {
 
     this.drawDisplacement = function (drawDisplacement, drawSupports, drawPointLoads) {
         transformationFunction.drawDisplacement = drawDisplacement;
-            output.remove();
-            output.update();
-        
+        output.remove();
+        output.update();
+
         if (drawSupports) {
             support.remove();
             support.update();
@@ -128,7 +126,6 @@ function drawingCreator(canvas) {
             pointLoad.remove();
             pointLoad.update();
         }
-
     }
 
     this.drawSmoothing = function (value) {
@@ -177,5 +174,4 @@ function drawingCreator(canvas) {
         this.scene.translateX(-translation.x);
         this.scene.translateY(-translation.y);
     }
-
 }

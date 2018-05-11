@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace StruCal.ViewModels
@@ -62,27 +61,32 @@ namespace StruCal.ViewModels
         [Required]
         [Display(Name = "Rebars:")]
         public List<SelectListItem> RebarDiameterSelectList { get; set; }
+
         public string SelectedRebarDiameter { get; set; }
 
         [Required]
         [Display(Name = "Arrangement of bars:")]
         public List<SelectListItem> ArrangementOfBarsSelectList { get; set; }
+
         public string SelectedArrangementOfBars { get; set; }
 
         // Concrete properties
         [Required]
         [Display(Name = "Concrete class:")]
         public List<SelectListItem> ConcreteClassSelectList { get; set; }
+
         public string SelectedConcreteClass { get; set; }
 
         [Required]
         [Display(Name = "Exposure class:")]
         public List<SelectListItem> ExposureClassSelectList { get; set; }
+
         public string SelectedExposureClass { get; set; }
 
         [Required]
         [Display(Name = "Base structural class:")]
         public List<SelectListItem> BaseStructuralClassSelectList { get; set; }
+
         public string SelectedBaseStructuralClass { get; set; }
 
         [Required]
@@ -93,12 +97,15 @@ namespace StruCal.ViewModels
         [Required]
         [Display(Name = "Is design working life of 100 years?")]
         public bool DesignWorkingLifeOf100Years { get; set; }
+
         [Required]
         [Display(Name = "Is member with slab geometry?")]
         public bool MemberWithSlabGeometry { get; set; }
+
         [Required]
         [Display(Name = "Is special quality control of the concrete production ensured?")]
         public bool SpecialQualityControlOfTheConcreteProductionEnsured { get; set; }
+
         [Required]
         [Display(Name = "Structural class")]
         public string StructuralClass { get; set; }
@@ -141,6 +148,7 @@ namespace StruCal.ViewModels
         public double NominalCover { get; set; }
 
         #region Converters
+
         /// <summary>
         /// Converts rebar diameter as String to double.
         /// </summary>
@@ -213,9 +221,11 @@ namespace StruCal.ViewModels
         {
             return (StructuralClass)Enum.Parse(typeof(StructuralClass), structuralClassString);
         }
+
         #endregion Converters
 
         #region Private Methods
+
         /// <summary>
         /// List of available rebars diameters.
         /// </summary>
@@ -255,7 +265,6 @@ namespace StruCal.ViewModels
 
             var names = Enum.GetNames(typeof(StructuralClass));
 
-
             foreach (string structuralClassName in Enum.GetNames(typeof(StructuralClass)))
             {
                 if (structuralClassName == "S1" || structuralClassName == "S2" || structuralClassName == "S3" ||
@@ -271,6 +280,7 @@ namespace StruCal.ViewModels
             };
             return baseStructuralClassSelectList;
         }
-        #endregion
+
+        #endregion Private Methods
     }
 }

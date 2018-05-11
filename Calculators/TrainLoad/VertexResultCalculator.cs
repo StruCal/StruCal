@@ -4,11 +4,8 @@ using Common.Geometry;
 using FEM2DDynamics.Elements.Beam;
 using FEM2DDynamics.Results.Beam;
 using FEM2DStressCalculator.Beams;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Calculators.TrainLoad
 {
@@ -41,8 +38,8 @@ namespace Calculators.TrainLoad
             var forces = beamResult.GetBeamForces(relativePosition);
 
             var stress = stressCalculator.NormalStressAt(forces, location.Y);
-            
-            var vertexResult = VertexStressResult.GenerateVertexResult(vertex, displ, stress,acceleration);
+
+            var vertexResult = VertexStressResult.GenerateVertexResult(vertex, displ, stress, acceleration);
             return vertexResult;
         }
 

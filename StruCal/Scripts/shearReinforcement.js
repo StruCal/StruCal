@@ -4,7 +4,6 @@ function validateNumber(value) {
     return regex.test(value);
 }
 $(document).ready(function () {
-
     ko.options.deferUpdates = true;
     var inputVM = new inputDataViewModel();
     ko.applyBindings(inputVM);
@@ -27,7 +26,6 @@ $(document).ready(function () {
 
     //click function to open popover
     $('[data-toggle="popover"]').on('click', function (e) {
-
         //var ma = $(this).parents('.input-group');
         $('[data-toggle="popover"]').not($(this)).popover('hide');
         //alert(ma.html());
@@ -39,7 +37,7 @@ $(document).ready(function () {
 
         //getValues from local storage
         var inputName = $(this).parent('span').siblings('input').attr('id');
-        
+
         var diameter = localStorage.getItem(inputName + "diameter");
 
         diameter = diameter == null ? 1 : diameter;
@@ -47,7 +45,6 @@ $(document).ready(function () {
         count = count == null ? 1 : count;
 
         var area = Math.round(count * Math.PI * diameter * diameter / 4 * 100) / 100;
-
 
         $('.popover #areaValue').text(area);
         $('.popover #diameterInput').val(diameter);
@@ -58,7 +55,6 @@ $(document).ready(function () {
 
     //chnages the area based on number of bars and diameter in popup
     $('body').on('input', '#diameterInput, #countInput', function (event) {
-
         if ($(this).val().match(numberPattern)) {
             $(this).parent().removeClass('has-error');
             $('.popover #applyReinforcement').prop('disabled', false);
@@ -73,34 +69,32 @@ $(document).ready(function () {
             $(this).parent().addClass('has-error');
             $('.popover #applyReinforcement').prop('disabled', true);
         }
-
     })
-    .on('click', '#applyReinforcement', function () { //apply button on popover
-        var $context = $(this).data('context'); //button which triggered the popover
-        var area = $('.popover #areaValue').text();
-        var diameter = $('.popover #diameterInput').val();
-        var count = $('.popover #countInput').val();
+        .on('click', '#applyReinforcement', function () { //apply button on popover
+            var $context = $(this).data('context'); //button which triggered the popover
+            var area = $('.popover #areaValue').text();
+            var diameter = $('.popover #diameterInput').val();
+            var count = $('.popover #countInput').val();
 
+            var inputName = $context.parent('span').siblings('input').attr('id');
+            if (inputName == 'Asw') {
+                inputVM.Asw(area);
+            }
+            else if (inputName == 'Asl') {
+                inputVM.Asl(area);
+            }
 
-        var inputName = $context.parent('span').siblings('input').attr('id');
-        if (inputName == 'Asw') {
-            inputVM.Asw(area);
-        }
-        else if (inputName == 'Asl') {
-            inputVM.Asl(area);
-        }
+            //save values to local storage
+            localStorage.setItem(inputName + "area", area);
+            localStorage.setItem(inputName + "diameter", diameter);
+            localStorage.setItem(inputName + "count", count);
 
-        //save values to local storage
-        localStorage.setItem(inputName + "area", area);
-        localStorage.setItem(inputName + "diameter", diameter);
-        localStorage.setItem(inputName + "count", count);
-
-        $context.popover('hide');
-    })
-    .on('click', '#cancelReinforcement', function () {//cancel button on poover
-        var $context = $(this).data('context'); //button which triggered the popover
-        $context.popover('hide');
-    });
+            $context.popover('hide');
+        })
+        .on('click', '#cancelReinforcement', function () {//cancel button on poover
+            var $context = $(this).data('context'); //button which triggered the popover
+            $context.popover('hide');
+        });
 });
 
 var inputDataViewModel = function () {
@@ -164,19 +158,19 @@ var inputDataViewModel = function () {
 
     self.inputValidated = ko.pureComputed(function () {
         var result = true
-                   & self.VedValidation()
-                   & self.sValidation()
-                   & self.AswValidation()
-                   & self.bwValidation()
-                   & self.dValidation()
-                   & self.hValidation()
-                   & self.fywkValidation()
-                   & self.gammaSValidation()
-                   & self.fckValidation()
-                   & self.gammaCValidation()
-                   & self.NedValidation()
-                   & self.k1Validation()
-                   & self.AslValidation();
+            & self.VedValidation()
+            & self.sValidation()
+            & self.AswValidation()
+            & self.bwValidation()
+            & self.dValidation()
+            & self.hValidation()
+            & self.fywkValidation()
+            & self.gammaSValidation()
+            & self.fckValidation()
+            & self.gammaCValidation()
+            & self.NedValidation()
+            & self.k1Validation()
+            & self.AslValidation();
         return result;
     });
 
@@ -298,7 +292,6 @@ var inputDataViewModel = function () {
     self.VrdcResult.subscribe(refreshFormulas);
     self.VrdcSummary.subscribe(refreshFormulas);
 
-
     //output for members REQUIRING shear reinfrcement
     self.fywd = ko.observable(1);
     self.fywdResult = ko.pureComputed(function () {
@@ -404,7 +397,6 @@ var inputDataViewModel = function () {
     self.NoSolution = ko.observable(false);
 
     function getData(newValue) {
-
         var inputData = {
             Ved: self.Ved(),
             fck: self.fck(),
@@ -453,7 +445,6 @@ var inputDataViewModel = function () {
         });
         refreshFormulas(newValue);
         //}
-
     };
 
     function refreshFormulas(newValue) {

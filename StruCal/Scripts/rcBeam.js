@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-
     ko.options.deferUpdates = true;
     var inputVM = new inputDataViewModel();
     ko.applyBindings(inputVM);
@@ -77,7 +76,7 @@ var inputDataViewModel = function () {
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(220,220,220,1)",
-                data: [{ x: 0, y: 0 }, { x: self.EpsilonC2, y: self.Fck }, {x: self.EpsilonCU2, y: self.Fck }],
+                data: [{ x: 0, y: 0 }, { x: self.EpsilonC2, y: self.Fck }, { x: self.EpsilonCU2, y: self.Fck }],
             },
             {
                 label: 'Design',
@@ -88,7 +87,7 @@ var inputDataViewModel = function () {
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(151,187,205,1)",
-                data: [{ x: 0, y: 0 }, { x: self.EpsilonC2, y: self.Fcd }, {x: self.EpsilonCU2, y: self.Fcd }],
+                data: [{ x: 0, y: 0 }, { x: self.EpsilonC2, y: self.Fcd }, { x: self.EpsilonCU2, y: self.Fcd }],
             }
         ]
     };

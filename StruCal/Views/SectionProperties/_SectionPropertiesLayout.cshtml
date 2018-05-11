@@ -1,6 +1,6 @@
 ﻿@using StruCal.Helpers;
 @model StruCal.ViewModels.ISectionPropertiesViewModel
-@{ 
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -29,12 +29,11 @@
     {
         @Html.Partial("_ResultsPartial", Model)
     }
-
 </div>
     @Scripts.Render("~/bundles/svg")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/drawing")
     @Scripts.Render("~/bundles/sectionProperties")
     @*@Scripts.Render("~/bundles/PanelTabs")*@
-    
+
 <link href="~/Content/PanelTabs.css" rel="stylesheet" />

@@ -1,18 +1,18 @@
 ﻿var charts = angular.module('charts', ['chart.js']);
 
-charts.controller('chartCtrl', ['$scope','concreteFunctions',function ($scope, concreteFunctions) {
-    $scope.series = ['fcm', ];
+charts.controller('chartCtrl', ['$scope', 'concreteFunctions', function ($scope, concreteFunctions) {
+    $scope.series = ['fcm',];
 
     $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
     $scope.options = {
         scales: {
             yAxes: [
-              {
-                  id: 'y-axis-1',
-                  type: 'linear',
-                  display: true,
-                  position: 'left'
-              }
+                {
+                    id: 'y-axis-1',
+                    type: 'linear',
+                    display: true,
+                    position: 'left'
+                }
             ],
             xAxes: [{
                 scaleLabel: {
@@ -35,17 +35,15 @@ charts.controller('chartCtrl', ['$scope','concreteFunctions',function ($scope, c
             enabled: true,
         },
         legend: {
-
         },
         elements:
-            {
-                point: {
-                    radius: 0,
-                    hitRadius: 0,
-                    hoverRadius: 10,
-                },
-
+        {
+            point: {
+                radius: 0,
+                hitRadius: 0,
+                hoverRadius: 10,
             },
+        },
     };
 
     $scope.$on('concreteChange', function (event, arg) {
@@ -70,8 +68,7 @@ charts.controller('chartCtrl', ['$scope','concreteFunctions',function ($scope, c
 }]);
 
 var application = angular.module('concretePropertiesApp', ['charts']);
-application.controller("mainCtrl",['$scope','$rootScope','concreteFactory','concreteProperties','nameConverter', function ($scope, $rootScope, concreteFactory, concreteProperties, nameConverter) {
-
+application.controller("mainCtrl", ['$scope', '$rootScope', 'concreteFactory', 'concreteProperties', 'nameConverter', function ($scope, $rootScope, concreteFactory, concreteProperties, nameConverter) {
     $scope.convert = nameConverter.convertName;
 
     $scope.concretes = concreteFactory.concreteClass;//.classes()
@@ -80,9 +77,8 @@ application.controller("mainCtrl",['$scope','$rootScope','concreteFactory','conc
     $scope.cementes = concreteFactory.cementType;
     $scope.selectedCement = concreteFactory.cementType[0];
 
-    $scope.$watch('selectedConcrete', () =>update());
-    $scope.$watch('selectedCement', () =>update());
-
+    $scope.$watch('selectedConcrete', () => update());
+    $scope.$watch('selectedCement', () => update());
 
     var update = function () {
         //properties = new concretePropertiesProvider($scope.selectedClass)
@@ -113,7 +109,6 @@ application.factory('concreteFactory', function () {
 });
 
 application.service('concreteProperties', function () {
-
     this.getProperties = function (concreteClass) {
         var strength = concreteClass.replace("C", "").split("/");
 
@@ -156,7 +151,6 @@ application.service('concreteProperties', function () {
     function formatNumber(value) {
         return (Math.round(value * 100) / 100).toFixed(2);
     }
-
 });
 
 application.service('concreteFunctions', function () {

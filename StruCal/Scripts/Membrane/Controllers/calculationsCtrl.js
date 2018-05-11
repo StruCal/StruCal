@@ -1,4 +1,4 @@
-﻿angular.module('membraneFEM').controller('calculationsCtrl', ['$scope', '$rootScope', 'drawingService', '$http', 'inputDataFactory','inputDataCalculator', function ($scope, $rootScope, drawingService, $http,inputDataFactory,inputDataCalculator) {
+﻿angular.module('membraneFEM').controller('calculationsCtrl', ['$scope', '$rootScope', 'drawingService', '$http', 'inputDataFactory', 'inputDataCalculator', function ($scope, $rootScope, drawingService, $http, inputDataFactory, inputDataCalculator) {
     var inputData;
     var outputData;
 
@@ -19,8 +19,6 @@
         setDirty();
     })();
 
-    
-
     $scope.calculate = function () {
         $scope.message = "Processing..."
         $scope.progress = true;
@@ -29,27 +27,25 @@
         $scope.dirty = false;
         startProgress();
 
-
         $http.post("/api/MembraneApi", inputData)
-        .then(
-        function (response) {
-            outputData = angular.copy(response.data);
-            updateDrawing(outputData);
-            $scope.test = response.data;
-            $scope.valid = true;
-            $scope.dirty = false;
-            $scope.error = false;
-            $scope.progress = false;
-            $scope.message = "Results are up to date"
-        },
-        function (response) {
-            $scope.valid = false;
-            $scope.dirty = false;
-            $scope.error = true;
-            $scope.progress = false;
-            $scope.message = "An error has occured. Please try again."
-        });
-
+            .then(
+            function (response) {
+                outputData = angular.copy(response.data);
+                updateDrawing(outputData);
+                $scope.test = response.data;
+                $scope.valid = true;
+                $scope.dirty = false;
+                $scope.error = false;
+                $scope.progress = false;
+                $scope.message = "Results are up to date"
+            },
+            function (response) {
+                $scope.valid = false;
+                $scope.dirty = false;
+                $scope.error = true;
+                $scope.progress = false;
+                $scope.message = "An error has occured. Please try again."
+            });
     };
 
     $scope.setResult = function (value) {
@@ -98,7 +94,7 @@
             drawingService.drawDisplacement($scope.displacement, $scope.supports, $scope.forces);
         }
     });
-    $scope.$watch('smoothing',function(){
+    $scope.$watch('smoothing', function () {
         if (drawingService.drawOutput) {
             drawingService.drawSmoothing($scope.smoothing);
         }
@@ -117,19 +113,17 @@
         setDirty();
     });
 
-
     function setDirty() {
         $scope.dirty = true;
         $scope.message = "Results are NOT up to date."
     }
 
     function updateDrawing() {
-            drawingService.setOutput(outputData);
-            drawingService.drawSupports($scope.supports);
-            drawingService.drawPointLoads($scope.forces);
-            drawingService.drawText($scope.text);
-            drawingService.drawSmoothing($scope.smoothing);
-            drawingService.drawDisplacement($scope.displacement, $scope.supports, $scope.forces);
+        drawingService.setOutput(outputData);
+        drawingService.drawSupports($scope.supports);
+        drawingService.drawPointLoads($scope.forces);
+        drawingService.drawText($scope.text);
+        drawingService.drawSmoothing($scope.smoothing);
+        drawingService.drawDisplacement($scope.displacement, $scope.supports, $scope.forces);
     }
-
 }]);

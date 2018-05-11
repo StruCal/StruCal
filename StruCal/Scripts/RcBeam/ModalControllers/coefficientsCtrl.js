@@ -1,4 +1,4 @@
-﻿angular.module('rcBeam').controller('coefficientsCtrl',['$scope','$rootScope', function ($scope, $rootScope) {
+﻿angular.module('rcBeam').controller('coefficientsCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
     $scope.gammaS = 1.15;
     $scope.gammaC = 1.5;
 

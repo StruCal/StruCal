@@ -1,11 +1,5 @@
-﻿using AutoMapper;
-using Calculators.TrainLoad;
-using Common.Geometry;
+﻿using Calculators.TrainLoad;
 using StruCal.BindingModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Mvc;
@@ -35,7 +29,5 @@ namespace StruCal.Controllers
 
             return Ok(resultDTO);
         }
-
-
     }
 }

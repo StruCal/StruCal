@@ -1,11 +1,4 @@
-﻿using Common.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Calculators.RCBeam
+﻿namespace Calculators.RCBeam
 {
     /*public class DetailedResult
     {
@@ -22,11 +15,9 @@ namespace Calculators.RCBeam
             //string nl = Environment.NewLine;
             string sumSymbol = "\u03A3";
 
-
             double centreDistanceFromBottom = calculationResult.H - calculationResult.Cz;
             //List<string> text = new List<string>();
             StringBuilder text = new StringBuilder();
-
 
             text.AppendLine("Section:");
             //text.AppendLine(nl);
@@ -93,17 +84,13 @@ namespace Calculators.RCBeam
             var reinforcementData = convertReinforcementDataToString(calculationResult.Bars, steel, ref sumBarForce, ref sumBarMoment);
             text.Append(reinforcementData.ToString());
 
-
             text.AppendLine(string.Format("{0,-40}{1,-10}", "Sum of forces in reinforcement", sumSymbol + "F=" + sumBarForce.ToFormatedString() + "kN"));
             //text.AppendLine(nl);
             text.AppendLine(string.Format("{0,-40}{1,-10}", "Sum of moments due to reinforcement", sumSymbol + "M=" + sumBarMoment.ToFormatedString() + "kNm"));
             //text.AppendLine(nl);
 
-
-
             double resultForce = calculationResult.ForceConcrete + sumBarForce - Ned;
             double resultMoment = calculationResult.MrdConcrete + sumBarMoment - Ned * centreDistanceFromBottom;
-
 
             text.AppendLine(string.Empty);
             //text.AppendLine(nl);
@@ -126,7 +113,6 @@ namespace Calculators.RCBeam
 
         private static StringBuilder convertReinforcementDataToString(IEnumerable<Reinforcement> reinforcement, Steel steel, ref double sumForce, ref double sumMoment)
         {
-
             int i = 0;
             var result = new StringBuilder();
             foreach (var bar in reinforcement)

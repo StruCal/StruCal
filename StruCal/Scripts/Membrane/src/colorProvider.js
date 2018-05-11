@@ -1,5 +1,4 @@
 function colorProvider() {
-
     var membraneOutputData;
     var resultType = RESULT_TYPE.Sxx;
 
@@ -16,7 +15,7 @@ function colorProvider() {
     rainbow.setSpectrum(minColor, middleColor, maxColor);
     rainbow.setNumberRange(0, range);
 
-    this.setMembraneOutput = function(membraneOutput) {
+    this.setMembraneOutput = function (membraneOutput) {
         membraneOutputData = membraneOutput;
 
         setResultType.call(this);
@@ -24,7 +23,7 @@ function colorProvider() {
         return this;
     }
 
-    this.getColor = function(value) {
+    this.getColor = function (value) {
         var valueRange = percentile095 - percentile005;
 
         var valueToCalculations;
@@ -41,10 +40,9 @@ function colorProvider() {
         var colorIndex = Math.round((valueTransformed / valueRange) * range);
         var color = rainbow.colourAt(colorIndex);
         return '#' + color;
-
     }
 
-    this.setSxx = function() {
+    this.setSxx = function () {
         minValue = membraneOutputData.MinSxx;
         maxValue = membraneOutputData.MaxSxx;
 
@@ -54,7 +52,7 @@ function colorProvider() {
         resultType = RESULT_TYPE.Sxx;
         return this;
     }
-    this.setSyy = function() {
+    this.setSyy = function () {
         minValue = membraneOutputData.minSyy;
         maxValue = membraneOutputData.maxSyy;
 
@@ -64,7 +62,7 @@ function colorProvider() {
         resultType = RESULT_TYPE.Syy;
         return this;
     }
-    this.setTxy = function() {
+    this.setTxy = function () {
         minValue = membraneOutputData.minTxy;
         maxValue = membraneOutputData.maxTxy;
 
@@ -88,5 +86,4 @@ function colorProvider() {
                 break;
         }
     }
-
 }

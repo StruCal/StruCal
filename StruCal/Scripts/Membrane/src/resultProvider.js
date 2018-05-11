@@ -10,34 +10,34 @@ function resultProvider() {
 
     this.smoothing = true;
 
-    this.setMembraneOutput = function(membraneOutputData) {
+    this.setMembraneOutput = function (membraneOutputData) {
         membraneOutput = membraneOutputData;
         return this;
     }
 
-    this.setSxx = function() {
+    this.setSxx = function () {
         resultType = RESULT_TYPE.Sxx;
         return this;
     }
 
-    this.setSyy = function() {
+    this.setSyy = function () {
         resultType = RESULT_TYPE.Syy;
         return this;
     }
 
-    this.setTxy = function() {
+    this.setTxy = function () {
         resultType = RESULT_TYPE.Txy;
         return this;
     }
 
-    this.getResult = function(triangle) {
+    this.getResult = function (triangle) {
         if (this.smoothing)
             return getSmoothResult(triangle);
         else
             return getCentreResult(triangle);
     }
 
-    this.getCenterValue = function(triangle) {
+    this.getCenterValue = function (triangle) {
         switch (resultType) {
             case RESULT_TYPE.Sxx:
                 return triangle.Sxx;

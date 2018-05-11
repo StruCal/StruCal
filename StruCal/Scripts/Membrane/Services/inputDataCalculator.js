@@ -40,9 +40,8 @@
             createEdges(verticesCopy);
             createInput(verticesCopy);
             numerateVerticesAndMultiplyLoad(verticesCopy);
-            
+
             return inputData;
         }
     }
-
 });

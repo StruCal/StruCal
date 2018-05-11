@@ -1,9 +1,5 @@
 ﻿using Common.Geometry;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Calculators.RCBeam
 {
@@ -20,6 +16,7 @@ namespace Calculators.RCBeam
             }
             return -capacity;
         }
+
         public static double CompressionCapacity(IList<PointD> sectionCoordinates, Concrete concrete)
         {
             if (sectionCoordinates.Count == 0)

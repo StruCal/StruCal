@@ -1,5 +1,4 @@
-﻿angular.module('rcBeam').controller('drawingPanelCtrl',['$scope','$rootScope', function ($scope, $rootScope) {
-
+﻿angular.module('rcBeam').controller('drawingPanelCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
     var coordinates;
     var bars;
 
@@ -11,8 +10,6 @@
         bars = arg;
         updateDrawing();
     });
-    
-
 
     function updateDrawing() {
         var canvasObject = $('#customPanelDrawing');

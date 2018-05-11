@@ -1,9 +1,6 @@
 ﻿using Calculators.TrainLoad;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StruCal.BindingModels
 {
@@ -18,7 +15,7 @@ namespace StruCal.BindingModels
         {
             return new Section
             {
-                Perimeters=sectionDTO.perimeters.Select(e=>e.ToPerimeter()).ToList(),
+                Perimeters = sectionDTO.perimeters.Select(e => e.ToPerimeter()).ToList(),
             };
         }
     }

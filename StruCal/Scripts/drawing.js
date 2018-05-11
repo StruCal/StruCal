@@ -1,8 +1,5 @@
-﻿
-
-//drawing functions. Coordinates are provides as array
+﻿//drawing functions. Coordinates are provides as array
 function drawSection(drawing, xCoordinates, yCoordinates, canvasObject) {
-
     var maxX = getMaxValue(xCoordinates);
     var minX = getMinValue(xCoordinates);
     var maxY = getMaxValue(yCoordinates);
@@ -46,7 +43,6 @@ function drawBackgroundPattern(drawing, width, height) {
 
     var correctedWidth = Math.floor(width / patternSize) * patternSize;
     var correctedHeight = Math.floor(height / patternSize) * patternSize;
-
 
     //var pattern = drawing.pattern(patternSize, patternSize, function (add) {
     //    add.line(0, 0, patternSize, 0).stroke({ width: 1, color: 'grey' });
@@ -94,9 +90,7 @@ function drawBackgroundPattern(drawing, width, height) {
     }
 }
 
-function drawBars(drawing,bars)
-{
-
+function drawBars(drawing, bars) {
 }
 
 function convertCoordinatesToLineInput(x1, y1, x2, y2) {
@@ -121,7 +115,6 @@ function transferCoordinatesToPlot(xCoordinates, yCoordinates) {
 }
 
 function transferXToCanvasSystem(pointX, centreX, scale, canvasWidth) {
-
     var x = ((pointX - centreX) * scale) + canvasWidth / 2;
     //console.log('poinX:' + pointX + ' centreX:' + centreX + ' scale:' + scale + ' canvasWidth:' + canvasWidth + ' x:' + x);
     return x;
@@ -152,4 +145,3 @@ function getDrawingScale(canvasWidth, canvasHeight, sectionWidth, sectionHeight)
     var scale = Math.min(scale1, scale2);
     return scale;
 }
-

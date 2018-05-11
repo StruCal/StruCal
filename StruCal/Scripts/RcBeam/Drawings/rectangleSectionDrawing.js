@@ -23,15 +23,15 @@
         drawingCreator.drawBars(this.bars)
     }
 
-    getCoordinates(width,height){
+    getCoordinates(width, height) {
         var coordinates = new Array();
 
-        coordinates.push({x:0,y:0});
-        coordinates.push({x:0.5 * width,y:0});
-        coordinates.push({x:0.5 * width,y:-height});
-        coordinates.push({x:-0.5 * width,y:-height});
-        coordinates.push({x:-0.5 * width,y:0});
-        coordinates.push({x:0,y:0});
+        coordinates.push({ x: 0, y: 0 });
+        coordinates.push({ x: 0.5 * width, y: 0 });
+        coordinates.push({ x: 0.5 * width, y: -height });
+        coordinates.push({ x: -0.5 * width, y: -height });
+        coordinates.push({ x: -0.5 * width, y: 0 });
+        coordinates.push({ x: 0, y: 0 });
 
         return coordinates;
     }

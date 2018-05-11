@@ -1,10 +1,8 @@
-﻿function coordinateMultiplier(coordinate)
-{
+﻿function coordinateMultiplier(coordinate) {
     let x = coordinate.x / 1000;
     let y = coordinate.y / 1000;
     return { x, y };
 }
-
 
 function barMultiplier(bar) {
     let x = bar.x / 1000;

@@ -1,5 +1,4 @@
-﻿
-function createCustomDrawing() {
+﻿function createCustomDrawing() {
     var canvasObject = $('#canvas');
     //var xString = $("#XCoordinates").val() == "" ? $("#XCoordinates").attr("placeholder") : $("#XCoordinates").val();
     //var yString = $("#YCoordinates").val() == "" ? $("#YCoordinates").attr("placeholder") : $("#YCoordinates").val();
@@ -25,8 +24,6 @@ function createCustomDrawing() {
     }
 
     fillCanvas(x, y, canvasObject);
-
-    
 }
 function fillCanvas(xCoordinates, yCoordinates, canvasObject) {
     //var canvasObject = $('#' + canvasParentId);
@@ -43,7 +40,6 @@ function fillCanvas(xCoordinates, yCoordinates, canvasObject) {
     drawBackgroundPattern(drawing, canvasWidth, canvasHeight);
 
     drawSection(drawing, xCoordinates, yCoordinates, canvasObject);
-
 }
 function createRectangularDrawing() {
     var canvasObject = $('#canvas');
@@ -75,9 +71,9 @@ function createCircularDrawing() {
     var xString = "";
     var yString = "";
 
-    for (var i = 0; i <= 360; i=i+10) {
+    for (var i = 0; i <= 360; i = i + 10) {
         var alfa = (i - 90) * Math.PI / 180;
-        var x = (radious * Math.sin(alfa)).toFixed(2);  
+        var x = (radious * Math.sin(alfa)).toFixed(2);
         var y = (radious * Math.cos(alfa)).toFixed(2);
         xString = xString + x + ";";
         yString = yString + y + ";";
@@ -189,8 +185,7 @@ function createISectionDrawing() {
     fillCanvas(x, y, canvasObject);
 }
 
-function getInputValue(id)
-{
+function getInputValue(id) {
     return $(id).val() == "" ? $(id).attr("placeholder") : $(id).val();
 }
 function splitCoordinates(coordinates) {

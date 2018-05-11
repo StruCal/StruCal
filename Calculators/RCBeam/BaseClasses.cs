@@ -1,31 +1,35 @@
-﻿using System;
+﻿using Common.Extensions;
+using Common.Geometry;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
-using Common.Extensions;
-using Common.Geometry;
 
 namespace Calculators.RCBeam
 {
-    
     public class Concrete
     {
         [XmlElement]
         public string Grade { get; set; }
+
         [XmlElement]
         public double Fck { get; set; }
+
         [XmlElement]
         public double Acc { get; set; }
+
         [XmlElement]
         public double GammaC { get; set; }
+
         [XmlElement]
         public double N { get; set; }
+
         [XmlElement]
         public double Ec2 { get; set; }
+
         [XmlElement]
         public double Ecu2 { get; set; }
+
         [XmlIgnore]
         public double Fcd
         {
@@ -35,20 +39,27 @@ namespace Calculators.RCBeam
             }
         }
     }
+
     public class Steel
     {
         [XmlElement]
         public string Grade { get; set; }
+
         [XmlElement]
         public double Fyk { get; set; }
+
         [XmlElement]
         public double GammaS { get; set; }
+
         [XmlElement]
         public double K { get; set; }
+
         [XmlElement]
         public double Es { get; set; }
+
         [XmlElement]
         public double Euk { get; set; }
+
         [XmlElement]
         public double EudToEuk { get; set; }
 
@@ -70,11 +81,13 @@ namespace Calculators.RCBeam
             }
         }
     }
+
     public class Bar : IEquatable<Bar>
     {
         public double X { get; set; }
         public double Y { get; set; }
         public double D { get; set; }
+
         public double As
         {
             get
@@ -82,12 +95,14 @@ namespace Calculators.RCBeam
                 return Math.PI * this.D * this.D / 4;
             }
         }
+
         public bool Equals(Bar other)
         {
             if (Object.ReferenceEquals(other, null)) return false;
             if (Object.ReferenceEquals(this, other)) return true;
             return X.IsApproximatelyEqualTo(other.X) && Y.IsApproximatelyEqualTo(other.Y) && As.IsApproximatelyEqualTo(other.As);
         }
+
         public override bool Equals(object obj)
         {
             if (obj == null)
@@ -98,8 +113,8 @@ namespace Calculators.RCBeam
                 return false;
             else
                 return this.Equals(bar);
-
         }
+
         public override int GetHashCode()
         {
             var hashX = X.GetHashCode();
@@ -108,6 +123,7 @@ namespace Calculators.RCBeam
             return hashX ^ hashY ^ hashAs;
         }
     }
+
     public class LoadCase : IEquatable<LoadCase>
     {
         private static int id;
@@ -115,6 +131,7 @@ namespace Calculators.RCBeam
         public string Name { get; set; }
         public double NormalForce { get; set; }
         public int Id { get; private set; }
+
         public LoadCase()
         {
             id++;
@@ -122,6 +139,7 @@ namespace Calculators.RCBeam
             this.Name = string.Empty;
             this.NormalForce = 0d;
         }
+
         public bool Equals(LoadCase other)
         {
             if (other == null)
@@ -139,6 +157,7 @@ namespace Calculators.RCBeam
             return hashName ^ hashNormalForce;
         }
     }
+
     public class LoadCaseResult
     {
         public IEnumerable<Reinforcement> Bars { get; set; } //reinforcement
@@ -177,6 +196,7 @@ namespace Calculators.RCBeam
         public double Force { get; set; }
         public bool IsCompressed { get; set; }
     }
+
     public class Section : IIntegrable
     {
         public IList<PointD> Coordinates { get; private set; }
@@ -187,6 +207,7 @@ namespace Calculators.RCBeam
         public double B { get; private set; }
         public double Cz { get; private set; }
         public double IntegrationPointY { get; set; }
+
         public Section(IList<PointD> coordinates)
         {
             Coordinates = checkIfCoordinatesAreClockwise(coordinates);
@@ -194,6 +215,7 @@ namespace Calculators.RCBeam
             Cz = SectionProperties.Cz(Coordinates, MaxY);
             IntegrationPointY = MinY;
         }
+
         private static IList<PointD> checkIfCoordinatesAreClockwise(IList<PointD> coordinates)
         {
             double iw;
@@ -216,6 +238,7 @@ namespace Calculators.RCBeam
             }
             return result;
         }
+
         private static double crossProduct(PointD p0, PointD p1, PointD p2)
         {
             var vector1 = new double[2];
@@ -228,14 +251,15 @@ namespace Calculators.RCBeam
             wynik = vector1[0] * vector2[1] - vector1[1] * vector2[0];
             return wynik;
         }
+
         private void calculateExtrementsAndDepth()
         {
-
             MinY = this.Coordinates.Min(p => p.Y);
             MaxY = this.Coordinates.Max(p => p.Y);
             H = MaxY - MinY;
         }
     }
+
     public class InteractionCurveResult
     {
         public IEnumerable<PointD> Moments { get; set; } //point representing moment Mx and My

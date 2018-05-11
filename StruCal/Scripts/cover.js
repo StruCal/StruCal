@@ -4,11 +4,9 @@ function validateNumber(value) {
     return regex.test(value);
 }
 $(document).ready(function () {
-
     ko.options.deferUpdates = true;
     var inputVM = new inputDataViewModel();
     ko.applyBindings(inputVM);
-
 });
 
 var inputDataViewModel = function () {
@@ -31,19 +29,19 @@ var inputDataViewModel = function () {
     self.ConcreteClass = ko.observable('C30/37');
     self.ConcreteClassValidation = ko.pureComputed(function () {
         return self.ConcreteClass();
-        });
+    });
 
     self.ExposureClassList = ko.observableArray(['X0', 'XC1', 'XC2', 'XC3', 'XC4', 'XD1', 'XD2', 'XD3', 'XS1', 'XS2', 'XS3', 'XF1', 'XF2', 'XF3', 'XF4', 'XA1', 'XA2', 'XA3']);
     self.ExposureClass = ko.observable('X0');
     self.ExposureClassValidation = ko.pureComputed(function () {
         return self.ExposureClass();
-        });
+    });
 
     self.BaseStructuralClassList = ko.observableArray(['S1', 'S2', 'S3', 'S4', 'S5', 'S6']);
     self.BaseStructuralClass = ko.observable('S4');
     self.BaseStructuralClassValidation = ko.pureComputed(function () {
         return self.BaseStructuralClass();
-        });
+    });
 
     self.NominalMaximumAggregateSizeIsGreaterThan32mm = ko.observable(false);
     self.NominalMaximumAggregateSizeIsGreaterThan32mmValidation = ko.pureComputed(function () {
@@ -53,7 +51,7 @@ var inputDataViewModel = function () {
     self.DesignWorkingLifeOf100Years = ko.observable(false);
     self.DesignWorkingLifeOf100YearsValidation = ko.pureComputed(function () {
         return self.DesignWorkingLifeOf100Years();
-        });
+    });
 
     self.MemberWithSlabGeometry = ko.observable(false);
     self.MemberWithSlabGeometryValidation = ko.pureComputed(function () {
@@ -132,7 +130,6 @@ var inputDataViewModel = function () {
     self.NominalCoverResult.subscribe(refreshFormulas);
 
     function getData(newValue) {
-
         var inputData = {
             RebarDiameter: self.RebarDiameter(),
             ArrangementOfBars: self.ArrangementOfBars(),
@@ -161,7 +158,6 @@ var inputDataViewModel = function () {
         });
         refreshFormulas(newValue);
         //}
-
     };
 
     function refreshFormulas(newValue) {

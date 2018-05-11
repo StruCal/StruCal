@@ -1,8 +1,4 @@
 ﻿using Calculators.TrainLoad.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace StruCal.BindingModels.TrainLoad.Input
 {
@@ -37,6 +33,5 @@ namespace StruCal.BindingModels.TrainLoad.Input
                 deltaTimeResults = timeSettings.DeltaTimeResults,
             };
         }
-
     }
 }

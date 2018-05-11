@@ -1,5 +1,4 @@
 function scaleCalculator(width, height) {
-
     var margin = 50;
     var maxDimension = Math.max(width, height);
     var membraneInput;
@@ -9,47 +8,44 @@ function scaleCalculator(width, height) {
 
     var maxLoad;
 
-    this.setMembraneInput = function(membraneInputData) {
+    this.setMembraneInput = function (membraneInputData) {
         membraneInput = membraneInputData;
         calculateExtremes();
         calculateMaxLoad();
         return this;
     }
 
-    this.setMembraneOutput = function(membraneOutputData) {
+    this.setMembraneOutput = function (membraneOutputData) {
         membraneOutput = membraneOutputData;
         this.setMembraneInput(membraneOutput.InputData);
         return this;
     }
 
-    this.getCentreTranslation = function() {
+    this.getCentreTranslation = function () {
         return {
             x: centreX,
             y: centreY
         };
     }
 
-    this.getSupportScale = function() {
-
+    this.getSupportScale = function () {
         var factor = 0.02;
         return maxDimension * factor;
     }
 
     this.getPointLoadScale = function () {
-        
         var factor = 0.02;
         return maxDimension * factor;
     }
 
-    this.getDisplacementScale = function() {
+    this.getDisplacementScale = function () {
         var max = Math.max(membraneOutput.MaxUx, membraneOutput.MaxUy);
-        var disp = 0.1*maxDimension;
+        var disp = 0.1 * maxDimension;
         var scale = disp / max;
         return scale;
     }
 
-
-    this.getPointLoadLengthScale = function(loadValue) {
+    this.getPointLoadLengthScale = function (loadValue) {
         var scale = Math.abs(loadValue) / maxLoad;
         return scale;
     }
@@ -69,8 +65,8 @@ function scaleCalculator(width, height) {
     }
 
     function calculateExtremes() {
-        var xs = membraneInput.Vertices.map(function(v) { return v.X; });
-        var ys = membraneInput.Vertices.map(function(v) { return v.Y; });
+        var xs = membraneInput.Vertices.map(function (v) { return v.X; });
+        var ys = membraneInput.Vertices.map(function (v) { return v.Y; });
         maxX = Math.max.apply(Math, xs);
         minX = Math.min.apply(Math, xs);
         maxY = Math.max.apply(Math, ys);
@@ -85,11 +81,9 @@ function scaleCalculator(width, height) {
     }
 
     function calculateMaxLoad() {
-        var xLoads = membraneInput.Vertices.map(function(v) { return Math.abs(v.LoadX) });
-        var yLoads = membraneInput.Vertices.map(function(v) { return Math.abs(v.LoadY) });
+        var xLoads = membraneInput.Vertices.map(function (v) { return Math.abs(v.LoadX) });
+        var yLoads = membraneInput.Vertices.map(function (v) { return Math.abs(v.LoadY) });
         var loads = xLoads.concat(yLoads);
         maxLoad = Math.max.apply(Math, loads);
     }
-
-    
 }

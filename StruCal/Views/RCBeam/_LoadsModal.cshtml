@@ -1,6 +1,4 @@
-﻿
-
-<!-- Modal Loads-->
+﻿<!-- Modal Loads-->
 <div class="modal fade" id="modalLoads" role="dialog" ng-controller="loadsCtrl">
     <div class="modal-dialog" style="max-height:75%;">
         <div class="modal-content">
@@ -21,12 +19,11 @@
                                     <th class="text-left">Load Case</th>
                                     <th class="text-left">Axial Force [N]</th>
                                     <th class="text-left"></th>
-
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="vert-align" ng-repeat="load in loadCases" ng-form="RowForm">
-                                   
+
                                     <td class="col-sm-1">
                                         <label class="control-label">{{$index + 1}}</label>
                                     </td>
@@ -61,4 +58,3 @@
         </div>
     </div>
 </div>
-

@@ -1,19 +1,13 @@
 ﻿using Calculators.SectionProperties;
+using Common.Extensions;
+using StruCal.Validators;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using Common.Extensions;
-using System.Text;
-using Common.Geometry;
-using StruCal.Validators;
 using System.Globalization;
 
 namespace StruCal.ViewModels
 {
-    
-
     public class SectionPropertyViewData
     {
         public string Name { get; set; }
@@ -28,25 +22,24 @@ namespace StruCal.ViewModels
         IEnumerable<SectionPropertyViewData> PrincipalSystemProperties { get; set; }
 
         string GetXCoordinates();
+
         string GetYCoordinates();
     }
 
-    public class CustomSectionViewModel :ISectionPropertiesViewModel
+    public class CustomSectionViewModel : ISectionPropertiesViewModel
     {
-        
         public IEnumerable<SectionPropertyViewData> BaseSystemProperties { get; set; }
         public IEnumerable<SectionPropertyViewData> CentralSystemProperties { get; set; }
         public IEnumerable<SectionPropertyViewData> PrincipalSystemProperties { get; set; }
 
         [Required(ErrorMessage = "Coordinates are empty.")]
         [Display(Name = "Coordinates:")]
-        [RegularExpression(RegexPatterns.CustomSectionValidationPattern,ErrorMessage ="Provided input for coordinates is invalid.")]
+        [RegularExpression(RegexPatterns.CustomSectionValidationPattern, ErrorMessage = "Provided input for coordinates is invalid.")]
         public string Coordinates { get; set; }
-
 
         public string GetXCoordinates()
         {
-            var result = convertCoordinates(e=>e[0]);
+            var result = convertCoordinates(e => e[0]);
 
             return result;
         }
@@ -58,7 +51,7 @@ namespace StruCal.ViewModels
             return result;
         }
 
-        private string convertCoordinates(Func<string[],string> coordinatePicker)
+        private string convertCoordinates(Func<string[], string> coordinatePicker)
         {
             var coordinates = this.Coordinates.Split(' ');
 
@@ -73,19 +66,19 @@ namespace StruCal.ViewModels
         }
     }
 
-    public class RectangularSectionViewModel :ISectionPropertiesViewModel
+    public class RectangularSectionViewModel : ISectionPropertiesViewModel
     {
         public IEnumerable<SectionPropertyViewData> BaseSystemProperties { get; set; }
         public IEnumerable<SectionPropertyViewData> CentralSystemProperties { get; set; }
         public IEnumerable<SectionPropertyViewData> PrincipalSystemProperties { get; set; }
 
-        [Required(ErrorMessage ="Width is empty.")]
-        [Display(Name ="Width:")]
-        [RegularExpression(RegexPatterns.PositiveNumberValidationPattern,ErrorMessage ="Width is not a positive number.")]
+        [Required(ErrorMessage = "Width is empty.")]
+        [Display(Name = "Width:")]
+        [RegularExpression(RegexPatterns.PositiveNumberValidationPattern, ErrorMessage = "Width is not a positive number.")]
         public string Width { get; set; }
 
         [Required(ErrorMessage = "Height is empty.")]
-        [Display(Name ="Height:")]
+        [Display(Name = "Height:")]
         [RegularExpression(RegexPatterns.PositiveNumberValidationPattern, ErrorMessage = "Height is not a positive number.")]
         public string Height { get; set; }
 
@@ -111,7 +104,6 @@ namespace StruCal.ViewModels
         [Required(ErrorMessage = "Radious is empty.")]
         [Display(Name = "Radious:")]
         [RegularExpression(RegexPatterns.PositiveNumberValidationPattern, ErrorMessage = "Radious is not a positive number.")]
-        
         public string Radious { get; set; }
 
         public string GetXCoordinates()
@@ -126,15 +118,15 @@ namespace StruCal.ViewModels
             return result;
         }
 
-        private string getCoordinates(Func<double,double> coordinateFunction)
+        private string getCoordinates(Func<double, double> coordinateFunction)
         {
             var result = string.Empty;
 
-            var radious = double.Parse(this.Radious.ToDot(),CultureInfo.InvariantCulture);
+            var radious = double.Parse(this.Radious.ToDot(), CultureInfo.InvariantCulture);
             for (int i = 0; i <= 360; i++)
             {
                 var alfa = (i - 90) * Math.PI / 180;
-                var x = radious*coordinateFunction(alfa);
+                var x = radious * coordinateFunction(alfa);
                 result = result + x.ToString() + ";";
             }
             return result;
@@ -143,7 +135,6 @@ namespace StruCal.ViewModels
 
     public class TSectionViewModel : ISectionPropertiesViewModel
     {
-
         public IEnumerable<SectionPropertyViewData> BaseSystemProperties { get; set; }
         public IEnumerable<SectionPropertyViewData> CentralSystemProperties { get; set; }
         public IEnumerable<SectionPropertyViewData> PrincipalSystemProperties { get; set; }
@@ -154,24 +145,24 @@ namespace StruCal.ViewModels
         public string Height { get; set; }
 
         [Required(ErrorMessage = "Flange Width is empty.")]
-        [Display(Name ="Flange width:")]
+        [Display(Name = "Flange width:")]
         [RegularExpression(RegexPatterns.PositiveNumberValidationPattern, ErrorMessage = "Width is not a positive number.")]
         public string FlangeWidth { get; set; }
 
         [Required(ErrorMessage = "Flange thickness is empty.")]
-        [Display(Name ="Flange thickness:")]
+        [Display(Name = "Flange thickness:")]
         [RegularExpression(RegexPatterns.PositiveNumberValidationPattern, ErrorMessage = "Flange thickness is not a positive number.")]
         public string FlangeThickness { get; set; }
 
         [Required(ErrorMessage = "Web thickness is empty.")]
-        [Display(Name ="Web thickness:")]
+        [Display(Name = "Web thickness:")]
         [RegularExpression(RegexPatterns.PositiveNumberValidationPattern, ErrorMessage = "Web thickness is not a positive number.")]
         public string WebThickness { get; set; }
 
         public string GetXCoordinates()
         {
-            var flangeWidth = double.Parse(this.FlangeWidth.ToDot(),CultureInfo.InvariantCulture);
-            var webThickness = double.Parse(this.WebThickness.ToDot(),CultureInfo.InvariantCulture); 
+            var flangeWidth = double.Parse(this.FlangeWidth.ToDot(), CultureInfo.InvariantCulture);
+            var webThickness = double.Parse(this.WebThickness.ToDot(), CultureInfo.InvariantCulture);
 
             var x = new List<double>();
             x.Add(0);
@@ -190,8 +181,8 @@ namespace StruCal.ViewModels
 
         public string GetYCoordinates()
         {
-            var height = double.Parse(this.Height.ToDot(),CultureInfo.InvariantCulture);
-            var flangeThickness = double.Parse(this.FlangeThickness.ToDot(),CultureInfo.InvariantCulture);
+            var height = double.Parse(this.Height.ToDot(), CultureInfo.InvariantCulture);
+            var flangeThickness = double.Parse(this.FlangeThickness.ToDot(), CultureInfo.InvariantCulture);
 
             var y = new List<double>();
             y.Add(height);
@@ -206,12 +197,10 @@ namespace StruCal.ViewModels
             var result = string.Join(";", y);
             return result;
         }
-
     }
 
     public class ISectionViewModel : ISectionPropertiesViewModel
     {
-
         public IEnumerable<SectionPropertyViewData> BaseSystemProperties { get; set; }
         public IEnumerable<SectionPropertyViewData> CentralSystemProperties { get; set; }
         public IEnumerable<SectionPropertyViewData> PrincipalSystemProperties { get; set; }
@@ -248,23 +237,23 @@ namespace StruCal.ViewModels
 
         public string GetXCoordinates()
         {
-            var topFlangeWidth = double.Parse(this.TopFlangeWidth.ToDot(),CultureInfo.InvariantCulture);
-            var webThickness = double.Parse(this.WebThickness.ToDot(),CultureInfo.InvariantCulture);
-            var bottomFlangeWidth = double.Parse(this.BottomFlangeWidth.ToDot(),CultureInfo.InvariantCulture);
-            
+            var topFlangeWidth = double.Parse(this.TopFlangeWidth.ToDot(), CultureInfo.InvariantCulture);
+            var webThickness = double.Parse(this.WebThickness.ToDot(), CultureInfo.InvariantCulture);
+            var bottomFlangeWidth = double.Parse(this.BottomFlangeWidth.ToDot(), CultureInfo.InvariantCulture);
+
             var x = new List<double>();
-            x.Add(-topFlangeWidth/2);//upper left corner
-            x.Add(-topFlangeWidth/2);
-            x.Add(-webThickness/2);
-            x.Add(-webThickness/2);
-            x.Add(-bottomFlangeWidth/2);
-            x.Add(-bottomFlangeWidth/2);
-            x.Add(bottomFlangeWidth/2);
-            x.Add(bottomFlangeWidth/2);
-            x.Add(webThickness/2);
-            x.Add(webThickness/2);
-            x.Add(topFlangeWidth/2);
-            x.Add(topFlangeWidth/2);
+            x.Add(-topFlangeWidth / 2);//upper left corner
+            x.Add(-topFlangeWidth / 2);
+            x.Add(-webThickness / 2);
+            x.Add(-webThickness / 2);
+            x.Add(-bottomFlangeWidth / 2);
+            x.Add(-bottomFlangeWidth / 2);
+            x.Add(bottomFlangeWidth / 2);
+            x.Add(bottomFlangeWidth / 2);
+            x.Add(webThickness / 2);
+            x.Add(webThickness / 2);
+            x.Add(topFlangeWidth / 2);
+            x.Add(topFlangeWidth / 2);
 
             var result = string.Join(";", x);
 
@@ -273,31 +262,30 @@ namespace StruCal.ViewModels
 
         public string GetYCoordinates()
         {
-            var height = double.Parse(this.Height.ToDot(),CultureInfo.InvariantCulture);
-            var bottomFlangeThickness = double.Parse(this.BottomFlangeThickness.ToDot(),CultureInfo.InvariantCulture);
-            var topFlangeThickness = double.Parse(this.TopFlangeThickness.ToDot(),CultureInfo.InvariantCulture);
+            var height = double.Parse(this.Height.ToDot(), CultureInfo.InvariantCulture);
+            var bottomFlangeThickness = double.Parse(this.BottomFlangeThickness.ToDot(), CultureInfo.InvariantCulture);
+            var topFlangeThickness = double.Parse(this.TopFlangeThickness.ToDot(), CultureInfo.InvariantCulture);
 
             var y = new List<double>();
             y.Add(height);
-            y.Add(height-topFlangeThickness);
-            y.Add(height-topFlangeThickness);
+            y.Add(height - topFlangeThickness);
+            y.Add(height - topFlangeThickness);
             y.Add(bottomFlangeThickness);
             y.Add(bottomFlangeThickness);
             y.Add(0);
             y.Add(0);
             y.Add(bottomFlangeThickness);
             y.Add(bottomFlangeThickness);
-            y.Add(height-topFlangeThickness);
-            y.Add(height-topFlangeThickness);
+            y.Add(height - topFlangeThickness);
+            y.Add(height - topFlangeThickness);
             y.Add(height);
 
             var result = string.Join(";", y);
             return result;
         }
-
     }
 
-    enum CoordinateSystemType
+    internal enum CoordinateSystemType
     {
         Base,
         Central,
@@ -358,14 +346,13 @@ namespace StruCal.ViewModels
             { SectionProperty.yI_min,"Extereme negative Y coordinate in principal coordinate system" },
         };
 
-        public ISectionPropertiesViewModel PrepareData<T>(IEnumerable<SectionPropertiesResult> sectionPropertiesResult) where T:ISectionPropertiesViewModel,new()
+        public ISectionPropertiesViewModel PrepareData<T>(IEnumerable<SectionPropertiesResult> sectionPropertiesResult) where T : ISectionPropertiesViewModel, new()
         {
             var result = new T();
 
             var baseSystemResults = new List<SectionPropertyViewData>();
             var centralSystemResults = new List<SectionPropertyViewData>();
             var principalSystemResults = new List<SectionPropertyViewData>();
-
 
             foreach (var item in sectionPropertiesResult)
             {
@@ -393,6 +380,4 @@ namespace StruCal.ViewModels
             return result;
         }
     }
-
-
 }

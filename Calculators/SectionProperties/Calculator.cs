@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Calculators.SectionProperties
 {
@@ -15,26 +13,27 @@ namespace Calculators.SectionProperties
     /// </summary>
     public class SectionPropertiesCalculator
     {
+        private double area = 0;
+        private double firstMomentOfAreaAxisX = 0;
+        private double firstMomentOfAreaAxisY = 0;
+        private double secondMomentOfAreaAxisX = 0;
+        private double secondMomentOfAreaAxisY = 0;
+        private double momentOfDeviationAxisXY = 0;
+        private double centreOfGravityX = 0;
+        private double centreOfGravityY = 0;
+        private double secondMomentOfAreaCentalAxisX = 0;
+        private double secondMomentOfAreaCentralAxisY = 0;
+        private double momentOfDeviationCentralAxisXY = 0;
+        private double firstPrincipalSecondMomentOfArea = 0;
+        private double secondPrincipalSecondMomentOfArea = 0;
+        private double substituteRectangleHeight = 0;
+        private double substituteRectangleWidth = 0;
+        private double alfa = 0;
 
-        double area = 0;
-        double firstMomentOfAreaAxisX = 0;
-        double firstMomentOfAreaAxisY = 0;
-        double secondMomentOfAreaAxisX = 0;
-        double secondMomentOfAreaAxisY = 0;
-        double momentOfDeviationAxisXY = 0;
-        double centreOfGravityX = 0;
-        double centreOfGravityY = 0;
-        double secondMomentOfAreaCentalAxisX = 0;
-        double secondMomentOfAreaCentralAxisY = 0;
-        double momentOfDeviationCentralAxisXY = 0;
-        double firstPrincipalSecondMomentOfArea = 0;
-        double secondPrincipalSecondMomentOfArea = 0;
-        double substituteRectangleHeight = 0;
-        double substituteRectangleWidth = 0;
-        double alfa = 0;
         //extreme distances
-        double x0_max, x0_min, y0_max, y0_min;
-        double xI_max, xI_min, yI_max, yI_min;
+        private double x0_max, x0_min, y0_max, y0_min;
+
+        private double xI_max, xI_min, yI_max, yI_min;
 
         public SectionPropertiesCalculator()
         {
@@ -184,6 +183,7 @@ namespace Calculators.SectionProperties
             }
         }
     }
+
     public class ExtremeDistances
     {
         /// <summary>
@@ -192,12 +192,14 @@ namespace Calculators.SectionProperties
         /// the Tuple arguments are
         /// x0_max,x0_min,y0_max,y0_min
         /// <returns></returns>
-        /// 
+        ///
         private PointD centreOfGravity;//coordinates of the centre of gravity
+
         public ExtremeDistances(PointD centreOfGravity)
         {
             this.centreOfGravity = centreOfGravity;
         }
+
         public void maxDistancesCentralCoordinateSystem(IEnumerable<SectionCoordinates> sections, out double x0_max, out double x0_min, out double y0_max, out double y0_min)
         {
             //Tuple=> x0_max,x0_min,y0_max,y0_min
@@ -205,8 +207,8 @@ namespace Calculators.SectionProperties
             x0_min = sections.Min(section => section.Coordinates.Min(point => point.X)) - this.centreOfGravity.X;
             y0_max = sections.Max(section => section.Coordinates.Max(point => point.Y)) - this.centreOfGravity.Y;
             y0_min = sections.Min(section => section.Coordinates.Min(point => point.Y)) - this.centreOfGravity.Y;
-
         }
+
         public void maxDistancesPrincipalCoordinateSystem(IEnumerable<SectionCoordinates> sections, double alfa, out double x_max, out double x_min, out double y_max, out double y_min)
         {
             double cos = Math.Cos(alfa);
@@ -221,8 +223,8 @@ namespace Calculators.SectionProperties
             y_max = sections.Max(section => section.Coordinates.Max(point => point.X * sin + point.Y * cos)) - yo;
             y_min = sections.Min(section => section.Coordinates.Min(point => point.X * sin + point.Y * cos)) - yo;
         }
-
     }
+
     public enum SectionProperty
     {
         F,
@@ -253,13 +255,14 @@ namespace Calculators.SectionProperties
         //b,
         //h
     };
+
     public class SectionPropertiesResult
     {
         public SectionProperty Property { get; set; }
         public double Value { get; set; }
     }
 
-    enum PerimeterType
+    internal enum PerimeterType
     {
         Outer,
         Inner
@@ -296,6 +299,7 @@ namespace Calculators.SectionProperties
                 this.Coordinates.Add(firstPoint);
             }
         }
+
         private IList<PointD> checkIfCoordinatesAreClockwise(IList<PointD> coordinates)
         {
             //function checks if coordinates are in clockwise or counterclockwise order. To check that cross product is used.
@@ -363,8 +367,8 @@ namespace Calculators.SectionProperties
 
             for (int i = 0; i < x.Length; i++)
             {
-                var xTemp = double.Parse(x[i].Trim().ToDot(),CultureInfo.InvariantCulture);
-                var yTemp = double.Parse(y[i].Trim().ToDot(),CultureInfo.InvariantCulture);
+                var xTemp = double.Parse(x[i].Trim().ToDot(), CultureInfo.InvariantCulture);
+                var yTemp = double.Parse(y[i].Trim().ToDot(), CultureInfo.InvariantCulture);
 
                 var point = new PointD(xTemp, yTemp);
 
@@ -374,4 +378,3 @@ namespace Calculators.SectionProperties
         }
     }
 }
-

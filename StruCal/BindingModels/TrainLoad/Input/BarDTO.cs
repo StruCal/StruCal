@@ -1,10 +1,4 @@
 ﻿using Calculators.TrainLoad;
-using Common.Geometry;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StruCal.BindingModels
 {
@@ -23,10 +17,10 @@ namespace StruCal.BindingModels
         {
             return new Bar
             {
-                Id=barDTO.id,
-                StartPoint=barDTO.startPoint.ToPointD(),
-                EndPoint=barDTO.endPoint.ToPointD(),
-                Section=barDTO.section.ToSection(),
+                Id = barDTO.id,
+                StartPoint = barDTO.startPoint.ToPointD(),
+                EndPoint = barDTO.endPoint.ToPointD(),
+                Section = barDTO.section.ToSection(),
             };
         }
     }

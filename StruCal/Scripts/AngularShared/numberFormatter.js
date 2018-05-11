@@ -3,7 +3,7 @@
         if (inputNumber == "" || inputNumber == null)
             return inputNumber;
 
-        var separator = " "//space 
+        var separator = " "//space
 
         var decimalPart;
         var naturalPart;

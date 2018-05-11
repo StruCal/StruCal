@@ -1,9 +1,6 @@
 ﻿using Calculators.TrainLoad.GradienColor;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Calculators.TrainLoad.Output
 {
@@ -23,7 +20,7 @@ namespace Calculators.TrainLoad.Output
             };
         }
 
-       public MeshColorResult ConvertToColor(ColorProvider colorProvider)
+        public MeshColorResult ConvertToColor(ColorProvider colorProvider)
         {
             var result = new MeshColorResult();
             result.BarId = this.BarId;
@@ -31,6 +28,5 @@ namespace Calculators.TrainLoad.Output
             result.VertexResults = this.VertexResults.Select(f => f.ConvertToColor(colorProvider));
             return result;
         }
-
     }
 }

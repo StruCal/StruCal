@@ -7,13 +7,12 @@ function nodeTransformation(scaleCalculator) {
 
     this.drawDisplacement = false;
 
-    this.setMembraneOutput = function(membraneOutputData) {
+    this.setMembraneOutput = function (membraneOutputData) {
         membraneOutput = membraneOutputData;
         return this;
     }
 
-    this.getTransformationOutput = function(node) {
-
+    this.getTransformationOutput = function (node) {
         this.displacementScale = scaleCalculator.getDisplacementScale();
         var result;
         if (this.drawDisplacement) {
@@ -24,7 +23,7 @@ function nodeTransformation(scaleCalculator) {
         return result;
     }
 
-    this.getTransformationInput = function(vertex) {
+    this.getTransformationInput = function (vertex) {
         var result;
         if (this.drawDisplacement) {
             result = inputTransformation(vertex);

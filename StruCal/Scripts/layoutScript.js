@@ -1,10 +1,8 @@
 ﻿$(document).ready(function () {
     // Add smooth scrolling to all links in navbar + footer link
     $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
-
         // Make sure this.hash has a value before overriding default behavior
         if (this.hash !== "") {
-
             // Prevent default anchor click behavior
             event.preventDefault();
 
@@ -16,7 +14,6 @@
             $('html, body').animate({
                 scrollTop: $(hash).offset().top
             }, 900, function () {
-
                 // Add hash (#) to URL when done scrolling (default click behavior)
                 window.location.hash = hash;
             });
@@ -49,8 +46,6 @@ $(document).ready(function () {
             if (scroll_start > offset.top - $("#myNavbar").height() - 10) {
                 $('.navbar-default').css('border-bottom', '0');
                 $('#navbar').addClass('scrolled-nav');
-
-
             } else {
                 $(".navbar-default").css('border-bottom', '1px solid #fff');
                 $('#navbar').removeClass('scrolled-nav');

@@ -17,7 +17,6 @@ function pointLoadProvider() {
         cone.translateX(x);
         cone.translateY(y);
 
-
         return cone;
     }
 
@@ -40,36 +39,35 @@ function pointLoadProvider() {
         group.add(body);
         group.add(head);
         return group;
-
     }
 
-    this.pointLoad0deg = function(x, y, lengthScale) {
+    this.pointLoad0deg = function (x, y, lengthScale) {
         var pointLoad = pointLoadTemplate(x, y, lengthScale);
         return pointLoad;
         //scene.add(pointLoad);
     }
 
-    this.pointLoad90deg = function(x, y, lengthScale) {
+    this.pointLoad90deg = function (x, y, lengthScale) {
         var pointLoad = pointLoadTemplate(y, -x, lengthScale); //due to problem with rotaton of THREE.Group
         pointLoad.rotateZ(Math.PI / 2);
         return pointLoad;
         //scene.add(pointLoad);
     }
 
-    this.pointLoad180deg = function(x, y, lengthScale) {
+    this.pointLoad180deg = function (x, y, lengthScale) {
         var pointLoad = pointLoadTemplate(-x, -y, lengthScale);
         pointLoad.rotateZ(Math.PI);
         return pointLoad;
         //scene.add(pointLoad);
     }
-    this.pointLoad270deg = function(x, y, lengthScale) {
+    this.pointLoad270deg = function (x, y, lengthScale) {
         var pointLoad = pointLoadTemplate(-y, x, lengthScale);
         pointLoad.rotateZ(-Math.PI / 2);
         return pointLoad;
         //scene.add(pointLoad);
     }
 
-    this.setScale = function(value) {
+    this.setScale = function (value) {
         scale = value;
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace StruCal
 {
@@ -104,7 +103,6 @@ namespace StruCal
                 "~/Scripts/Membrane/lib/rainbowvis.js",
                 "~/Scripts/Membrane/lib/TrackballControls.js"
                 ));
-
 
             bundles.Add(new ScriptBundle("~/bundles/Membrane").Include(
                 "~/Scripts/Membrane/src/drawingUtils/nodeTransformation.js",

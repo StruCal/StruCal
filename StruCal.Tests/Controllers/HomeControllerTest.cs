@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
-using StruCal;
+﻿using NUnit.Framework;
 using StruCal.Controllers;
-using NUnit.Framework;
+using System.Web.Mvc;
 
 namespace StruCal.Tests.Controllers
 {

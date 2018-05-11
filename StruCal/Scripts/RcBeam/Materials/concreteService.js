@@ -4,7 +4,6 @@
         return ["C12/15", "C16/20", "C20/25", "C25/30", "C30/37", "C35/45", "C40/50", "C45/55", "C50/60", "C55/67", "C60/75", "C70/85", "C80/95", "C90/105"]
     };
     this.getProperties = function (concreteClass) {
-
         var fck = convertFck(concreteClass);
         var ec2 = fck < 50 ? 2.0 : 2.0 + 0.085 * Math.pow(fck - 50, 0.53);
         var ecu2 = fck < 50 ? 3.5 : 2.6 + 35 * Math.pow((90 - fck) / 100, 4);
@@ -21,7 +20,6 @@
         function format(value, decimals) {
             return Number(value.toFixed(decimals));
         }
-
     }
     this.getChartValues = function (concreteClass, gammaC, alphaCC) {
         var properties = self.getProperties(concreteClass);
@@ -45,7 +43,6 @@
             charStress.push(currentCharStress);
             designStress.push(currentCharStress / gammaC * alphaCC);
             currentStrain = currentStrain + increase;
-
         }
         return {
             strain: strain,
@@ -60,5 +57,4 @@
         var fck = Number(strength[0]);
         return fck;
     }
-
 });

@@ -1,4 +1,4 @@
-﻿angular.module('membraneFEM').controller('geometryCtrl', ['$scope', '$rootScope','drawingService','inputDataFactory','inputDataCalculator', function ($scope, $rootScope, drawingService,inputDataFactory,inputDataCalculator) {
+﻿angular.module('membraneFEM').controller('geometryCtrl', ['$scope', '$rootScope', 'drawingService', 'inputDataFactory', 'inputDataCalculator', function ($scope, $rootScope, drawingService, inputDataFactory, inputDataCalculator) {
     var inputData;
 
     $scope.currentEdited = -1;
@@ -6,7 +6,6 @@
     $scope.verticesInput = angular.copy($scope.vertices);
 
     $scope.save = function (index) {
-
         $scope.vertices[index].X = $scope.verticesInput[index].X;
         $scope.vertices[index].Y = $scope.verticesInput[index].Y;
         $scope.vertices[index].LoadX = $scope.verticesInput[index].LoadX;
@@ -14,10 +13,7 @@
         $scope.vertices[index].SupportX = $scope.verticesInput[index].SupportX;
         $scope.vertices[index].SupportY = $scope.verticesInput[index].SupportY;
 
-        
         updateDrawing();
-        
-
     };
     $scope.cancel = function (index) {
         $scope.verticesInput[index].X = $scope.vertices[index].X;
@@ -48,8 +44,8 @@
         updateDrawing();
     }
 
-    $scope.setSupportX=function(showForms,vertex){
-        if (showForms){
+    $scope.setSupportX = function (showForms, vertex) {
+        if (showForms) {
             vertex.SupportX = !vertex.SupportX;
         }
     }
@@ -58,7 +54,7 @@
             vertex.SupportY = !vertex.SupportY;
         }
     }
-    
+
     function sendInput() {
         $rootScope.$broadcast('verticesMsg', inputData.Vertices);
         $rootScope.$broadcast('edgesMsg', inputData.Edges);

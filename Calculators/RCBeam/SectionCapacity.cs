@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Calculators.RCBeam
 {
@@ -15,11 +13,13 @@ namespace Calculators.RCBeam
         private Steel steel;
         private Section section;
         private double nEd;
+
         public SectionCapacity(Concrete concrete, Steel steel)
         {
             this.concrete = concrete;
             this.steel = steel;
         }
+
         private double calculateEffectiveDepthOfSectionAndBars()
         {
             /*Reinforcement barsTemp;
@@ -40,6 +40,7 @@ namespace Calculators.RCBeam
             }
             return tempD.Max();
         }
+
         private double equlibriumEquation(double x)
         {
             var forceInConcrete = this.forceInConcrete(x);
@@ -48,6 +49,7 @@ namespace Calculators.RCBeam
             var result = forceInConcrete + forceInAs2 - forceInAs1 - this.nEd;
             return result;
         }
+
         private double forceInAs1(double x)
         {
             var resultantForce = 0d;
@@ -67,6 +69,7 @@ namespace Calculators.RCBeam
             }
             return resultantForce;
         }
+
         private double forceInAs2(double x)
         {
             var resultantForce = 0d;
@@ -86,11 +89,13 @@ namespace Calculators.RCBeam
             }
             return resultantForce;
         }
+
         private double forceInConcrete(double x)
         {
             var result = this.compressionZoneCalculations.Calculate(x, this.section);
             return result.NormalForce;
         }
+
         private double solveEqulibriumEquation()
         {
             var EPS = 0.00000000001;
@@ -125,6 +130,7 @@ namespace Calculators.RCBeam
             }
             return x0;
         }
+
         public LoadCaseResult CalculateCapacity(double nEd, Section section, IList<Bar> bars)
         {
             this.section = section;
@@ -160,6 +166,7 @@ namespace Calculators.RCBeam
             result.MomentReinforcement = this.reinforcement.Sum(e => e.Moment);
             return result;
         }
+
         private void createReinforcement(IList<Bar> bars)
         {
             this.reinforcement = new List<Reinforcement>();
@@ -168,6 +175,7 @@ namespace Calculators.RCBeam
                 this.reinforcement.Add(new Reinforcement() { Bar = bar });
             }
         }
+
         private double mrdReinforcement(double x)
         {
             var Mrd = 0d;
@@ -175,16 +183,15 @@ namespace Calculators.RCBeam
             Reinforcement barsTemp;
             for (int i = 0; i <= this.reinforcement.Count - 1; i++)
             {
-                
                 barsTemp = this.reinforcement[i];
                 var multiplier = barsTemp.IsCompressed ? 1 : -1;
-                barsTemp.Sigma =  StressFunctions.SteelStressDesign(barsTemp.Epsilon, this.steel)*multiplier;
+                barsTemp.Sigma = StressFunctions.SteelStressDesign(barsTemp.Epsilon, this.steel) * multiplier;
                 barsTemp.Epsilon = barsTemp.Epsilon * multiplier;
                 barsTemp.Force = barsTemp.Bar.As * barsTemp.Sigma;
                 barsTemp.Moment = barsTemp.Force * (reinforcement[i].Bar.Y - this.section.MinY);
                 //if (this.reinforcement[i].Bar.Y > yOsi)
                 //{
-                    Mrd = Mrd + barsTemp.Moment ;
+                Mrd = Mrd + barsTemp.Moment;
                 //}
                 //else
                 //{

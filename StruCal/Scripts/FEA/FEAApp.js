@@ -12,7 +12,6 @@ fea.directive("drawing", function () {
 });
 
 fea.service('nodesService', function () {
-
     var nodes = [
         { number: 1, x: 100, y: 100 },
         { number: 2, x: 200, y: 100 },
@@ -29,7 +28,6 @@ fea.service('nodesService', function () {
 });
 
 fea.service('elementsService', function (nodesService) {
-
     var elements = [
         { number: 1, node1: nodesService.get()[0], node2: nodesService.get()[1] },
         { number: 2, node1: nodesService.get()[1], node2: nodesService.get()[2] },
@@ -46,7 +44,6 @@ fea.service('elementsService', function (nodesService) {
 });
 
 fea.service('supportsService', function (nodesService) {
-
     var supports = [
         { number: 1, node: nodesService.get()[0], type: 'Pinned' },
         { number: 2, node: nodesService.get()[1], type: 'Fixed' }
@@ -62,7 +59,6 @@ fea.service('supportsService', function (nodesService) {
 });
 
 fea.service('loadsService', function (nodesService) {
-
     var loads = [
         { node: nodesService.get()[0], xMagnitude: 100, yMagnitude: 200 },
         { node: nodesService.get()[1], xMagnitude: 200, yMagnitude: 300 }
@@ -286,7 +282,7 @@ fea.controller('ModelController', function ($scope, $timeout, nodesService, elem
         };
     };
 
-    $scope.init = function(){
+    $scope.init = function () {
         updateView();
     }
 

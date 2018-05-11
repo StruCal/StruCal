@@ -1,15 +1,11 @@
 ﻿using Calculators.TrainLoad.GradienColor;
-using Calculators.TrainLoad.Helpers;
 using Calculators.TrainLoad.Input;
 using Calculators.TrainLoad.Output;
-using Common.Utils;
 using FEM2DDynamics.Elements.Beam;
-using FEM2DStressCalculator.Beams;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Calculators.TrainLoad
@@ -59,7 +55,6 @@ namespace Calculators.TrainLoad
             var resultData = this.GenerateTimeResults();
             return resultData;
         }
-
 
         private void InitializeBeamVerticesMap(FemResultProvider femResults, IList<VertexInput> vertices)
         {

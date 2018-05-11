@@ -1,8 +1,6 @@
 ﻿using Calculators.TrainLoad.Input;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace StruCal.BindingModels.TrainLoad.Input
 {
@@ -19,7 +17,7 @@ namespace StruCal.BindingModels.TrainLoad.Input
             return new MovingLoad
             {
                 Speed = movingLoadDTO.speed,
-                Forces=movingLoadDTO.forces.Select(e=>e.ToMovingForce()).ToList()
+                Forces = movingLoadDTO.forces.Select(e => e.ToMovingForce()).ToList()
             };
         }
     }
