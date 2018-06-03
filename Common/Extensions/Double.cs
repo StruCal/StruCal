@@ -9,7 +9,7 @@ namespace Common.Extensions
     public static class DoubleExtensionMethods
     {
         /// <summary>
-        /// Maximum difference allowed in comparing two doubles to determine if they are equal 
+        /// Maximum difference allowed in comparing two doubles to determine if they are equal
         /// </summary>
         public const double MaximumDifferenceAllowed = 0.0000001;
 
@@ -40,6 +40,11 @@ namespace Common.Extensions
         public static bool IsApproximatelyEqualToZero(this double initialValue)
         {
             return IsApproximatelyEqualTo(initialValue, 0d);
+        }
+
+        public static bool IsApproximatelyLessOrEqualTo(this double initialValue, double value, double maximumDifferenceAllowed = MaximumDifferenceAllowed)
+        {
+            return initialValue < value || initialValue.IsApproximatelyEqualTo(value);
         }
 
         /// <summary>
