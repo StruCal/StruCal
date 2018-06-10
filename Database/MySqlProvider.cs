@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Database
 {
-    internal class MySqlWrapper
+    public class MySqlProvider
     {
         private readonly string connectionString;
 
-        public MySqlWrapper(string connectionString)
+        public MySqlProvider(string connectionString)
         {
             this.connectionString = connectionString;
         }

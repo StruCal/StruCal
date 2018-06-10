@@ -10,11 +10,11 @@ namespace Database
 {
     public class DataProvider
     {
-        private readonly MySqlWrapper mysql;
+        private readonly MySqlProvider mysql;
 
-        public DataProvider(string connectionString)
+        public DataProvider(MySqlProvider mysql)
         {
-            this.mysql = new MySqlWrapper(connectionString);
+            this.mysql = mysql;
         }
 
         public Guid StartOperation()
@@ -23,9 +23,9 @@ namespace Database
             return result;
         }
 
-        public void AddProgress(Guid operationGuid, int progress)
+        public void SetProgress(Guid operationGuid, int progress)
         {
-            this.mysql.Execute(connection => connection.Execute(SqlQueries.AddProgress, new { operationGuid, progress }));
+            this.mysql.Execute(connection => connection.Execute(SqlQueries.SetProgress, new { operationGuid, progress }));
         }
 
         public int GetProgress(Guid operationGuid)
@@ -33,9 +33,14 @@ namespace Database
             return this.mysql.Query(connection => connection.QueryFirst<int>(SqlQueries.GetProgress, new { operationGuid }));
         }
 
-        public void SetResult(Guid operationGuid, object result)
+        public void SetResult(Guid operationGuid, string result)
         {
-            this.mysql.Execute(connection => connection.Execute(SqlQueries.AddResult, new { operationGuid, result }));
+            this.mysql.Execute(connection => connection.Execute(SqlQueries.SetResult, new { operationGuid, result }));
+        }
+
+        public string GetResult(Guid operationGuid)
+        {
+            return this.mysql.Query(connection => connection.QueryFirst<string>(SqlQueries.GetResult, new { operationGuid }));
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Database
                 SELECT Guid FROM operations WHERE Id = (SELECT MAX(Id) FROM operations);
                 ";
 
-        public static string AddProgress => @"
+        public static string SetProgress => @"
                 INSERT INTO progress (OperationId, Progress)
                 SELECT operations.Id, @progress
                 FROM operations WHERE operations.Guid = @operationGuid
@@ -31,10 +31,17 @@ namespace Database
                 ;
                 ";
 
-        public static string AddResult => @"
+        public static string SetResult => @"
                 INSERT INTO results (OperationId, Result)
                 SELECT operations.Id, @result
                 FROM operations WHERE operations.Guid = @operationGuid
+                ";
+
+        public static string GetResult => @"
+                SELECT result
+                FROM results
+                JOIN operations ON results.OperationId = operations.Id
+                WHERE operations.Guid = @operationGuid
                 ";
     }
 }
