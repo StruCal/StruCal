@@ -1,24 +1,12 @@
-﻿using Calculators.TrainLoad.Helpers;
+﻿using Calculators.TrainLoad.Extensions;
+using Calculators.TrainLoad.Helpers;
+using Calculators.TrainLoad.Progress;
 using Common.Geometry;
-using FEM2D.Elements.Beam;
-using FEM2D.Nodes;
-using FEM2DCommon.DTO;
-using FEM2DCommon.ElementProperties;
 using FEM2DDynamics.Elements.Beam;
-using FEM2DDynamics.Results;
-using FEM2DDynamics.Solver;
 using FEM2DDynamics.Structure;
 using FEMCommon.ElementProperties.DynamicBeamPropertiesBuilder;
-using FEMCommon.ElementProperties.SectionBuilders.CustomSection;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using Calculators.TrainLoad.Extensions;
-using System.Text;
-using System.Threading.Tasks;
 using FEMSection = FEM2DCommon.Sections.Section;
-using Common.Utils;
-using FEM2DDynamics.Utils;
 
 namespace Calculators.TrainLoad
 {
@@ -27,19 +15,15 @@ namespace Calculators.TrainLoad
         private const double dampingRatio = 0.03;
 
         private readonly TrainLoadInput trainLoadInput;
-        private readonly IProgress<ProgressMsg> progress;
-        private readonly IProgress<ProgressMessage> femProgress;
+        private readonly ProgressAdapter progress;
 
         private DynamicStructure structure;
         private IDictionary<IDynamicBeamElement, string> elementBarIdMap;
 
-        public FEMCalculator(TrainLoadInput trainLoadInput, IProgress<ProgressMsg> progress = null)
+        public FEMCalculator(TrainLoadInput trainLoadInput, ProgressAdapter progress = null)
         {
             this.trainLoadInput = trainLoadInput;
-
             this.progress = progress;
-            this.femProgress = new Progress<ProgressMessage>(p => this.progress.Report(new ProgressMsg { Progress = p.Progress }));
-
             this.elementBarIdMap = new Dictionary<IDynamicBeamElement, string>();
 
             var settings = this.trainLoadInput.TimeSettings.ToDynamicSolverSettings(dampingRatio);
@@ -53,7 +37,7 @@ namespace Calculators.TrainLoad
             GenerateSupports();
             GenerateMovingLoads();
 
-            structure.Solve(femProgress);
+            structure.Solve(this.progress.FemProgress);
 
             var results = structure.Results.BeamResults;
             return new FemResultProvider(this.elementBarIdMap, results);
