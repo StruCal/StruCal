@@ -47,7 +47,9 @@
     <Compile Include="Geometry\Point3D.cs" />
     <Compile Include="Geometry\PointD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\ProgressMessage.cs" />
     <Compile Include="Utils\Range.cs" />
+    <Compile Include="Utils\ZipTools.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

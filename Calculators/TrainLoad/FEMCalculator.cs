@@ -17,6 +17,8 @@ using Calculators.TrainLoad.Extensions;
 using System.Text;
 using System.Threading.Tasks;
 using FEMSection = FEM2DCommon.Sections.Section;
+using Common.Utils;
+using FEM2DDynamics.Utils;
 
 namespace Calculators.TrainLoad
 {
@@ -25,13 +27,19 @@ namespace Calculators.TrainLoad
         private const double dampingRatio = 0.03;
 
         private readonly TrainLoadInput trainLoadInput;
+        private readonly IProgress<ProgressMsg> progress;
+        private readonly IProgress<ProgressMessage> femProgress;
+
         private DynamicStructure structure;
         private IDictionary<IDynamicBeamElement, string> elementBarIdMap;
 
-
-        public FEMCalculator(TrainLoadInput trainLoadInput)
+        public FEMCalculator(TrainLoadInput trainLoadInput, IProgress<ProgressMsg> progress = null)
         {
             this.trainLoadInput = trainLoadInput;
+
+            this.progress = progress;
+            this.femProgress = new Progress<ProgressMessage>(p => this.progress.Report(new ProgressMsg { Progress = p.Progress }));
+
             this.elementBarIdMap = new Dictionary<IDynamicBeamElement, string>();
 
             var settings = this.trainLoadInput.TimeSettings.ToDynamicSolverSettings(dampingRatio);
@@ -45,12 +53,11 @@ namespace Calculators.TrainLoad
             GenerateSupports();
             GenerateMovingLoads();
 
-            structure.Solve();
+            structure.Solve(femProgress);
 
             var results = structure.Results.BeamResults;
             return new FemResultProvider(this.elementBarIdMap, results);
         }
-
 
         private void GenerateMovingLoads()
         {

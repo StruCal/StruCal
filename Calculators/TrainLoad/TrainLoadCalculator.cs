@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Common.Utils;
 
 namespace Calculators.TrainLoad
 {
@@ -15,24 +16,20 @@ namespace Calculators.TrainLoad
         private readonly FEMCalculator femCalculator;
         private readonly ResultCreator resultCreator;
 
-        public TrainLoadCalculator(TrainLoadInput trainLoadInput)
+        public TrainLoadCalculator(TrainLoadInput trainLoadInput, IProgress<ProgressMsg> progress = null)
         {
             this.trainLoadInput = trainLoadInput;
-            
             this.gradient = new LinearGradient(this.trainLoadInput.MaxColor, this.trainLoadInput.MinColor, this.trainLoadInput.MiddleColor);
-            this.femCalculator = new FEMCalculator(this.trainLoadInput);
-            this.resultCreator = new ResultCreator(this.gradient,trainLoadInput.TimeSettings);
+            this.femCalculator = new FEMCalculator(this.trainLoadInput, progress);
+            this.resultCreator = new ResultCreator(this.gradient, trainLoadInput.TimeSettings);
         }
-
 
         public TrainLoadOutput Calculate()
         {
             var femResult = this.femCalculator.Calculate();
-            var output = this.resultCreator.Calculate(femResult,this.trainLoadInput.Vertices);
+            var output = this.resultCreator.Calculate(femResult, this.trainLoadInput.Vertices);
 
             return output;
         }
-
-
     }
 }

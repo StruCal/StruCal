@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Database
 {
-    public class DataProvider
+    public class DataProvider : IDataProvider
     {
         private readonly MySqlProvider mysql;
 
@@ -33,7 +33,7 @@ namespace Database
             return this.mysql.Query(connection => connection.QueryFirst<int>(SqlQueries.GetProgress, new { operationGuid }));
         }
 
-        public void SetResult(Guid operationGuid, string result)
+        public void SetResult(Guid operationGuid, object result)
         {
             this.mysql.Execute(connection => connection.Execute(SqlQueries.SetResult, new { operationGuid, result }));
         }
