@@ -17,6 +17,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{BE41EF6F-C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainLoadTest", "TrainLoadTest\TrainLoadTest.csproj", "{40F77CCD-11C6-4BDE-96AC-10659851DD98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{31BECA06-BA92-4C6E-AD07-1368E54DACC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseTest", "DatabaseTest\DatabaseTest.csproj", "{8AFB54CE-DADC-4084-A250-B312613BB782}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,12 +51,21 @@ Global
 		{40F77CCD-11C6-4BDE-96AC-10659851DD98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40F77CCD-11C6-4BDE-96AC-10659851DD98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40F77CCD-11C6-4BDE-96AC-10659851DD98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31BECA06-BA92-4C6E-AD07-1368E54DACC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31BECA06-BA92-4C6E-AD07-1368E54DACC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31BECA06-BA92-4C6E-AD07-1368E54DACC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31BECA06-BA92-4C6E-AD07-1368E54DACC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AFB54CE-DADC-4084-A250-B312613BB782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AFB54CE-DADC-4084-A250-B312613BB782}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AFB54CE-DADC-4084-A250-B312613BB782}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AFB54CE-DADC-4084-A250-B312613BB782}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{40F77CCD-11C6-4BDE-96AC-10659851DD98} = {BE41EF6F-C6CB-4088-8488-EADCEA03E0E0}
+		{8AFB54CE-DADC-4084-A250-B312613BB782} = {BE41EF6F-C6CB-4088-8488-EADCEA03E0E0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8B9942B5-8D11-4123-949E-80150FEEBB58}
