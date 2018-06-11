@@ -82,7 +82,7 @@ namespace StruCal.Controllers
         public IHttpActionResult GetProgress(Guid guid)
         {
             var progress = this.dataProvider.GetProgress(guid);
-            var hasResult = this.dataProvider.GetResult(guid) == null;
+            var hasResult = this.dataProvider.GetResult(guid) != null;
 
             return Ok(new { progress, hasResult });
         }

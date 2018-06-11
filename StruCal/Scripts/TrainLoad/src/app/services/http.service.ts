@@ -4,9 +4,13 @@ import { Observable } from 'rxjs/Observable';
 import { CalculationsInput } from '../../common/calculations/calculationsInput';
 import { ResultData } from '../../common/resultData/resultData';
 import { isProduction } from '../../../buildScripts/buildType';
+import { ProgressMessage } from '../../common/progress/progressMessage';
 
+const baseUrl = isProduction ? '' : 'http://localhost:50025';
 
-const url = isProduction ? '/api/TrainLoadApi' : 'http://localhost:50025/api/TrainLoadApi';
+const startUrl = () => `${baseUrl}/api/TrainLoadApi`;
+const progressUrl = guid => `${baseUrl}/api/TrainLoadApi/Progress/${guid}`;
+const resultUrl = guid => `${baseUrl}/api/TrainLoadApi/Result/${guid}`;
 @Injectable()
 export class HttpService {
 
@@ -17,10 +21,24 @@ export class HttpService {
   }
 
 
-  getResult(inputData: CalculationsInput): Observable<ResultData> {
+  async getResult(inputData: CalculationsInput): Promise<ResultData> {
 
-    return this.http.post<ResultData>(url, inputData);
+    const guid = await this.http.post<string>(startUrl(), inputData).toPromise();
 
+    await this.waitForFinish(guid);
+
+    const result = this.http.get<ResultData>(resultUrl(guid)).toPromise();
+    return result;
+  }
+
+  private async waitForFinish(guid: string) {
+
+    let hasResult = false;
+
+    while (!hasResult) {
+      const val = await this.http.get<ProgressMessage>(progressUrl(guid)).toPromise();
+      hasResult = val.hasResult;
+    }
   }
 
 }

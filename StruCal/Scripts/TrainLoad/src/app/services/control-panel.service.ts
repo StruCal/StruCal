@@ -60,7 +60,7 @@ export class ControlPanelService {
       .setTimeSettings()
       .build();
 
-    this.httpService.getResult(input).subscribe(
+    this.httpService.getResult(input).then(
       data => {
         this.view3dService.drawResults(data, this.movingLoad);
         this.statusBarService.setValid();
