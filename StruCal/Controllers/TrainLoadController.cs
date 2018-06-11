@@ -68,6 +68,16 @@ namespace StruCal.Controllers
 
         [System.Web.Http.AllowAnonymous]
         [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/TrainLoadApi/Result/{guid}")]
+        public IHttpActionResult GetResult(Guid guid)
+        {
+            var resultData = this.dataProvider.GetResult(guid);
+            var result = JsonConvert.DeserializeObject<TrainLoadOutputDTO>(ZipTools.DecompressToString(resultData));
+            return Ok(result);
+        }
+
+        [System.Web.Http.AllowAnonymous]
+        [System.Web.Http.HttpGet]
         [System.Web.Http.Route("api/TrainLoadApi/Progress/{guid}")]
         public IHttpActionResult GetProgress(Guid guid)
         {
