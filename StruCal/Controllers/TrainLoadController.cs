@@ -8,6 +8,8 @@ using StruCal.BindingModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Http;
@@ -42,17 +44,45 @@ namespace StruCal.Controllers
         public IHttpActionResult TrainLoadCalculations(TrainLoadInputDTO inputDTO)
         {
             var operationGuid = this.dataProvider.StartOperation();
+            var baseUrl = Request.RequestUri.GetLeftPart(UriPartial.Authority);
+            RedirectToCalculations(inputDTO, baseUrl, operationGuid);
+            return Ok(operationGuid);
+        }
 
-            var progress = new Progress<ProgressMsg>(m => this.dataProvider.SetProgress(operationGuid, m.Progress));
+        [System.Web.Http.AllowAnonymous]
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.Route("api/TrainLoadApi/{guid}")]
+        public IHttpActionResult PerformCalculations([FromBody]TrainLoadInputDTO inputDTO, Guid guid)
+        {
+            var progress = new Progress<ProgressMsg>(m => this.dataProvider.SetProgress(guid, m.Progress));
 
             var input = inputDTO.ToTrainLoadInput();
             var calculator = new TrainLoadCalculator(input, progress);
             var result = calculator.Calculate();
             var resultDTO = result.ToTrainLoadOutputDTO();
 
-            this.dataProvider.SetResult(operationGuid, ZipTools.Compress(JsonConvert.SerializeObject(resultDTO)));
+            this.dataProvider.SetResult(guid, ZipTools.Compress(JsonConvert.SerializeObject(resultDTO)));
 
             return Ok(resultDTO);
+        }
+
+        [System.Web.Http.AllowAnonymous]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/TrainLoadApi/Progress/{guid}")]
+        public IHttpActionResult GetProgress(Guid guid)
+        {
+            var progress = this.dataProvider.GetProgress(guid);
+            var hasResult = this.dataProvider.GetResult(guid) == null;
+
+            return Ok(new { progress, hasResult });
+        }
+
+        public static void RedirectToCalculations(TrainLoadInputDTO inputDTO, string baseUrl, Guid guid)
+        {
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+
+            Task.Run(() => client.PostAsJsonAsync($"/api/TrainLoadApi/{guid}", inputDTO));
         }
     }
 }

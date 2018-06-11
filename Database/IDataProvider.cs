@@ -6,7 +6,7 @@ namespace Database
     {
         int GetProgress(Guid operationGuid);
 
-        string GetResult(Guid operationGuid);
+        byte[] GetResult(Guid operationGuid);
 
         void SetProgress(Guid operationGuid, int progress);
 

@@ -30,7 +30,7 @@ namespace Database
 
         public int GetProgress(Guid operationGuid)
         {
-            return this.mysql.Query(connection => connection.QueryFirst<int>(SqlQueries.GetProgress, new { operationGuid }));
+            return this.mysql.Query(connection => connection.QueryFirstOrDefault<int>(SqlQueries.GetProgress, new { operationGuid }));
         }
 
         public void SetResult(Guid operationGuid, object result)
@@ -38,9 +38,9 @@ namespace Database
             this.mysql.Execute(connection => connection.Execute(SqlQueries.SetResult, new { operationGuid, result }));
         }
 
-        public string GetResult(Guid operationGuid)
+        public byte[] GetResult(Guid operationGuid)
         {
-            return this.mysql.Query(connection => connection.QueryFirst<string>(SqlQueries.GetResult, new { operationGuid }));
+            return this.mysql.Query(connection => connection.QueryFirstOrDefault<byte[]>(SqlQueries.GetResult, new { operationGuid }));
         }
     }
 }
