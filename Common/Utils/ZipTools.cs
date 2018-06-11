@@ -29,7 +29,7 @@ namespace Common.Utils
             }
         }
 
-        public static string DecompressString(byte[] gzip)
+        public static string DecompressToString(byte[] gzip)
         {
             var byteArray = Decompress(gzip);
             var result = Encoding.ASCII.GetString(byteArray);
