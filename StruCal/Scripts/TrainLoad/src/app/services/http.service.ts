@@ -16,7 +16,7 @@ const resultUrl = guid => `${baseUrl}/api/TrainLoadApi/Result/${guid}`;
 export class HttpService {
 
 
-
+// refactor to decorator
   constructor(private http: HttpClient, private statusBarService: StatusBarService) {
 
   }
@@ -26,8 +26,10 @@ export class HttpService {
 
     const guid = await this.http.post<string>(startUrl(), inputData).toPromise();
 
+    this.statusBarService.setProcessingCalculations();
     await this.waitForFinish(guid);
 
+    this.statusBarService.setFetchingData();
     const result = this.http.get<ResultData>(resultUrl(guid)).toPromise();
     return result;
   }

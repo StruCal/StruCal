@@ -2,10 +2,14 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-const progressMsg = 'Processing... It may take a few seconds.';
+
 const dirtyMsg = 'Results are NOT up to date.';
 const errorMsg = 'An error has occured. Please try again.';
 const validMsg = 'Results are up to date';
+
+const startProcessingMsg = 'Processing... Gathering data.';
+const calculationsProcessingMsg = 'Processing... Calculations are being performed.';
+const fetchingDataMsg = 'Processing... Fetching data from the server.';
 
 @Injectable()
 export class StatusBarService {
@@ -48,14 +52,6 @@ export class StatusBarService {
     this.setMsg(errorMsg);
   }
 
-  public setCalculations() {
-    this.dirtySource.next(false);
-    this.errorSource.next(false);
-    this.validSource.next(false);
-    this.calculationsSource.next(true);
-
-    this.setMsg(progressMsg);
-  }
 
   public setValid() {
     this.dirtySource.next(false);
@@ -66,12 +62,30 @@ export class StatusBarService {
     this.setMsg(validMsg);
   }
 
-  public setMsg(value: string) {
-    this.msgSource.next(value);
+  public setStartCalculations() {
+    this.dirtySource.next(false);
+    this.errorSource.next(false);
+    this.validSource.next(false);
+    this.calculationsSource.next(true);
+
+    this.setMsg(startProcessingMsg);
+  }
+
+  public setProcessingCalculations() {
+    this.setMsg(calculationsProcessingMsg);
+  }
+
+  public setFetchingData() {
+    this.setMsg(fetchingDataMsg);
+    this.setProgress(0);
   }
 
   public setProgress(value: number) {
     this.progressSource.next(value);
+  }
+
+  private setMsg(value: string) {
+    this.msgSource.next(value);
   }
 
 }
