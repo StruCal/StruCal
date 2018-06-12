@@ -1,4 +1,6 @@
 ﻿using Calculators.TrainLoad.Output;
+using Common.Utils;
+using Calculators.TrainLoad.Progress;
 
 namespace Calculators.TrainLoad
 {
@@ -8,13 +10,14 @@ namespace Calculators.TrainLoad
         private readonly IGradient gradient;
         private readonly FEMCalculator femCalculator;
         private readonly ResultCreator resultCreator;
+        private readonly ProgressAdapter progress;
 
-        public TrainLoadCalculator(TrainLoadInput trainLoadInput)
+        public TrainLoadCalculator(TrainLoadInput trainLoadInput, Action<ProgressMsg> externalProgress = null)
         {
+            this.progress = new ProgressAdapter(externalProgress);
             this.trainLoadInput = trainLoadInput;
-
             this.gradient = new LinearGradient(this.trainLoadInput.MaxColor, this.trainLoadInput.MinColor, this.trainLoadInput.MiddleColor);
-            this.femCalculator = new FEMCalculator(this.trainLoadInput);
+            this.femCalculator = new FEMCalculator(this.trainLoadInput, progress);
             this.resultCreator = new ResultCreator(this.gradient, trainLoadInput.TimeSettings);
         }
 

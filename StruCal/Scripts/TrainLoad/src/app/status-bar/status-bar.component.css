@@ -10,3 +10,10 @@
 		height: 100%;
 		display: block;
 	}
+
+	.vcenter{
+		display: flex;
+    align-items: center;
+	}
+
+	
