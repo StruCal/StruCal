@@ -52,7 +52,7 @@ export class ControlPanelService {
   }
 
   calculate() {
-    this.statusBarService.setProgress();
+    this.statusBarService.setCalculations();
     const input = calculationsInputBuilder()
       .setStructureGeometry(this.view3dService.getStructureGeometry())
       .setStructureData(this.view3dService.getStructureData())

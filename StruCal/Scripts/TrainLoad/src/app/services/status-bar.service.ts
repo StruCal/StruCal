@@ -13,14 +13,17 @@ export class StatusBarService {
   private dirtySource = new BehaviorSubject<boolean>(true);
   private errorSource = new Subject<boolean>();
   private validSource = new Subject<boolean>();
-  private progressSource = new Subject<boolean>();
+  private calculationsSource = new Subject<boolean>();
   private msgSource = new BehaviorSubject<string>(dirtyMsg);
+  private progressSource = new Subject<number>();
 
   public dirty$ = this.dirtySource.asObservable();
   public error$ = this.errorSource.asObservable();
   public valid$ = this.validSource.asObservable();
-  public progress$ = this.progressSource.asObservable();
+  public calculations$ = this.calculationsSource.asObservable();
   public msg$ = this.msgSource.asObservable();
+  public progress$ = this.progressSource.asObservable();
+
 
   constructor() {
     this.setDirty();
@@ -31,40 +34,44 @@ export class StatusBarService {
     this.dirtySource.next(true);
     this.errorSource.next(false);
     this.validSource.next(false);
-    this.progressSource.next(false);
+    this.calculationsSource.next(false);
 
-    this.msgSource.next(dirtyMsg);
+    this.setMsg(dirtyMsg);
   }
 
   public setError() {
     this.dirtySource.next(false);
     this.errorSource.next(true);
     this.validSource.next(false);
-    this.progressSource.next(false);
+    this.calculationsSource.next(false);
 
-    this.msgSource.next(errorMsg);
+    this.setMsg(errorMsg);
   }
 
-  public setProgress() {
+  public setCalculations() {
     this.dirtySource.next(false);
     this.errorSource.next(false);
     this.validSource.next(false);
-    this.progressSource.next(true);
+    this.calculationsSource.next(true);
 
-    this.msgSource.next(progressMsg);
+    this.setMsg(progressMsg);
   }
 
   public setValid() {
     this.dirtySource.next(false);
     this.errorSource.next(false);
     this.validSource.next(true);
-    this.progressSource.next(false);
+    this.calculationsSource.next(false);
 
-    this.msgSource.next(validMsg);
+    this.setMsg(validMsg);
   }
 
   public setMsg(value: string) {
     this.msgSource.next(value);
+  }
+
+  public setProgress(value: number) {
+    this.progressSource.next(value);
   }
 
 }

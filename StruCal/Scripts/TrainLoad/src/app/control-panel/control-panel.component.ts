@@ -24,7 +24,7 @@ export class ControlPanelComponent implements AfterViewInit {
     this.statusBarService.dirty$.subscribe(e => this.dirty = e);
     this.statusBarService.valid$.subscribe(e => this.valid = e);
     this.statusBarService.error$.subscribe(e => this.error = e);
-    this.statusBarService.progress$.subscribe(e => this.progress = e);
+    this.statusBarService.calculations$.subscribe(e => this.progress = e);
 
     this.cdr.detectChanges();
   }

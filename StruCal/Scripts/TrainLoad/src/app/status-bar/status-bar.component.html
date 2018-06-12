@@ -1,20 +1,22 @@
 <div class="row vcenter">
-    <div class="col-xs-2" *ngIf="progress">
+    <div class="col-xs-2" *ngIf="calculations">
         <div id="progress" class="progress" Progress>
         </div>
     </div>
     <div [ngClass]="{'col-xs-10':progress,'col-xs-12':!progress}">
-        <div class="alert" [ngClass]="{'alert-success':valid,'alert-warning':dirty,'alert-danger':error,'alert-info':progress}" role="alert">
+        <div class="alert" [ngClass]="{'alert-success':valid,'alert-warning':dirty,'alert-danger':error,'alert-info':calculations}" role="alert">
             <div class="row">
                 <div class="col-xs-12">
                     {{message}}
                 </div>
             </div>
-            <div class="row" *ngIf="progress">
+            <div class="row" *ngIf="calculations">
                 <div class="col-xs-12">
-                    <div class="progress-bar progress-bar-striped progress-bar-info active" role="progressbar" aria-valuenow="40" aria-valuemin="0"
-                        aria-valuemax="100" style="width:100%">
-                        40%
+                    <div class="progress-centre">
+                        <div class="progress-bar progress-bar-striped progress-bar-info active" role="progressbar" aria-valuenow="40" aria-valuemin="0"
+                            aria-valuemax="100" [style.width]="progress + '%'">
+                            <span *ngIf="progress > 10">{{progress}}%</span>
+                        </div>
                     </div>
                 </div>
             </div>

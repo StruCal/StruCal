@@ -38,7 +38,7 @@ export class HttpService {
 
     while (!hasResult) {
       const response = await this.http.get<ProgressMessage>(progressUrl(guid)).toPromise();
-      this.statusBarService.setMsg(response.progress.toString());
+      this.statusBarService.setProgress(response.progress);
       hasResult = response.hasResult;
     }
   }

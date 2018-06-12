@@ -13,8 +13,9 @@ export class StatusBarComponent implements OnInit, AfterViewInit {
   valid = false;
   dirty = true;
   error= false;
-  progress = false;
+  calculations = false;
   message = '';
+  progress = 0;
 
   constructor(private statusBarService: StatusBarService,
   private cdr: ChangeDetectorRef) {
@@ -25,8 +26,9 @@ export class StatusBarComponent implements OnInit, AfterViewInit {
     this.statusBarService.dirty$.subscribe(e => this.dirty = e);
     this.statusBarService.valid$.subscribe(e => this.valid = e);
     this.statusBarService.error$.subscribe(e => this.error = e);
-    this.statusBarService.progress$.subscribe(e => this.progress = e);
+    this.statusBarService.calculations$.subscribe(e => this.calculations = e);
     this.statusBarService.msg$.subscribe(e => this.message = e);
+    this.statusBarService.progress$.subscribe(e => this.progress = e);
 
     this.cdr.detectChanges();
   }
