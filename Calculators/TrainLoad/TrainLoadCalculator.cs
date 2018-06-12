@@ -18,7 +18,7 @@ namespace Calculators.TrainLoad
         private readonly ResultCreator resultCreator;
         private readonly ProgressAdapter progress;
 
-        public TrainLoadCalculator(TrainLoadInput trainLoadInput, IProgress<ProgressMsg> externalProgress = null)
+        public TrainLoadCalculator(TrainLoadInput trainLoadInput, Action<ProgressMsg> externalProgress = null)
         {
             this.progress = new ProgressAdapter(externalProgress);
             this.trainLoadInput = trainLoadInput;

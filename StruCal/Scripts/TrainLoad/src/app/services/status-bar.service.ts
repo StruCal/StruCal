@@ -63,4 +63,8 @@ export class StatusBarService {
     this.msgSource.next(validMsg);
   }
 
+  public setMsg(value: string) {
+    this.msgSource.next(value);
+  }
+
 }

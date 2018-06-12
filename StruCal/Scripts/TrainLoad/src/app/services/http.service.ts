@@ -5,6 +5,7 @@ import { CalculationsInput } from '../../common/calculations/calculationsInput';
 import { ResultData } from '../../common/resultData/resultData';
 import { isProduction } from '../../../buildScripts/buildType';
 import { ProgressMessage } from '../../common/progress/progressMessage';
+import { StatusBarService } from './status-bar.service';
 
 const baseUrl = isProduction ? '' : 'http://localhost:50025';
 
@@ -14,10 +15,10 @@ const resultUrl = guid => `${baseUrl}/api/TrainLoadApi/Result/${guid}`;
 @Injectable()
 export class HttpService {
 
-  public onError: any;
 
-  constructor(private http: HttpClient) {
-    this.onError = error => { };
+
+  constructor(private http: HttpClient, private statusBarService: StatusBarService) {
+
   }
 
 
@@ -36,8 +37,9 @@ export class HttpService {
     let hasResult = false;
 
     while (!hasResult) {
-      const val = await this.http.get<ProgressMessage>(progressUrl(guid)).toPromise();
-      hasResult = val.hasResult;
+      const response = await this.http.get<ProgressMessage>(progressUrl(guid)).toPromise();
+      this.statusBarService.setMsg(response.progress.toString());
+      hasResult = response.hasResult;
     }
   }
 

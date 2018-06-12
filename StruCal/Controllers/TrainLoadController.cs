@@ -54,7 +54,7 @@ namespace StruCal.Controllers
         [System.Web.Http.Route("api/TrainLoadApi/{guid}")]
         public IHttpActionResult PerformCalculations([FromBody]TrainLoadInputDTO inputDTO, Guid guid)
         {
-            var progress = new Progress<ProgressMsg>(m => this.dataProvider.SetProgress(guid, m.Progress));
+            Action<ProgressMsg> progress = m => this.dataProvider.SetProgress(guid, m.Progress);
 
             var input = inputDTO.ToTrainLoadInput();
             var calculator = new TrainLoadCalculator(input, progress);

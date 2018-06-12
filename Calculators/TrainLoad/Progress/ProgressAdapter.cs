@@ -10,11 +10,11 @@ namespace Calculators.TrainLoad.Progress
 {
     internal class ProgressAdapter
     {
-        private readonly IProgress<ProgressMsg> progress;
+        private readonly Action<ProgressMsg> externalProgress;
 
-        public ProgressAdapter(IProgress<ProgressMsg> externalProgress)
+        public ProgressAdapter(Action<ProgressMsg> externalProgress)
         {
-            this.progress = externalProgress;
+            this.externalProgress = externalProgress;
         }
 
         private static ProgressMsg Convert(ProgressMessage progress)
@@ -22,7 +22,7 @@ namespace Calculators.TrainLoad.Progress
             return new ProgressMsg { Progress = progress.Progress };
         }
 
-        public IProgress<ProgressMessage> FemProgress =>
-            new Progress<ProgressMessage>(p => this.progress.Report(Convert(p)));
+        public Action<ProgressMessage> FemProgress =>
+            p => this.externalProgress.Invoke(Convert(p));
     }
 }
