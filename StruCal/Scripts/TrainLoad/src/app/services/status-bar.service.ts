@@ -71,21 +71,12 @@ export class StatusBarService {
     this.setMsg(startProcessingMsg);
   }
 
-  public setProcessingCalculations() {
-    this.setMsg(calculationsProcessingMsg);
-  }
-
-  public setFetchingData() {
-    this.setMsg(fetchingDataMsg);
-    this.setProgress(0);
+  public setMsg(value: string) {
+    this.msgSource.next(value);
   }
 
   public setProgress(value: number) {
     this.progressSource.next(value);
-  }
-
-  private setMsg(value: string) {
-    this.msgSource.next(value);
   }
 
 }

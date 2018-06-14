@@ -6,6 +6,7 @@ import { ResultData } from '../../common/resultData/resultData';
 import { isProduction } from '../../../buildScripts/buildType';
 import { ProgressMessage } from '../../common/progress/progressMessage';
 import { StatusBarService } from './status-bar.service';
+import { ProgressProvider } from '../../common/progress/progressProvider';
 
 const baseUrl = isProduction ? '' : 'http://localhost:50025';
 
@@ -15,6 +16,7 @@ const resultUrl = guid => `${baseUrl}/api/TrainLoadApi/Result/${guid}`;
 @Injectable()
 export class HttpService {
 
+  private progressProvider = new ProgressProvider();
 
   // refactor to decorator
   constructor(private http: HttpClient, private statusBarService: StatusBarService) {
@@ -26,10 +28,14 @@ export class HttpService {
 
     const guid = await this.startCalculations(inputData);
 
-    this.statusBarService.setProcessingCalculations();
+    const p = this.progressProvider.getProgress(0);
+    const m = this.progressProvider.getMessage(0);
+    this.statusBarService.setProgress(p);
+    this.statusBarService.setMsg(m);
+
+
     await this.waitForFinish(guid);
 
-    this.statusBarService.setFetchingData();
     const result = await this.fetchResult(guid);
     return result;
   }
@@ -45,8 +51,14 @@ export class HttpService {
 
     while (!hasResult) {
       const response = await this.http.get<ProgressMessage>(progressUrl(guid)).toPromise();
-      this.statusBarService.setProgress(response.progress);
+      
       hasResult = response.hasResult;
+
+      const p = this.progressProvider.getProgress(response.progress);
+      const m = this.progressProvider.getMessage(response.progress);
+      this.statusBarService.setProgress(p);
+      this.statusBarService.setMsg(m);
+
     }
   }
 
