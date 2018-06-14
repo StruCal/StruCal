@@ -16,7 +16,7 @@ const resultUrl = guid => `${baseUrl}/api/TrainLoadApi/Result/${guid}`;
 export class HttpService {
 
 
-// refactor to decorator
+  // refactor to decorator
   constructor(private http: HttpClient, private statusBarService: StatusBarService) {
 
   }
@@ -24,17 +24,22 @@ export class HttpService {
 
   async getResult(inputData: CalculationsInput): Promise<ResultData> {
 
-    const guid = await this.http.post<string>(startUrl(), inputData).toPromise();
+    const guid = await this.startCalculations(inputData);
 
     this.statusBarService.setProcessingCalculations();
     await this.waitForFinish(guid);
 
     this.statusBarService.setFetchingData();
-    const result = this.http.get<ResultData>(resultUrl(guid)).toPromise();
+    const result = await this.fetchResult(guid);
     return result;
   }
 
-  private async waitForFinish(guid: string) {
+  private async startCalculations(inputData: CalculationsInput): Promise<string> {
+
+    return await this.http.post<string>(startUrl(), inputData).toPromise();
+  }
+
+  private async waitForFinish(guid: string): Promise<void> {
 
     let hasResult = false;
 
@@ -43,6 +48,10 @@ export class HttpService {
       this.statusBarService.setProgress(response.progress);
       hasResult = response.hasResult;
     }
+  }
+
+  private async fetchResult(guid: string): Promise<ResultData> {
+    return await this.http.get<ResultData>(resultUrl(guid)).toPromise();
   }
 
 }

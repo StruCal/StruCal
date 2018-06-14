@@ -5,6 +5,7 @@ using Common.Utils;
 using Database;
 using Newtonsoft.Json;
 using StruCal.BindingModels;
+using StruCal.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,12 +32,14 @@ namespace StruCal.Controllers
     public class TrainLoadApiController : ApiController
     {
         private readonly IDataProvider dataProvider;
+        private readonly TrailLoadProgress trailLoadProgress;
 
         public TrainLoadApiController()
         {
             var connectionString = WebConfigurationManager.ConnectionStrings["MySql"].ConnectionString;
             var sqlProvider = new MySqlProvider(connectionString);
             this.dataProvider = new DataProvider(sqlProvider);
+            this.trailLoadProgress = new TrailLoadProgress(dataProvider);
         }
 
         [System.Web.Http.AllowAnonymous]
@@ -44,6 +47,7 @@ namespace StruCal.Controllers
         public IHttpActionResult TrainLoadCalculations(TrainLoadInputDTO inputDTO)
         {
             var operationGuid = this.dataProvider.StartOperation();
+            this.trailLoadProgress.SendProgress(operationGuid, MessageType.ReceivingInputData);
             var baseUrl = Request.RequestUri.GetLeftPart(UriPartial.Authority);
             RedirectToCalculations(inputDTO, baseUrl, operationGuid);
             return Ok(operationGuid);
@@ -54,13 +58,13 @@ namespace StruCal.Controllers
         [System.Web.Http.Route("api/TrainLoadApi/{guid}")]
         public IHttpActionResult PerformCalculations([FromBody]TrainLoadInputDTO inputDTO, Guid guid)
         {
-            Action<ProgressMsg> progress = m => this.dataProvider.SetProgress(guid, m.Progress);
-
+            this.trailLoadProgress.SendProgress(guid, MessageType.Calculations);
             var input = inputDTO.ToTrainLoadInput();
-            var calculator = new TrainLoadCalculator(input, progress);
+            var calculator = new TrainLoadCalculator(input);
             var result = calculator.Calculate();
             var resultDTO = result.ToTrainLoadOutputDTO();
 
+            this.trailLoadProgress.SendProgress(guid, MessageType.PreparingResult);
             this.dataProvider.SetResult(guid, ZipTools.Compress(JsonConvert.SerializeObject(resultDTO)));
 
             return Ok(resultDTO);
@@ -73,6 +77,7 @@ namespace StruCal.Controllers
         {
             var resultData = this.dataProvider.GetResult(guid);
             var result = JsonConvert.DeserializeObject<TrainLoadOutputDTO>(ZipTools.DecompressToString(resultData));
+            this.trailLoadProgress.SendProgress(guid, MessageType.SendingResults);
             return Ok(result);
         }
 

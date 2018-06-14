@@ -109,7 +109,6 @@
     <Compile Include="TrainLoad\Output\TimeResult.cs" />
     <Compile Include="TrainLoad\Output\VertexColorResult.cs" />
     <Compile Include="TrainLoad\Output\VertexStressResult.cs" />
-    <Compile Include="TrainLoad\Progress\ProgressAdapter.cs" />
     <Compile Include="TrainLoad\ResultCreator.cs" />
     <Compile Include="TrainLoad\TrainLoadCalculator.cs" />
     <Compile Include="TrainLoad\VertexResultCalculator.cs" />

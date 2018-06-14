@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Common.Utils;
-using Calculators.TrainLoad.Progress;
 
 namespace Calculators.TrainLoad
 {
@@ -16,14 +15,12 @@ namespace Calculators.TrainLoad
         private readonly IGradient gradient;
         private readonly FEMCalculator femCalculator;
         private readonly ResultCreator resultCreator;
-        private readonly ProgressAdapter progress;
 
-        public TrainLoadCalculator(TrainLoadInput trainLoadInput, Action<ProgressMsg> externalProgress = null)
+        public TrainLoadCalculator(TrainLoadInput trainLoadInput)
         {
-            this.progress = new ProgressAdapter(externalProgress);
             this.trainLoadInput = trainLoadInput;
             this.gradient = new LinearGradient(this.trainLoadInput.MaxColor, this.trainLoadInput.MinColor, this.trainLoadInput.MiddleColor);
-            this.femCalculator = new FEMCalculator(this.trainLoadInput, progress);
+            this.femCalculator = new FEMCalculator(this.trainLoadInput);
             this.resultCreator = new ResultCreator(this.gradient, trainLoadInput.TimeSettings);
         }
 
