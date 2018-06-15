@@ -2,8 +2,9 @@
 	height: 100%;
 	position: relative;
 	background-color: transparent;
-	border-color: blue;
+	border-color: white;
 	border-width: thin;
+	margin-bottom: 20px;
 }
 
 	.progress-circle > svg {
