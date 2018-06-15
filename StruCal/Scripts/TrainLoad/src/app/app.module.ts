@@ -28,6 +28,7 @@ import { Drawing2dDirective } from './drawing2d/drawing2d.directive';
 import { AccelerationGaugeComponent } from './acceleration-gauge/acceleration-gauge.component';
 import { AccelerationGaugeService } from './services/acceleration-gauge.service';
 import { AccelerationFormatPipe } from './pipes/acceleration-format.pipe';
+import { ProgressService } from './services/progress.service';
 
 
 
@@ -61,6 +62,7 @@ import { AccelerationFormatPipe } from './pipes/acceleration-format.pipe';
     AccelerationGaugeService,
     StructureService,
     LocalStorageService,
+    ProgressService,
     StatusBarService,
     InputService,
     InitializationService
