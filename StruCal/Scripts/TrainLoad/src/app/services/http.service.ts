@@ -26,12 +26,14 @@ export class HttpService {
 
   async getResult(inputData: CalculationsInput): Promise<ResultData> {
 
-    const guid = await this.startCalculations(inputData);
-
     const p = this.progressProvider.getProgress(0);
     const m = this.progressProvider.getMessage(0);
     this.statusBarService.setProgress(p);
     this.statusBarService.setMsg(m);
+
+    const guid = await this.startCalculations(inputData);
+
+
 
 
     await this.waitForFinish(guid);

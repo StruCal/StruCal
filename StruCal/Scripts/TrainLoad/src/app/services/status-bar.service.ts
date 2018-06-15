@@ -7,7 +7,6 @@ const dirtyMsg = 'Results are NOT up to date.';
 const errorMsg = 'An error has occured. Please try again.';
 const validMsg = 'Results are up to date';
 
-const startProcessingMsg = 'Processing... Gathering data.';
 const calculationsProcessingMsg = 'Processing... Calculations are being performed.';
 const fetchingDataMsg = 'Processing... Fetching data from the server.';
 
@@ -67,8 +66,6 @@ export class StatusBarService {
     this.errorSource.next(false);
     this.validSource.next(false);
     this.calculationsSource.next(true);
-
-    this.setMsg(startProcessingMsg);
   }
 
   public setMsg(value: string) {
