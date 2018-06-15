@@ -1,18 +1,27 @@
+import { ProgressMessage } from './progressMessage';
 
 const maxSteps = 4;
 
-export class ProgressProvider {
+export function getProgressInfo(step: number): ProgressMessage {
 
-    getProgress(step: number): number {
-        return Math.round((step / maxSteps * 100));
-    }
+    const progressValue = Math.round((step / maxSteps * 100));
+    const message = progressMessageMap.get(step);
 
-    getMessage(step: number): string {
-        return progressMessageMap.get(step);
-    }
+    return {
+        value: progressValue,
+        message: message,
+    };
 }
 
-const progressMessageMap = new Map<number, string>();
+export enum progressStep {
+    gatheringData = 0,
+    sendingData = 1,
+    performingCalculations = 2,
+    preparingResults = 3,
+    fetchingResult = 4
+}
+
+const progressMessageMap = new Map<progressStep, string>();
 progressMessageMap.set(0, 'Gathering data...');
 progressMessageMap.set(1, 'Sending data to server...');
 progressMessageMap.set(2, 'Performing calculations...');

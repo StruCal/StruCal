@@ -1,5 +1,4 @@
-
 export interface ProgressMessage {
-    hasResult: boolean;
-    progress: number;
+    value: number;
+    message: string;
 }
