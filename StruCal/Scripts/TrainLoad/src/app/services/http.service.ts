@@ -22,7 +22,6 @@ export class HttpService {
 
   }
 
-
   public async getResult(inputData: CalculationsInput): Promise<ResultData> {
 
     this.progressService.setStep(progressStep.gatheringData);
@@ -48,8 +47,6 @@ export class HttpService {
 
       hasResult = response.hasResult;
       this.progressService.setStep(response.progress);
-
-
     }
   }
 
