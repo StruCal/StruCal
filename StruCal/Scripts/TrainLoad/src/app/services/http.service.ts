@@ -8,6 +8,8 @@ import { StatusBarService } from './status-bar.service';
 import { ProgressService } from './progress.service';
 import { progressStep } from '../../common/progress/progressProvider';
 import { ProgressResponse } from '../../common/progress/progressResponse';
+import { promise } from 'protractor';
+import { delay } from '../../common/utils/delay';
 
 const baseUrl = isProduction ? '' : 'http://localhost:50025';
 
@@ -44,7 +46,7 @@ export class HttpService {
 
     while (!hasResult) {
       const response = await this.http.get<ProgressResponse>(progressUrl(guid)).toPromise();
-
+      await delay(2000);
       hasResult = response.hasResult;
       this.progressService.setStep(response.progress);
     }
@@ -53,5 +55,4 @@ export class HttpService {
   private async fetchResult(guid: string): Promise<ResultData> {
     return await this.http.get<ResultData>(resultUrl(guid)).toPromise();
   }
-
 }
